@@ -1,0 +1,111 @@
+/* ================================= Font Neurial Grotesk ================================= */
+
+@font-face {
+    font-family: "Neurial Grotesk";
+    src: url("Neurial-Grotesk-Font-Family/NeurialGrotesk-Bold.woff2")
+            format("woff2"),
+        url("Neurial-Grotesk-Font-Family/NeurialGrotesk-Bold.woff")
+            format("woff");
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Neurial Grotesk";
+    src: url("Neurial-Grotesk-Font-Family/NeurialGrotesk-BoldItalic.woff2")
+            format("woff2"),
+        url("Neurial-Grotesk-Font-Family/NeurialGrotesk-BoldItalic.woff")
+            format("woff");
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Neurial Grotesk";
+    src: url("Neurial-Grotesk-Font-Family/NeurialGrotesk-Light.woff2")
+            format("woff2"),
+        url("Neurial-Grotesk-Font-Family/NeurialGrotesk-Light.woff")
+            format("woff");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Neurial Grotesk Exbold";
+    src: url("Neurial-Grotesk-Font-Family/NeurialGrotesk-ExtraboldItalic.woff2")
+            format("woff2"),
+        url("Neurial-Grotesk-Font-Family/NeurialGrotesk-ExtraboldItalic.woff")
+            format("woff");
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Neurial Grotesk";
+    src: url("Neurial-Grotesk-Font-Family/NeurialGrotesk-Extrabold.woff2")
+            format("woff2"),
+        url("Neurial-Grotesk-Font-Family/NeurialGrotesk-Extrabold.woff")
+            format("woff");
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Neurial Grotesk";
+    src: url("Neurial-Grotesk-Font-Family/NeurialGrotesk-Medium.woff2")
+            format("woff2"),
+        url("Neurial-Grotesk-Font-Family/NeurialGrotesk-Medium.woff")
+            format("woff");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Neurial Grotesk";
+    src: url("Neurial-Grotesk-Font-Family/NeurialGrotesk-LightItalic.woff2")
+            format("woff2"),
+        url("Neurial-Grotesk-Font-Family/NeurialGrotesk-LightItalic.woff")
+            format("woff");
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Neurial Grotesk";
+    src: url("Neurial-Grotesk-Font-Family/NeurialGrotesk-RegularItalic.woff2")
+            format("woff2"),
+        url("Neurial-Grotesk-Font-Family/NeurialGrotesk-RegularItalic.woff")
+            format("woff");
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Neurial Grotesk";
+    src: url("Neurial-Grotesk-Font-Family/NeurialGrotesk-MediumItalic.woff2")
+            format("woff2"),
+        url("Neurial-Grotesk-Font-Family/NeurialGrotesk-MediumItalic.woff")
+            format("woff");
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Neurial Grotesk";
+    src: url("Neurial-Grotesk-Font-Family/NeurialGrotesk-Regular.woff2")
+            format("woff2"),
+        url("Neurial-Grotesk-Font-Family/NeurialGrotesk-Regular.woff")
+            format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
