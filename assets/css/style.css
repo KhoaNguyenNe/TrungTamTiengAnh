@@ -1,3 +1,137 @@
 * {
     box-sizing: border-box;
 }
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+    font-family: "NeurialGrotesk", sans-serif;
+}
+
+/* ===== Common ===== */
+.content {
+    width: 1600px;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+.Logo {
+    color: #0b0d21;
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 3.4rem;
+    border: none;
+    margin-right: 30px;
+}
+
+.btn {
+    padding: 15px 20px;
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: 700;
+    border-radius: 15px;
+}
+/* ===== Header ===== */
+.header {
+    background-color: #fdf0df;
+    height: 100vh;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    padding: 35px;
+}
+
+.navbar .nav-items {
+    display: flex;
+}
+
+.navbar .nav-items .item {
+    color: #0b0d21;
+    font-size: 1.8rem;
+    font-weight: 500;
+    line-height: 2.8rem;
+    border-radius: 15px;
+    padding: 15px 25px;
+    transition: all 500ms;
+}
+
+.navbar .nav-items .item:hover {
+    background: #ffee00;
+}
+
+.navbar .actions {
+    margin-left: auto;
+    display: flex;
+}
+
+.pro {
+    /* width: fit-content; */
+    display: flex;
+    cursor: pointer;
+    gap: 0.4rem;
+    text-shadow: 2px 2px 3px rgb(136 0 136 / 50%);
+    background: linear-gradient(
+            15deg,
+            #880088,
+            #aa2068,
+            #cc3f47,
+            #de6f3d,
+            #f09f33,
+            #de6f3d,
+            #cc3f47,
+            #aa2068,
+            #880088
+        )
+        no-repeat;
+    background-size: 300%;
+    border: none;
+    background-position: left center;
+    transition: background 0.3s ease;
+}
+
+.pro:hover {
+    background-size: 320%;
+    background-position: right center;
+}
+
+.pro:hover svg {
+    fill: #fff;
+}
+
+.pro svg {
+    width: 23px;
+    fill: #f09f33;
+    transition: 0.3s ease;
+}
+
+.log {
+    margin-left: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    background-color: #181717;
+    outline: 3px #181717 solid;
+    outline-offset: -3px;
+    border: none;
+    cursor: pointer;
+    transition: 400ms;
+}
+
+.log:hover {
+    background-color: transparent;
+}
+
+.log:hover .text {
+    color: #181717;
+}
