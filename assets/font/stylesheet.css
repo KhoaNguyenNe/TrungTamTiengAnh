@@ -1,111 +1,90 @@
-/* ================================= Font Neurial Grotesk ================================= */
-
 @font-face {
-    font-family: "Neurial Grotesk";
-    src: url("Neurial-Grotesk-Font-Family/NeurialGrotesk-Bold.woff2")
-            format("woff2"),
-        url("Neurial-Grotesk-Font-Family/NeurialGrotesk-Bold.woff")
-            format("woff");
+    font-family: 'Lato';
+    src: url('Lato/Lato-Bold.woff2') format('woff2'),
+        url('Lato/Lato-Bold.woff') format('woff');
     font-weight: bold;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: "Neurial Grotesk";
-    src: url("Neurial-Grotesk-Font-Family/NeurialGrotesk-BoldItalic.woff2")
-            format("woff2"),
-        url("Neurial-Grotesk-Font-Family/NeurialGrotesk-BoldItalic.woff")
-            format("woff");
-    font-weight: bold;
-    font-style: italic;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "Neurial Grotesk";
-    src: url("Neurial-Grotesk-Font-Family/NeurialGrotesk-Light.woff2")
-            format("woff2"),
-        url("Neurial-Grotesk-Font-Family/NeurialGrotesk-Light.woff")
-            format("woff");
-    font-weight: 300;
+    font-family: 'Lato Hairline';
+    src: url('Lato/Lato-Hairline.woff2') format('woff2'),
+        url('Lato/Lato-Hairline.woff') format('woff');
+    font-weight: normal;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: "Neurial Grotesk Exbold";
-    src: url("Neurial-Grotesk-Font-Family/NeurialGrotesk-ExtraboldItalic.woff2")
-            format("woff2"),
-        url("Neurial-Grotesk-Font-Family/NeurialGrotesk-ExtraboldItalic.woff")
-            format("woff");
-    font-weight: bold;
-    font-style: italic;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "Neurial Grotesk";
-    src: url("Neurial-Grotesk-Font-Family/NeurialGrotesk-Extrabold.woff2")
-            format("woff2"),
-        url("Neurial-Grotesk-Font-Family/NeurialGrotesk-Extrabold.woff")
-            format("woff");
-    font-weight: bold;
+    font-family: 'Lato';
+    src: url('Lato/Lato-Black.woff2') format('woff2'),
+        url('Lato/Lato-Black.woff') format('woff');
+    font-weight: 900;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: "Neurial Grotesk";
-    src: url("Neurial-Grotesk-Font-Family/NeurialGrotesk-Medium.woff2")
-            format("woff2"),
-        url("Neurial-Grotesk-Font-Family/NeurialGrotesk-Medium.woff")
-            format("woff");
-    font-weight: 500;
+    font-family: 'Lato';
+    src: url('Lato/Lato-Heavy.woff2') format('woff2'),
+        url('Lato/Lato-Heavy.woff') format('woff');
+    font-weight: 900;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: "Neurial Grotesk";
-    src: url("Neurial-Grotesk-Font-Family/NeurialGrotesk-LightItalic.woff2")
-            format("woff2"),
-        url("Neurial-Grotesk-Font-Family/NeurialGrotesk-LightItalic.woff")
-            format("woff");
-    font-weight: 300;
-    font-style: italic;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "Neurial Grotesk";
-    src: url("Neurial-Grotesk-Font-Family/NeurialGrotesk-RegularItalic.woff2")
-            format("woff2"),
-        url("Neurial-Grotesk-Font-Family/NeurialGrotesk-RegularItalic.woff")
-            format("woff");
+    font-family: 'Lato';
+    src: url('Lato/Lato-Italic.woff2') format('woff2'),
+        url('Lato/Lato-Italic.woff') format('woff');
     font-weight: normal;
     font-style: italic;
     font-display: swap;
 }
 
 @font-face {
-    font-family: "Neurial Grotesk";
-    src: url("Neurial-Grotesk-Font-Family/NeurialGrotesk-MediumItalic.woff2")
-            format("woff2"),
-        url("Neurial-Grotesk-Font-Family/NeurialGrotesk-MediumItalic.woff")
-            format("woff");
-    font-weight: 500;
-    font-style: italic;
+    font-family: 'Lato';
+    src: url('Lato/Lato-Light.woff2') format('woff2'),
+        url('Lato/Lato-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: "Neurial Grotesk";
-    src: url("Neurial-Grotesk-Font-Family/NeurialGrotesk-Regular.woff2")
-            format("woff2"),
-        url("Neurial-Grotesk-Font-Family/NeurialGrotesk-Regular.woff")
-            format("woff");
+    font-family: 'Lato';
+    src: url('Lato/Lato-Regular.woff2') format('woff2'),
+        url('Lato/Lato-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
 }
+
+@font-face {
+    font-family: 'Lato';
+    src: url('Lato/Lato-Medium.woff2') format('woff2'),
+        url('Lato/Lato-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: url('Lato/Lato-Semibold.woff2') format('woff2'),
+        url('Lato/Lato-Semibold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: url('Lato/Lato-Thin.woff2') format('woff2'),
+        url('Lato/Lato-Thin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
