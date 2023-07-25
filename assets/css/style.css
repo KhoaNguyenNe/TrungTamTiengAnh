@@ -8,7 +8,6 @@ html {
 
 body {
     font-family: "Lato", sans-serif;
-    height: 10000px;
 }
 
 :root {
@@ -33,7 +32,7 @@ a {
     font-weight: 700;
     line-height: 3.4rem;
     border: none;
-    margin-right: 30px;
+    margin-right: 125px;
 }
 
 .btn {
@@ -94,7 +93,7 @@ a {
 .navbar {
     display: flex;
     align-items: center;
-    padding: 10px;
+    padding: 10px 10px 10px 0px;
 }
 
 .navbar .nav-items {
@@ -107,7 +106,7 @@ a {
     font-weight: 500;
     line-height: 2.8rem;
     border-radius: 15px;
-    padding: 15px 25px;
+    padding: 15px 20px;
     transition: all 500ms;
 }
 
@@ -229,39 +228,36 @@ a {
 /* Photo (Hình ảnh) */
 .head .content-photo {
     margin-top: 100px;
-    /* position: absolute;
-    top: 0;
-    right: 135px; */
 }
 
 .head .photo1 {
     position: absolute;
     top: 100px;
-    right: 435px;
+    right: calc((100vw - 1600px) / 2 + 305px);
 }
 
 .head .photo2 {
     position: absolute;
     top: 100px;
-    right: 135px;
+    right: calc((100vw - 1600px) / 2 + 5px); /*135px*/
 }
 
 .head .photo3 {
     position: absolute;
     top: 550px;
-    right: 435px;
+    right: calc((100vw - 1600px) / 2 + 305px);
 }
 
 .head .photo4 {
     position: absolute;
-    right: 135px;
+    right: calc((100vw - 1600px) / 2 + 5px); /*135px*/
     top: 396px;
 }
 
 .head .scoll-down {
     position: absolute;
     top: 706px;
-    right: 235px;
+    right: calc((100vw - 1600px) / 2 + 105px);
 }
 
 .head .scoll-down .mouse {
@@ -270,4 +266,245 @@ a {
 
 .head .scoll-down .desc {
     margin-top: 12px;
+}
+
+/* Subcribe */
+.subcribe {
+    background-color: #ffee00;
+    padding: 115px 435px 100px;
+}
+
+.subcribe .content {
+    position: relative;
+}
+
+.subcribe .heading-sub {
+    margin-left: auto;
+    margin-right: auto;
+    width: 570px;
+    color: var(--font-color);
+    text-align: center;
+    font-size: 4.2rem;
+    font-weight: 800;
+    line-height: 5.2rem;
+}
+
+.subcribe .desc-sub {
+    color: var(--font-color);
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 2.8rem;
+    width: 570px;
+    margin: 0px auto;
+}
+
+.subcribe .form-group {
+    margin: 40px auto 0px;
+    width: 570px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.subcribe .form-group .email-input {
+    color: var(--font-color);
+    background-color: transparent;
+    outline: none;
+    border: none;
+    border: 2px solid var(--font-color);
+    width: 393px;
+    border-radius: 8px;
+    padding: 15px 0px 15px 15px;
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 2.8rem;
+}
+
+.subcribe .form-group .email-input::placeholder {
+    color: var(--font-color);
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 2.8rem;
+}
+
+.subcribe .form-error {
+    color: red;
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 2.8rem;
+    visibility: hidden;
+}
+
+.subcribe .form-group:has(:invalid:not(:placeholder-shown)) .form-error {
+    visibility: visible;
+}
+
+.subcribe .form-group .sub-btn {
+    height: 62px;
+    width: 159px;
+    margin-bottom: auto;
+}
+
+.subcribe .form-group:has(:invalid) .sub-btn {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.subcribe .sub-book1 {
+    position: absolute;
+    left: calc((100vw - 1600px) / 2 - 200px);
+    top: 50px;
+}
+
+.subcribe .sub-book2 {
+    position: absolute;
+    transform: rotate(90deg);
+    right: calc((100vw - 1600px) / 2 - 200px);
+    top: 25px;
+}
+/* =============== footer =============== */
+.footer {
+    background-color: #fdf0df;
+    padding: 95px 135px 0px 135px;
+}
+
+.footer .row {
+    display: flex;
+}
+
+.footer .heading {
+    color: var(--font-color);
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 3rem;
+    margin-bottom: 24px;
+}
+
+.footer .item {
+    padding-bottom: 14px;
+}
+
+.footer .item a,
+.footer .row .email-call {
+    color: #686977;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 2.6rem;
+}
+
+.footer .row-top .column-2 {
+    margin-left: 400px;
+}
+
+.footer .email .desc-email-call {
+    margin-bottom: 16px;
+}
+
+.footer .email-call .mail-call {
+    color: var(--font-color);
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 3rem;
+}
+
+.footer .mail {
+    margin-left: 300px;
+}
+
+.footer .call {
+    margin-left: auto;
+}
+
+.footer .social-media .card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px 25px 25px 0px;
+    gap: 20px;
+}
+
+/* for all social containers*/
+.footer .social-media .socialContainer {
+    width: 52px;
+    height: 52px;
+    background-color: rgb(44, 44, 44);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition-duration: 0.3s;
+}
+/* instagram*/
+.footer .social-media .containerOne:hover {
+    background-color: #d62976;
+    transition-duration: 0.3s;
+}
+/* facebook*/
+.footer .social-media .fb {
+    filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%)
+        hue-rotate(288deg) brightness(102%) contrast(102%);
+}
+
+.footer .social-media .containerTwo:hover {
+    background-color: #00acee;
+    transition-duration: 0.3s;
+}
+/* linkdin*/
+.footer .social-media .containerThree:hover {
+    background-color: #0072b1;
+    transition-duration: 0.3s;
+}
+/* Whatsapp*/
+.footer .social-media .containerFour:hover {
+    background-color: #128c7e;
+    transition-duration: 0.3s;
+}
+
+.footer .social-media .socialContainer:active {
+    transform: scale(0.9);
+    transition-duration: 0.3s;
+}
+
+.footer .social-media .socialSvg {
+    width: 17px;
+}
+
+.footer .social-media .socialSvg path {
+    fill: rgb(255, 255, 255);
+}
+
+.footer .social-media .socialContainer:hover .socialSvg {
+    animation: slide-in-top 0.3s both;
+}
+
+@keyframes slide-in-top {
+    0% {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.footer .row-bottom {
+    margin-top: 50px;
+    padding: 28px 0px;
+    border-top: 1px solid #000;
+}
+
+.footer .row-bottom .bank {
+    margin-left: 450px;
+}
+
+.footer .row-bottom .copy-right {
+    margin-left: auto;
+    color: #686977;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 2.6rem;
 }
