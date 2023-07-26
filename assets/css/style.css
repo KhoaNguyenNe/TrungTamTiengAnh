@@ -30,7 +30,6 @@ a {
     color: var(--font-color);
     font-size: 2.4rem;
     font-weight: 700;
-    line-height: 3.4rem;
     border: none;
     margin-right: 125px;
 }
@@ -104,7 +103,6 @@ a {
     color: var(--font-color);
     font-size: 1.8rem;
     font-weight: 500;
-    line-height: 2.8rem;
     border-radius: 15px;
     padding: 15px 20px;
     transition: all 500ms;
@@ -161,7 +159,6 @@ a {
     color: var(--font-color);
     font-size: 6.2rem;
     font-weight: 900;
-    line-height: 6.6rem;
 }
 
 .head .desc {
@@ -195,7 +192,6 @@ a {
     color: var(--font-color);
     font-size: 2.2rem;
     font-weight: 700;
-    line-height: 3.2rem;
 }
 
 .access .result-review {
@@ -203,7 +199,6 @@ a {
     color: var(--font-color);
     font-size: 1.8rem;
     font-weight: 400;
-    line-height: 2.8rem;
 }
 
 .access .desc-review {
@@ -213,7 +208,6 @@ a {
     font-size: 1.8rem;
     font-style: normal;
     font-weight: 700;
-    line-height: 2.8rem;
     border-bottom: 1.5px solid #000;
 }
 
@@ -294,9 +288,9 @@ a {
     text-align: center;
     font-size: 1.8rem;
     font-weight: 400;
-    line-height: 2.8rem;
+    line-height: 2rem;
     width: 570px;
-    margin: 0px auto;
+    margin: 10px auto;
 }
 
 .subcribe .form-group {
@@ -318,14 +312,12 @@ a {
     padding: 15px 0px 15px 15px;
     font-size: 1.8rem;
     font-weight: 400;
-    line-height: 2.8rem;
 }
 
 .subcribe .form-group .email-input::placeholder {
     color: var(--font-color);
     font-size: 1.8rem;
     font-weight: 400;
-    line-height: 2.8rem;
 }
 
 .subcribe .form-error {
@@ -363,6 +355,139 @@ a {
     right: calc((100vw - 1600px) / 2 - 200px);
     top: 25px;
 }
+
+/* Function Web */
+.function_web {
+    background-color: #fdf0df;
+    padding: 50px;
+}
+
+.function_web .heading {
+    margin-top: 50px;
+    color: var(--font-color);
+    font-size: 4.2rem;
+    font-weight: 800;
+}
+
+.function_web .web {
+    max-width: 100%;
+    width: 1000px;
+    object-fit: cover;
+}
+
+.function_web .group-info {
+    display: flex;
+}
+
+.function_web .group-info .info {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 20px;
+    width: 300px;
+    height: 240px;
+    box-shadow: 0 6px 10px rgba(218, 220, 237, 0.5);
+    margin: 30px 20px 0px 0px;
+    transition: 1s ease;
+}
+
+.function_web .group-info .info:first-child {
+    margin-top: 50px;
+}
+
+.function_web .group-info .info:hover {
+    transform: translateY(-20px);
+}
+
+.function_web .group-info .info .icon {
+    text-align: center;
+    filter: brightness(0) saturate(100%) invert(53%) sepia(64%) saturate(1620%)
+        hue-rotate(208deg) brightness(100%) contrast(102%);
+    margin-bottom: 5px;
+}
+
+.function_web .group-info .info .title {
+    color: var(--font-color);
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 2rem;
+    margin-bottom: 10px;
+}
+
+.function_web .group-info .info .desc {
+    color: #686977;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 2.6rem;
+}
+
+.func-button {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.func-btn {
+    --color: #828aff;
+    padding: 2em 15em;
+    background-color: transparent;
+    border-radius: 999px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.5s;
+    border: 3px solid;
+    text-transform: uppercase;
+    color: var(--color);
+    z-index: 1;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.func-btn::before,
+.func-btn::after {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 50px;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    border-radius: 999px;
+    z-index: -1;
+    background-color: var(--color);
+    transition: 500ms ease;
+}
+
+.func-btn::before {
+    top: -1em;
+    left: -1em;
+}
+
+.func-btn::after {
+    left: calc(100% + 1em);
+    top: calc(100% + 1em);
+}
+
+.func-btn:hover::before,
+.func-btn:hover::after {
+    height: 800px;
+    width: 800px;
+}
+
+.func-btn:hover {
+    color: #34447c;
+    transform: translateY(-10px);
+}
+
+.func-btn:hover .text {
+    color: #000;
+}
+
+.func-btn:active {
+    filter: brightness(0.8);
+}
+
 /* =============== footer =============== */
 .footer {
     background-color: #fdf0df;
@@ -377,7 +502,6 @@ a {
     color: var(--font-color);
     font-size: 2rem;
     font-weight: 700;
-    line-height: 3rem;
     margin-bottom: 24px;
 }
 
@@ -390,7 +514,6 @@ a {
     color: #686977;
     font-size: 1.6rem;
     font-weight: 400;
-    line-height: 2.6rem;
 }
 
 .footer .row-top .column-2 {
@@ -406,7 +529,6 @@ a {
     font-size: 2rem;
     font-style: normal;
     font-weight: 700;
-    line-height: 3rem;
 }
 
 .footer .mail {
@@ -506,5 +628,4 @@ a {
     color: #686977;
     font-size: 1.6rem;
     font-weight: 400;
-    line-height: 2.6rem;
 }
