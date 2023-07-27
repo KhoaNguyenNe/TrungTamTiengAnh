@@ -1,0 +1,46 @@
+body{
+    font-family: "Lato", sans-serif;
+}
+/*định dạng khung*/
+.phara{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 24px;
+    padding-right: 24px;
+    background-color: white;
+}
+.paper{
+    width:80%;
+    color:#181717;
+    font-size: 1.6rem;
+    line-height: 1.5;
+}
+/*tieude*/
+.tieude{
+    font-weight: 700;
+    font-size: 2.4rem;
+    margin: 20px 0;
+} 
+.paper h3{
+    font-weight: 700;
+    font-size: 1.9rem;
+    margin: 18px 0;
+}
+.paper p {
+    margin: 16px 0;
+}
+.bold{
+    font-weight: 700;
+}
+/*link*/
+
+/* Hiệu ứng đổi màu chữ khi di chuột vào liên kết */
+.s2 {
+    color: #4285f4;
+    transition: color 0.2s ease;
+  }
+.s2:hover {
+    color: #41a42b;
+  }
+  

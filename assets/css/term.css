@@ -1,0 +1,54 @@
+body{
+    font-family: "Lato", sans-serif;
+    color:#181717;
+}
+/*định dạng khung*/
+.phara{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 24px;
+    padding-right: 24px;
+    background-color: white;
+}
+.paper{
+    width:80%;
+    color:#181717;
+    font-size: 1.8rem;
+    line-height: 1.5;
+}
+/*nội dung*/
+.indam{
+    font-weight: 700;
+}
+.Term{
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    
+}
+.paper p {
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+.paper h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+/*link*/
+.dgdan {
+    color: #4285f4;
+    transition: color 0.2s ease;
+  }
+.dgdan:hover {
+    color: #41a42b;
+  }

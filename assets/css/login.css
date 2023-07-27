@@ -1,6 +1,8 @@
-
-.sign{
+main{
     font-family: "Lato", sans-serif;
+}
+/*Định dạng ô login */
+.sign{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,6 +18,7 @@
     padding-right: 24px;
     padding-bottom: 24px;
 }
+/*=====Các thành phần====*/
 .title{
     font-size: 36px;
     text-align: center;
@@ -23,6 +26,7 @@
     font-weight: 1000;
     padding-bottom: 30px;
 }
+/*ô nhập liệu*/
 .wrap .input-box{
     position: relative;
     width:100%;
@@ -30,6 +34,7 @@
     margin:30px 0;
     
 }
+
 .input-box input{
     width: 100%;
     height: 100%;
@@ -38,7 +43,7 @@
     outline: none;
     border: 2px solid #f1f3f5;
     border-radius: 40px;
-    font-size: 16px;
+    font-size: 1.6rem;
     color:#181717;
     padding: 20px 45px 20px 20px;
     
@@ -53,10 +58,11 @@
     transform: translateY(-50%);
     font-size:20px;
 }
+/*TP khác*/
 .wrap .remember-forgot{
     display:flex;
     justify-content: space-between;
-    font-size: 18px;
+    font-size: 1.8rem;
     font-weight: 600;
     margin: -15px 0 15px;
 }
@@ -71,7 +77,7 @@
 .remember-forgot a:hover{
     text-decoration: underline;
 }
-.wrap .btn{
+.wrap .buttonlogin{
     width:40%;
     height: 45px;
     background: #181717;
@@ -114,7 +120,7 @@
     left:0;
 }
 .wrap .register{
-    font-size: 14.5px;
+    font-size: 1.45rem;
     text-align: center;
     margin: 20px 0 15px;
 
@@ -126,7 +132,7 @@
     
     width: 50%;
     color: #181717;
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: bold;
     font-family: "Lato", sans-serif;
     border: 0;
@@ -147,7 +153,7 @@
     align-items: center;
     justify-content: center;
     color: #fff;
-    font-size: 30px;
+    font-size: 3.0rem;
 }
 .signup-social-text {
     display: block;
