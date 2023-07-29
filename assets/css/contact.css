@@ -1,17 +1,112 @@
 body{
     font-family: "Lato", sans-serif;
 }
+
 /*định dạng khung*/
 .phara{
     display: flex;
-
-    padding-left: 24px;
-    padding-right: 24px;
+    line-height: 2em;
+    padding-left: 100px;
+    padding-right: 100px;
     background-color: white;
 }
+
 .paper{
     width:80%;
     color:#181717;
     font-size: 1.6rem;
     line-height: 1.5;
+}
+
+.wrap-contact{
+    display: flex;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+}
+
+.khungtrai{
+    width:620px;
+}
+
+.khung{
+    margin: 30px 0;
+}
+
+.input-contact{
+    width:100%;
+    display:block;
+}
+
+/*định dạng nội dung*/
+.title-contact{
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    width:620px;
+}
+
+.nd-contact{
+    font-size: 1.6rem;
+}
+
+.tieude-contact{
+    font-size: 1.6rem;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+    font-weight: 600;
+}
+
+.input-contact input{
+    width:600px;
+    height: 100%;
+    border: none;
+    outline: none;
+    border: 2px solid #d5d7d9;
+    border-radius: 5px;
+    font-size: 1.6rem;
+    color:#181717;
+    padding: 8px 18px;
+    
+}
+
+.input-contact textarea{
+    width:600px;
+    height: 90px;
+    border: none;
+    outline: none;
+    border: 2px solid #d5d7d9;
+    border-radius: 5px;
+    font-size: 1.6rem;
+    padding: 8px 18px;
+}
+
+.buttonlogin{
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    width:15%;
+    height: 100%;
+    background: #181717;
+    border: none;
+    outline: none;
+    border-radius:20px;
+    box-shadow: 0 0 10px rgba(o,0,0,.1);
+    cursor: pointer;
+    font-size: 1.6rem;
+    color: white;
+    padding:7px 10px;
+}
+/*định dạng icon*/
+.iconcontact{
+    font-size: 1.6rem;
+    margin: 0 10px;
+}
+/*gg map*/
+.gg-map{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    min-height: 100%;
 }
