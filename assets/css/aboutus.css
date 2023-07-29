@@ -38,6 +38,7 @@ body{
 /* Hiệu ứng đổi màu chữ khi di chuột vào liên kết */
 .s2 {
     color: #4285f4;
+    font-weight: ;
     transition: color 0.2s ease;
   }
 .s2:hover {
