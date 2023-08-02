@@ -1,5 +1,6 @@
 body{
     font-family: "Lato", sans-serif;
+    font-size: 1.8rem;
 }
 
 /*định dạng khung*/
@@ -12,9 +13,9 @@ body{
 }
 
 .paper{
+    
     width:80%;
     color:#181717;
-    font-size: 1.6rem;
     line-height: 1.5;
 }
 
@@ -22,6 +23,8 @@ body{
     display: flex;
     margin-block-start: 0.83em;
     margin-block-end: 0.83em;
+    margin-bottom: auto;
+    align-items: center;
 }
 
 .khungtrai{
@@ -47,11 +50,11 @@ body{
 }
 
 .nd-contact{
-    font-size: 1.6rem;
+    font-size: 1.8rem;
 }
 
 .tieude-contact{
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     margin-block-start: 0.5em;
     margin-block-end: 0.5em;
     font-weight: 600;
@@ -64,7 +67,7 @@ body{
     outline: none;
     border: 2px solid #d5d7d9;
     border-radius: 5px;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     color:#181717;
     padding: 8px 18px;
     
@@ -77,7 +80,7 @@ body{
     outline: none;
     border: 2px solid #d5d7d9;
     border-radius: 5px;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     padding: 8px 18px;
 }
 
@@ -92,13 +95,13 @@ body{
     border-radius:20px;
     box-shadow: 0 0 10px rgba(o,0,0,.1);
     cursor: pointer;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     color: white;
     padding:7px 10px;
 }
 /*định dạng icon*/
 .iconcontact{
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     margin: 0 10px;
 }
 /*gg map*/

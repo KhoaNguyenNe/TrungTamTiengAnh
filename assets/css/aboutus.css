@@ -13,7 +13,7 @@ body{
 .paper{
     width:80%;
     color:#181717;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     line-height: 1.5;
 }
 /*tieude*/
@@ -38,7 +38,7 @@ body{
 /* Hiệu ứng đổi màu chữ khi di chuột vào liên kết */
 .s2 {
     color: #4285f4;
-    font-weight: ;
+    font-weight: 700;
     transition: color 0.2s ease;
   }
 .s2:hover {
