@@ -3,6 +3,12 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Favicon -->
+        <link
+            rel="shortcut icon"
+            href="./assets/favicon/favicon.ico"
+            type="image/x-icon"
+        />
         <link
         rel="stylesheet"
         href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -22,14 +28,63 @@
     <body>
         <header class="header">
             <div class="content">
-                <nav class="navbar">
-                    <!-- Logo -->
-                    <a href="./index.html" class="Logo">
-                        <img src="./assets/img/Logo.svg" alt="Logo" />
-                        TOEIC
-                    </a>
+                <nav class="navbar">  
+                     <!--nav mobile-->
+                    <label for="nav-mobile-input" class="nav_bars-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg>
+                    </label>
+                    
 
-                    <!-- Navigation -->
+                    <input type="checkbox" id="nav-mobile-input" class="nav-input" value="" >
+
+                    <!--Nav_overlay-->
+                    <label for="nav-mobile-input" class="nav_overlay"></label>
+
+                    <nav class="nav-mobile">
+                        <label for="nav-mobile-input" class="nav-mobile-close">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"/></svg></label>
+                        <ul class="nav-mobile-list">
+                            <li>
+                                <a href="./index.html" class="item-nav-mobile">Trang&nbsp;chủ</a>
+                            </li>
+                            <li>
+                                <a href="#Luyen-L&R" class="item-nav-mobile">Luyện&nbsp;L&R</a>
+                            </li>
+                            <li>
+                                <a href="#Luyen-S&W" class="item-nav-mobile">Luyện&nbsp;S&W</a>
+                            </li>
+                            <li>
+                                <a href="#De-thi-thu" class="item-nav-mobile"
+                                    >Đề&nbsp;thi&nbsp;thử</a
+                                >
+                            </li>
+                            <li>
+                                <a href="#Ngu-phap" class="item-nav-mobile">Ngữ&nbsp;pháp</a>
+                            </li>
+                            <li>
+                                <a href="#Tu-vung" class="item-nav-mobile">Từ&nbsp;vựng</a>
+                            </li>
+                            <li>
+                                <a href="#Blog" class="item-nav-mobile">Blog</a>
+                            </li>
+                            <li>
+                                <a href="#Tip" class="item-nav-mobile">TOEIC&nbsp;Tips</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- Logo -->
+                    <div class="Logo-nav">
+                        <a href="#" class="Logo">
+                            <img
+                                src="./assets/img/Logo.svg"
+                                alt="Logo"
+                                class="lg"
+                            />
+                            <p class="desc-Logo">TOEIC</p>
+                        </a>
+                    </div>
+                    
+                    <!-- Navigation pc-->
                     <ul class="nav-items">
                         <li>
                             <a href="./index.html" class="item">Trang&nbsp;chủ</a>
@@ -58,7 +113,7 @@
                             <a href="#Tip" class="item">TOEIC&nbsp;Tips</a>
                         </li>
                     </ul>
-
+                    
                     <!-- Button -->
                     <div class="actions">
                         <a class="pro btn">
@@ -77,6 +132,7 @@
                             <p class="text">Đăng nhập</p>
                         </a>
                     </div>
+                   
                 </nav>
             </div>
         </header>
@@ -189,15 +245,15 @@
                 </div>
                 <div class="row row-bottom">
                     <!-- Logo -->
-                    <a href="#" class="Logo">
+                    <a href="#" class="Logo footer-bottom">
                         <img src="./assets/img/Logo.svg" alt="Logo" />
-                        TOEIC
+                        <p>TOEIC<p>
                     </a>
 
                     <!-- Bank -->
-                    <img src="./assets/img/Bank.svg" alt="Bank" class="bank">
+                    <img src="./assets/img/Bank.svg" alt="Bank" class="bank footer-bottom">
 
-                    <p class="copy-right">Copyright&nbsp;©&nbsp;2023&nbsp;BY&nbsp;TOEIC.</p>
+                    <p class="copy-right footer-bottom">Copyright&nbsp;©&nbsp;2023&nbsp;BY&nbsp;TOEIC.</p>
                 </div>
             </div>
         </footer>
