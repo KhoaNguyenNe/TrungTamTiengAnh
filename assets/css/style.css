@@ -32,6 +32,15 @@ a {
     font-weight: 700;
     border: none;
     margin-right: 125px;
+    display: flex;
+}
+
+.Logo .lg {
+    margin-bottom: 2.5px;
+}
+
+.Logo .desc-Logo {
+    margin-left: 5px;
 }
 
 .btn {
@@ -86,12 +95,13 @@ a {
     padding-top: 10px;
     position: sticky;
     top: -10px;
-    z-index: 1;
+    z-index: 2;
 }
 
 .navbar {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 10px 10px 10px 0px;
 }
 
@@ -262,6 +272,145 @@ a {
     margin-top: 12px;
 }
 
+/* Comments */
+.comments {
+    padding: 160px 135px;
+}
+
+.comments .comments_title {
+    text-align: center;
+}
+
+.comments .comments_title .title {
+    color: var(--color);
+    font-size: 4.2rem;
+    font-weight: 800;
+    line-height: 123.81%;
+}
+
+.comments .comments_title .desc {
+    color: #686977;
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 155.556%;
+}
+
+.comments #form-List {
+    width: 100vw;
+    max-width: 100%;
+    overflow: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: both;
+}
+
+.comments #form-List::-webkit-scrollbar {
+    display: none;
+}
+
+.comments #list {
+    display: flex;
+    width: max-content;
+}
+
+.comments #list .comment {
+    margin-top: 70px;
+    width: 370px;
+    height: 416px;
+    background-color: #fdf0df;
+    border-radius: 12px;
+    scroll-snap-align: start;
+}
+
+.comments #list .comment:not(:first-child) {
+    margin-left: 30px;
+}
+
+.comments #list .comment .cmts {
+    padding: 40px 20px;
+}
+
+.comments #list .comment .heading {
+    color: #0b0d21;
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 155.556%;
+}
+
+.comments #list .comment .observe {
+    display: flex;
+    margin-top: 20px;
+}
+
+.comments #list .comment .open {
+    width: 20px;
+    margin-bottom: auto;
+}
+
+.comments #list .comment .info {
+    margin-left: 20px;
+}
+
+.comments #list .comment .obs {
+    text-align: left;
+    width: 282px;
+    color: #686977;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 162.5%;
+    position: relative;
+}
+
+.comments #list .comment .obs::after {
+    content: "";
+    width: 282px;
+    height: 1px;
+    background-color: #0b0d21;
+    position: absolute;
+    bottom: -20px;
+    border-radius: 999px;
+    right: 0;
+}
+
+.comments #list .avatar {
+    margin-top: 42px;
+    display: flex;
+}
+
+.comments #list .avatar .avt {
+    width: 64px;
+    height: 64px;
+    border-radius: 64px;
+}
+
+.comments #list .avatar .name-stars {
+    margin-left: 14px;
+}
+
+.comments #list .name-stars .name {
+    color: var(--color);
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 155.556%;
+}
+
+.comments .direction {
+    text-align: center;
+}
+
+.comments .direction .button {
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #fe0;
+    transition: 0.5s;
+    margin: 0 10px;
+}
+
+.comments .direction .button:hover {
+    opacity: 0.6;
+}
+
 /* Subcribe */
 .subcribe {
     background-color: #ffee00;
@@ -371,7 +520,7 @@ a {
 
 .function_web .web {
     max-width: 100%;
-    width: 1000px;
+    width: 970px;
     object-fit: cover;
 }
 
@@ -390,9 +539,9 @@ a {
     transition: 1s ease;
 }
 
-.function_web .group-info .info:first-child {
+/* .function_web .group-info .info:first-child {
     margin-top: 50px;
-}
+} */
 
 .function_web .group-info .info:hover {
     transform: translateY(-20px);
@@ -491,7 +640,7 @@ a {
 /* =============== footer =============== */
 .footer {
     background-color: #fdf0df;
-    padding: 95px 135px 0px 135px;
+    padding: 95px 135px 0px 123px;
 }
 
 .footer .row {
@@ -516,12 +665,9 @@ a {
     font-weight: 400;
 }
 
-.footer .row-top .column-2 {
-    margin-left: 400px;
-}
-
-.footer .email .desc-email-call {
-    margin-bottom: 16px;
+.footer .row-top {
+    display: flex;
+    justify-content: space-between;
 }
 
 .footer .email-call .mail-call {
@@ -529,14 +675,6 @@ a {
     font-size: 2rem;
     font-style: normal;
     font-weight: 700;
-}
-
-.footer .mail {
-    margin-left: 300px;
-}
-
-.footer .call {
-    margin-left: auto;
 }
 
 .footer .social-media .card {
@@ -617,10 +755,8 @@ a {
     margin-top: 50px;
     padding: 28px 0px;
     border-top: 1px solid #000;
-}
-
-.footer .row-bottom .bank {
-    margin-left: 450px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .footer .row-bottom .copy-right {
