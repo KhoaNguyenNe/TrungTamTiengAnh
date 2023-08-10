@@ -110,3 +110,99 @@ document.getElementById("prev").onclick = function () {
     var widthcmt = document.querySelector(".comment").offsetWidth;
     document.getElementById("form-List").scrollLeft -= widthcmt + 30;
 };
+
+// Go to top
+const toTop = document.querySelector(".btn-to-top");
+
+window.addEventListener("scroll", () => {
+    if (window.pageYOffset > 300) {
+        toTop.classList.add("active");
+    } else {
+        toTop.classList.remove("active");
+    }
+});
+
+// Chạy số tự động
+const numbers = [
+    { id: "daily-count", value: 5000 },
+    { id: "star-count", value: 120 },
+    { id: "app-count", value: 20000 },
+    { id: "sub-count", value: 30000 },
+];
+
+numbers.forEach((number) => {
+    const element = document.getElementById(number.id);
+    element.setAttribute("final-number", number.value);
+});
+
+function animateNumber(
+    elementId,
+    finalNumber,
+    duration = 3000,
+    startNumber = 0
+) {
+    let currentNumber = startNumber;
+    const interval = setInterval(updateNumber, 17);
+
+    function updateNumber() {
+        if (currentNumber >= finalNumber) {
+            clearInterval(interval);
+        } else {
+            const increment = Math.ceil(finalNumber / (duration / 17));
+            if (currentNumber + increment > finalNumber) {
+                currentNumber = finalNumber;
+                clearInterval(interval);
+            } else {
+                currentNumber += increment;
+            }
+            const formattedNumber = currentNumber.toLocaleString();
+            document.getElementById(elementId).innerText = formattedNumber;
+        }
+    }
+}
+
+function isElementInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <=
+            (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <=
+            (window.innerWidth || document.documentElement.clientWidth)
+    );
+}
+
+let animationTriggered = false;
+
+function checkElementsVisibility() {
+    const elementsToAnimate = document.querySelectorAll(".count-animate");
+
+    elementsToAnimate.forEach((element) => {
+        if (isElementInViewport(element)) {
+            if (!element.classList.contains("animated")) {
+                const finalNumber = parseInt(
+                    element.getAttribute("final-number")
+                );
+                animateNumber(element.id, finalNumber);
+                element.classList.add("animated");
+            }
+        }
+    });
+
+    if (
+        !animationTriggered &&
+        isElementInViewport(document.getElementById("daily-count"))
+    ) {
+        animateNumber("daily-count", 5000);
+        animateNumber("star-count", 120);
+        animateNumber("app-count", 20000);
+        animateNumber("sub-count", 30000);
+        animationTriggered = true;
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    window.addEventListener("scroll", checkElementsVisibility);
+    checkElementsVisibility();
+});
