@@ -206,3 +206,19 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("scroll", checkElementsVisibility);
     checkElementsVisibility();
 });
+
+// Thêm text cho phần more information
+var btn = document.querySelector(".continute");
+var info = document.querySelectorAll(".not-first");
+
+info.forEach;
+
+btn.onclick = function () {
+    if (btn.innerText === "Xem thêm") {
+        for (var i = 0; i < info.length; i++) info[i].classList.remove("none");
+        btn.innerText = "Ẩn bớt";
+    } else {
+        for (var i = 0; i < info.length; i++) info[i].classList.add("none");
+        btn.innerHTML = "Xem thêm";
+    }
+};
