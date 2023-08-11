@@ -156,6 +156,12 @@ a {
     color: #181717;
 }
 
+.title {
+    color: var(--font-color);
+    font-size: 6.2rem;
+    font-weight: 900;
+}
+
 /* =============== main =============== */
 /* ====== head ====== */
 /* Nội dung */
@@ -172,12 +178,6 @@ a {
 
 .head .info {
     width: 35%;
-}
-
-.head .title {
-    color: var(--font-color);
-    font-size: 6.2rem;
-    font-weight: 900;
 }
 
 .head .desc {
@@ -316,7 +316,7 @@ a {
 }
 
 .test .title {
-    color: #0b0d21;
+    color: var(--color);
     font-size: 4.2rem;
     font-weight: 800;
     margin-bottom: 70px;
@@ -698,6 +698,79 @@ a {
     top: 25px;
 }
 
+/* More information */
+.more-inf {
+    padding: 50px 0px;
+}
+
+.more-inf .title {
+    color: var(--color);
+    font-size: 4.2rem;
+    font-weight: 800;
+}
+
+.more-inf .mini-title {
+    margin-top: 20px;
+    color: var(--color);
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+
+.more-inf .mini-title + .desc {
+    margin-top: 20px;
+}
+
+.more-inf .desc {
+    margin-top: 10px;
+    color: #686977;
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 155.556%;
+}
+
+.more-inf .continute {
+    margin-top: 30px;
+    padding: 0px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    color: var(--color);
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.more-inf .continute:hover {
+    text-decoration: underline;
+}
+
+.more-inf .none {
+    display: none;
+}
+
+.table {
+    width: 100%;
+}
+
+.table,
+.table td,
+.table th {
+    border: 1px solid #686977;
+    padding: 10px;
+}
+
+.table .title-tb {
+    font-weight: 800;
+}
+
+.merge {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.text-center {
+    text-align: center;
+}
 /* =============== footer =============== */
 .footer {
     background-color: #fdf0df;
