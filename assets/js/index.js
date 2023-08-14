@@ -52,7 +52,7 @@ const comments = [
 ];
 
 // Hàm để tạo HTML cho mỗi đánh giá
-function createCommentHTML(comment) {
+function taoNhanXet(comment) {
     return `
     <div class="comment">
     <div class="cmts">
@@ -92,13 +92,13 @@ function createCommentHTML(comment) {
 }
 
 // Thêm các đánh giá vào trong list
-function addCommentsToFormList(comments) {
+function themNhanXet(comments) {
     const formList = document.getElementById("list");
-    formList.innerHTML = comments.map(createCommentHTML).join("");
+    formList.innerHTML = comments.map(taoNhanXet).join("");
 }
 
-// Gọi hàm addCommentsToFormList để thêm các đánh giá vào form-List
-addCommentsToFormList(comments);
+// Thêm các đánh giá vào form-List
+themNhanXet(comments);
 
 // Nút di chuyển
 document.getElementById("next").onclick = function () {
