@@ -511,6 +511,7 @@ a {
     background-color: #fdf0df;
     border-radius: 12px;
     scroll-snap-align: start;
+    box-shadow: 0 6px 15px rgba(218, 220, 237, 0.5);
 }
 
 .comments #list .comment:not(:first-child) {
