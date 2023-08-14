@@ -6,12 +6,13 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0 5%;
     padding-left: 24px;
     padding-right: 24px;
     background-color: white;
 }
 .paper{
-    width:80%;
+    width:100%;
     color:#181717;
     font-size: 1.8rem;
     line-height: 1.5;
