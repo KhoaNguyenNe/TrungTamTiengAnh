@@ -17,10 +17,11 @@ body {
 
 /* ===== Common ===== */
 .content {
-    width: 90%;
+    width: 1440px;
     max-width: 100%;
     margin-left: auto;
     margin-right: auto;
+    padding: 0px 100px;
 }
 
 a {
@@ -321,75 +322,94 @@ a {
     margin-bottom: 70px;
 }
 
-.test .info {
-    padding: 30px;
-    position: relative;
-}
-
-.test .inf {
-    margin: 10px 0px 0px 110px;
-}
-
-.test .info .test_title {
-    color: var(--color);
-    font-size: 2.2rem;
-    font-style: normal;
-    font-weight: 700;
-}
-
-.test .info .desc {
-    margin-top: 5px;
-    color: #686977;
-    font-size: 1.5rem;
-    font-weight: 400;
-    width: 50%;
-    line-height: 155.556%;
-}
-
-.test .info .test-btn {
-    margin: 10px 0px 0px 0px;
-}
-
-.test .img {
+.test-item {
     margin: 0 auto;
-    position: absolute;
-    z-index: -1;
-    inset: 0;
+    position: relative;
+    width: 80%;
     height: 180px;
-    min-width: 80%;
-    max-width: 80%;
+    overflow: hidden;
+    border-radius: 16px;
+}
+
+.test-item:not(:first-of-type) {
+    margin-top: 50px;
+}
+
+.test-item .img-test {
+    z-index: -1;
+    position: absolute;
+    inset: 0px;
+    min-width: 100%;
+    max-width: 100%;
     min-height: 100%;
     max-height: 100%;
-    overflow: hidden;
-    border-radius: 15px;
     object-fit: cover;
     object-position: right center;
 }
 
-.test .mini-full-test {
-    margin-top: 40px;
+.test-item .info {
+    z-index: 1;
+    padding: 20px;
+    width: 60%;
 }
 
-.test .mini-full-test .test_title,
-.test .mini-full-test .desc {
+.test-item .info .title-item {
     color: #fff;
+    font-size: 3rem;
+    font-weight: 900;
 }
 
-.test .mini-full-test .text {
+.test-item:first-of-type .info .title-item {
     color: #000;
 }
 
-.test .mini-full-test .log {
+.test-item .info .desc {
+    margin-top: 10px;
+    font-size: 1.5rem;
+    color: #fff;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+
+.test-item:first-of-type .info .desc {
+    color: #000;
+}
+
+.test-item .to-test-btn {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.test-item .to-test-btn .text {
+    color: #000;
+}
+
+.test-item:first-of-type .to-test-btn .text {
+    color: #fff;
+}
+
+.test-item .to-test-btn .log {
     background-color: #fdf0df;
     outline: 3px #fdf0df solid;
 }
 
-.test .mini-full-test .log:hover {
+.test-item:first-of-type .to-test-btn .log {
+    background-color: #000;
+    outline: 3px #000f solid;
+}
+
+.test-item .to-test-btn .log:hover {
     background-color: transparent;
 }
 
-.test .mini-full-test .log:hover .text {
+.test-item .to-test-btn .log:hover .text {
     color: #fff;
+}
+
+.test-item:first-of-type .to-test-btn .log:hover .text {
+    color: #000;
 }
 
 /* ====== Function Web ====== */
@@ -489,7 +509,7 @@ a {
 .comments #form-List {
     width: 100vw;
     max-width: 100%;
-    overflow: auto;
+    overflow: hidden;
     scroll-behavior: smooth;
     scroll-snap-type: both;
 }
@@ -779,7 +799,6 @@ a {
 
 .footer .row {
     display: flex;
-    
 }
 
 .footer .heading {
@@ -793,7 +812,7 @@ a {
     padding-bottom: 14px;
 }
 
-.list .item a{
+.list .item a {
     font-size: 1.6rem !important;
     color: #000 !important;
     text-decoration: none;
@@ -806,32 +825,32 @@ a {
 }
 
 .row .column-1 {
-    width:25%;
+    width: 25%;
 }
 
 .row .column-2 {
-    width:25%;
+    width: 25%;
 }
 
 .row .column-3 {
-    width:35%;
+    width: 35%;
 }
 
 .row .column-4 {
-    width:15%;
+    width: 15%;
 }
 
-.footer-Logo{
-    width:33.33%;
+.footer-Logo {
+    width: 33.33%;
 }
 
-.footer-bank{
-    width:33.33% ;
+.footer-bank {
+    width: 33.33%;
     text-align: center;
 }
 
-.footer-copyright{
-    width:33.33%;
+.footer-copyright {
+    width: 33.33%;
     text-align: right;
 }
 .footer .row-top {

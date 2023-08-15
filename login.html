@@ -10,8 +10,8 @@
             type="image/x-icon"
         />
         <link
-        rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
         />
         <!-- Style CSS -->
         <link rel="stylesheet" href="./assets/font/stylesheet.css" />
@@ -24,36 +24,65 @@
         <!--Style Login CSS-->
         <link rel="stylesheet" href="./assets/css/login.css" />
         <!-- icon -->
-        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link
+            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+            rel="stylesheet"
+        />
         <title>Login</title>
     </head>
     <body>
         <header class="header">
             <div class="content nav-content">
-                <nav class="navbar">  
-                     <!--nav mobile-->
+                <nav class="navbar">
+                    <!--nav mobile-->
                     <label for="nav-mobile-input" class="nav_bars-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 448 512"
+                        >
+                            <!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                            <path
+                                d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"
+                            />
+                        </svg>
                     </label>
-                    
 
-                    <input type="checkbox" id="nav-mobile-input" class="nav-input" value="" >
+                    <input
+                        type="checkbox"
+                        id="nav-mobile-input"
+                        class="nav-input"
+                        value=""
+                    />
 
                     <!--Nav_overlay-->
                     <label for="nav-mobile-input" class="nav_overlay"></label>
 
                     <nav class="nav-mobile">
                         <label for="nav-mobile-input" class="nav-mobile-close">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"/></svg></label>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 352 512"
+                            >
+                                <!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) -->
+                                <path
+                                    d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+                                /></svg
+                        ></label>
                         <ul class="nav-mobile-list">
                             <li>
-                                <a href="./index.html" class="item-nav-mobile">Trang&nbsp;chủ</a>
+                                <a href="./index.html" class="item-nav-mobile"
+                                    >Trang&nbsp;chủ</a
+                                >
                             </li>
                             <li>
-                                <a href="#Luyen-L&R" class="item-nav-mobile">Luyện&nbsp;L&R</a>
+                                <a href="#Luyen-L&R" class="item-nav-mobile"
+                                    >Luyện&nbsp;L&R</a
+                                >
                             </li>
                             <li>
-                                <a href="#Luyen-S&W" class="item-nav-mobile">Luyện&nbsp;S&W</a>
+                                <a href="#Luyen-S&W" class="item-nav-mobile"
+                                    >Luyện&nbsp;S&W</a
+                                >
                             </li>
                             <li>
                                 <a href="#De-thi-thu" class="item-nav-mobile"
@@ -61,16 +90,22 @@
                                 >
                             </li>
                             <li>
-                                <a href="#Ngu-phap" class="item-nav-mobile">Ngữ&nbsp;pháp</a>
+                                <a href="#Ngu-phap" class="item-nav-mobile"
+                                    >Ngữ&nbsp;pháp</a
+                                >
                             </li>
                             <li>
-                                <a href="#Tu-vung" class="item-nav-mobile">Từ&nbsp;vựng</a>
+                                <a href="#Tu-vung" class="item-nav-mobile"
+                                    >Từ&nbsp;vựng</a
+                                >
                             </li>
                             <li>
                                 <a href="#Blog" class="item-nav-mobile">Blog</a>
                             </li>
                             <li>
-                                <a href="#Tip" class="item-nav-mobile">TOEIC&nbsp;Tips</a>
+                                <a href="#Tip" class="item-nav-mobile"
+                                    >TOEIC&nbsp;Tips</a
+                                >
                             </li>
                         </ul>
                     </nav>
@@ -85,11 +120,13 @@
                             <p class="desc-Logo">TOEIC</p>
                         </a>
                     </div>
-                    
+
                     <!-- Navigation pc-->
                     <ul class="nav-items">
                         <li>
-                            <a href="./index.html" class="item">Trang&nbsp;chủ</a>
+                            <a href="./index.html" class="item"
+                                >Trang&nbsp;chủ</a
+                            >
                         </li>
                         <li>
                             <a href="#Luyen-L&R" class="item">Luyện&nbsp;L&R</a>
@@ -115,7 +152,7 @@
                             <a href="#Tip" class="item">TOEIC&nbsp;Tips</a>
                         </li>
                     </ul>
-                    
+
                     <!-- Button -->
                     <div class="actions">
                         <a class="pro btn">
@@ -127,36 +164,45 @@
                                     d="m18 0 8 12 10-8-4 20H4L0 4l10 8 8-12z"
                                 ></path>
                             </svg>
-                            Unlock Pro
+                            Unlock&nbsp;Pro
                         </a>
 
                         <a href="./login.html" class="log btn">
-                            <p class="text">Đăng nhập</p>
+                            <p class="text">Đăng&nbsp;nhập</p>
                         </a>
                     </div>
-                   
                 </nav>
             </div>
         </header>
         <div class="sign">
             <div class="wrap">
-                <form action="#"> 
+                <form action="#">
                     <div>
                         <div class="title">ĐĂNG NHẬP</div>
                     </div>
                     <div class="input-box">
-                        <input type="text" placeholder="Email hoặc số điện thoại" required> 
-                        <i class='bx bxs-user'></i>
+                        <input
+                            type="text"
+                            placeholder="Email hoặc số điện thoại"
+                            required
+                        />
+                        <i class="bx bxs-user"></i>
                     </div>
                     <div class="input-box">
-                        <input type="password" placeholder="Mật khẩu" required> 
-                        <i class='bx bxs-lock-alt'></i>
+                        <input
+                            type="password"
+                            placeholder="Mật khẩu"
+                            required
+                        />
+                        <i class="bx bxs-lock-alt"></i>
                     </div>
                     <div class="remember-forgot">
                         <a href="#">Quên mật khẩu?</a>
                     </div>
                     <div class="submit">
-                        <button type="submit" class="buttonlogin">Đăng nhập</button>
+                        <button type="submit" class="buttonlogin">
+                            Đăng nhập
+                        </button>
                     </div>
                 </form>
                 <div class="loginwith">
@@ -164,16 +210,15 @@
                 </div>
                 <div class="gg">
                     <button class="signup-social logo-wrapper">
-                            <img src="./assets/img/g-logo.png" alt="logo GG">
-                        <span class="signup-social-text">Đăng nhập bằng Google</span>
-                        
+                        <img src="./assets/img/g-logo.png" alt="logo GG" />
+                        <span class="signup-social-text"
+                            >Đăng nhập bằng Google</span
+                        >
                     </button>
-                    
                 </div>
                 <div class="register">
                     <p>Tạo tài khoản mới? <a href="#">Đăng kí</a></p>
                 </div>
-                
             </div>
         </div>
         <footer class="footer">
