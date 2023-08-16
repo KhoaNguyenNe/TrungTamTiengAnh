@@ -442,7 +442,7 @@ a {
 }
 
 .function_web .parent-info {
-    width:50%;
+    width:60%;
     display: flex;
     flex-wrap: wrap;
 }
@@ -452,7 +452,7 @@ a {
     padding: 20px;
     background-color: #fff;
     border-radius: 20px;
-    width: 295px;
+    width: 46%;
     /* aspect-ratio: 5 / 4; Lấy tỉ lệ width / height là 5/4 -> Height là 240 */
     box-shadow: 0 6px 10px rgba(218, 220, 237, 0.5);
     margin: 30px 20px 0px 0px;
@@ -523,7 +523,7 @@ a {
 .comments #form-List {
     width: 100vw;
     max-width: 100%;
-    overflow: hidden;
+    overflow: auto;
     scroll-behavior: smooth;
     scroll-snap-type: both;
 }

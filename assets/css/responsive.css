@@ -129,6 +129,17 @@
     }
 }
 
+@media screen and (max-width: 1199px){
+    /* main index function */
+    .function_web .parent-info {
+        flex-wrap: wrap !important;
+    }
+
+    .function_web .group-info .info {
+        width: 47% !important;
+    }
+}
+
 @media screen and (max-width: 1179px){
     /*header*/
     .actions .pro.btn{
@@ -195,9 +206,13 @@
     }
     
     .content.nav-content{
-        margin: 0 0 0 5%;
+        margin: 0 0 0 0;
+        padding:0 !important;
     }
 
+    .Logo-nav{
+        margin-left: 5%;
+    }
     /* main term */
     .phara{
         margin:0 !important;
@@ -238,9 +253,12 @@
 @media screen and (max-width: 1024px){
     /* main index comment */
     .comments #list .comment{
-        width: calc(50vw - 80px) !important;
+        width: calc(50vw - 100px) !important;
     }
 
+    .comments .content{
+        padding: 0px 100px 0px 50px;
+    }
     .comments #list {
         height:500px !important;
     }
@@ -259,6 +277,10 @@
 
     .content.nav-content{
         margin: 0 0 0 0;
+    }
+
+    .Logo-nav{
+        margin-left: 0;
     }
 
     .navbar{
@@ -316,7 +338,7 @@
 @media screen and (max-width: 899px){
     /* main index comment */
     .comments #list .comment{
-        width: calc(100vw - 100px) !important;
+        width: calc(110vw - 80px) !important;
     }
 
     .comments #list {
@@ -354,6 +376,10 @@
 
     .function_web .group-info .info {
         margin: 30px 0px 0px 0px !important;
+    }
+
+    .test-item .info {
+        width: 100% !important;
     }
 }
 
