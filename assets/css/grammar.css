@@ -1,0 +1,104 @@
+.main .container{
+    padding-left: 24px;
+    padding-right: 24px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    background-color: #4a4a4a;
+}
+
+.container .title{
+    text-align: center;
+    font-weight: 500;
+    font-size: 30px;
+    color: #181717;
+    margin: 30px 0 30px 0;
+}
+
+.grammar-wrap-left{
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: wrap;
+    margin-top: -24px;
+    width: calc(100% + 24px);
+    margin-left: -24px;
+}
+
+.main-practice-list{
+    padding:24px 0px 0px 24px;
+}
+
+.main-practice-list-view{
+    width:100%;
+}
+
+.main-practice-list-view .title-first{
+    font-weight: 700;
+    font-size: 20px;
+    color: #181717;
+    min-height: 28px;
+}
+
+.main-practice-list-view .list-child{
+    margin-top: 12px;
+    background: hsla(0,0%,100%,.6);
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.wrap-list{
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: wrap;
+    margin-top: -20px;
+    width: calc(100% + 20px);
+    margin-left: -20px;
+}
+
+.wrap-list .list-left{
+    padding-left: 20px;
+    padding-top:20px;
+}
+
+.wrap-list .item{
+    height: 50px;
+    background-color: #fff;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+}
+
+.wrap-list .item-left{
+    display: flex;
+    align-items: center;
+}
+
+.item-icon-grammar img {
+    user-select: none;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    fill: currentcolor;
+    flex-shrink: 0;
+    transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    font-size: 1.25rem;
+}
+
+.item-name{
+    color: #4a4a4a;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    padding-left: 15px;
+}
+
+.wrap-list .list-right{
+    padding-left: 20px;
+    padding-top:20px;
+}

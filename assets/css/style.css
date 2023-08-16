@@ -416,6 +416,7 @@ a {
 .function_web {
     background-color: #fdf0df;
     padding: 50px 0px;
+    flex-wrap: wrap;
 }
 
 .function_web .heading {
@@ -426,20 +427,33 @@ a {
 }
 
 .function_web .web {
-    width: 50%;
+    width: 900px;
     object-fit: cover;
+    position:absolute;
+    left:-60px;
+}
+
+.photo-left{
+    width:50%;
 }
 
 .function_web .group-info {
     display: flex;
 }
 
+.function_web .parent-info {
+    width:60%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
 .function_web .group-info .info {
     padding: 20px;
     background-color: #fff;
     border-radius: 20px;
-    width: 300px;
-    aspect-ratio: 5 / 4; /* Lấy tỉ lệ width / height là 5/4 -> Height là 240 */
+    width: 46%;
+    /* aspect-ratio: 5 / 4; Lấy tỉ lệ width / height là 5/4 -> Height là 240 */
     box-shadow: 0 6px 10px rgba(218, 220, 237, 0.5);
     margin: 30px 20px 0px 0px;
     transition: 1s ease;
@@ -509,7 +523,7 @@ a {
 .comments #form-List {
     width: 100vw;
     max-width: 100%;
-    overflow: hidden;
+    overflow: auto;
     scroll-behavior: smooth;
     scroll-snap-type: both;
 }
