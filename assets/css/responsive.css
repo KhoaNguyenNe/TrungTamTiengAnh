@@ -92,6 +92,7 @@
 
 @media screen and (max-width: 1399px){
     /* main index function web*/
+    
 
     .function_web .group-info {
         display: block !important;
@@ -99,12 +100,11 @@
 
     .function_web .web {
         position: static !important;
-        width:150% !important;
+        width:100% !important;
     }
 
     .photo-left{
         display:block;
-        margin: 0 10% !important;
         width:100%;
     }
     .function_web .parent-info {
@@ -131,6 +131,7 @@
 
 @media screen and (max-width: 1199px){
     /* main index function */
+    
     .function_web .parent-info {
         flex-wrap: wrap !important;
     }
@@ -148,6 +149,14 @@
 
     .phara {
         max-width: 1179px !important;
+    }
+
+    .head-actions{
+        flex-wrap: wrap;
+    }
+
+    .head .head-btn{
+        margin: 20px 10px 0px 0px !important;
     }
 }
 
@@ -326,8 +335,9 @@
     }
 
     .footer-bank {
+        margin-top:10px !important;
         width: 50% !important;
-        text-align: right !important;
+        text-align: left !important;
     }
 
     .footer-copyright {

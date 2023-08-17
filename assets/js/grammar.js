@@ -12,12 +12,28 @@ function taoKhoaHoc(khoaHoc) {
   `;
 }
 
+// Hàm để tạo HTML cho mỗi practice
+function taoPractices(practice) {
+    return `
+    <a href="#">
+        <div class="list-item">
+            <div class="list-item-name">${practice.desc}</div>
+            <div class="list-item-icon"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAOZJREFUaEPtmEsOwjAUA92bcTPgZHA0lEU2iE8kv3koyF110aQeT6Q0PbT5dWyeXwH4tcEYiAGzgSwhs0B7eAzYFZoTxMCbAk+S7ma5S8MJAxdJZ0lXSeMevaoBZvgZGoeoBBjL5vaibhSiEmBkfzaAm6gGaIcgAFohKIA2CBKgBYIGwCE6AFCILgAMIgCLHzrYBtdhAAs/yqMB0PA0AB6eBGgJTwG0hScAWsNXA/zlgQY9jVUbmHva1of6CbH1b5XFr4uax+iduCblh1kCgFf85QUxEANmA1lCZoH28BiwKzQn2N7AAwEtLjELaN2HAAAAAElFTkSuQmCC"/></div>
+        </div>
+    </a>
+  `;
+}
+
 // Thêm các đánh giá vào trong list
 function themKhoaHoc(nhieuKhoaHoc, id) {
     const formList = document.getElementById(id);
     formList.innerHTML = nhieuKhoaHoc.map(taoKhoaHoc).join("");
 }
 
+function themPractices(nhieuKhoaHoc, id) {
+    const formList = document.getElementById(id);
+    formList.innerHTML = nhieuKhoaHoc.map(taoPractices).join("");
+}
 const Grammarleft = [
     {
         desc: "NOUNS ",
@@ -143,4 +159,36 @@ const Grammarright = [
 ];
 
 // Thêm các đánh giá vào form-List
-themKhoaHoc(Grammarleft, "grammar-items-right");
+themKhoaHoc(Grammarright, "grammar-items-right");
+
+const Practices = [
+    {
+        desc: "Phần 1: Mô tả tranh",
+    },
+    {
+        desc: "Phần 2: Hỏi - Đáp",
+    },
+    {
+        desc: "Phần 3: Đoạn hội thoại",
+    },
+    {
+        desc: "Phần 4: Bài nói ngắn",
+    },
+    {
+        desc: "Phần 5: Hoàn thành câu",
+    },
+    {
+        desc: "Phần 6: Hoàn thành đoạn văn",
+    },
+    {
+        desc: "Phần 7: Đoạn đơn",
+    },
+    {
+        desc: "Phần 7: Đoạn kép",
+    },
+    {
+        desc: "Phần 7: Đoạn ba",
+    },
+];
+
+themPractices(Practices, "list-practices");
