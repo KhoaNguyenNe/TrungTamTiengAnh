@@ -78,19 +78,18 @@
     }
 }
 
-
-@media screen and (max-width: 1549px){
+@media screen and (max-width: 1549px) {
     /* main index */
-    .sub-book2{
-        display:none;
+    .sub-book2 {
+        display: none;
     }
 
-    .sub-book1{
-        display:none;
+    .sub-book1 {
+        display: none;
     }
 }
 
-@media screen and (max-width: 1399px){
+@media screen and (max-width: 1399px) {
     /* main index function web*/
     
 
@@ -100,15 +99,17 @@
 
     .function_web .web {
         position: static !important;
+
         width:100% !important;
     }
 
     .photo-left{
         display:block;
         width:100%;
+
     }
     .function_web .parent-info {
-        width:100% !important;
+        width: 100% !important;
         display: flex;
         flex-wrap: wrap;
     }
@@ -119,19 +120,16 @@
     }
 }
 
-
-
-
-@media screen and (max-width: 1279px){
+@media screen and (max-width: 1279px) {
     /* main contact */
-    .phr-gg-map{
-        display:none !important; 
+    .phr-gg-map {
+        display: none !important;
     }
 }
 
-@media screen and (max-width: 1199px){
+@media screen and (max-width: 1199px) {
     /* main index function */
-    
+
     .function_web .parent-info {
         flex-wrap: wrap !important;
     }
@@ -141,10 +139,10 @@
     }
 }
 
-@media screen and (max-width: 1179px){
+@media screen and (max-width: 1179px) {
     /*header*/
-    .actions .pro.btn{
-        display:none;
+    .actions .pro.btn {
+        display: none;
     }
 
     .phara {
@@ -160,8 +158,7 @@
     }
 }
 
-
-@media screen and (max-width: 1112px){
+@media screen and (max-width: 1112px) {
     /* main index function */
     .function_web .group-info .info {
         width: 48% !important;
@@ -171,7 +168,7 @@
     }
 }
 
-@media  screen and (max-width: 1049px) {
+@media screen and (max-width: 1049px) {
     .head .content {
         justify-content: left !important;
         display: flex;
@@ -186,7 +183,7 @@
         padding: 40px 0px 110px 0px !important;
     }
 
-    .photo{
+    .photo {
         margin-top: 50px !important;
     }
 
@@ -199,7 +196,7 @@
     .photo .row-2 .scoll-down {
         position: absolute;
         left: 380px !important;
-        right:auto !important;
+        right: auto !important;
         bottom: 0;
     }
 
@@ -209,18 +206,18 @@
     }
 }
 
-@media screen and (max-width: 1039px){
+@media screen and (max-width: 1039px) {
     /*header*/
-    .actions .log.btn{
-        display:none;
-    }
-    
-    .content.nav-content{
-        margin: 0 0 0 0;
-        padding:0 !important;
+    .actions .log.btn {
+        display: none;
     }
 
-    .Logo-nav{
+    .content.nav-content {
+        margin: 0 0 0 0;
+        padding: 0 !important;
+    }
+
+    .Logo-nav {
         margin-left: 5%;
     }
     /* main term */
@@ -260,26 +257,25 @@
     }
 }
 
-
-@media screen and (max-width: 1024px){
+@media screen and (max-width: 1024px) {
     /* main index comment */
-    .comments #list .comment{
+    .comments #list .comment {
         width: calc(50vw - 100px) !important;
     }
 
-    .comments .content{
+    .comments .content {
         padding: 0px 100px 0px 50px;
     }
     .comments #list {
-        height:500px !important;
+        height: 500px !important;
     }
 
     .comments .direction {
-        display:none;
+        display: none;
     }
 }
 
-@media screen and (max-width: 999px){
+@media screen and (max-width: 999px) {
     /*header*/
     .header {
         z-index: 2;
@@ -290,13 +286,12 @@
         margin: 0 0 0 0;
     }
 
-
-    .Logo-nav{
+    .Logo-nav {
         margin-left: 0;
     }
 
-    .navbar{
-        padding:0 !important;   
+    .navbar {
+        padding: 0 !important;
         justify-content: left !important;
     }
 
@@ -335,7 +330,9 @@
     }
 
     .footer-bank {
+
         margin-top:10px !important;
+
         width: 50% !important;
         text-align: left !important;
     }
@@ -347,15 +344,14 @@
     }
 }
 
-
-@media screen and (max-width: 899px){
+@media screen and (max-width: 899px) {
     /* main index comment */
-    .comments #list .comment{
+    .comments #list .comment {
         width: calc(110vw - 80px) !important;
     }
 
     .comments #list {
-        height:400px !important;
+        height: 400px !important;
     }
 
     .comments #list .comment .obs::after {
@@ -364,7 +360,7 @@
     }
 
     .comments #list .comment .obs {
-        width:90% !important;
+        width: 90% !important;
     }
 
     /* main index function */
@@ -375,9 +371,8 @@
     .function_web .group-info .info {
         width: 47% !important;
     }
-
 }
-@media screen and (max-width: 771px){
+@media screen and (max-width: 771px) {
     /* main index function */
     .function_web .parent-info {
         flex-wrap: wrap !important;
@@ -396,11 +391,11 @@
     }
 }
 
-@media screen and (max-width: 697px){
+@media screen and (max-width: 697px) {
     /* main index */
     .why_choose .infos {
         display: flex;
-        justify-content:left !important;
+        justify-content: left !important;
         flex-wrap: wrap !important;
     }
 
@@ -411,25 +406,25 @@
     }
 }
 
-@media screen and (max-width: 644px){
-    .photo{
-        display:none !important;
+@media screen and (max-width: 644px) {
+    .photo {
+        display: none !important;
     }
 
     .subcribe .heading-sub {
         width: 100% !important;
     }
-    
+
     .subcribe .desc-sub {
         width: 100% !important;
     }
-    
+
     .subcribe .form-group {
         width: 100% !important;
     }
 }
 
-@media screen and (max-width: 614px){
+@media screen and (max-width: 614px) {
     /* main index */
     .subcribe .form-group {
         display: flex;
@@ -441,13 +436,13 @@
     }
 }
 
-@media screen and (max-width: 597px){
+@media screen and (max-width: 597px) {
     .comments #list {
-        height:500px !important;
+        height: 500px !important;
     }
 
     .comments #list .comment .obs {
-        width:90% !important;
+        width: 90% !important;
     }
 }
 
@@ -457,8 +452,7 @@
     }
 } */
 
-@media screen and (max-width: 577px){
-
+@media screen and (max-width: 577px) {
     /*footer*/
     .footer {
         padding-top: 45px !important;
@@ -513,16 +507,15 @@
     }
 }
 
-
-@media screen and (max-width: 429px){
+@media screen and (max-width: 429px) {
     /* main login */
 
-    .signup-social{
-        width:70% !important;
+    .signup-social {
+        width: 70% !important;
     }
 
-    .buttonlogin{
-        width:50% !important;
+    .buttonlogin {
+        width: 50% !important;
     }
 
     /* main index */
@@ -534,14 +527,14 @@
     .head .head-btn {
         margin: 15px 10px 0px 0px !important;
     }
-    
-    .head{
+
+    .head {
         padding: 10px 0px 110px 0px !important;
     }
     .subcribe .form-group .email-input {
-        width:350px !important;
+        width: 350px !important;
     }
-    
+
     .test {
         padding: 50px 0px 50px 0px !important;
     }
@@ -582,7 +575,7 @@
         padding: 65px 0px !important;
     }
 
-    .comments #list .comment{
+    .comments #list .comment {
         width: calc(100vw - 75px) !important;
     }
     /* footer */
@@ -604,9 +597,8 @@
     }
 }
 
-@media screen and (max-width: 375px){
+@media screen and (max-width: 375px) {
     .comments #list .comment .info {
         margin-left: -1px !important;
     }
 }
-

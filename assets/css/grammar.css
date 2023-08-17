@@ -1,9 +1,9 @@
-#grammar-paper{
-    background-color: #F5F5F5; 
+#grammar-paper {
+    background-color: #f5f5f5;
     overflow: auto;
 }
 
-.main .container{
+.main .container {
     padding-left: 24px;
     padding-right: 24px;
     width: 100%;
@@ -14,7 +14,7 @@
     margin-bottom: 40px;
 }
 
-.container .title{
+.container .title {
     text-align: center;
     font-weight: 500;
     font-size: 30px;
@@ -22,36 +22,36 @@
     margin: 30px 0 30px 0;
 }
 
-.grammar-wrap-left{
+.grammar-wrap-left {
     box-sizing: border-box;
 }
 
-.main-practice-list{
-    display:flex;
+.main-practice-list {
+    display: flex;
 }
 
-.main-practice-list-view{
-    width:100%;
-    padding:24px 0px 0px 24px;
+.main-practice-list-view {
+    width: 100%;
+    padding: 24px 0px 0px 24px;
     max-width: 70%;
 }
 
-.main-practice-list-view .title-first{
+.main-practice-list-view .title-first {
     font-weight: 700;
     font-size: 20px;
     color: #181717;
     min-height: 28px;
-    display:none;
+    display: none;
 }
 
-.main-practice-list-view .list-child{
+.main-practice-list-view .list-child {
     margin-top: 12px;
-    background: hsla(0,0%,100%,.6);
+    background: hsla(0, 0%, 100%, 0.6);
     border-radius: 15px;
     padding: 20px;
 }
 
-.wrap-list{
+.wrap-list {
     box-sizing: border-box;
     display: flex;
     flex-flow: wrap;
@@ -60,14 +60,13 @@
     margin-left: -20px;
 }
 
-.wrap-list .list-left{
-    width:50%;
+.wrap-list .list-left {
+    width: 50%;
     padding-left: 20px;
-    padding-top:20px;
-    
+    padding-top: 20px;
 }
 
-.wrap-list .item{
+.wrap-list .item {
     height: 50px;
     background-color: #fff;
     border-radius: 7px;
@@ -80,7 +79,7 @@
     cursor: pointer;
 }
 
-.wrap-list .item-left{
+.wrap-list .item-left {
     display: flex;
     align-items: center;
 }
@@ -96,36 +95,36 @@
     font-size: 1.25rem;
 }
 
-.item-name{
+.item-name {
     color: #4a4a4a;
-    font-weight: 600;
+    font-weight: 800;
     font-size: 14px;
     line-height: 21px;
     padding-left: 15px;
 }
 
-.wrap-list .list-right{
-    width:50%;
+.wrap-list .list-right {
+    width: 50%;
     padding-left: 20px;
-    padding-top:20px;
+    padding-top: 20px;
 }
 
-.other-practices-list .title{
+.other-practices-list .title {
     text-align: center;
     font-weight: 700;
     font-size: 20px;
 }
 
-.other-practices-list .list{
+.other-practices-list .list {
     margin-top: 12px;
 }
 
-.other-practices-list .list a{
+.other-practices-list .list a {
     text-decoration: none;
     color: inherit;
 }
 
-.other-practices-list .list-item{
+.other-practices-list .list-item {
     background: #fff;
     border-radius: 15px;
     min-height: 55px;
@@ -135,14 +134,14 @@
     margin-bottom: 10px;
 }
 
-.list-item-name{
+.list-item-name {
     color: #535353;
     font-weight: 400;
     font-size: 1.6rem;
     line-height: 1.5;
 }
 
-.list-item-icon{
+.list-item-icon {
     color: #535353;
     flex: 1;
     display: flex;
@@ -150,7 +149,7 @@
     align-items: center;
 }
 
-.list-item-icon img{
+.list-item-icon img {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -167,14 +166,14 @@
     font-size: 1.6rem;
 }
 
-.grammar-right{
+.grammar-right {
     padding-left: 24px;
-    padding-top:24px;
+    padding-top: 24px;
     max-width: 30%;
-    width:30%;
+    width: 30%;
 }
 
-.hinhqc{
+.hinhqc {
     max-width: 100%;
     height: auto;
     width: 100%;
