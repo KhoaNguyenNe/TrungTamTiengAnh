@@ -1,0 +1,40 @@
+.main-prenium{
+    width: 1440px;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px 100px;
+    display:block;
+}
+
+.Text{
+    width:570px;
+    height:52px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.Text h2{
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 52px;
+    text-align: center;
+}
+
+.Group1{
+    width: 1240px;
+    height:512px;
+    display:flex;
+    justify-content: space-between;
+}
+
+.box{
+    border:1px solid #0b0d21;
+    border-radius: 5px;
+    width:32%;
+}
+
+.in-box{
+    width:100%;
+    padding: 20px;
+}
