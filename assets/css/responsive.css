@@ -87,6 +87,9 @@
     .sub-book1 {
         display: none;
     }
+
+    /* prenium */
+
 }
 
 @media screen and (max-width: 1399px) {
@@ -362,6 +365,7 @@
     }
 }
 
+
 @media screen and (max-width: 939px) {
     #list_speaking > a{
         width:45% !important;
@@ -396,6 +400,24 @@
         width: 47% !important;
     }
 }
+
+@media screen and (max-width: 815px) {
+    /* prenium */
+    .Group1{
+        justify-content:unset !important;
+        display:block !important;
+    }
+
+    .box{
+        margin:20px auto 20px auto !important;
+        width:90% !important;
+    }
+    /* .main-prenium{
+        display:flex !important;
+    } */
+
+}
+
 @media screen and (max-width: 771px) {
     /* main index function */
     .function_web .parent-info {
