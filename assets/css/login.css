@@ -4,10 +4,9 @@ main{
 /*Định dạng ô login */
 .sign{
     display: flex;
-    justify-content: center;
-    align-items: center;
     min-height: 50px;
     background-color: white;
+    justify-content: center;
 }
 .wrap{
     width:552px;
@@ -17,7 +16,29 @@ main{
     padding-left: 24px;
     padding-right: 24px;
     padding-bottom: 24px;
+    min-width: 100%;
+    margin: 0 auto;
 }
+
+.sign  #form-login{
+    max-width: 600px;
+    overflow: hidden;
+    scroll-behavior: smooth;
+    scroll-snap-type:both;
+}
+
+.login-phara{
+    display: flex;
+    transform: translateX(0%);
+    will-change: transform;
+    transition: all 0.35s ease 0s;
+    scroll-snap-align: start;
+}
+
+#form-login::-webkit-scrollbar {
+    display: none;
+}
+
 /*=====Các thành phần====*/
 .title{
     font-size: 36px;

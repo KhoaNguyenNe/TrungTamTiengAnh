@@ -1,0 +1,77 @@
+[
+    {
+        "desc": "Contracts",
+        "vocabulary":"Part 1 "
+    },
+    {
+        "desc": "Marketing",
+        "vocabulary":"Part 2 "
+    },
+    {
+        "desc": "Warranties",
+        "vocabulary":"Part 3 "
+    },
+    {
+        "desc": "Business Planning"
+    },
+    {
+        "desc": "Conferences"
+    },
+    {
+        "desc": "Computers"
+    },
+    {
+        "desc": "Office Procedures"
+    },
+    {
+        "desc": "Job Advertising and Recruiting"
+    },
+    {
+        "desc": "Applying and Interviewing"
+    },
+    {
+        "desc": "Hiring and Training"
+    },
+    {
+        "desc": "Salaries and Benefits"
+    },
+    {
+        "desc": "Promotions, Pensions, and Awards"
+    },
+    {
+        "desc": "Shopping"
+    },
+    {
+        "desc": "Order Supplies"
+    },
+    {
+        "desc": "Correspondence"
+    },
+    {
+        "desc": "Electronics"
+    },
+    {
+        "desc": "Office Technology"
+    },
+    {
+        "desc": "Shipping"
+    },
+    {
+        "desc": "Invoices"
+    },
+    {
+        "desc": "Inventory"
+    },
+    {
+        "desc": "Banking"
+    },
+    {
+        "desc": "Accounting"
+    },
+    {
+        "desc": "Investment"
+    },
+    {
+        "desc": "Taxes"
+    }
+]
