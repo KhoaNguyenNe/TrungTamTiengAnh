@@ -10,8 +10,17 @@
             type="image/x-icon"
         />
         <link
-        rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
+        <!-- Nhúng CDN Font Awesome -->
+        <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
         />
         <!-- Style CSS -->
         <link rel="stylesheet" href="./assets/font/stylesheet.css" />
@@ -24,7 +33,10 @@
         <!--Style Grammar CSS-->
         <link rel="stylesheet" href="./assets/css/grammar.css" />
         <!-- icon -->
-        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link
+            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+            rel="stylesheet"
+        />
         <title>Ngữ pháp</title>
     </head>
     <body>
@@ -73,18 +85,10 @@
                                 >
                             </li>
                             <li>
-                                <a
-                                    href="./Listen_Reading.html"
-                                    class="item-nav-mobile"
-                                    >Luyện&nbsp;L&R</a
-                                >
+                                <a href="#Luyen-L&R" class="item-nav-mobile">Luyện&nbsp;L&R</a>
                             </li>
                             <li>
-                                <a
-                                    href="./Speaking_Writing.html"
-                                    class="item-nav-mobile"
-                                    >Luyện&nbsp;S&W</a
-                                >
+                                <a href="#Luyen-S&W" class="item-nav-mobile">Luyện&nbsp;S&W</a>
                             </li>
                             <li>
                                 <a
@@ -94,27 +98,16 @@
                                 >
                             </li>
                             <li>
-                                <a href="./grammar.html" class="item-nav-mobile"
-                                    >Ngữ&nbsp;pháp</a
-                                >
+                                <a href="#Ngu-phap" class="item-nav-mobile">Ngữ&nbsp;pháp</a>
                             </li>
                             <li>
-                                <a href="./voca.html" class="item-nav-mobile"
-                                    >Từ&nbsp;vựng</a
-                                >
+                                <a href="#Tu-vung" class="item-nav-mobile">Từ&nbsp;vựng</a>
                             </li>
                             <li>
                                 <a href="#Blog" class="item-nav-mobile">Blog</a>
                             </li>
                             <li>
-                                <a href="#Tip" class="item-nav-mobile"
-                                    >TOEIC&nbsp;Tips</a
-                                >
-                            </li>
-                            <li>
-                                <a href="./login.html" class="item-nav-mobile"
-                                    >Đăng&nbsp;nhập</a
-                                >
+                                <a href="#Tip" class="item-nav-mobile">TOEIC&nbsp;Tips</a>
                             </li>
                         </ul>
                     </nav>
@@ -186,21 +179,26 @@
                 </nav>
             </div>
         </header>
-        <div class="main" id="grammar-paper">
+        <main class="main" id="grammar-paper">
             <div class="container">
-                    <h1 class="title">
-                        Luyện thi TOEIC Listening&nbsp;&&nbsp;Reading
-                    </h1>
-                    <div class="grammar-wrap">
-                        <div class="grammar-wrap-left">
-                            <div class="main-practice-list">
-                                <div class="main-practice-list-view">
-                                    <div class="title-first"></div>
-                                    <div class="list-child">
-                                        <div class="wrap-list">
-                                            <div class="list-left" id="grammar-items-left"></div>
-                                            <div class="list-right" id="grammar-items-right">
-                                        </div>
+                <h1 class="title">
+                    Luyện thi TOEIC Listening&nbsp;&&nbsp;Reading
+                </h1>
+                <div class="grammar-wrap">
+                    <div class="grammar-wrap-left">
+                        <div class="main-practice-list">
+                            <div class="main-practice-list-view">
+                                <div class="title-first"></div>
+                                <div class="list-child">
+                                    <div class="wrap-list">
+                                        <div
+                                            class="list-left"
+                                            id="grammar-items-left"
+                                        ></div>
+                                        <div
+                                            class="list-right"
+                                            id="grammar-items-right"
+                                        ></div>
                                     </div>
                                 </div>
                             </div>
@@ -208,24 +206,35 @@
                                 <div class="grammar-hinh"></div>
                                 <div class="other-practices-list">
                                     <div>
-                                        <img src="./assets/img/xuanchinh.jpg"
-                                        alt="" class="hinhqc"/>
+                                        <img
+                                            src="./assets/img/xuanchinh.jpg"
+                                            alt=""
+                                            class="hinhqc"
+                                        />
                                     </div>
                                     <div class="title">Other Practices</div>
                                     <div class="list" id="list-practices">
                                         <a href="#">
                                             <div class="list-item">
-                                                <div class="list-item-name">Phần 1: Mô tả tranh</div>
-                                                <div class="list-item-icon"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAOZJREFUaEPtmEsOwjAUA92bcTPgZHA0lEU2iE8kv3koyF110aQeT6Q0PbT5dWyeXwH4tcEYiAGzgSwhs0B7eAzYFZoTxMCbAk+S7ma5S8MJAxdJZ0lXSeMevaoBZvgZGoeoBBjL5vaibhSiEmBkfzaAm6gGaIcgAFohKIA2CBKgBYIGwCE6AFCILgAMIgCLHzrYBtdhAAs/yqMB0PA0AB6eBGgJTwG0hScAWsNXA/zlgQY9jVUbmHva1of6CbH1b5XFr4uax+iduCblh1kCgFf85QUxEANmA1lCZoH28BiwKzQn2N7AAwEtLjELaN2HAAAAAElFTkSuQmCC"/></div>
+                                                <div class="list-item-name">
+                                                    Phần 1: Mô tả tranh
+                                                </div>
+                                                <div class="list-item-icon">
+                                                    <img
+                                                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAOZJREFUaEPtmEsOwjAUA92bcTPgZHA0lEU2iE8kv3koyF110aQeT6Q0PbT5dWyeXwH4tcEYiAGzgSwhs0B7eAzYFZoTxMCbAk+S7ma5S8MJAxdJZ0lXSeMevaoBZvgZGoeoBBjL5vaibhSiEmBkfzaAm6gGaIcgAFohKIA2CBKgBYIGwCE6AFCILgAMIgCLHzrYBtdhAAs/yqMB0PA0AB6eBGgJTwG0hScAWsNXA/zlgQY9jVUbmHva1of6CbH1b5XFr4uax+iduCblh1kCgFf85QUxEANmA1lCZoH28BiwKzQn2N7AAwEtLjELaN2HAAAAAElFTkSuQmCC"
+                                                        alt="photo"
+                                                    />
+                                                </div>
                                             </div>
                                         </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div> 
+                    </div>
+                </div>
             </div>
-        </div>
+        </main>
         <footer class="footer">
             <div class="content">
                 <div class="row row-top">
@@ -393,11 +402,5 @@
 
         <!-- Nhúng Javascript -->
         <script src="./assets/js/grammar.js"></script>
-        <!-- Nhúng Jquery -->
-        <script
-            src="https://code.jquery.com/jquery-3.7.0.min.js"
-            integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
-            crossorigin="anonymous"
-        ></script>
     </body>
 </html>

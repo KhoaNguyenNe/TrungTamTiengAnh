@@ -9,6 +9,10 @@
             href="./assets/favicon/favicon.ico"
             type="image/x-icon"
         />
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
         <!-- Nhúng CDN Font Awesome -->
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
         <link
@@ -18,11 +22,6 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         />
-        <!--icon GG-->
-        <link
-            href="https://fonts.googleapis.com/icon?family=Material+Icons"
-            rel="stylesheet"
-        />
         <!-- Style CSS -->
         <link rel="stylesheet" href="./assets/font/stylesheet.css" />
         <!-- Responsive -->
@@ -31,9 +30,14 @@
         <link rel="stylesheet" href="./assets/css/reset.css" />
         <!-- Font  -->
         <link rel="stylesheet" href="./assets/css/style.css" />
-        <!-- Contact CSS -->
-        <link rel="stylesheet" href="./assets/css/contact.css" />
-        <title>Liên lạc - Web luyện thi TOEIC</title>
+        <!--Style Blog CSS-->
+        <link rel="stylesheet" href="./assets/css/blog.css" />
+        <!-- icon -->
+        <link
+            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+            rel="stylesheet"
+        />
+        <title>Blog</title>
     </head>
     <body>
         <header class="header">
@@ -64,7 +68,16 @@
 
                     <nav class="nav-mobile">
                         <label for="nav-mobile-input" class="nav-mobile-close">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"/></svg></label>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 352 512"
+                            >
+                                <!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) -->
+                                <path
+                                    d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+                                />
+                            </svg>
+                        </label>
                         <ul class="nav-mobile-list">
                             <li>
                                 <a href="./index.html" class="item-nav-mobile"
@@ -72,23 +85,29 @@
                                 >
                             </li>
                             <li>
-                                <a href="#Luyen-L&R" class="item-nav-mobile">Luyện&nbsp;L&R</a>
+                                <a href="#Luyen-L&R" class="item-nav-mobile"
+                                    >Luyện&nbsp;L&R</a
+                                >
                             </li>
                             <li>
-                                <a href="#Luyen-S&W" class="item-nav-mobile">Luyện&nbsp;S&W</a>
+                                <a href="#Luyen-S&W" class="item-nav-mobile"
+                                    >Luyện&nbsp;S&W</a
+                                >
                             </li>
                             <li>
-                                <a
-                                    href="./Mock_exams.html"
-                                    class="item-nav-mobile"
+                                <a href="#De-thi-thu" class="item-nav-mobile"
                                     >Đề&nbsp;thi&nbsp;thử</a
                                 >
                             </li>
                             <li>
-                                <a href="#Ngu-phap" class="item-nav-mobile">Ngữ&nbsp;pháp</a>
+                                <a href="#Ngu-phap" class="item-nav-mobile"
+                                    >Ngữ&nbsp;pháp</a
+                                >
                             </li>
                             <li>
-                                <a href="#Tu-vung" class="item-nav-mobile">Từ&nbsp;vựng</a>
+                                <a href="#Tu-vung" class="item-nav-mobile"
+                                    >Từ&nbsp;vựng</a
+                                >
                             </li>
                             <li>
                                 <a href="#Blog" class="item-nav-mobile">Blog</a>
@@ -120,36 +139,27 @@
                             >
                         </li>
                         <li>
-                            <a href="./Listen_Reading.html" class="item"
-                                >Luyện&nbsp;L&R</a
-                            >
+                            <a href="#Luyen-L&R" class="item">Luyện&nbsp;L&R</a>
                         </li>
                         <li>
-                            <a href="./Speaking_Writing.html" class="item"
-                                >Luyện&nbsp;S&W</a
-                            >
+                            <a href="#Luyen-S&W" class="item">Luyện&nbsp;S&W</a>
                         </li>
                         <li>
-                            <a href="./Mock_exams.html" class="item"
+                            <a href="#De-thi-thu" class="item"
                                 >Đề&nbsp;thi&nbsp;thử</a
                             >
                         </li>
                         <li>
-                            <a href="./grammar.html" class="item">Ngữ&nbsp;pháp</a>
+                            <a href="#Ngu-phap" class="item">Ngữ&nbsp;pháp</a>
                         </li>
                         <li>
-                            <a href="./voca.html" class="item">Từ&nbsp;vựng</a>
+                            <a href="#Tu-vung" class="item">Từ&nbsp;vựng</a>
                         </li>
                         <li>
                             <a href="#Blog" class="item">Blog</a>
                         </li>
                         <li>
                             <a href="#Tip" class="item">TOEIC&nbsp;Tips</a>
-                        </li>
-                        <li>
-                            <a href="./login.html" class="item-nav-mobile"
-                                >Đăng&nbsp;nhập</a
-                            >
                         </li>
                     </ul>
 
@@ -164,137 +174,110 @@
                                     d="m18 0 8 12 10-8-4 20H4L0 4l10 8 8-12z"
                                 ></path>
                             </svg>
-                            <p>Unlock&nbsp;Pro</p>
+                            Unlock Pro
                         </a>
+
                         <a href="./login.html" class="log btn">
-                            <p class="text">Đăng&nbsp;nhập</p>
+                            <p class="text">Đăng nhập</p>
                         </a>
                     </div>
                 </nav>
             </div>
         </header>
 
-        <div class="phara">
-            <div class="khungtrai">
-                <div>
-                    <h2 class="title-contact">Liên hệ</h2>
-                    <p class="nd-contact">
-                        Chúng tôi luôn sẵn sàng tiếp nhận mọi ý kiến đóng góp và
-                        giải đáp những yêu cầu của bạn. Hãy liên hệ ngay với
-                        chúng tôi.
-                    </p>
-                </div>
-                <div>
-                    <div class="nd-contact khung">
-                        <div class="wrap-contact">
-                            <a class="material-icons iconcontact">&#xe88a;</a>
-                            <p>
-                                371 Nguyễn Kiệm, Phường 3, Quận Gò Vấp, Thành
-                                Phố Hồ Chí Minh
-                            </p>
-                        </div>
-                        <div class="wrap-contact">
-                            <a class="fa iconcontact">&#xf095;</a>
-                            <p>0123456789</p>
-                        </div>
-                        <div class="wrap-contact">
-                            <a class="material-icons iconcontact">&#xe0be;</a>
-                            <p>contact@gmail.com.vn</p>
-                        </div>
+        <div class="main">
+            <div class="head blog">
+                <div class="content">
+                    <div class="info">
+                        <h1 class="title">
+                            Hợp tác giữa Toeic và hệ thống ôn thi sinh viên
+                        </h1>
+                        <p class="time">AUGUST 1, 2022</p>
+                        <p class="desc">
+                            Hiện nay đối với các bạn sinh viên, dưới sự phát
+                            triển của công nghệ và thị trường lao động toàn cầu,
+                            khả năng sử dụng tiếng Anh đã trở thành một yếu tố
+                            không thể thiếu. Hiểu được điều này, mới đây Toeic
+                            và Hệ thống Ôn thi Sinh viên đã chính thức hợp tác
+                            với nhau với mục tiêu giúp các bạn sinh viên nâng
+                            cao khả năng sử dụng ngoại ngữ và band điểm Toeic để
+                            tự tin ra trường với tấm bằng xuất sắc.
+                        </p>
+                        <a href="" class="btn readmore">
+                            <span class="txt"
+                                >Read more
+                                <i class="fa-solid fa-arrow-right"></i
+                            ></span>
+                        </a>
                     </div>
-                    <div class="form-contact">
-                        <form action="#">
-                            <div>
-                                <h3 class="tieude-contact">Họ và tên</h3>
-                            </div>
-                            <div class="input-contact">
-                                <input
-                                    type="text"
-                                    class="textarea-contact"
-                                    placeholder="Nhập tên đầy đủ..."
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <h3 class="tieude-contact">Email</h3>
-                            </div>
-                            <div class="input-contact">
-                                <input
-                                    type="text"
-                                    class="textarea-contact"
-                                    placeholder="Nhập email..."
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <h3 class="tieude-contact">Điện thoại</h3>
-                            </div>
-                            <div class="input-contact">
-                                <input
-                                    type="text"
-                                    class="textarea-contact"
-                                    placeholder="Nhập số điện thoại..."
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <h3 class="tieude-contact">Nội dung</h3>
-                            </div>
-                            <div class="input-contact">
-                                <textarea
-                                    type="text"
-                                    class="textarea-contact"
-                                    placeholder="Nhập nội dung liên hệ..."
-                                ></textarea>
-                            </div>
-                            <div class="submit-contact">
-                                <button type="submit" class="button-contact">
-                                    Gửi đi
-                                </button>
-                            </div>
-                        </form>
+
+                    <div class="pic">
+                        <div class="top">
+                            <img
+                                src="./assets/img/blog1.png"
+                                alt="Blog1"
+                                class="pic1"
+                            />
+                            <img
+                                src="./assets/img/blog2.png"
+                                alt="Blog2"
+                                class="pic2"
+                            />
+                        </div>
+                        <div class="bot">
+                            <img
+                                src="./assets/img/blog3.png"
+                                alt="Blog3"
+                                class="pic3"
+                            />
+                            <img
+                                src="./assets/img/blog4.png"
+                                alt="Blog4"
+                                class="pic4"
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="phr-gg-map">
-                <div class="gg-map">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.925119767875!2d106.67453267520186!3d10.817042389334215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528e1f241211f%3A0xc9ef195798144b1f!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBN4bufIFRQLkhDTSAtIEPGoSBz4bufIDM!5e0!3m2!1svi!2s!4v1690475265917!5m2!1svi!2s"
-                        width="600"
-                        height="450"
-                        style="border: 0"
-                        allowfullscreen=""
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"
-                        class="mapp"
-                    ></iframe>
+
+            <div class="blogs">
+                <div class="content">
+                    <div class="slider">
+                        <div id="blog-list"></div>
+                    </div>
+
+                    <div class="continute-btn">
+                        <a href="" class="btn readmore ctn">
+                            <span class="txt">Xem tiếp</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
 
-       <footer class="footer">
-        <div class="content">
-            <div class="row row-top">
-                <div class="column-1">
-                    <h2 class="heading">Luyện&nbsp;thi</h2>
-                    <ul class="list">
-                        <li class="item">
-                            <a href="">Luyện&nbsp;L&R</a>
-                        </li>
-                        <li class="item">
-                            <a href="">Luyện&nbsp;S&W</a>
-                        </li>
-                        <li class="item">
-                            <a href="">Đề&nbsp;thi&nbsp;thử</a>
-                        </li>
-                        <li class="item">
-                            <a href="">Ngữ&nbsp;pháp</a>
-                        </li>
-                        <li class="item">
-                            <a href="">Từ&nbsp;vựng</a>
-                        </li>
-                    </ul>
-                </div>
+        <footer class="footer">
+            <div class="content">
+                <div class="row row-top">
+                    <div class="column-1">
+                        <h2 class="heading">Luyện&nbsp;thi</h2>
+                        <ul class="list">
+                            <li class="item">
+                                <a href="">Luyện&nbsp;L&R</a>
+                            </li>
+                            <li class="item">
+                                <a href="">Luyện&nbsp;S&W</a>
+                            </li>
+                            <li class="item">
+                                <a href="">Đề&nbsp;thi&nbsp;thử</a>
+                            </li>
+                            <li class="item">
+                                <a href="">Ngữ&nbsp;pháp</a>
+                            </li>
+                            <li class="item">
+                                <a href="">Từ&nbsp;vựng</a>
+                            </li>
+                        </ul>
+                    </div>
 
                     <div class="column-2">
                         <h2 class="heading">Hỗ&nbsp;trợ</h2>
@@ -418,13 +401,21 @@
                         />
                     </div>
 
-                <div class="footer-copyright">
-                    <p class="copy-right">
-                        Copyright&nbsp;©&nbsp;2023&nbsp;BY&nbsp;TOEIC.
-                    </p>
+                    <div class="footer-copyright">
+                        <p class="copy-right">
+                            Copyright&nbsp;©&nbsp;2023&nbsp;BY&nbsp;TOEIC.
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
         </footer>
+
+        <a href="#" class="btn-to-top">
+            <i class="fa-solid fa-jet-fighter-up"></i>
+        </a>
+
+        <!-- Nhúng Javascript -->
+        <script src="./assets/js/blog.js"></script>
+        <script src="./assets/js/go-top.js"></script>
     </body>
 </html>

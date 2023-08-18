@@ -429,12 +429,12 @@ a {
 .function_web .web {
     width: 900px;
     object-fit: cover;
-    position:absolute;
-    left:-60px;
+    position: absolute;
+    left: -60px;
 }
 
-.photo-left{
-    width:50%;
+.photo-left {
+    width: 50%;
 }
 
 .function_web .group-info {
@@ -442,11 +442,10 @@ a {
 }
 
 .function_web .parent-info {
-    width:60%;
+    width: 60%;
     display: flex;
     flex-wrap: wrap;
 }
-
 
 .function_web .group-info .info {
     padding: 20px;
@@ -982,7 +981,7 @@ a {
     padding: 20px;
     border: none;
     outline: none;
-    border-radius: 999px;
+    border-radius: 50%;
     cursor: pointer;
     text-transform: uppercase;
     background-color: rgb(14, 14, 26);
