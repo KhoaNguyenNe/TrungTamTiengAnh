@@ -1,0 +1,154 @@
+.blog .info {
+    width: 40%;
+}
+
+.time {
+    margin-top: 10px;
+    color: #686977;
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+.readmore {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    color: #000;
+    font-size: 1.6rem;
+    font-weight: 500;
+    padding: 10px;
+    border-radius: 5px;
+    background: #fe0;
+    width: 127px;
+}
+
+.readmore .txt {
+    margin: 0 auto;
+}
+
+.fa-solid {
+    margin-left: 5px;
+}
+
+/* Hiện dấu ... ở dòng thứ 5 */
+.desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Blogs */
+.blogs {
+    padding: 50px 0px;
+}
+
+.item {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.blg {
+    margin-top: 20px;
+    width: 45%;
+}
+
+.blg .img {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.blg .blg-img {
+    max-width: 100%;
+    min-width: 100%;
+    max-height: 100%;
+    min-height: 100%;
+}
+
+.inf-title {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.blg .blg-btn {
+    width: 127px;
+    color: #434ec4;
+    font-size: 1.6rem;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    padding: 10px 10px 10px 0px;
+}
+
+.blg .info .inf-title {
+    margin-top: 20px;
+    color: #000;
+    font-size: 2.4rem;
+    font-weight: 500;
+}
+
+.blg .info .desc {
+    margin: 20px 0px;
+    color: #686977;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 162.5%;
+}
+
+.ctn {
+    margin: 50px auto 0px;
+    padding: 15px;
+}
+
+.continute-btn .txt {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.btn-to-top {
+    opacity: 0;
+    position: fixed;
+    bottom: 50px;
+    right: 30px;
+    font-size: 1.5rem;
+    padding: 20px 20px 20px 15px;
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: rgb(14, 14, 26);
+    color: rgb(234, 234, 234);
+    font-weight: 700;
+    transition: 0.6s;
+    pointer-events: none;
+}
+
+.btn-to-top:active {
+    scale: 0.92;
+}
+
+.btn-to-top:hover {
+    background: rgb(2, 29, 78);
+    background: linear-gradient(
+        270deg,
+        #ddb4f6 0%,
+        #d4b7f7 10%,
+        #cbbaf7 20%,
+        #c2bdf8 30%,
+        #b9c0f9 40%,
+        #b1c4f9 50%,
+        #a8c7fa 60%,
+        #9fcafb 70%,
+        #96cdfb 80%,
+        #8dd0fc 90%
+    );
+    color: rgb(4, 4, 38);
+}
+
+.btn-to-top.active {
+    pointer-events: auto;
+    opacity: 1;
+}
