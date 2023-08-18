@@ -44,3 +44,4 @@ function docJSON2(file, id) {
 docJSON1("grammar-left.json", "grammar-items-left");
 docJSON1("grammar-right.json", "grammar-items-right");
 docJSON2("practices.json", "list-practices");
+
