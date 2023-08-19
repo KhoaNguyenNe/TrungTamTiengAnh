@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function docJSON(file, id) {
-    fetch("../json/" + file)
+    fetch("./json/" + file)
         .then(function (response) {
             return response.json();
         })
