@@ -207,6 +207,11 @@
     .access {
         margin-top: 40px !important;
     }
+
+    /* blog */
+    .readmore{
+        margin-bottom: 15px;
+    }
 }
 
 @media screen and (max-width: 1039px) {
@@ -589,6 +594,24 @@
     /* main index */
     .function_web .func-btn {
         width: 75% !important;
+    }
+}
+
+@media screen and (max-width: 516px) {
+    .pic .top img{
+        width:49%;
+    }
+    .pic .bot img{
+        width:49%;
+    }
+
+    .item{
+        justify-content:unset !important;
+        
+    }
+    .blg{
+        width:100% !important;
+        margin-bottom: 20px;
     }
 }
 
