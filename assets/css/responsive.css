@@ -721,4 +721,9 @@
     .comments #list .comment .info {
         margin-left: -1px !important;
     }
+
+    /* toeic tip */
+    .tabs .tab-item{
+        padding: 16px 11px 11px 11px !important;
+    }
 }

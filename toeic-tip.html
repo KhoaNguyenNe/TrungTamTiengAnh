@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,17 +18,19 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         />
-        <!-- Font  -->
+        <!-- Font -->
         <link rel="stylesheet" href="./assets/font/stylesheet.css" />
         <!-- Reset CSS -->
         <link rel="stylesheet" href="./assets/css/reset.css" />
-        <!-- Style CSS -->
+        <!-- Style CSS  -->
         <link rel="stylesheet" href="./assets/css/style.css" />
+        <!-- Blog CSS -->
+        <link rel="stylesheet" href="./assets/css/blog.css" />
+        <!-- Toeic-Tip CSS -->
+        <link rel="stylesheet" href="./assets/css/toeic-tip.css" />
         <!-- Responsive -->
         <link rel="stylesheet" href="./assets/css/responsive.css" />
-        <!-- L_R CSS -->
-        <link rel="stylesheet" href="./assets/css/L_R_S_W.css" />
-        <title>Speaking and Writing</title>
+        <title>Web luyện thi TOEIC</title>
     </head>
     <body>
         <header class="header">
@@ -193,71 +195,160 @@
         </header>
 
         <main class="main">
-            <div class="LR">
+            <div class="tab-ui">
                 <div class="content">
-                    <h1 class="title">
-                        Luyện thi TOEIC Speaking&nbsp;&&nbsp;Writing
-                    </h1>
-                    <div class="part-1">
-                        <h2 class="list_title">Nói</h2>
-                        <div class="courses" id="list_speaking"></div>
-                    </div>
-
-                    <div class="part-2">
-                        <h2 class="list_title">Viết</h2>
-                        <div class="courses" id="list_writing"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="to_test">
-                <div class="content">
-                    <div class="test-items">
-                        <div class="img">
-                            <img
-                                src="./assets/img/test-item1.webp"
-                                alt=""
-                                class="img-test"
-                            />
+                    <div>
+                        <!-- Tab items -->
+                        <div class="tabs">
+                            <div class="tab-item tab-tips active">
+                                TOEIC Listening Tips
+                            </div>
+                            <div class="tab-item tab-tips">
+                                TOEIC Reading Tips
+                            </div>
+                            <div class="line tab-l"></div>
                         </div>
 
-                        <div class="info">
-                            <h2 class="title-item">VOCABULARY</h2>
-                            <p class="desc">
-                                Our vocabulary practice divided into various
-                                topics and parts will assist you in boosting
-                                your vocabulary range
-                            </p>
-                        </div>
+                        <!-- Tab content -->
+                        <div class="tab-content">
+                            <div class="tab-pane tp-tips active">
+                                <!-- Tab items -->
+                                <div class="tabs">
+                                    <div class="tab-item tips-listen active">
+                                        TOEIC Phần&nbsp;1
+                                    </div>
+                                    <div class="tab-item tips-listen">
+                                        TOEIC Phần&nbsp;2
+                                    </div>
+                                    <div class="tab-item tips-listen">
+                                        TOEIC Phần&nbsp;3
+                                    </div>
+                                    <div class="tab-item tips-listen">
+                                        TOEIC Phần&nbsp;4
+                                    </div>
+                                    <div class="line l-tips-listen"></div>
+                                </div>
 
-                        <div class="to-test-btn">
-                            <a href="" class="btn log"
-                                ><p class="text">Luyện tập</p></a
-                            >
-                        </div>
-                    </div>
-                    <div class="test-items">
-                        <div class="img">
-                            <img
-                                src="./assets/img/test-item2.webp"
-                                alt=""
-                                class="img-test"
-                            />
-                        </div>
+                                <!-- Tab content -->
+                                <div class="tab-content">
+                                    <div class="tab-pane tp-tips-listen active">
+                                        <div id="part1"></div>
+                                        <div class="continute-btn">
+                                            <a
+                                                href="#!"
+                                                class="btn readmore ctn"
+                                                id="load-more-part1"
+                                            >
+                                                <span class="txt"
+                                                    >Xem tiếp</span
+                                                >
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane tp-tips-listen">
+                                        <div id="part2"></div>
+                                        <div class="continute-btn">
+                                            <a
+                                                href="#!"
+                                                class="btn readmore ctn"
+                                                id="load-more-part2"
+                                            >
+                                                <span class="txt"
+                                                    >Xem tiếp</span
+                                                >
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane tp-tips-listen">
+                                        <div id="part3"></div>
+                                        <div class="continute-btn">
+                                            <a
+                                                href="#!"
+                                                class="btn readmore ctn"
+                                                id="load-more-part3"
+                                            >
+                                                <span class="txt"
+                                                    >Xem tiếp</span
+                                                >
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane tp-tips-listen">
+                                        <div id="part4"></div>
+                                        <div class="continute-btn">
+                                            <a
+                                                href="#!"
+                                                class="btn readmore ctn"
+                                                id="load-more-part4"
+                                            >
+                                                <span class="txt"
+                                                    >Xem tiếp</span
+                                                >
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane tp-tips">
+                                <div class="tabs">
+                                    <div class="tab-item tips-read active">
+                                        TOEIC Phần&nbsp;5
+                                    </div>
+                                    <div class="tab-item tips-read">
+                                        TOEIC Phần&nbsp;6
+                                    </div>
+                                    <div class="tab-item tips-read">
+                                        TOEIC Phần&nbsp;7
+                                    </div>
+                                    <div class="line l-tips-read"></div>
+                                </div>
 
-                        <div class="info">
-                            <h2 class="title-item">GRAMMAR</h2>
-                            <p class="desc">
-                                Our grammar exercises covering 30+ grammar
-                                topics will definitely help you enhance your
-                                English foundation
-                            </p>
-                        </div>
-
-                        <div class="to-test-btn">
-                            <a href="" class="btn log">
-                                <p class="text">Luyện tập</p>
-                            </a>
+                                <!-- Tab content -->
+                                <div class="tab-content">
+                                    <div class="tab-pane tp-tips-read active">
+                                        <div id="part5"></div>
+                                        <div class="continute-btn">
+                                            <a
+                                                href="#!"
+                                                class="btn readmore ctn"
+                                                id="load-more-part5"
+                                            >
+                                                <span class="txt"
+                                                    >Xem tiếp</span
+                                                >
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane tp-tips-read">
+                                        <div id="part6"></div>
+                                        <div class="continute-btn">
+                                            <a
+                                                href="#!"
+                                                class="btn readmore ctn"
+                                                id="load-more-part6"
+                                            >
+                                                <span class="txt"
+                                                    >Xem tiếp</span
+                                                >
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane tp-tips-read">
+                                        <div id="part7"></div>
+                                        <div class="continute-btn">
+                                            <a
+                                                href="#!"
+                                                class="btn readmore ctn"
+                                                id="load-more-part7"
+                                            >
+                                                <span class="txt"
+                                                    >Xem tiếp</span
+                                                >
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -428,8 +519,9 @@
         <a href="#" class="btn-to-top">
             <i class="fa-solid fa-jet-fighter-up"></i>
         </a>
+
         <!-- Nhúng Javascript -->
-        <script src="./assets/js/khoaHoc.js"></script>
+        <script src="./assets/js/tip.js"></script>
         <script src="./assets/js/go-top.js"></script>
     </body>
 </html>

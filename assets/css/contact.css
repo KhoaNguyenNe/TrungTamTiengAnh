@@ -94,13 +94,16 @@ body{
     height: 100%;
     background: #181717;
     border: none;
-    outline: none;
     border-radius:20px;
     box-shadow: 0 0 10px rgba(o,0,0,.1);
     cursor: pointer;
     font-size: 1.8rem;
-    color: white;
+    color: #d5d7d9;
     padding:12px 10px;
+}
+
+.button-contact:hover{
+    color:#181717;
 }
 /*định dạng icon*/
 .iconcontact{
