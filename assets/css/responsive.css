@@ -598,6 +598,7 @@
 }
 
 @media screen and (max-width: 516px) {
+    /* blog */
     .pic .top img{
         width:49%;
     }
