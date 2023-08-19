@@ -1,6 +1,6 @@
 // Đọc file JSON và thêm vào HTML
 function docJSON(file) {
-    fetch("../json/" + file)
+    fetch("../../json/" + file)
         .then(function (docFileJS) {
             return docFileJS.json();
         })
