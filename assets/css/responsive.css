@@ -32,7 +32,7 @@
 }
 
 .nav-input {
-    display: none;
+    display:none;
 }
 
 .nav-input:checked ~ .nav_overlay {
@@ -87,6 +87,9 @@
     .sub-book1 {
         display: none;
     }
+
+    /* prenium */
+
 }
 
 @media screen and (max-width: 1399px) {
@@ -220,6 +223,24 @@
     .Logo-nav {
         margin-left: 5%;
     }
+    /* grammar */
+    .main-practice-list{
+        display:block !important;
+    }
+
+    .main-practice-list-view{
+        width:100% !important;
+        max-width: 100% !important;
+    }
+
+    .hinhqc{
+        display:none;
+    }
+
+    .grammar-right{
+        width:100% !important;
+        max-width: 100% !important;
+    }
     /* main term */
     .phara {
         margin: 0 !important;
@@ -344,6 +365,13 @@
     }
 }
 
+
+@media screen and (max-width: 939px) {
+    #list_speaking > a{
+        width:45% !important;
+    }
+}
+
 @media screen and (max-width: 899px) {
     /* main index comment */
     .comments #list .comment {
@@ -372,6 +400,24 @@
         width: 47% !important;
     }
 }
+
+@media screen and (max-width: 815px) {
+    /* prenium */
+    .Group1{
+        justify-content:unset !important;
+        display:block !important;
+    }
+
+    .box{
+        margin:20px auto 20px auto !important;
+        width:90% !important;
+    }
+    /* .main-prenium{
+        display:flex !important;
+    } */
+
+}
+
 @media screen and (max-width: 771px) {
     /* main index function */
     .function_web .parent-info {
@@ -388,6 +434,15 @@
 
     .test-item .info {
         width: 100% !important;
+    }
+    /* Mock_exam */
+    .mock .mock-item{
+        width:100% !important;
+        flex-wrap: wrap;
+    }
+
+    .mock .test-item{
+        width:100% !important;
     }
 }
 
@@ -422,6 +477,27 @@
     .subcribe .form-group {
         width: 100% !important;
     }
+    
+    /* L & R */
+    .LR .courses .course{
+        width:100% !important;
+        height:50% !important;
+        margin-right: 30px;
+    }
+
+    /* S & W */
+    .to_test .content{
+        flex-wrap: wrap;
+    }
+
+    #list_speaking > a{
+        width:100% !important;
+    }
+
+    /* Mock_exam */
+    .mock .mock-item{
+        flex-wrap: wrap;
+    }
 }
 
 @media screen and (max-width: 614px) {
@@ -453,6 +529,15 @@
 } */
 
 @media screen and (max-width: 577px) {
+    /* vocabulary */
+    .wrap-list .list-left{
+        width: 100% !important;
+    }
+
+    .wrap-list .list-right{
+        width: 100% !important;
+    }
+
     /*footer*/
     .footer {
         padding-top: 45px !important;
@@ -577,6 +662,17 @@
 
     .comments #list .comment {
         width: calc(100vw - 75px) !important;
+    }
+
+    /* L & R */
+    .LR .title{
+    font-size: 3.5rem !important;
+    }
+
+    /* mock */
+
+    .mock{
+        padding: 30px 10px !important;
     }
     /* footer */
     .row-top {

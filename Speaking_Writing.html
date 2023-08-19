@@ -24,18 +24,106 @@
         <link rel="stylesheet" href="./assets/css/reset.css" />
         <!-- Style CSS -->
         <link rel="stylesheet" href="./assets/css/style.css" />
+        <!-- Responsive -->
+        <link rel="stylesheet" href="./assets/css/responsive.css" />
         <!-- L_R CSS -->
         <link rel="stylesheet" href="./assets/css/L_R_S_W.css" />
         <title>Speaking and Writing</title>
     </head>
     <body>
         <header class="header">
-            <div class="content">
+            <div class="content nav-content">
                 <nav class="navbar">
-                    <!-- Logo -->
+                    <!--nav mobile-->
+                    <label for="nav-mobile-input" class="nav_bars-btn">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 448 512"
+                        >
+                            <!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                            <path
+                                d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"
+                            />
+                        </svg>
+                    </label>
 
+                    <input
+                        type="checkbox"
+                        id="nav-mobile-input"
+                        class="nav-input"
+                        value=""
+                    />
+
+                    <!--Nav_overlay-->
+                    <label for="nav-mobile-input" class="nav_overlay"></label>
+
+                    <nav class="nav-mobile">
+                        <label for="nav-mobile-input" class="nav-mobile-close">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 352 512"
+                            >
+                                <!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) -->
+                                <path
+                                    d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+                                />
+                            </svg>
+                        </label>
+                        <ul class="nav-mobile-list">
+                            <li>
+                                <a href="./index.html" class="item-nav-mobile"
+                                    >Trang&nbsp;chủ</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="./Listen_Reading.html"
+                                    class="item-nav-mobile"
+                                    >Luyện&nbsp;L&R</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="./Speaking_Writing.html"
+                                    class="item-nav-mobile"
+                                    >Luyện&nbsp;S&W</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="./Mock_exams.html"
+                                    class="item-nav-mobile"
+                                    >Đề&nbsp;thi&nbsp;thử</a
+                                >
+                            </li>
+                            <li>
+                                <a href="./grammar.html" class="item-nav-mobile"
+                                    >Ngữ&nbsp;pháp</a
+                                >
+                            </li>
+                            <li>
+                                <a href="./voca.html" class="item-nav-mobile"
+                                    >Từ&nbsp;vựng</a
+                                >
+                            </li>
+                            <li>
+                                <a href="#Blog" class="item-nav-mobile">Blog</a>
+                            </li>
+                            <li>
+                                <a href="#Tip" class="item-nav-mobile"
+                                    >TOEIC&nbsp;Tips</a
+                                >
+                            </li>
+                            <li>
+                                <a href="./login.html" class="item-nav-mobile"
+                                    >Đăng&nbsp;nhập</a
+                                >
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- Logo -->
                     <div class="Logo-nav">
-                        <a href="#" class="Logo">
+                        <a href="./index.html" class="Logo">
                             <img
                                 src="./assets/img/Logo.svg"
                                 alt="Logo"
@@ -45,45 +133,41 @@
                         </a>
                     </div>
 
-                    <!-- Navigation -->
-                    <div class="navigation">
-                        <ul class="nav-items">
-                            <li>
-                                <a href="./index.html" class="item"
-                                    >Trang&nbsp;chủ</a
-                                >
-                            </li>
-                            <li>
-                                <a href="./Listen_Reading.html" class="item"
-                                    >Luyện&nbsp;L&R</a
-                                >
-                            </li>
-                            <li>
-                                <a href="./Speaking_Writing.html" class="item"
-                                    >Luyện&nbsp;S&W</a
-                                >
-                            </li>
-                            <li>
-                                <a href="#De-thi-thu" class="item"
-                                    >Đề&nbsp;thi&nbsp;thử</a
-                                >
-                            </li>
-                            <li>
-                                <a href="#Ngu-phap" class="item"
-                                    >Ngữ&nbsp;pháp</a
-                                >
-                            </li>
-                            <li>
-                                <a href="#Tu-vung" class="item">Từ&nbsp;vựng</a>
-                            </li>
-                            <li>
-                                <a href="#Blog" class="item">Blog</a>
-                            </li>
-                            <li>
-                                <a href="#Tip" class="item">TOEIC&nbsp;Tips</a>
-                            </li>
-                        </ul>
-                    </div>
+                    <!-- Navigation pc-->
+                    <ul class="nav-items">
+                        <li>
+                            <a href="./index.html" class="item"
+                                >Trang&nbsp;chủ</a
+                            >
+                        </li>
+                        <li>
+                            <a href="./Listen_Reading.html" class="item"
+                                >Luyện&nbsp;L&R</a
+                            >
+                        </li>
+                        <li>
+                            <a href="./Speaking_Writing.html" class="item"
+                                >Luyện&nbsp;S&W</a
+                            >
+                        </li>
+                        <li>
+                            <a href="./Mock_exams.html" class="item"
+                                >Đề&nbsp;thi&nbsp;thử</a
+                            >
+                        </li>
+                        <li>
+                            <a href="./grammar.html" class="item">Ngữ&nbsp;pháp</a>
+                        </li>
+                        <li>
+                            <a href="./voca.html" class="item">Từ&nbsp;vựng</a>
+                        </li>
+                        <li>
+                            <a href="#Blog" class="item">Blog</a>
+                        </li>
+                        <li>
+                            <a href="#Tip" class="item">TOEIC&nbsp;Tips</a>
+                        </li>
+                    </ul>
 
                     <!-- Button -->
                     <div class="actions">
@@ -96,10 +180,9 @@
                                     d="m18 0 8 12 10-8-4 20H4L0 4l10 8 8-12z"
                                 ></path>
                             </svg>
-                            Unlock&nbsp;Pro
+                            <p>Unlock&nbsp;Pro</p>
                         </a>
-
-                        <a class="log btn" href="./login.html">
+                        <a href="./login.html" class="log btn">
                             <p class="text">Đăng&nbsp;nhập</p>
                         </a>
                     </div>
