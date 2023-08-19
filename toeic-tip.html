@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,10 +8,6 @@
             rel="shortcut icon"
             href="./assets/favicon/favicon.ico"
             type="image/x-icon"
-        />
-        <link
-            rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
         />
         <!-- Nhúng CDN Font Awesome -->
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
@@ -22,22 +18,19 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         />
-        <!-- Style CSS -->
+        <!-- Font -->
         <link rel="stylesheet" href="./assets/font/stylesheet.css" />
-        <!-- Responsive -->
-        <link rel="stylesheet" href="./assets/css/responsive.css" />
         <!-- Reset CSS -->
         <link rel="stylesheet" href="./assets/css/reset.css" />
-        <!-- Font  -->
+        <!-- Style CSS  -->
         <link rel="stylesheet" href="./assets/css/style.css" />
-        <!--Style Prenium CSS-->
-        <link rel="stylesheet" href="./assets/css/prenium.css" />
-        <!-- icon -->
-        <link
-            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-            rel="stylesheet"
-        />
-        <title>Từ vựng</title>
+        <!-- Blog CSS -->
+        <link rel="stylesheet" href="./assets/css/blog.css" />
+        <!-- Toeic-Tip CSS -->
+        <link rel="stylesheet" href="./assets/css/toeic-tip.css" />
+        <!-- Responsive -->
+        <link rel="stylesheet" href="./assets/css/responsive.css" />
+        <title>Web luyện thi TOEIC</title>
     </head>
     <body>
         <header class="header">
@@ -106,12 +99,12 @@
                                 >
                             </li>
                             <li>
-                                <a href="./grammar.html" class="item-nav-mobile"
+                                <a href="#Ngu-phap" class="item-nav-mobile"
                                     >Ngữ&nbsp;pháp</a
                                 >
                             </li>
                             <li>
-                                <a href="./voca.html" class="item-nav-mobile"
+                                <a href="#Tu-vung" class="item-nav-mobile"
                                     >Từ&nbsp;vựng</a
                                 >
                             </li>
@@ -121,11 +114,6 @@
                             <li>
                                 <a href="#Tip" class="item-nav-mobile"
                                     >TOEIC&nbsp;Tips</a
-                                >
-                            </li>
-                            <li>
-                                <a href="./login.html" class="item-nav-mobile"
-                                    >Đăng&nbsp;nhập</a
                                 >
                             </li>
                         </ul>
@@ -170,7 +158,7 @@
                             >
                         </li>
                         <li>
-                            <a href="./voca.html" class="item">Từ&nbsp;vựng</a>
+                            <a href="#Tu-vung" class="item">Từ&nbsp;vựng</a>
                         </li>
                         <li>
                             <a href="#Blog" class="item">Blog</a>
@@ -200,214 +188,168 @@
                 </nav>
             </div>
         </header>
-        <div class="main-prenium">
-            <div class="Text">
-                <h2>CÁC&nbsp;TÀI&nbsp;KHOẢN</h2>
-            </div>
-            <div class="Group1">
-                <div class="box prenium-left">
-                    <div class="in-box">
-                        <div class="noidung">
-                            <div class="test-pre">Cơ&nbsp;bản</div>
-                            <div class="cost">
-                                <div class="tien">Miễn&nbsp;phí</div>
-                                <div class="tgian"></div>
+
+        <main class="main">
+            <div class="tab-ui">
+                <div class="content">
+                    <div>
+                        <!-- Tab items -->
+                        <div class="tabs">
+                            <div class="tab-item tab-tips active">
+                                TOEIC Listening Tips
                             </div>
-                            <div class="mota-prenium">
-                                Các bài học tương tác & thực hành hàng ngày.
+                            <div class="tab-item tab-tips">
+                                TOEIC Reading Tips
                             </div>
+                            <div class="line tab-l"></div>
                         </div>
-                        <div class="prenium-lists">
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
+
+                        <!-- Tab content -->
+                        <div class="tab-content">
+                            <div class="tab-pane tp-tips active">
+                                <!-- Tab items -->
+                                <div class="tabs">
+                                    <div class="tab-item tips-listen active">
+                                        TOEIC Phần 1
+                                    </div>
+                                    <div class="tab-item tips-listen">
+                                        TOEIC Phần 2
+                                    </div>
+                                    <div class="tab-item tips-listen">
+                                        TOEIC Phần 3
+                                    </div>
+                                    <div class="tab-item tips-listen">
+                                        TOEIC Phần 4
+                                    </div>
+                                    <div class="line l-tips-listen"></div>
                                 </div>
-                                <div class="name-prenium-list">
-                                    Các khóa học cơ bản
-                                </div>
-                            </div>
-                        </div>
-                        <div class="k-hoc">
-                            <div class="head-actions">
-                                <a
-                                    class="log btn head-btn hoc-ngay prenium-hocngay"
-                                    href="#"
-                                >
-                                    <p class="text">Học&nbsp;ngay</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="box prenium-mid">
-                    <div class="in-box">
-                        <div class="noidung">
-                            <div class="test-pre">Chuyên&nbsp;nghiệp</div>
-                            <div class="cost">
-                                <div class="tien">$50</div>
-                                <div class="tgian">/tháng</div>
-                            </div>
-                            <div class="mota-prenium">
-                                Học một kỹ năng với các khóa học, lộ trình kỹ
-                                năng, và các dự án.
-                            </div>
-                        </div>
-                        <div class="prenium-lists">
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Các khóa học cơ bản
-                                </div>
-                            </div>
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Các khóa học chuyên nghiệp
-                                </div>
-                            </div>
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Con đường kỹ năng
-                                </div>
-                            </div>
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Chuẩn Bị Phỏng Vấn
+
+                                <!-- Tab content -->
+                                <div class="tab-content">
+                                    <div class="tab-pane tp-tips-listen active">
+                                        <div id="part1"></div>
+                                        <div class="continute-btn">
+                                            <a
+                                                href="#!"
+                                                class="btn readmore ctn"
+                                                id="load-more-part1"
+                                            >
+                                                <span class="txt"
+                                                    >Xem tiếp</span
+                                                >
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane tp-tips-listen">
+                                        <div id="part2"></div>
+                                        <div class="continute-btn">
+                                            <a
+                                                href="#!"
+                                                class="btn readmore ctn"
+                                                id="load-more-part2"
+                                            >
+                                                <span class="txt"
+                                                    >Xem tiếp</span
+                                                >
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane tp-tips-listen">
+                                        <div id="part3"></div>
+                                        <div class="continute-btn">
+                                            <a
+                                                href="#!"
+                                                class="btn readmore ctn"
+                                                id="load-more-part3"
+                                            >
+                                                <span class="txt"
+                                                    >Xem tiếp</span
+                                                >
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane tp-tips-listen">
+                                        <div id="part4"></div>
+                                        <div class="continute-btn">
+                                            <a
+                                                href="#!"
+                                                class="btn readmore ctn"
+                                                id="load-more-part4"
+                                            >
+                                                <span class="txt"
+                                                    >Xem tiếp</span
+                                                >
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
+                            <div class="tab-pane tp-tips">
+                                <div class="tabs">
+                                    <div class="tab-item tips-read active">
+                                        TOEIC Phần 5
+                                    </div>
+                                    <div class="tab-item tips-read">
+                                        TOEIC Phần 6
+                                    </div>
+                                    <div class="tab-item tips-read">
+                                        TOEIC Phần 7
+                                    </div>
+                                    <div class="line l-tips-read"></div>
                                 </div>
-                                <div class="name-prenium-list">
-                                    Các khóa học chuyên nghiệp
+
+                                <!-- Tab content -->
+                                <div class="tab-content">
+                                    <div class="tab-pane tp-tips-read active">
+                                        <div id="part5"></div>
+                                        <div class="continute-btn">
+                                            <a
+                                                href="#!"
+                                                class="btn readmore ctn"
+                                                id="load-more-part5"
+                                            >
+                                                <span class="txt"
+                                                    >Xem tiếp</span
+                                                >
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane tp-tips-read">
+                                        <div id="part6"></div>
+                                        <div class="continute-btn">
+                                            <a
+                                                href="#!"
+                                                class="btn readmore ctn"
+                                                id="load-more-part6"
+                                            >
+                                                <span class="txt"
+                                                    >Xem tiếp</span
+                                                >
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane tp-tips-read">
+                                        <div id="part7"></div>
+                                        <div class="continute-btn">
+                                            <a
+                                                href="#!"
+                                                class="btn readmore ctn"
+                                                id="load-more-part7"
+                                            >
+                                                <span class="txt"
+                                                    >Xem tiếp</span
+                                                >
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="k-hoc">
-                            <div class="head-actions">
-                                <a
-                                    class="log btn head-btn hoc-ngay prenium-hocngay"
-                                    href="#"
-                                >
-                                    <p class="text">Học&nbsp;ngay</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="box prenium-right">
-                    <div class="in-box">
-                        <div class="noidung">
-                            <div class="test-pre">Kế hoạch doanh nghiệp</div>
-                            <div class="cost">
-                                <div class="tien">$250</div>
-                                <div class="tgian">/năm</div>
-                            </div>
-                            <div class="mota-prenium">
-                                Phát triển sự nghiệp với các khóa học, con đường
-                                sự nghiệp, dự án và chuẩn bị phỏng vấn.
-                            </div>
-                        </div>
-                        <div class="prenium-lists">
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Tất cả các tính năng trong tiêu chuẩn
-                                </div>
-                            </div>
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Các khóa học chuyên nghiệp
-                                </div>
-                            </div>
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Con đường kỹ năng
-                                </div>
-                            </div>
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Chuẩn Bị Phỏng Vấn
-                                </div>
-                            </div>
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Các khóa học chuyên nghiệp
-                                </div>
-                            </div>
-                        </div>
-                        <div class="k-hoc">
-                            <div class="head-actions">
-                                <a
-                                    class="log btn head-btn hoc-ngay prenium-hocngay"
-                                    href="#"
-                                >
-                                    <p class="text">Học&nbsp;ngay</p>
-                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
+
         <footer class="footer">
             <div class="content">
                 <div class="row row-top">
@@ -415,16 +357,22 @@
                         <h2 class="heading">Luyện&nbsp;thi</h2>
                         <ul class="list">
                             <li class="item">
-                                <a href="">Luyện&nbsp;L&R</a>
+                                <a href="./Listen_Reading.html"
+                                    >Luyện&nbsp;L&R</a
+                                >
                             </li>
                             <li class="item">
-                                <a href="">Luyện&nbsp;S&W</a>
+                                <a href="./Speaking_Writing.html"
+                                    >Luyện&nbsp;S&W</a
+                                >
                             </li>
                             <li class="item">
-                                <a href="">Đề&nbsp;thi&nbsp;thử</a>
+                                <a href="./Mock_exams.html"
+                                    >Đề&nbsp;thi&nbsp;thử</a
+                                >
                             </li>
                             <li class="item">
-                                <a href="">Ngữ&nbsp;pháp</a>
+                                <a href="./grammar.html">Ngữ&nbsp;pháp</a>
                             </li>
                             <li class="item">
                                 <a href="">Từ&nbsp;vựng</a>
@@ -568,7 +516,7 @@
         </a>
 
         <!-- Nhúng Javascript -->
-        <script src="./assets/js/vocabulary.js"></script>
+        <script src="./assets/js/tip.js"></script>
         <script src="./assets/js/go-top.js"></script>
     </body>
 </html>
