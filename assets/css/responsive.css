@@ -207,6 +207,11 @@
     .access {
         margin-top: 40px !important;
     }
+
+    /* blog */
+    .readmore{
+        margin-bottom: 15px;
+    }
 }
 
 @media screen and (max-width: 1039px) {
@@ -592,6 +597,25 @@
     }
 }
 
+@media screen and (max-width: 516px) {
+    /* blog */
+    .pic .top img{
+        width:49%;
+    }
+    .pic .bot img{
+        width:49%;
+    }
+
+    .item{
+        justify-content:unset !important;
+        
+    }
+    .blg{
+        width:100% !important;
+        margin-bottom: 20px;
+    }
+}
+
 @media screen and (max-width: 429px) {
     /* main login */
 
@@ -696,5 +720,10 @@
 @media screen and (max-width: 375px) {
     .comments #list .comment .info {
         margin-left: -1px !important;
+    }
+
+    /* toeic tip */
+    .tabs .tab-item{
+        padding: 16px 11px 11px 11px !important;
     }
 }

@@ -855,6 +855,7 @@ a {
 
 .footer-Logo {
     width: 33.33%;
+    display:inline-flex;
 }
 
 .footer-bank {
