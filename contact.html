@@ -225,58 +225,79 @@
                             <p>contact@gmail.com.vn</p>
                         </div>
                     </div>
-                    <div class="form-contact">
-                        <form action="#">
-                            <div>
-                                <h3 class="tieude-contact">Họ và tên</h3>
+
+                    <div class="contact-form">
+                        <form
+                        >
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="first-name" class="form-label tieude-contact">Họ và tên</label>
+                                        <input
+                                            type="text"
+                                            id="first-name"
+                                            class="form-input textarea-contact"
+                                            name="first-name"
+                                            placeholder="Nhập tên đầy đủ"
+                                            required
+                                            minlength="2"
+                                        />
+                                    <p class="form-error">Nhập ít nhất 2 kí tự</p>
+                                </div>
                             </div>
-                            <div class="input-contact">
-                                <input
-                                    type="text"
-                                    class="textarea-contact"
-                                    placeholder="Nhập tên đầy đủ..."
-                                    required
-                                />
+              
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="email" class="form-label tieude-contact">Mail</label>
+                                        <input
+                                            type="email"
+                                            id="email"
+                                            class="form-input textarea-contact"
+                                            name="email"
+                                            placeholder="Nhập email"
+                                            required
+                                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                        />
+                                    <p class="form-error">Vui lòng nhập đúng email</p>
+                                </div>
                             </div>
-                            <div>
-                                <h3 class="tieude-contact">Email</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="phone" class="form-label tieude-contact">Điện thoại</label>
+                                        <input
+                                            type="tel"
+                                            id="phone"
+                                            class="form-input textarea-contact"
+                                            name="phone"
+                                            placeholder="Nhập số điện thoại"
+                                            required
+                                            pattern="^(0|\+?84)(3|5|7|8|9)[0-9]{8}$"
+                                        />
+                                    <p class="form-error">Nhập đúng số điện thoại</p>
+                                </div>
                             </div>
-                            <div class="input-contact">
-                                <input
-                                    type="text"
-                                    class="textarea-contact"
-                                    placeholder="Nhập email..."
-                                    required
-                                />
+                
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="message" class="form-label tieude-contact">Nội dung</label>
+                                        <textarea
+                                            id="message"
+                                            class="form-textarea"
+                                            name="message"
+                                            placeholder="Nhập nội dung liên hệ..."
+                                            oninput="onResize(this)"
+                                            required
+                                            minlength="10"
+                                        ></textarea>
+                                    <p class="form-error">Nhập ít nhất 10 kí tự</p>
+                                </div>
                             </div>
-                            <div>
-                                <h3 class="tieude-contact">Điện thoại</h3>
-                            </div>
-                            <div class="input-contact">
-                                <input
-                                    type="text"
-                                    class="textarea-contact"
-                                    placeholder="Nhập số điện thoại..."
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <h3 class="tieude-contact">Nội dung</h3>
-                            </div>
-                            <div class="input-contact">
-                                <textarea
-                                    type="text"
-                                    class="textarea-contact"
-                                    placeholder="Nhập nội dung liên hệ..."
-                                ></textarea>
-                            </div>
-                            <div class="submit-contact">
-                                <button type="submit" class="log btn button-contact">
-                                    Gửi đi
-                                </button>
-                            </div>
+              
+                          <div class="form-row submit-box">
+                            <button class="submit-btn log btn button-contact" type="submit">Gửi đi</button>
+                          </div>
                         </form>
-                    </div>
+                      </div>
+
                 </div>
             </div>
             <div class="phr-gg-map">
