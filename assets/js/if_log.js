@@ -1,6 +1,6 @@
 var islog = localStorage.getItem("islog");
 
-if (islog === "true") {
+if (islog == "true") {
     var log = document.getElementById("log");
     log.style.display = "none";
 }
