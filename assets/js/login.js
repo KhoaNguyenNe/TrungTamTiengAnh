@@ -74,6 +74,7 @@ function signup(e) {
     event.preventDefault();
     var username = document.getElementById("name").value;
     var email = document.getElementById("mail-signup").value;
+    localStorage.setItem("islog", "false");
     var password = document.getElementById("psw").value;
     var user = {
         username: username,
@@ -93,7 +94,8 @@ function login(e) {
     var user = localStorage.getItem(email);
     var data = JSON.parse(user);
     if (email === data.email && password === data.password) {
-        window.location.href = "index.html";
+    localStorage.setItem("islog", "true")
+        window.location.href = "./index.html";
     } else {
         var text = document.querySelector(".nhap_sai_mk");
         text.style.visibility = "visible";
