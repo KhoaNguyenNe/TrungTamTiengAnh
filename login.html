@@ -107,10 +107,14 @@
                                 >
                             </li>
                             <li>
-                                <a href="./blog.html" class="item-nav-mobile">Blog</a>
+                                <a href="./blog.html" class="item-nav-mobile"
+                                    >Blog</a
+                                >
                             </li>
                             <li>
-                                <a href="./toeic-tip.html" class="item-nav-mobile"
+                                <a
+                                    href="./toeic-tip.html"
+                                    class="item-nav-mobile"
                                     >TOEIC&nbsp;Tips</a
                                 >
                             </li>
@@ -167,7 +171,9 @@
                             <a href="./blog.html" class="item">Blog</a>
                         </li>
                         <li>
-                            <a href="./toeic-tip.html" class="item">TOEIC&nbsp;Tips</a>
+                            <a href="./toeic-tip.html" class="item"
+                                >TOEIC&nbsp;Tips</a
+                            >
                         </li>
                     </ul>
 
@@ -191,115 +197,171 @@
                 </nav>
             </div>
         </header>
-        
+
         <div class="main-login">
-                <div class="sign">
-                        <div id="form-login" class="login-phara">
-                            <div class="wrap login">
-                                <form action="#">
-                                    <div>
-                                        <div class="title">ĐĂNG NHẬP</div>
-                                    </div>
-                                    <div class="input-box">
-                                        <input
-                                            type="text"
-                                            placeholder="Email hoặc số điện thoại"
-                                            required
-                                        />
-                                        <i class="bx bxs-user"></i>
-                                    </div>
-                                    <div class="input-box">
-                                        <input
-                                            type="password"
-                                            placeholder="Mật khẩu"
-                                            required
-                                        />
-                                        <i class="bx bxs-lock-alt"></i>
-                                    </div>
-                                    <div class="remember-forgot">
-                                        <a href="#">Quên mật khẩu?</a>
-                                    </div>
-                                    <div class="submit">
-                                        <button type="submit" class="buttonlogin">
-                                            Đăng nhập
-                                        </button>
-                                    </div>
-                                </form>
-                                <div class="loginwith">
-                                    <span>Đăng nhập với</span>
-                                </div>
-                                <div class="gg">
-                                    <button class="signup-social logo-wrapper">
-                                        <img src="./assets/img/g-logo.png" alt="logo GG" />
-                                        <span class="signup-social-text"
-                                            >Đăng nhập bằng Google</span
-                                        >
-                                    </button>
-                                </div>
-                                <div class="register">
-                                    <p>Tạo tài khoản mới? <a id="next">Đăng kí</a></p>
-                                </div>
+            <div class="sign">
+                <div id="form-login" class="login-phara">
+                    <div class="wrap login">
+                        <form class="form-group" onsubmit="login()">
+                            <div>
+                                <div class="title">ĐĂNG NHẬP</div>
                             </div>
-                            <div class="wrap signn">
-                                <form action="#">
-                                    <div>
-                                        <div class="title">TẠO TÀI KHOẢN</div>
-                                    </div>
-                                    <div class="input-box">
-                                        <input
-                                            type="text"
-                                            placeholder="Nhập tên"
-                                            required
-                                        />
-                                        <i class="bx bxs-user"></i>
-                                    </div>
-                                    <div class="input-box">
-                                        <input
-                                            type="text"
-                                            placeholder="Email hoặc số điện thoại"
-                                            required
-                                        />
-                                        <i class='bx bxl-gmail'></i>
-                                    </div>
-                                    <div class="input-box">
-                                        <input
-                                            type="password"
-                                            placeholder="Nhập mật khẩu"
-                                            required
-                                        />
-                                        <i class="bx bxs-lock-alt"></i>
-                                    </div>
-                                    <div class="input-box">
-                                        <input
-                                            type="password"
-                                            placeholder="Nhập lại mật khẩu"
-                                            required
-                                        />
-                                        <i class="bx bxs-lock-alt"></i>
-                                    </div>
-                                    <div class="submit">
-                                        <button type="submit" class="buttonlogin">
-                                            Đăng&nbsp;ký&nbsp;ngay
-                                        </button>
-                                    </div>
-                                </form>
-                                <div class="loginwith">
-                                    <span>Hoặc đăng kí với</span>
-                                </div>
-                                <div class="gg">
-                                    <button class="signup-social logo-wrapper">
-                                        <img src="./assets/img/g-logo.png" alt="logo GG" />
-                                        <span class="signup-social-text"
-                                            >Đăng nhập bằng Google</span
-                                        >
-                                    </button>
-                                </div>
-                                <div class="register">
-                                    <p>Bạn đã có tài khoản ? <a id="prev">Đăng nhập ngay</a></p>
-                                </div>
+                            <div class="input-box">
+                                <input
+                                    type="email"
+                                    id="mail-log"
+                                    class="email-input"
+                                    name="email"
+                                    placeholder="Nhập địa chỉ email"
+                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                    required
+                                />
+                                <i class="bx bxs-user"></i>
+                                <p class="form-error">
+                                    Vui lòng nhập đúng email
+                                </p>
                             </div>
+                            <div class="input-box">
+                                <input
+                                    type="password"
+                                    id="pass-log"
+                                    class="pass-input"
+                                    name="password"
+                                    placeholder="Nhập mật khẩu"
+                                    required
+                                />
+                                <i class="bx bxs-lock-alt"></i>
+                            </div>
+                            <div class="remember-forgot">
+                                <a href="#">Quên mật khẩu?</a>
+                            </div>
+                            <div class="submit">
+                                <button type="submit" class="buttonlogin">
+                                    Đăng nhập
+                                </button>
+                            </div>
+                            <p class="nhap_sai_mk">Đăng nhập thất bại</p>
+                        </form>
+                        <div class="loginwith">
+                            <span>Đăng nhập với</span>
                         </div>
+                        <div class="gg">
+                            <button class="signup-social logo-wrapper">
+                                <img
+                                    src="./assets/img/g-logo.png"
+                                    alt="logo GG"
+                                />
+                                <span class="signup-social-text"
+                                    >Đăng nhập bằng Google</span
+                                >
+                            </button>
+                        </div>
+                        <div class="register">
+                            <p>Tạo tài khoản mới? <a id="next">Đăng kí</a></p>
+                        </div>
+                    </div>
+                    <div class="wrap signn">
+                        <form class="form-group" onsubmit="signup()">
+                            <div>
+                                <div class="title">TẠO TÀI KHOẢN</div>
+                            </div>
+                            <div class="input-box">
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    placeholder="Nhập tên"
+                                    required
+                                    minlength="2"
+                                />
+                                <i class="bx bxs-user"></i>
+                                <p class="form-error">Nhập ít nhất 2 ký tự</p>
+                            </div>
+                            <div class="input-box">
+                                <input
+                                    type="email"
+                                    id="mail-signup"
+                                    class="email-input"
+                                    name="email"
+                                    placeholder="Nhập địa chỉ email"
+                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                    required
+                                />
+                                <i class="bx bxs-user"></i>
+                                <p class="form-error">
+                                    Vui lòng nhập đúng email
+                                </p>
+                            </div>
+                            <div class="input-box">
+                                <input
+                                    type="password"
+                                    id="psw"
+                                    name="pass"
+                                    placeholder="Nhập mật khẩu"
+                                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                    minlength="8"
+                                    required
+                                />
+                                <i class="bx bxs-lock-alt"></i>
+                            </div>
+                            <div id="pass-error">
+                                <p id="letter" class="invalid">
+                                    Có chữ viết thường
+                                </p>
+                                <p id="capital" class="invalid">
+                                    Có chữ viết hoa
+                                </p>
+                                <p id="number" class="invalid">Có số</p>
+                                <p id="length" class="invalid">
+                                    Tối đa 8 ký tự
+                                </p>
+                            </div>
+                            <div class="input-box">
+                                <input
+                                    type="password"
+                                    id="df-psw"
+                                    placeholder="Nhập lại mật khẩu"
+                                    required
+                                />
+                                <i class="bx bxs-lock-alt"></i>
+                                <p class="df-pass">
+                                    Vui lòng nhập giống với mất khẩu đã tạo
+                                    trước đó
+                                </p>
+                            </div>
+                            <div class="submit">
+                                <button
+                                    type="submit"
+                                    class="buttonlogin"
+                                    id="dangky"
+                                >
+                                    Đăng&nbsp;ký&nbsp;ngay
+                                </button>
+                            </div>
+                        </form>
+                        <div class="loginwith">
+                            <span>Hoặc đăng kí với</span>
+                        </div>
+                        <div class="gg">
+                            <button class="signup-social logo-wrapper">
+                                <img
+                                    src="./assets/img/g-logo.png"
+                                    alt="logo GG"
+                                />
+                                <span class="signup-social-text"
+                                    >Đăng nhập bằng Google</span
+                                >
+                            </button>
+                        </div>
+                        <div class="register">
+                            <p>
+                                Bạn đã có tài khoản ?
+                                <a id="prev">Đăng nhập ngay</a>
+                            </p>
+                        </div>
+                    </div>
                 </div>
+            </div>
         </div>
         <footer class="footer">
             <div class="content">
