@@ -41,26 +41,7 @@ body{
 }
 
 /*định dạng nội dung*/
-.title-contact{
-    font-size: 2.2rem;
-    font-weight: 700;
-    margin-block-start: 0.83em;
-    margin-block-end: 0.83em;
-
-}
-
-.nd-contact{
-    font-size: 1.8rem;
-}
-
-.tieude-contact{
-    font-size: 1.8rem;
-    margin-block-start: 0.5em;
-    margin-block-end: 0.5em;
-    font-weight: 600;
-}
-
-.input-contact input{
+.form-input{
     width:600px;
     height: 100%;
     border: none;
@@ -73,7 +54,7 @@ body{
     
 }
 
-.input-contact textarea{
+.form-textarea{
     width:600px;
     height: 90px;
     border: none;
@@ -83,9 +64,54 @@ body{
     font-size: 1.8rem;
     padding: 8px 18px;
 }
-.textarea-contact::placeholder{
-    font-family:  "Lato", sans-serif;
+
+.contact-form {
+    flex-grow: 1;
 }
+
+.contact-form:has(:invalid) .submit-btn {
+    opacity: 0.5;
+    pointer-events: none;
+}
+  
+  .form-row {
+    display: block;
+    gap: 32px;
+    margin-bottom: 12px;
+  }
+  
+  .form-row:last-child {
+    margin-bottom: 0;
+  }
+  
+  .form-group {
+    flex-grow: 1;
+  }
+  
+  .form-group:focus-within .form-label:not(.large) {
+    color: #5f42b6;
+  }
+  
+  .form-group:focus-within .form-input {
+    border-color: #5f42b6;
+  }
+  
+  .form-group:has(:invalid:not(:placeholder-shown)) .form-error {
+    visibility: visible;
+  }
+  
+  .form-label,
+  .form-input {
+    display: block;
+  }
+  
+  .form-error {
+    margin-top: -4px;
+    font-size: 1.3rem;
+    margin-bottom: -20px;
+    color: red;
+    visibility: hidden;
+  }
 
 .button-contact{
     margin-block-start: 0.83em;
