@@ -59,6 +59,8 @@ document.getElementById("prev").onclick = function () {
     document.getElementById("form-List").scrollLeft -= widthcmt + 30;
 };
 
+// Đếm thời gian
+
 const numbers = [
     { id: "daily-count", value: 5000 },
     { id: "star-count", value: 120 },
@@ -147,5 +149,3 @@ btn.onclick = function () {
         btn.innerHTML = "Xem thêm";
     }
 };
-
-
