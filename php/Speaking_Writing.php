@@ -71,7 +71,7 @@
                         </label>
                         <ul class="nav-mobile-list">
                             <li>
-                                <a href="./index.php" class="item-nav-mobile"
+                                <a href="./index.html" class="item-nav-mobile"
                                     >Trang&nbsp;chủ</a
                                 >
                             </li>
@@ -127,7 +127,7 @@
                     </nav>
                     <!-- Logo -->
                     <div class="Logo-nav">
-                        <a href="./index.php" class="Logo">
+                        <a href="./index.html" class="Logo">
                             <img
                                 src="../assets/img/Logo.svg"
                                 alt="Logo"
@@ -140,7 +140,7 @@
                     <!-- Navigation pc-->
                     <ul class="nav-items">
                         <li>
-                            <a href="./index.php" class="item"
+                            <a href="./index.html" class="item"
                                 >Trang&nbsp;chủ</a
                             >
                         </li>
@@ -403,7 +403,7 @@
                 <div class="row row-bottom">
                     <!-- Logo -->
                     <div class="footer-Logo">
-                        <a href="./index.php" class="Logo">
+                        <a href="./index.html" class="Logo">
                             <img
                                 src="../assets/img/Logo.svg"
                                 alt="Logo"
