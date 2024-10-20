@@ -6,7 +6,7 @@
         <!-- Favicon -->
         <link
             rel="shortcut icon"
-            href="./assets/favicon/favicon.ico"
+            href="../assets/favicon/favicon.ico"
             type="image/x-icon"
         />
         <!-- Nhúng CDN Font Awesome -->
@@ -18,17 +18,22 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         />
+        <!--icon GG-->
+        <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet"
+        />
         <!-- Style CSS -->
-        <link rel="stylesheet" href="./assets/font/stylesheet.css" />
+        <link rel="stylesheet" href="../assets/font/stylesheet.css" />
         <!-- Responsive -->
-        <link rel="stylesheet" href="./assets/css/responsive.css" />
+        <link rel="stylesheet" href="../assets/css/responsive.css" />
         <!-- Reset CSS -->
-        <link rel="stylesheet" href="./assets/css/reset.css" />
+        <link rel="stylesheet" href="../assets/css/reset.css" />
         <!-- Font  -->
-        <link rel="stylesheet" href="./assets/css/style.css" />
-        <!-- Term CSS -->
-        <link rel="stylesheet" href="./assets/css/term.css" />
-        <title>Điều khoản - Web luyện thi TOEIC</title>
+        <link rel="stylesheet" href="../assets/css/style.css" />
+        <!-- Contact CSS -->
+        <link rel="stylesheet" href="../assets/css/contact.css" />
+        <title>Liên lạc - Web luyện thi TOEIC</title>
     </head>
     <body>
         <header class="header">
@@ -71,51 +76,55 @@
                         </label>
                         <ul class="nav-mobile-list">
                             <li>
-                                <a href="./index.html" class="item-nav-mobile"
+                                <a href="./index.php" class="item-nav-mobile"
                                     >Trang&nbsp;chủ</a
                                 >
                             </li>
                             <li>
                                 <a
-                                    href="./Listen_Reading.html"
+                                    href="./Listen_Reading.php"
                                     class="item-nav-mobile"
                                     >Luyện&nbsp;L&R</a
                                 >
                             </li>
                             <li>
                                 <a
-                                    href="./Speaking_Writing.html"
+                                    href="./Speaking_Writing.php"
                                     class="item-nav-mobile"
                                     >Luyện&nbsp;S&W</a
                                 >
                             </li>
                             <li>
                                 <a
-                                    href="./Mock_exams.html"
+                                    href="./Mock_exams.php"
                                     class="item-nav-mobile"
                                     >Đề&nbsp;thi&nbsp;thử</a
                                 >
                             </li>
                             <li>
-                                <a href="./grammar.html" class="item-nav-mobile"
+                                <a href="./grammar.php" class="item-nav-mobile"
                                     >Ngữ&nbsp;pháp</a
                                 >
                             </li>
                             <li>
-                                <a href="./voca.html" class="item-nav-mobile"
+                                <a href="./voca.php" class="item-nav-mobile"
                                     >Từ&nbsp;vựng</a
                                 >
                             </li>
                             <li>
-                                <a href="./blog.html" class="item-nav-mobile">Blog</a>
+                                <a href="./blog.php" class="item-nav-mobile"
+                                    >Blog</a
+                                >
                             </li>
                             <li>
-                                <a href="./toeic-tip.html" class="item-nav-mobile"
+                                <a
+                                    href="./toeic-tip.php"
+                                    class="item-nav-mobile"
                                     >TOEIC&nbsp;Tips</a
                                 >
                             </li>
                             <li>
-                                <a href="./login.html" class="item-nav-mobile"
+                                <a href="./login.php" class="item-nav-mobile"
                                     >Đăng&nbsp;nhập</a
                                 >
                             </li>
@@ -123,9 +132,9 @@
                     </nav>
                     <!-- Logo -->
                     <div class="Logo-nav">
-                        <a href="./index.html" class="Logo">
+                        <a href="./index.php" class="Logo">
                             <img
-                                src="./assets/img/Logo.svg"
+                                src="../assets/img/Logo.svg"
                                 alt="Logo"
                                 class="lg"
                             />
@@ -136,44 +145,46 @@
                     <!-- Navigation pc-->
                     <ul class="nav-items">
                         <li>
-                            <a href="./index.html" class="item"
+                            <a href="./index.php" class="item"
                                 >Trang&nbsp;chủ</a
                             >
                         </li>
                         <li>
-                            <a href="./Listen_Reading.html" class="item"
+                            <a href="./Listen_Reading.php" class="item"
                                 >Luyện&nbsp;L&R</a
                             >
                         </li>
                         <li>
-                            <a href="./Speaking_Writing.html" class="item"
+                            <a href="./Speaking_Writing.php" class="item"
                                 >Luyện&nbsp;S&W</a
                             >
                         </li>
                         <li>
-                            <a href="./Mock_exams.html" class="item"
+                            <a href="./Mock_exams.php" class="item"
                                 >Đề&nbsp;thi&nbsp;thử</a
                             >
                         </li>
                         <li>
-                            <a href="./grammar.html" class="item"
+                            <a href="./grammar.php" class="item"
                                 >Ngữ&nbsp;pháp</a
                             >
                         </li>
                         <li>
-                            <a href="./voca.html" class="item">Từ&nbsp;vựng</a>
+                            <a href="./voca.php" class="item">Từ&nbsp;vựng</a>
                         </li>
                         <li>
-                            <a href="./blog.html" class="item">Blog</a>
+                            <a href="./blog.php" class="item">Blog</a>
                         </li>
                         <li>
-                            <a href="./toeic-tip.html" class="item">TOEIC&nbsp;Tips</a>
+                            <a href="./toeic-tip.php" class="item"
+                                >TOEIC&nbsp;Tips</a
+                            >
                         </li>
                     </ul>
 
                     <!-- Button -->
                     <div class="actions">
-                        <a href="./prenium.html" class="pro btn" id="log">
+                        <a href="./prenium.php" class="pro btn">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 36 24"
@@ -184,7 +195,7 @@
                             </svg>
                             <p>Unlock&nbsp;Pro</p>
                         </a>
-                        <a href="./login.html" class="log btn">
+                        <a href="./login.php" class="log btn" id="log">
                             <p class="text">Đăng&nbsp;nhập</p>
                         </a>
                     </div>
@@ -193,211 +204,148 @@
         </header>
 
         <div class="phara">
-            <div class="paper">
-                <p>
-                    <a class="indam"
-                        >Để hoạt động của
-                        website:&nbsp;toeic-testpro.com&nbsp;được thuận lợi và
-                        chấp hành tốt chủ trương của Đảng và nhà nước. Ban quản
-                        trị Website:&nbsp;toeic-testpro.com&nbsp;xin thông báo
-                        về Chính sách hoạt động và quy định chung của
-                        website&nbsp;toeic-testpro.com. Cụ thể như sau:</a
-                    >
-                </p>
-                <h3><a class="indam">I. HƯỚNG DẪN SỬ DỤNG WEBSITE</a></h3>
-                <p>
-                    - Nghiêm cấm sử dụng bất kỳ phần nào của trang web này với
-                    mục đích thương mại nếu không được chúng tôi cho phép bằng
-                    văn bản. Nếu vi phạm bất cứ điều nào trong đây, chúng tôi sẽ
-                    hủy giấy phép của bạn mà không cần báo trước.
-                </p>
-                <p>
-                    - Quý khách phải đăng ký tài khoản với thông tin xác thực về
-                    bản thân và phải cập nhật nếu có bất kỳ thay đổi nào. Mỗi
-                    người truy cập phải có trách nhiệm với mật khẩu, tài khoản
-                    và hoạt động của mình trên web. Hơn nữa, quý khách phải
-                    thông báo cho chúng tôi biết khi tài khoản bị truy cập trái
-                    phép. Chúng tôi không chịu bất kỳ trách nhiệm nào, dù trực
-                    tiếp hay gián tiếp, đối với những thiệt hại hoặc mất mát gây
-                    ra do quý khách không tuân thủ quy định.
-                </p>
-                <p>
-                    - Trong suốt quá trình đăng ký, quý khách đồng ý nhận email
-                    quảng cáo từ website. Sau đó, nếu không muốn tiếp tục nhận
-                    mail, quý khách có thể từ chối bằng cách nhấp vào đường link
-                    ở dưới cùng trong mọi email quảng cáo.
-                </p>
-                <h3><a class="indam">II. Ý KIẾN KHÁCH HÀNG</a></h3>
-                <p>
-                    - Tất cả nội dung trang web và ý kiến phê bình của quý khách
-                    đều là tài sản của chúng tôi. Nếu chúng tôi phát hiện bất kỳ
-                    thông tin giả mạo nào, chúng tôi sẽ khóa tài khoản của quý
-                    khách ngay lập tức hoặc áp dụng các biện pháp khác theo quy
-                    định của pháp luật Việt Nam.
-                </p>
-                <h3><a class="indam">III. THÔNG TIN SẢN PHẨM</a></h3>
-                <p>
-                    - Sản phẩm cung cấp tại Website&nbsp;<a class="indam"
-                        >toeic-testpro.com</a
-                    >
-                    là các bài luyện tập online.
-                </p>
-                <p>&nbsp;</p>
-                <h3>
-                    <a class="indam"
-                        >IV. GIAO KẾT GIAO DỊCH TẠI WEBSITE toeic-testpro.com</a
-                    >
-                </h3>
-                <p>
-                    Khách hàng khi sử dụng dịch vụ tại&nbsp;<a class="indam"
-                        >toeic-testpro.com</a
-                    >&nbsp;phải thực hiện các thao tác đăng ký theo trình tự
-                    sau:
-                </p>
-                <ul>
-                    <li>Bước 1: Kích vào đăng ký</li>
-                    <li>Bước 2: Tạo tài khoản đăng nhập</li>
-                    <li>Bước 3: Tạo mật khẩu đăng nhập</li>
-                    <li>Bước 4: Nhập các thông tin theo yêu cầu</li>
-                    <li>
-                        Bước 7: Khi bạn đăng ký thì đã đồng ý với những điều
-                        khoản của chúng tôi
-                    </li>
-                </ul>
-                <h3>
-                    <a class="indam"
-                        >V. GIẢI QUYẾT HẬU QUẢ DO LỖI NHẬP SAI THÔNG TIN THƯƠNG
-                        MẠI TẠI toeic-testpro.com</a
-                    >
-                </h3>
-                <p>
-                    - Khách hàng có trách nhiệm cung cấp thông tin đầy đủ và
-                    chính xác khi tham gia giao dịch tại&nbsp;<a class="indam"
-                        >toeic-testpro.com</a
-                    >. Trong trường hợp khách hàng nhập sai thông tin gửi vào
-                    trang web&nbsp;<a class="indam">toeic-testpro.com</a
-                    >,&nbsp;<a class="indam">toeic-testpro.com</a> có quyền từ
-                    chối thực hiện giao dịch.
-                </p>
-                <h3><a class="indam">VI. GIẢI QUYẾT TRANH CHẤP</a></h3>
-                <p>
-                    - Bất kỳ tranh cãi, khiếu nại hoặc tranh chấp phát sinh từ
-                    giao dịch hoặc liên quan đến giao dịch tại&nbsp;<a
-                        class="indam"
-                        >toeic-testpro.com</a
-                    >&nbsp;hoặc các Quy định và Điều kiện này đều sẽ được giải
-                    quyết bằng hình thức thương lượng, hòa giải, trọng tài
-                    và/hoặc Tòa án.
-                </p>
-                <h3><a class="indam">VII. QUY ĐỊNH CHẤM DỨT THỎA THUẬN</a></h3>
-                <p>
-                    - Trong trường hợp có bất kỳ thiệt hại nào phát sinh do việc
-                    vi phạm Quy Định sử dụng trang web, chúng tôi có quyền đình
-                    chỉ hoặc khóa tài khoản của quý khách vĩnh viễn. Nếu quý
-                    khách không hài lòng với trang web hoặc bất kỳ điều khoản,
-                    điều kiện, quy tắc, chính sách, hướng dẫn, hoặc cách thức
-                    vận hành của&nbsp;<a class="indam">toeic-testpro.com</a
-                    >&nbsp;thì biện pháp khắc phục duy nhất là ngưng làm việc
-                    với chúng tôi.
-                </p>
-                <h3><a class="indam">VIII. MỤC ĐÍCH VÀ PHẠM VI THU THẬP</a></h3>
-                <p>
-                    Việc thu thập dữ liệu chủ yếu trên website&nbsp;<a
-                        class="indam"
-                        >toeic-testpro.com</a
-                    >
-                    bao gồm: họ tên, email, tên đăng nhập, mật khẩu đăng nhập.
-                    Đây là các thông tin mà
-                    <a class="indam">toeic-testpro.com</a>&nbsp;yêu cầu thành
-                    viên cung cấp bắt buộc khi đăng ký sử dụng dịch vụ và
-                    để&nbsp;<a class="indam">toeic-testpro.com</a>&nbsp;liên hệ
-                    xác nhận khi khách hàng đăng ký sử dụng dịch vụ trên website
-                    nhằm đảm bảo quyền lợi cho khách hàng. Trong quá trình giao
-                    dịch thanh toán tại website&nbsp;<a class="indam"
-                        >toeic-testpro.com</a
-                    >, Chúng tôi chỉ lưu giữ thông tin chi tiết về đơn hàng đã
-                    thanh toán của thành viên. Chúng tôi cũng sẽ sử dụng cả
-                    thông tin nhận diện cá nhân của thành viên để gia tăng khả
-                    năng đáp ứng của Chúng tôi về phương diện các Trang và Dịch
-                    Vụ, cũng như về phát triển những chức năng, tính năng và các
-                    dịch vụ mới theo những xu hướng và sở thích đang diễn tiến.
-                    Các thành viên sẽ tự chịu trách nhiệm về bảo mật và lưu giữ
-                    mọi hoạt động sử dụng dịch vụ dưới tên đăng ký, mật khẩu và
-                    hộp thư điện tử của mình. Ngoài ra, thành viên có trách
-                    nhiệm thông báo kịp thời cho website&nbsp;<a class="indam"
-                        >toeic-testpro.com</a
-                    >&nbsp;về những hành vi sử dụng trái phép, lạm dụng, vi phạm
-                    bảo mật, lưu giữ tên đăng ký và mật khẩu của bên thứ ba để
-                    có biện pháp giải quyết phù hợp.
-                </p>
-                <h3><a class="indam">IX. PHẠM VI SỬ DỤNG THÔNG TIN</a></h3>
-                <p>
-                    Website&nbsp;<a class="indam">toeic-testpro.com</a>&nbsp;sử
-                    dụng thông tin thành viên cung cấp để:
-                </p>
-                <ul>
-                    <li>Cung cấp các dịch vụ đến thành viên;</li>
-                    <li>
-                        Gửi các thông báo về các hoạt động trao đổi thông tin
-                        giữa thành viên và website&nbsp;<a class="indam"
-                            >toeic-testpro.com</a
-                        >
-                    </li>
-                    <li>
-                        Ngăn ngừa các hoạt động phá hủy tài khoản người dùng của
-                        thành viên hoặc các hoạt động giả mạo thành viên;
-                    </li>
-                    <li>
-                        Liên lạc và giải quyết với thành viên trong những trường
-                        hợp đặc biệt.
-                    </li>
-                    <li>
-                        Không sử dụng thông tin cá nhân của thành viên ngoài mục
-                        đích xác nhận và liên hệ có liên quan đến giao dịch
-                        tại&nbsp;<a class="indam">toeic-testpro.com</a>
-                    </li>
-                    <li>
-                        Trong trường hợp có yêu cầu của pháp luật:
-                        website&nbsp;<a class="indam">toeic-testpro.com</a
-                        >&nbsp;có trách nhiệm hợp tác cung cấp thông tin cá nhân
-                        thành viên khi có yêu cầu từ cơ quan tư pháp bao gồm:
-                        Viện kiểm sát, tòa án, cơ quan công an điều tra liên
-                        quan đến hành vi vi phạm pháp luật nào đó của khách
-                        hàng. Ngoài ra, không ai có quyền xâm phạm vào thông tin
-                        cá nhân của thành viên.
-                    </li>
-                </ul>
-                <h3><a class="indam">X. THỜI GIAN LƯU TRỮ THÔNG TIN</a></h3>
-                <p>
-                    Dữ liệu cá nhân của thành viên sẽ được lưu trữ cho đến khi
-                    có yêu cầu hủy bỏ hoặc tự thành viên đăng nhập và thực hiện
-                    hủy bỏ. Còn lại trong mọi trường hợp thông tin cá nhân thành
-                    viên sẽ được bảo mật trên máy chủ của&nbsp;<a class="indam"
-                        >toeic-testpro.com</a
-                    >
-                </p>
-                <h3><a class="indam">XI. Chính sách hoàn tiền:</a></h3>
-                <p>
-                    Khách hàng có thể hoàn trả lại tiền nếu khách hàng không hài
-                    lòng trong vòng <a class="indam">24h</a> kể từ lúc tài khoản
-                    được kích hoạt. Vì bất cứ lý do gì quá thời gian trên TOEIC
-                    TEST PRO sẽ không chấp nhận hoàn trả học phí.<br /><br />-
-                    Số tiền hoàn = Số tiền TOEIC TEST PRO thực nhận ( sau khi
-                    trừ đi phí phát sinh - nếu có )
-                </p>
-                <p>
-                    Email:
-                    <a class="indam"
-                        ><a href="abc@gmail.com" class="indam">abc@gmail.com</a
-                        ><br /></a
-                    >Chúng tôi sẽ liên hệ trả lời bạn trong thời gian làm việc.
-                </p>
-                <h3><a class="indam">XII. NHỮNG QUY ĐỊNH KHÁC</a></h3>
-                <p>
-                    - Tất cả các Điều Khoản và Điều Kiện (và tất cả nghĩa vụ
-                    phát sinh ngoài Điều khoản và Điều kiện này hoặc có liên
-                    quan) sẽ bị chi phối và được hiểu theo luật pháp Việt Nam.
-                </p>
+            <div class="khungtrai">
+                <div>
+                    <h2 class="title-contact">Liên hệ</h2>
+                    <p class="nd-contact">
+                        Chúng tôi luôn sẵn sàng tiếp nhận mọi ý kiến đóng góp và
+                        giải đáp những yêu cầu của bạn. Hãy liên hệ ngay với
+                        chúng tôi.
+                    </p>
+                </div>
+                <div>
+                    <div class="nd-contact khung">
+                        <div class="wrap-contact">
+                            <a class="material-icons iconcontact">&#xe88a;</a>
+                            <p>
+                                371 Nguyễn Kiệm, Phường 3, Quận Gò Vấp, Thành
+                                Phố Hồ Chí Minh
+                            </p>
+                        </div>
+                        <div class="wrap-contact">
+                            <a class="fa iconcontact">&#xf095;</a>
+                            <p>0123456789</p>
+                        </div>
+                        <div class="wrap-contact">
+                            <a class="material-icons iconcontact">&#xe0be;</a>
+                            <p>contact@gmail.com.vn</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-form">
+                        <form>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label
+                                        for="first-name"
+                                        class="form-label tieude-contact"
+                                        >Họ và tên</label
+                                    >
+                                    <input
+                                        type="text"
+                                        id="first-name"
+                                        class="form-input textarea-contact"
+                                        name="first-name"
+                                        placeholder="Nhập tên đầy đủ"
+                                        required
+                                        minlength="2"
+                                    />
+                                    <p class="form-error">
+                                        Nhập ít nhất 2 kí tự
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label
+                                        for="email"
+                                        class="form-label tieude-contact"
+                                        >Mail</label
+                                    >
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        class="form-input textarea-contact"
+                                        name="email"
+                                        placeholder="Nhập email"
+                                        required
+                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                    />
+                                    <p class="form-error">
+                                        Vui lòng nhập đúng email
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label
+                                        for="phone"
+                                        class="form-label tieude-contact"
+                                        >Điện thoại</label
+                                    >
+                                    <input
+                                        type="tel"
+                                        id="phone"
+                                        class="form-input textarea-contact"
+                                        name="phone"
+                                        placeholder="Nhập số điện thoại"
+                                        required
+                                        pattern="^(0|\+?84)(3|5|7|8|9)[0-9]{8}$"
+                                    />
+                                    <p class="form-error">
+                                        Nhập đúng số điện thoại
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label
+                                        for="message"
+                                        class="form-label tieude-contact"
+                                        >Nội dung</label
+                                    >
+                                    <textarea
+                                        id="message"
+                                        class="form-textarea"
+                                        name="message"
+                                        placeholder="Nhập nội dung liên hệ..."
+                                        oninput="onResize(this)"
+                                        required
+                                        minlength="10"
+                                    ></textarea>
+                                    <p class="form-error">
+                                        Nhập ít nhất 10 kí tự
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="form-row submit-box">
+                                <button
+                                    class="submit-btn log btn button-contact"
+                                    type="submit"
+                                >
+                                    Gửi đi
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="phr-gg-map">
+                <div class="gg-map">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.925119767875!2d106.67453267520186!3d10.817042389334215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528e1f241211f%3A0xc9ef195798144b1f!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBN4bufIFRQLkhDTSAtIEPGoSBz4bufIDM!5e0!3m2!1svi!2s!4v1690475265917!5m2!1svi!2s"
+                        width="600"
+                        height="450"
+                        style="border: 0"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        class="mapp"
+                    ></iframe>
+                </div>
             </div>
         </div>
 
@@ -408,25 +356,25 @@
                         <h2 class="heading">Luyện&nbsp;thi</h2>
                         <ul class="list">
                             <li class="item">
-                                <a href="./Listen_Reading.html"
+                                <a href="./Listen_Reading.php"
                                     >Luyện&nbsp;L&R</a
                                 >
                             </li>
                             <li class="item">
-                                <a href="./Speaking_Writing.html"
+                                <a href="./Speaking_Writing.php"
                                     >Luyện&nbsp;S&W</a
                                 >
                             </li>
                             <li class="item">
-                                <a href="./Mock_exams.html"
+                                <a href="./Mock_exams.php"
                                     >Đề&nbsp;thi&nbsp;thử</a
                                 >
                             </li>
                             <li class="item">
-                                <a href="./grammar.html">Ngữ&nbsp;pháp</a>
+                                <a href="./grammar.php">Ngữ&nbsp;pháp</a>
                             </li>
                             <li class="item">
-                                <a href="./voca.html">Từ&nbsp;vựng</a>
+                                <a href="./voca.php">Từ&nbsp;vựng</a>
                             </li>
                         </ul>
                     </div>
@@ -435,13 +383,13 @@
                         <h2 class="heading">Hỗ&nbsp;trợ</h2>
                         <ul class="list">
                             <li class="item">
-                                <a href="./aboutus.html">Giới&nbsp;thiệu</a>
+                                <a href="./aboutus.php">Giới&nbsp;thiệu</a>
                             </li>
                             <li class="item">
-                                <a href="./contact.html">Liên&nbsp;hệ</a>
+                                <a href="./contact.php">Liên&nbsp;hệ</a>
                             </li>
                             <li class="item">
-                                <a href="./term.html">Điều&nbsp;khoản</a>
+                                <a href="./term.php">Điều&nbsp;khoản</a>
                             </li>
                         </ul>
                     </div>
@@ -534,9 +482,9 @@
                 <div class="row row-bottom">
                     <!-- Logo -->
                     <div class="footer-Logo">
-                        <a href="./index.html" class="Logo">
+                        <a href="./index.php" class="Logo">
                             <img
-                                src="./assets/img/Logo.svg"
+                                src="../assets/img/Logo.svg"
                                 alt="Logo"
                                 class="lg"
                             />
@@ -547,7 +495,7 @@
                     <!-- Bank -->
                     <div class="footer-bank">
                         <img
-                            src="./assets/img/Bank.svg"
+                            src="../assets/img/Bank.svg"
                             alt="Bank"
                             class="bank"
                         />
@@ -567,6 +515,8 @@
         </a>
 
         <!-- Nhúng Javascript -->
-        <script src="./assets/js/go-top.js"></script>
+        <script src="../assets/js/go-top.js"></script>
+        <script src="../assets/js/if_log.js"></script>
+
     </body>
 </html>

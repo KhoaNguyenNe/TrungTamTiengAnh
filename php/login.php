@@ -6,38 +6,29 @@
         <!-- Favicon -->
         <link
             rel="shortcut icon"
-            href="./assets/favicon/favicon.ico"
+            href="../assets/favicon/favicon.ico"
             type="image/x-icon"
         />
         <link
             rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
         />
-        <!-- Nhúng CDN Font Awesome -->
-        <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-            integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-            crossorigin="anonymous"
-            referrerpolicy="no-referrer"
-        />
         <!-- Style CSS -->
-        <link rel="stylesheet" href="./assets/font/stylesheet.css" />
-        <!-- Responsive -->
-        <link rel="stylesheet" href="./assets/css/responsive.css" />
+        <link rel="stylesheet" href="../assets/font/stylesheet.css" />
         <!-- Reset CSS -->
-        <link rel="stylesheet" href="./assets/css/reset.css" />
+        <link rel="stylesheet" href="../assets/css/reset.css" />
         <!-- Font  -->
-        <link rel="stylesheet" href="./assets/css/style.css" />
-        <!--Style Prenium CSS-->
-        <link rel="stylesheet" href="./assets/css/prenium.css" />
+        <link rel="stylesheet" href="../assets/css/style.css" />
+        <!--Style Login CSS-->
+        <link rel="stylesheet" href="../assets/css/login.css" />
+        <!-- Responsive -->
+        <link rel="stylesheet" href="../assets/css/responsive.css" />
         <!-- icon -->
         <link
             href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
             rel="stylesheet"
         />
-        <title>Từ vựng</title>
+        <title>Login</title>
     </head>
     <body>
         <header class="header">
@@ -80,51 +71,55 @@
                         </label>
                         <ul class="nav-mobile-list">
                             <li>
-                                <a href="./index.html" class="item-nav-mobile"
+                                <a href="./index.php" class="item-nav-mobile"
                                     >Trang&nbsp;chủ</a
                                 >
                             </li>
                             <li>
                                 <a
-                                    href="./Listen_Reading.html"
+                                    href="./Listen_Reading.php"
                                     class="item-nav-mobile"
                                     >Luyện&nbsp;L&R</a
                                 >
                             </li>
                             <li>
                                 <a
-                                    href="./Speaking_Writing.html"
+                                    href="./Speaking_Writing.php"
                                     class="item-nav-mobile"
                                     >Luyện&nbsp;S&W</a
                                 >
                             </li>
                             <li>
                                 <a
-                                    href="./Mock_exams.html"
+                                    href="./Mock_exams.php"
                                     class="item-nav-mobile"
                                     >Đề&nbsp;thi&nbsp;thử</a
                                 >
                             </li>
                             <li>
-                                <a href="./grammar.html" class="item-nav-mobile"
+                                <a href="./grammar.php" class="item-nav-mobile"
                                     >Ngữ&nbsp;pháp</a
                                 >
                             </li>
                             <li>
-                                <a href="./voca.html" class="item-nav-mobile"
+                                <a href="./voca.php" class="item-nav-mobile"
                                     >Từ&nbsp;vựng</a
                                 >
                             </li>
                             <li>
-                                <a href="./blog.html" class="item-nav-mobile">Blog</a>
+                                <a href="./blog.php" class="item-nav-mobile"
+                                    >Blog</a
+                                >
                             </li>
                             <li>
-                                <a href="./toeic-tip.html" class="item-nav-mobile"
+                                <a
+                                    href="./toeic-tip.php"
+                                    class="item-nav-mobile"
                                     >TOEIC&nbsp;Tips</a
                                 >
                             </li>
                             <li>
-                                <a href="./login.html" class="item-nav-mobile"
+                                <a href="./login.php" class="item-nav-mobile"
                                     >Đăng&nbsp;nhập</a
                                 >
                             </li>
@@ -132,9 +127,9 @@
                     </nav>
                     <!-- Logo -->
                     <div class="Logo-nav">
-                        <a href="./index.html" class="Logo">
+                        <a href="./index.php" class="Logo">
                             <img
-                                src="./assets/img/Logo.svg"
+                                src="../assets/img/Logo.svg"
                                 alt="Logo"
                                 class="lg"
                             />
@@ -145,44 +140,46 @@
                     <!-- Navigation pc-->
                     <ul class="nav-items">
                         <li>
-                            <a href="./index.html" class="item"
+                            <a href="./index.php" class="item"
                                 >Trang&nbsp;chủ</a
                             >
                         </li>
                         <li>
-                            <a href="./Listen_Reading.html" class="item"
+                            <a href="./Listen_Reading.php" class="item"
                                 >Luyện&nbsp;L&R</a
                             >
                         </li>
                         <li>
-                            <a href="./Speaking_Writing.html" class="item"
+                            <a href="./Speaking_Writing.php" class="item"
                                 >Luyện&nbsp;S&W</a
                             >
                         </li>
                         <li>
-                            <a href="./Mock_exams.html" class="item"
+                            <a href="./Mock_exams.php" class="item"
                                 >Đề&nbsp;thi&nbsp;thử</a
                             >
                         </li>
                         <li>
-                            <a href="./grammar.html" class="item"
+                            <a href="./grammar.php" class="item"
                                 >Ngữ&nbsp;pháp</a
                             >
                         </li>
                         <li>
-                            <a href="./voca.html" class="item">Từ&nbsp;vựng</a>
+                            <a href="./voca.php" class="item">Từ&nbsp;vựng</a>
                         </li>
                         <li>
-                            <a href="./blog.html" class="item">Blog</a>
+                            <a href="./blog.php" class="item">Blog</a>
                         </li>
                         <li>
-                            <a href="./toeic-tip.html" class="item">TOEIC&nbsp;Tips</a>
+                            <a href="./toeic-tip.php" class="item"
+                                >TOEIC&nbsp;Tips</a
+                            >
                         </li>
                     </ul>
 
                     <!-- Button -->
                     <div class="actions">
-                        <a href="./prenium.html" class="pro btn">
+                        <a href="./prenium.php" class="pro btn" id="log">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 36 24"
@@ -193,217 +190,171 @@
                             </svg>
                             <p>Unlock&nbsp;Pro</p>
                         </a>
-                        <a href="./login.html" class="log btn" id="log">
-                            <p class="text">Đăng&nbsp;nhập</p>
-                        </a>
                     </div>
                 </nav>
             </div>
         </header>
 
-        <div class="main-prenium">
-            <div class="Text">
-                <h2>CÁC&nbsp;TÀI&nbsp;KHOẢN</h2>
-            </div>
-            <div class="Group1">
-                <div class="box prenium-left">
-                    <div class="in-box">
-                        <div class="noidung">
-                            <div class="test-pre">Cơ&nbsp;bản</div>
-                            <div class="cost">
-                                <div class="tien">Miễn&nbsp;phí</div>
-                                <div class="tgian"></div>
+        <div class="main-login">
+            <div class="sign">
+                <div id="form-login" class="login-phara">
+                    <div class="wrap login">
+                        <form class="form-group" onsubmit="login()">
+                            <div>
+                                <div class="title">ĐĂNG NHẬP</div>
                             </div>
-                            <div class="mota-prenium">
-                                Các bài học tương tác & thực hành hàng ngày.
+                            <div class="input-box">
+                                <input
+                                    type="email"
+                                    id="mail-log"
+                                    class="email-input"
+                                    name="email"
+                                    placeholder="Nhập địa chỉ email"
+                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                    required
+                                />
+                                <i class="bx bxs-user"></i>
+                                <p class="form-error">
+                                    Vui lòng nhập đúng email
+                                </p>
                             </div>
+                            <div class="input-box">
+                                <input
+                                    type="password"
+                                    id="pass-log"
+                                    class="pass-input"
+                                    name="password"
+                                    placeholder="Nhập mật khẩu"
+                                    required
+                                />
+                                <i class="bx bxs-lock-alt"></i>
+                            </div>
+                            <div class="remember-forgot">
+                                <a href="#">Quên mật khẩu?</a>
+                            </div>
+                            <div class="submit">
+                                <button type="submit" class="buttonlogin">
+                                    Đăng nhập
+                                </button>
+                            </div>
+                            <p class="nhap_sai_mk">Đăng nhập thất bại</p>
+                        </form>
+                        <div class="loginwith">
+                            <span>Đăng nhập với</span>
                         </div>
-                        <div class="prenium-lists">
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Các khóa học cơ bản
-                                </div>
-                            </div>
-                        </div>
-                        <div class="k-hoc">
-                            <div class="head-actions">
-                                <a
-                                    class="log btn head-btn hoc-ngay prenium-hocngay"
-                                    href="#"
+                        <div class="gg">
+                            <button class="signup-social logo-wrapper">
+                                <img
+                                    src="../assets/img/g-logo.png"
+                                    alt="logo GG"
+                                />
+                                <span class="signup-social-text"
+                                    >Đăng nhập bằng Google</span
                                 >
-                                    <p class="text">Học&nbsp;ngay</p>
-                                </a>
-                            </div>
+                            </button>
+                        </div>
+                        <div class="register">
+                            <p>Tạo tài khoản mới? <a id="next">Đăng kí</a></p>
                         </div>
                     </div>
-                </div>
-                <div class="box prenium-mid">
-                    <div class="in-box">
-                        <div class="noidung">
-                            <div class="test-pre">Chuyên&nbsp;nghiệp</div>
-                            <div class="cost">
-                                <div class="tien">$50</div>
-                                <div class="tgian">/tháng</div>
+                    <div class="wrap signn">
+                        <form class="form-group" onsubmit="signup()">
+                            <div>
+                                <div class="title">TẠO TÀI KHOẢN</div>
                             </div>
-                            <div class="mota-prenium">
-                                Học một kỹ năng với các khóa học, lộ trình kỹ
-                                năng, và các dự án.
+                            <div class="input-box">
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    placeholder="Nhập tên"
+                                    required
+                                    minlength="2"
+                                />
+                                <i class="bx bxs-user"></i>
+                                <p class="form-error">Nhập ít nhất 2 ký tự</p>
                             </div>
-                        </div>
-                        <div class="prenium-lists">
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Các khóa học cơ bản
-                                </div>
+                            <div class="input-box">
+                                <input
+                                    type="email"
+                                    id="mail-signup"
+                                    class="email-input"
+                                    name="email"
+                                    placeholder="Nhập địa chỉ email"
+                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                    required
+                                />
+                                <i class="bx bxs-user"></i>
+                                <p class="form-error">
+                                    Vui lòng nhập đúng email
+                                </p>
                             </div>
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Các khóa học chuyên nghiệp
-                                </div>
+                            <div class="input-box">
+                                <input
+                                    type="password"
+                                    id="psw"
+                                    name="pass"
+                                    placeholder="Nhập mật khẩu"
+                                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                    minlength="8"
+                                    required
+                                />
+                                <i class="bx bxs-lock-alt"></i>
                             </div>
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Con đường kỹ năng
-                                </div>
+                            <div id="pass-error">
+                                <p id="letter" class="invalid">
+                                    Có chữ viết thường
+                                </p>
+                                <p id="capital" class="invalid">
+                                    Có chữ viết hoa
+                                </p>
+                                <p id="number" class="invalid">Có số</p>
+                                <p id="length" class="invalid">
+                                    Tối đa 8 ký tự
+                                </p>
                             </div>
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Chuẩn Bị Phỏng Vấn
-                                </div>
+                            <div class="input-box">
+                                <input
+                                    type="password"
+                                    id="df-psw"
+                                    placeholder="Nhập lại mật khẩu"
+                                    required
+                                />
+                                <i class="bx bxs-lock-alt"></i>
+                                <p class="df-pass">
+                                    Vui lòng nhập giống với mất khẩu đã tạo
+                                    trước đó
+                                </p>
                             </div>
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Các khóa học chuyên nghiệp
-                                </div>
-                            </div>
-                        </div>
-                        <div class="k-hoc">
-                            <div class="head-actions">
-                                <a
-                                    class="log btn head-btn hoc-ngay prenium-hocngay"
-                                    href="#"
+                            <div class="submit">
+                                <button
+                                    type="submit"
+                                    class="buttonlogin"
+                                    id="dangky"
                                 >
-                                    <p class="text">Học&nbsp;ngay</p>
-                                </a>
+                                    Đăng&nbsp;ký&nbsp;ngay
+                                </button>
                             </div>
+                        </form>
+                        <div class="loginwith">
+                            <span>Hoặc đăng kí với</span>
                         </div>
-                    </div>
-                </div>
-                <div class="box prenium-right">
-                    <div class="in-box">
-                        <div class="noidung">
-                            <div class="test-pre">Kế hoạch doanh nghiệp</div>
-                            <div class="cost">
-                                <div class="tien">$250</div>
-                                <div class="tgian">/năm</div>
-                            </div>
-                            <div class="mota-prenium">
-                                Phát triển sự nghiệp với các khóa học, con đường
-                                sự nghiệp, dự án và chuẩn bị phỏng vấn.
-                            </div>
-                        </div>
-                        <div class="prenium-lists">
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Tất cả các tính năng trong tiêu chuẩn
-                                </div>
-                            </div>
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Các khóa học chuyên nghiệp
-                                </div>
-                            </div>
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Con đường kỹ năng
-                                </div>
-                            </div>
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Chuẩn Bị Phỏng Vấn
-                                </div>
-                            </div>
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Các khóa học chuyên nghiệp
-                                </div>
-                            </div>
-                        </div>
-                        <div class="k-hoc">
-                            <div class="head-actions">
-                                <a
-                                    class="log btn head-btn hoc-ngay prenium-hocngay"
-                                    href="#"
+                        <div class="gg">
+                            <button class="signup-social logo-wrapper">
+                                <img
+                                    src="../assets/img/g-logo.png"
+                                    alt="logo GG"
+                                />
+                                <span class="signup-social-text"
+                                    >Đăng nhập bằng Google</span
                                 >
-                                    <p class="text">Học&nbsp;ngay</p>
-                                </a>
-                            </div>
+                            </button>
+                        </div>
+                        <div class="register">
+                            <p>
+                                Bạn đã có tài khoản ?
+                                <a id="prev">Đăng nhập ngay</a>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -416,25 +367,25 @@
                         <h2 class="heading">Luyện&nbsp;thi</h2>
                         <ul class="list">
                             <li class="item">
-                                <a href="./Listen_Reading.html"
+                                <a href="./Listen_Reading.php"
                                     >Luyện&nbsp;L&R</a
                                 >
                             </li>
                             <li class="item">
-                                <a href="./Speaking_Writing.html"
+                                <a href="./Speaking_Writing.php"
                                     >Luyện&nbsp;S&W</a
                                 >
                             </li>
                             <li class="item">
-                                <a href="./Mock_exams.html"
+                                <a href="./Mock_exams.php"
                                     >Đề&nbsp;thi&nbsp;thử</a
                                 >
                             </li>
                             <li class="item">
-                                <a href="./grammar.html">Ngữ&nbsp;pháp</a>
+                                <a href="./grammar.php">Ngữ&nbsp;pháp</a>
                             </li>
                             <li class="item">
-                                <a href="./voca.html">Từ&nbsp;vựng</a>
+                                <a href="./voca.php">Từ&nbsp;vựng</a>
                             </li>
                         </ul>
                     </div>
@@ -443,13 +394,13 @@
                         <h2 class="heading">Hỗ&nbsp;trợ</h2>
                         <ul class="list">
                             <li class="item">
-                                <a href="./aboutus.html">Giới&nbsp;thiệu</a>
+                                <a href="./aboutus.php">Giới&nbsp;thiệu</a>
                             </li>
                             <li class="item">
-                                <a href="./contact.html">Liên&nbsp;hệ</a>
+                                <a href="./contact.php">Liên&nbsp;hệ</a>
                             </li>
                             <li class="item">
-                                <a href="./term.html">Điều&nbsp;khoản</a>
+                                <a href="./term.php">Điều&nbsp;khoản</a>
                             </li>
                         </ul>
                     </div>
@@ -542,9 +493,9 @@
                 <div class="row row-bottom">
                     <!-- Logo -->
                     <div class="footer-Logo">
-                        <a href="./index.html" class="Logo">
+                        <a href="./index.php" class="Logo">
                             <img
-                                src="./assets/img/Logo.svg"
+                                src="../assets/img/Logo.svg"
                                 alt="Logo"
                                 class="lg"
                             />
@@ -555,7 +506,7 @@
                     <!-- Bank -->
                     <div class="footer-bank">
                         <img
-                            src="./assets/img/Bank.svg"
+                            src="../assets/img/Bank.svg"
                             alt="Bank"
                             class="bank"
                         />
@@ -569,15 +520,13 @@
                 </div>
             </div>
         </footer>
-
-        <a href="#" class="btn-to-top">
-            <i class="fa-solid fa-jet-fighter-up"></i>
-        </a>
-
         <!-- Nhúng Javascript -->
-        <script src="./assets/js/vocabulary.js"></script>
-        <script src="./assets/js/go-top.js"></script>
-        <script src="./assets/js/if_log.js"></script>
-
+        <script src="../assets/js/login.js"></script>
+        <!-- Nhúng Jquery -->
+        <script
+            src="https://code.jquery.com/jquery-3.7.0.min.js"
+            integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+            crossorigin="anonymous"
+        ></script>
     </body>
 </html>

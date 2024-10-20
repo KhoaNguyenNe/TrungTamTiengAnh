@@ -6,8 +6,12 @@
         <!-- Favicon -->
         <link
             rel="shortcut icon"
-            href="./assets/favicon/favicon.ico"
+            href="../assets/favicon/favicon.ico"
             type="image/x-icon"
+        />
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
         />
         <!-- Nhúng CDN Font Awesome -->
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
@@ -18,22 +22,22 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         />
-        <!--icon GG-->
+        <!-- Style CSS -->
+        <link rel="stylesheet" href="../assets/font/stylesheet.css" />
+        <!-- Responsive -->
+        <link rel="stylesheet" href="../assets/css/responsive.css" />
+        <!-- Reset CSS -->
+        <link rel="stylesheet" href="../assets/css/reset.css" />
+        <!-- Font  -->
+        <link rel="stylesheet" href="../assets/css/style.css" />
+        <!--Style Prenium CSS-->
+        <link rel="stylesheet" href="../assets/css/prenium.css" />
+        <!-- icon -->
         <link
-            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
             rel="stylesheet"
         />
-        <!-- Style CSS -->
-        <link rel="stylesheet" href="./assets/font/stylesheet.css" />
-        <!-- Responsive -->
-        <link rel="stylesheet" href="./assets/css/responsive.css" />
-        <!-- Reset CSS -->
-        <link rel="stylesheet" href="./assets/css/reset.css" />
-        <!-- Font  -->
-        <link rel="stylesheet" href="./assets/css/style.css" />
-        <!-- Contact CSS -->
-        <link rel="stylesheet" href="./assets/css/contact.css" />
-        <title>Liên lạc - Web luyện thi TOEIC</title>
+        <title>Từ vựng</title>
     </head>
     <body>
         <header class="header">
@@ -76,55 +80,51 @@
                         </label>
                         <ul class="nav-mobile-list">
                             <li>
-                                <a href="./index.html" class="item-nav-mobile"
+                                <a href="./index.php" class="item-nav-mobile"
                                     >Trang&nbsp;chủ</a
                                 >
                             </li>
                             <li>
                                 <a
-                                    href="./Listen_Reading.html"
+                                    href="./Listen_Reading.php"
                                     class="item-nav-mobile"
                                     >Luyện&nbsp;L&R</a
                                 >
                             </li>
                             <li>
                                 <a
-                                    href="./Speaking_Writing.html"
+                                    href="./Speaking_Writing.php"
                                     class="item-nav-mobile"
                                     >Luyện&nbsp;S&W</a
                                 >
                             </li>
                             <li>
                                 <a
-                                    href="./Mock_exams.html"
+                                    href="./Mock_exams.php"
                                     class="item-nav-mobile"
                                     >Đề&nbsp;thi&nbsp;thử</a
                                 >
                             </li>
                             <li>
-                                <a href="./grammar.html" class="item-nav-mobile"
+                                <a href="./grammar.php" class="item-nav-mobile"
                                     >Ngữ&nbsp;pháp</a
                                 >
                             </li>
                             <li>
-                                <a href="./voca.html" class="item-nav-mobile"
+                                <a href="./voca.php" class="item-nav-mobile"
                                     >Từ&nbsp;vựng</a
                                 >
                             </li>
                             <li>
-                                <a href="./blog.html" class="item-nav-mobile"
-                                    >Blog</a
-                                >
+                                <a href="./blog.php" class="item-nav-mobile">Blog</a>
                             </li>
                             <li>
-                                <a
-                                    href="./toeic-tip.html"
-                                    class="item-nav-mobile"
+                                <a href="./toeic-tip.php" class="item-nav-mobile"
                                     >TOEIC&nbsp;Tips</a
                                 >
                             </li>
                             <li>
-                                <a href="./login.html" class="item-nav-mobile"
+                                <a href="./login.php" class="item-nav-mobile"
                                     >Đăng&nbsp;nhập</a
                                 >
                             </li>
@@ -132,9 +132,9 @@
                     </nav>
                     <!-- Logo -->
                     <div class="Logo-nav">
-                        <a href="./index.html" class="Logo">
+                        <a href="./index.php" class="Logo">
                             <img
-                                src="./assets/img/Logo.svg"
+                                src="../assets/img/Logo.svg"
                                 alt="Logo"
                                 class="lg"
                             />
@@ -145,46 +145,44 @@
                     <!-- Navigation pc-->
                     <ul class="nav-items">
                         <li>
-                            <a href="./index.html" class="item"
+                            <a href="./index.php" class="item"
                                 >Trang&nbsp;chủ</a
                             >
                         </li>
                         <li>
-                            <a href="./Listen_Reading.html" class="item"
+                            <a href="./Listen_Reading.php" class="item"
                                 >Luyện&nbsp;L&R</a
                             >
                         </li>
                         <li>
-                            <a href="./Speaking_Writing.html" class="item"
+                            <a href="./Speaking_Writing.php" class="item"
                                 >Luyện&nbsp;S&W</a
                             >
                         </li>
                         <li>
-                            <a href="./Mock_exams.html" class="item"
+                            <a href="./Mock_exams.php" class="item"
                                 >Đề&nbsp;thi&nbsp;thử</a
                             >
                         </li>
                         <li>
-                            <a href="./grammar.html" class="item"
+                            <a href="./grammar.php" class="item"
                                 >Ngữ&nbsp;pháp</a
                             >
                         </li>
                         <li>
-                            <a href="./voca.html" class="item">Từ&nbsp;vựng</a>
+                            <a href="./voca.php" class="item">Từ&nbsp;vựng</a>
                         </li>
                         <li>
-                            <a href="./blog.html" class="item">Blog</a>
+                            <a href="./blog.php" class="item">Blog</a>
                         </li>
                         <li>
-                            <a href="./toeic-tip.html" class="item"
-                                >TOEIC&nbsp;Tips</a
-                            >
+                            <a href="./toeic-tip.php" class="item">TOEIC&nbsp;Tips</a>
                         </li>
                     </ul>
 
                     <!-- Button -->
                     <div class="actions">
-                        <a href="./prenium.html" class="pro btn">
+                        <a href="./prenium.php" class="pro btn">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 36 24"
@@ -195,7 +193,7 @@
                             </svg>
                             <p>Unlock&nbsp;Pro</p>
                         </a>
-                        <a href="./login.html" class="log btn" id="log">
+                        <a href="./login.php" class="log btn" id="log">
                             <p class="text">Đăng&nbsp;nhập</p>
                         </a>
                     </div>
@@ -203,152 +201,214 @@
             </div>
         </header>
 
-        <div class="phara">
-            <div class="khungtrai">
-                <div>
-                    <h2 class="title-contact">Liên hệ</h2>
-                    <p class="nd-contact">
-                        Chúng tôi luôn sẵn sàng tiếp nhận mọi ý kiến đóng góp và
-                        giải đáp những yêu cầu của bạn. Hãy liên hệ ngay với
-                        chúng tôi.
-                    </p>
-                </div>
-                <div>
-                    <div class="nd-contact khung">
-                        <div class="wrap-contact">
-                            <a class="material-icons iconcontact">&#xe88a;</a>
-                            <p>
-                                371 Nguyễn Kiệm, Phường 3, Quận Gò Vấp, Thành
-                                Phố Hồ Chí Minh
-                            </p>
-                        </div>
-                        <div class="wrap-contact">
-                            <a class="fa iconcontact">&#xf095;</a>
-                            <p>0123456789</p>
-                        </div>
-                        <div class="wrap-contact">
-                            <a class="material-icons iconcontact">&#xe0be;</a>
-                            <p>contact@gmail.com.vn</p>
-                        </div>
-                    </div>
-
-                    <div class="contact-form">
-                        <form>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label
-                                        for="first-name"
-                                        class="form-label tieude-contact"
-                                        >Họ và tên</label
-                                    >
-                                    <input
-                                        type="text"
-                                        id="first-name"
-                                        class="form-input textarea-contact"
-                                        name="first-name"
-                                        placeholder="Nhập tên đầy đủ"
-                                        required
-                                        minlength="2"
-                                    />
-                                    <p class="form-error">
-                                        Nhập ít nhất 2 kí tự
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label
-                                        for="email"
-                                        class="form-label tieude-contact"
-                                        >Mail</label
-                                    >
-                                    <input
-                                        type="email"
-                                        id="email"
-                                        class="form-input textarea-contact"
-                                        name="email"
-                                        placeholder="Nhập email"
-                                        required
-                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                                    />
-                                    <p class="form-error">
-                                        Vui lòng nhập đúng email
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label
-                                        for="phone"
-                                        class="form-label tieude-contact"
-                                        >Điện thoại</label
-                                    >
-                                    <input
-                                        type="tel"
-                                        id="phone"
-                                        class="form-input textarea-contact"
-                                        name="phone"
-                                        placeholder="Nhập số điện thoại"
-                                        required
-                                        pattern="^(0|\+?84)(3|5|7|8|9)[0-9]{8}$"
-                                    />
-                                    <p class="form-error">
-                                        Nhập đúng số điện thoại
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label
-                                        for="message"
-                                        class="form-label tieude-contact"
-                                        >Nội dung</label
-                                    >
-                                    <textarea
-                                        id="message"
-                                        class="form-textarea"
-                                        name="message"
-                                        placeholder="Nhập nội dung liên hệ..."
-                                        oninput="onResize(this)"
-                                        required
-                                        minlength="10"
-                                    ></textarea>
-                                    <p class="form-error">
-                                        Nhập ít nhất 10 kí tự
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="form-row submit-box">
-                                <button
-                                    class="submit-btn log btn button-contact"
-                                    type="submit"
-                                >
-                                    Gửi đi
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+        <div class="main-prenium">
+            <div class="Text">
+                <h2>CÁC&nbsp;TÀI&nbsp;KHOẢN</h2>
             </div>
-            <div class="phr-gg-map">
-                <div class="gg-map">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.925119767875!2d106.67453267520186!3d10.817042389334215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528e1f241211f%3A0xc9ef195798144b1f!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBN4bufIFRQLkhDTSAtIEPGoSBz4bufIDM!5e0!3m2!1svi!2s!4v1690475265917!5m2!1svi!2s"
-                        width="600"
-                        height="450"
-                        style="border: 0"
-                        allowfullscreen=""
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"
-                        class="mapp"
-                    ></iframe>
+            <div class="Group1">
+                <div class="box prenium-left">
+                    <div class="in-box">
+                        <div class="noidung">
+                            <div class="test-pre">Cơ&nbsp;bản</div>
+                            <div class="cost">
+                                <div class="tien">Miễn&nbsp;phí</div>
+                                <div class="tgian"></div>
+                            </div>
+                            <div class="mota-prenium">
+                                Các bài học tương tác & thực hành hàng ngày.
+                            </div>
+                        </div>
+                        <div class="prenium-lists">
+                            <div class="prenium-list">
+                                <div class="vector">
+                                    <i
+                                        class="bx bxs-check-circle"
+                                        style="color: #434ec4"
+                                    ></i>
+                                </div>
+                                <div class="name-prenium-list">
+                                    Các khóa học cơ bản
+                                </div>
+                            </div>
+                        </div>
+                        <div class="k-hoc">
+                            <div class="head-actions">
+                                <a
+                                    class="log btn head-btn hoc-ngay prenium-hocngay"
+                                    href="#"
+                                >
+                                    <p class="text">Học&nbsp;ngay</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box prenium-mid">
+                    <div class="in-box">
+                        <div class="noidung">
+                            <div class="test-pre">Chuyên&nbsp;nghiệp</div>
+                            <div class="cost">
+                                <div class="tien">$50</div>
+                                <div class="tgian">/tháng</div>
+                            </div>
+                            <div class="mota-prenium">
+                                Học một kỹ năng với các khóa học, lộ trình kỹ
+                                năng, và các dự án.
+                            </div>
+                        </div>
+                        <div class="prenium-lists">
+                            <div class="prenium-list">
+                                <div class="vector">
+                                    <i
+                                        class="bx bxs-check-circle"
+                                        style="color: #434ec4"
+                                    ></i>
+                                </div>
+                                <div class="name-prenium-list">
+                                    Các khóa học cơ bản
+                                </div>
+                            </div>
+                            <div class="prenium-list">
+                                <div class="vector">
+                                    <i
+                                        class="bx bxs-check-circle"
+                                        style="color: #434ec4"
+                                    ></i>
+                                </div>
+                                <div class="name-prenium-list">
+                                    Các khóa học chuyên nghiệp
+                                </div>
+                            </div>
+                            <div class="prenium-list">
+                                <div class="vector">
+                                    <i
+                                        class="bx bxs-check-circle"
+                                        style="color: #434ec4"
+                                    ></i>
+                                </div>
+                                <div class="name-prenium-list">
+                                    Con đường kỹ năng
+                                </div>
+                            </div>
+                            <div class="prenium-list">
+                                <div class="vector">
+                                    <i
+                                        class="bx bxs-check-circle"
+                                        style="color: #434ec4"
+                                    ></i>
+                                </div>
+                                <div class="name-prenium-list">
+                                    Chuẩn Bị Phỏng Vấn
+                                </div>
+                            </div>
+                            <div class="prenium-list">
+                                <div class="vector">
+                                    <i
+                                        class="bx bxs-check-circle"
+                                        style="color: #434ec4"
+                                    ></i>
+                                </div>
+                                <div class="name-prenium-list">
+                                    Các khóa học chuyên nghiệp
+                                </div>
+                            </div>
+                        </div>
+                        <div class="k-hoc">
+                            <div class="head-actions">
+                                <a
+                                    class="log btn head-btn hoc-ngay prenium-hocngay"
+                                    href="#"
+                                >
+                                    <p class="text">Học&nbsp;ngay</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box prenium-right">
+                    <div class="in-box">
+                        <div class="noidung">
+                            <div class="test-pre">Kế hoạch doanh nghiệp</div>
+                            <div class="cost">
+                                <div class="tien">$250</div>
+                                <div class="tgian">/năm</div>
+                            </div>
+                            <div class="mota-prenium">
+                                Phát triển sự nghiệp với các khóa học, con đường
+                                sự nghiệp, dự án và chuẩn bị phỏng vấn.
+                            </div>
+                        </div>
+                        <div class="prenium-lists">
+                            <div class="prenium-list">
+                                <div class="vector">
+                                    <i
+                                        class="bx bxs-check-circle"
+                                        style="color: #434ec4"
+                                    ></i>
+                                </div>
+                                <div class="name-prenium-list">
+                                    Tất cả các tính năng trong tiêu chuẩn
+                                </div>
+                            </div>
+                            <div class="prenium-list">
+                                <div class="vector">
+                                    <i
+                                        class="bx bxs-check-circle"
+                                        style="color: #434ec4"
+                                    ></i>
+                                </div>
+                                <div class="name-prenium-list">
+                                    Các khóa học chuyên nghiệp
+                                </div>
+                            </div>
+                            <div class="prenium-list">
+                                <div class="vector">
+                                    <i
+                                        class="bx bxs-check-circle"
+                                        style="color: #434ec4"
+                                    ></i>
+                                </div>
+                                <div class="name-prenium-list">
+                                    Con đường kỹ năng
+                                </div>
+                            </div>
+                            <div class="prenium-list">
+                                <div class="vector">
+                                    <i
+                                        class="bx bxs-check-circle"
+                                        style="color: #434ec4"
+                                    ></i>
+                                </div>
+                                <div class="name-prenium-list">
+                                    Chuẩn Bị Phỏng Vấn
+                                </div>
+                            </div>
+                            <div class="prenium-list">
+                                <div class="vector">
+                                    <i
+                                        class="bx bxs-check-circle"
+                                        style="color: #434ec4"
+                                    ></i>
+                                </div>
+                                <div class="name-prenium-list">
+                                    Các khóa học chuyên nghiệp
+                                </div>
+                            </div>
+                        </div>
+                        <div class="k-hoc">
+                            <div class="head-actions">
+                                <a
+                                    class="log btn head-btn hoc-ngay prenium-hocngay"
+                                    href="#"
+                                >
+                                    <p class="text">Học&nbsp;ngay</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
         <footer class="footer">
             <div class="content">
                 <div class="row row-top">
@@ -356,25 +416,25 @@
                         <h2 class="heading">Luyện&nbsp;thi</h2>
                         <ul class="list">
                             <li class="item">
-                                <a href="./Listen_Reading.html"
+                                <a href="./Listen_Reading.php"
                                     >Luyện&nbsp;L&R</a
                                 >
                             </li>
                             <li class="item">
-                                <a href="./Speaking_Writing.html"
+                                <a href="./Speaking_Writing.php"
                                     >Luyện&nbsp;S&W</a
                                 >
                             </li>
                             <li class="item">
-                                <a href="./Mock_exams.html"
+                                <a href="./Mock_exams.php"
                                     >Đề&nbsp;thi&nbsp;thử</a
                                 >
                             </li>
                             <li class="item">
-                                <a href="./grammar.html">Ngữ&nbsp;pháp</a>
+                                <a href="./grammar.php">Ngữ&nbsp;pháp</a>
                             </li>
                             <li class="item">
-                                <a href="./voca.html">Từ&nbsp;vựng</a>
+                                <a href="./voca.php">Từ&nbsp;vựng</a>
                             </li>
                         </ul>
                     </div>
@@ -383,13 +443,13 @@
                         <h2 class="heading">Hỗ&nbsp;trợ</h2>
                         <ul class="list">
                             <li class="item">
-                                <a href="./aboutus.html">Giới&nbsp;thiệu</a>
+                                <a href="./aboutus.php">Giới&nbsp;thiệu</a>
                             </li>
                             <li class="item">
-                                <a href="./contact.html">Liên&nbsp;hệ</a>
+                                <a href="./contact.php">Liên&nbsp;hệ</a>
                             </li>
                             <li class="item">
-                                <a href="./term.html">Điều&nbsp;khoản</a>
+                                <a href="./term.php">Điều&nbsp;khoản</a>
                             </li>
                         </ul>
                     </div>
@@ -482,9 +542,9 @@
                 <div class="row row-bottom">
                     <!-- Logo -->
                     <div class="footer-Logo">
-                        <a href="./index.html" class="Logo">
+                        <a href="./index.php" class="Logo">
                             <img
-                                src="./assets/img/Logo.svg"
+                                src="../assets/img/Logo.svg"
                                 alt="Logo"
                                 class="lg"
                             />
@@ -495,7 +555,7 @@
                     <!-- Bank -->
                     <div class="footer-bank">
                         <img
-                            src="./assets/img/Bank.svg"
+                            src="../assets/img/Bank.svg"
                             alt="Bank"
                             class="bank"
                         />
@@ -515,8 +575,9 @@
         </a>
 
         <!-- Nhúng Javascript -->
-        <script src="./assets/js/go-top.js"></script>
-        <script src="./assets/js/if_log.js"></script>
+        <script src="../assets/js/vocabulary.js"></script>
+        <script src="../assets/js/go-top.js"></script>
+        <script src="../assets/js/if_log.js"></script>
 
     </body>
 </html>

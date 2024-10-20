@@ -1,6 +1,6 @@
 // Đọc file JSON và thêm vào HTML
 function docJSON1(file, id) {
-    fetch("./json/" + file)
+    fetch("../json/" + file)
         .then(function (docFileJS) {
             return docFileJS.json();
         })
@@ -22,7 +22,7 @@ function docJSON1(file, id) {
 }
 
 function docJSON2(file, id) {
-    fetch("./json/" + file)
+    fetch("../json/" + file)
         .then(function (docFileJS) {
             return docFileJS.json();
         })

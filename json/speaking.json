@@ -1,32 +1,32 @@
 [
-    {
-        "img": "Speaking1.jpg",
-        "part": "Câu 1-2",
-        "title_img": "Đọc một đoạn văn",
-        "desc": "Ở phần thi này, thí sinh sẽ đọc thành tiếng một đoạn văn trên màn hình. Thí sinh có 45s để chuẩn bị và 45s để đọc thành tiếng đoạn văn."
-    },
-    {
-        "img": "Speaking2.jpg",
-        "part": "Câu 3-4",
-        "title_img": "Miêu tả tranh",
-        "desc": "Trong phần thi này, thí sinh sẽ miêu tả một bức tranh càng chi tiết càng tốt. Thí sinh có 45s để chuẩn bị và 30s để miêu tả bức tranh."
-    },
-    {
-        "img": "Speaking3.jpg",
-        "part": "Câu 5-7",
-        "title_img": "Trả lời câu hỏi",
-        "desc": "Ở phần thi này, thí sinh sẽ trả lời ba câu hỏi. Thí sinh có 3s để chuẩn bị sau khi nghe mỗi câu hỏi. Thí sinh có 15s để trả lời câu 5 và 6 và 30s để trả lời câu 7."
-    },
-    {
-        "img": "Speaking4.jpg",
-        "part": "Câu 8-10",
-        "title_img": "Trả lời câu hỏi dựa vào thông tin cho sẵn",
-        "desc": "Trong phần này, thí sinh sẽ trả lời ba câu hỏi dựa trên thông tin cho sẵn. Thí sinh có 45s để đọc thông tin trước khi trả lời câu hỏi. Thí sinh có 3s để chuẩn bị và 15s để trả lời câu 8 và 9. Câu 10 thí sinh được nghe hai lần, có 3s để chuẩn bị và 30s để nói."
-    },
-    {
-        "img": "Speaking5.jpg",
-        "part": "Câu 11",
-        "title_img": "Trình bày quan điểm",
-        "desc": "Trong phần thi này, thí sinh sẽ đưa ra ý kiến của mình về một chủ đề cụ thể. Thí sinh có 45s để chuẩn bị và 60s để nói."
-    }
+  {
+    "img": "Speaking1.jpg",
+    "part": "Câu 1-2",
+    "title_img": "Đọc một đoạn văn",
+    "desc": "Ở phần thi này, thí sinh sẽ đọc thành tiếng một đoạn văn trên màn hình. Thí sinh có 45s để chuẩn bị và 45s để đọc thành tiếng đoạn văn."
+  },
+  {
+    "img": "Speaking2.jpg",
+    "part": "Câu 3-4",
+    "title_img": "Miêu tả tranh",
+    "desc": "Trong phần thi này, thí sinh sẽ miêu tả một bức tranh càng chi tiết càng tốt. Thí sinh có 45s để chuẩn bị và 30s để miêu tả bức tranh."
+  },
+  {
+    "img": "Speaking3.jpg",
+    "part": "Câu 5-7",
+    "title_img": "Trả lời câu hỏi",
+    "desc": "Ở phần thi này, thí sinh sẽ trả lời ba câu hỏi. Thí sinh có 3s để chuẩn bị sau khi nghe mỗi câu hỏi. Thí sinh có 15s để trả lời câu 5 và 6 và 30s để trả lời câu 7."
+  },
+  {
+    "img": "Speaking4.jpg",
+    "part": "Câu 8-10",
+    "title_img": "Trả lời câu hỏi dựa vào thông tin cho sẵn",
+    "desc": "Trong phần này, thí sinh sẽ trả lời ba câu hỏi dựa trên thông tin cho sẵn. Thí sinh có 45s để đọc thông tin trước khi trả lời câu hỏi. Thí sinh có 3s để chuẩn bị và 15s để trả lời câu 8 và 9. Câu 10 thí sinh được nghe hai lần, có 3s để chuẩn bị và 30s để nói."
+  },
+  {
+    "img": "Speaking5.jpg",
+    "part": "Câu 11",
+    "title_img": "Trình bày quan điểm",
+    "desc": "Trong phần thi này, thí sinh sẽ đưa ra ý kiến của mình về một chủ đề cụ thể. Thí sinh có 45s để chuẩn bị và 60s để nói."
+  }
 ]

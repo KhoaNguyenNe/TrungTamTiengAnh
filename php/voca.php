@@ -6,7 +6,7 @@
         <!-- Favicon -->
         <link
             rel="shortcut icon"
-            href="./assets/favicon/favicon.ico"
+            href="../assets/favicon/favicon.ico"
             type="image/x-icon"
         />
         <link
@@ -23,15 +23,15 @@
             referrerpolicy="no-referrer"
         />
         <!-- Style CSS -->
-        <link rel="stylesheet" href="./assets/font/stylesheet.css" />
+        <link rel="stylesheet" href="../assets/font/stylesheet.css" />
         <!-- Responsive -->
-        <link rel="stylesheet" href="./assets/css/responsive.css" />
+        <link rel="stylesheet" href="../assets/css/responsive.css" />
         <!-- Reset CSS -->
-        <link rel="stylesheet" href="./assets/css/reset.css" />
+        <link rel="stylesheet" href="../assets/css/reset.css" />
         <!-- Font  -->
-        <link rel="stylesheet" href="./assets/css/style.css" />
+        <link rel="stylesheet" href="../assets/css/style.css" />
         <!--Style Grammar CSS-->
-        <link rel="stylesheet" href="./assets/css/grammar.css" />
+        <link rel="stylesheet" href="../assets/css/grammar.css" />
         <!-- icon -->
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <title>Từ vựng</title>
@@ -77,51 +77,51 @@
                         </label>
                         <ul class="nav-mobile-list">
                             <li>
-                                <a href="./index.html" class="item-nav-mobile"
+                                <a href="./index.php" class="item-nav-mobile"
                                     >Trang&nbsp;chủ</a
                                 >
                             </li>
                             <li>
                                 <a
-                                    href="./Listen_Reading.html"
+                                    href="./Listen_Reading.php"
                                     class="item-nav-mobile"
                                     >Luyện&nbsp;L&R</a
                                 >
                             </li>
                             <li>
                                 <a
-                                    href="./Speaking_Writing.html"
+                                    href="./Speaking_Writing.php"
                                     class="item-nav-mobile"
                                     >Luyện&nbsp;S&W</a
                                 >
                             </li>
                             <li>
                                 <a
-                                    href="./Mock_exams.html"
+                                    href="./Mock_exams.php"
                                     class="item-nav-mobile"
                                     >Đề&nbsp;thi&nbsp;thử</a
                                 >
                             </li>
                             <li>
-                                <a href="./grammar.html" class="item-nav-mobile"
+                                <a href="./grammar.php" class="item-nav-mobile"
                                     >Ngữ&nbsp;pháp</a
                                 >
                             </li>
                             <li>
-                                <a href="./voca.html" class="item-nav-mobile"
+                                <a href="./voca.php" class="item-nav-mobile"
                                     >Từ&nbsp;vựng</a
                                 >
                             </li>
                             <li>
-                                <a href="./blog.html" class="item-nav-mobile">Blog</a>
+                                <a href="./blog.php" class="item-nav-mobile">Blog</a>
                             </li>
                             <li>
-                                <a href="./toeic-tip.html" class="item-nav-mobile"
+                                <a href="./toeic-tip.php" class="item-nav-mobile"
                                     >TOEIC&nbsp;Tips</a
                                 >
                             </li>
                             <li>
-                                <a href="./login.html" class="item-nav-mobile"
+                                <a href="./login.php" class="item-nav-mobile"
                                     >Đăng&nbsp;nhập</a
                                 >
                             </li>
@@ -129,9 +129,9 @@
                     </nav>
                     <!-- Logo -->
                     <div class="Logo-nav">
-                        <a href="./index.html" class="Logo">
+                        <a href="./index.php" class="Logo">
                             <img
-                                src="./assets/img/Logo.svg"
+                                src="../assets/img/Logo.svg"
                                 alt="Logo"
                                 class="lg"
                             />
@@ -142,44 +142,44 @@
                     <!-- Navigation pc-->
                     <ul class="nav-items">
                         <li>
-                            <a href="./index.html" class="item"
+                            <a href="./index.php" class="item"
                                 >Trang&nbsp;chủ</a
                             >
                         </li>
                         <li>
-                            <a href="./Listen_Reading.html" class="item"
+                            <a href="./Listen_Reading.php" class="item"
                                 >Luyện&nbsp;L&R</a
                             >
                         </li>
                         <li>
-                            <a href="./Speaking_Writing.html" class="item"
+                            <a href="./Speaking_Writing.php" class="item"
                                 >Luyện&nbsp;S&W</a
                             >
                         </li>
                         <li>
-                            <a href="./Mock_exams.html" class="item"
+                            <a href="./Mock_exams.php" class="item"
                                 >Đề&nbsp;thi&nbsp;thử</a
                             >
                         </li>
                         <li>
-                            <a href="./grammar.html" class="item"
+                            <a href="./grammar.php" class="item"
                                 >Ngữ&nbsp;pháp</a
                             >
                         </li>
                         <li>
-                            <a href="./voca.html" class="item">Từ&nbsp;vựng</a>
+                            <a href="./voca.php" class="item">Từ&nbsp;vựng</a>
                         </li>
                         <li>
-                            <a href="./blog.html" class="item">Blog</a>
+                            <a href="./blog.php" class="item">Blog</a>
                         </li>
                         <li>
-                            <a href="./toeic-tip.html" class="item">TOEIC&nbsp;Tips</a>
+                            <a href="./toeic-tip.php" class="item">TOEIC&nbsp;Tips</a>
                         </li>
                     </ul>
 
                     <!-- Button -->
                     <div class="actions">
-                        <a href="./prenium.html" class="pro btn" id="log">
+                        <a href="./prenium.php" class="pro btn" id="log">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 36 24"
@@ -190,7 +190,7 @@
                             </svg>
                             <p>Unlock&nbsp;Pro</p>
                         </a>
-                        <a href="./login.html" class="log btn">
+                        <a href="./login.php" class="log btn">
                             <p class="text">Đăng&nbsp;nhập</p>
                         </a>
                     </div>
@@ -226,7 +226,7 @@
                                 <div class="grammar-hinh"></div>
                                 <div class="other-practices-list">
                                     <div>
-                                        <img src="./assets/img/sach1.jpeg"
+                                        <img src="../assets/img/sach1.jpeg"
                                         alt="" class="hinhqc"/>
                                     </div>
                                     <div class="title">Other Practices</div>
@@ -251,25 +251,25 @@
                             <h2 class="heading">Luyện&nbsp;thi</h2>
                             <ul class="list">
                                 <li class="item">
-                                    <a href="./Listen_Reading.html"
+                                    <a href="./Listen_Reading.php"
                                         >Luyện&nbsp;L&R</a
                                     >
                                 </li>
                                 <li class="item">
-                                    <a href="./Speaking_Writing.html"
+                                    <a href="./Speaking_Writing.php"
                                         >Luyện&nbsp;S&W</a
                                     >
                                 </li>
                                 <li class="item">
-                                    <a href="./Mock_exams.html"
+                                    <a href="./Mock_exams.php"
                                         >Đề&nbsp;thi&nbsp;thử</a
                                     >
                                 </li>
                                 <li class="item">
-                                    <a href="./grammar.html">Ngữ&nbsp;pháp</a>
+                                    <a href="./grammar.php">Ngữ&nbsp;pháp</a>
                                 </li>
                                 <li class="item">
-                                    <a href="./voca.html">Từ&nbsp;vựng</a>
+                                    <a href="./voca.php">Từ&nbsp;vựng</a>
                                 </li>
                             </ul>
                         </div>
@@ -278,13 +278,13 @@
                             <h2 class="heading">Hỗ&nbsp;trợ</h2>
                             <ul class="list">
                                 <li class="item">
-                                    <a href="./aboutus.html">Giới&nbsp;thiệu</a>
+                                    <a href="./aboutus.php">Giới&nbsp;thiệu</a>
                                 </li>
                                 <li class="item">
-                                    <a href="./contact.html">Liên&nbsp;hệ</a>
+                                    <a href="./contact.php">Liên&nbsp;hệ</a>
                                 </li>
                                 <li class="item">
-                                    <a href="./term.html">Điều&nbsp;khoản</a>
+                                    <a href="./term.php">Điều&nbsp;khoản</a>
                                 </li>
                             </ul>
                         </div>
@@ -377,9 +377,9 @@
                     <div class="row row-bottom">
                         <!-- Logo -->
                         <div class="footer-Logo">
-                            <a href="./index.html" class="Logo">
+                            <a href="./index.php" class="Logo">
                                 <img
-                                    src="./assets/img/Logo.svg"
+                                    src="../assets/img/Logo.svg"
                                     alt="Logo"
                                     class="lg"
                                 />
@@ -390,7 +390,7 @@
                         <!-- Bank -->
                         <div class="footer-bank">
                             <img
-                                src="./assets/img/Bank.svg"
+                                src="../assets/img/Bank.svg"
                                 alt="Bank"
                                 class="bank"
                             />
@@ -410,7 +410,7 @@
         </a>
 
         <!-- Nhúng Javascript -->
-        <script src="./assets/js/vocabulary.js"></script>
-        <script src="./assets/js/go-top.js"></script>
+        <script src="../assets/js/vocabulary.js"></script>
+        <script src="../assets/js/go-top.js"></script>
     </body>
 </html>

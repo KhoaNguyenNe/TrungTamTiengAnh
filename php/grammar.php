@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- Favicon -->
         <link
             rel="shortcut icon"
-            href="./assets/favicon/favicon.ico"
+            href="../assets/favicon/favicon.ico"
             type="image/x-icon"
+        />
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
         />
         <!-- Nhúng CDN Font Awesome -->
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
@@ -18,19 +22,22 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         />
-        <!-- Font -->
-        <link rel="stylesheet" href="./assets/font/stylesheet.css" />
-        <!-- Reset CSS -->
-        <link rel="stylesheet" href="./assets/css/reset.css" />
-        <!-- Style CSS  -->
-        <link rel="stylesheet" href="./assets/css/style.css" />
-        <!-- Blog CSS -->
-        <link rel="stylesheet" href="./assets/css/blog.css" />
-        <!-- Toeic-Tip CSS -->
-        <link rel="stylesheet" href="./assets/css/toeic-tip.css" />
+        <!-- Style CSS -->
+        <link rel="stylesheet" href="../assets/font/stylesheet.css" />
         <!-- Responsive -->
-        <link rel="stylesheet" href="./assets/css/responsive.css" />
-        <title>Web luyện thi TOEIC</title>
+        <link rel="stylesheet" href="../assets/css/responsive.css" />
+        <!-- Reset CSS -->
+        <link rel="stylesheet" href="../assets/css/reset.css" />
+        <!-- Font  -->
+        <link rel="stylesheet" href="../assets/css/style.css" />
+        <!--Style Grammar CSS-->
+        <link rel="stylesheet" href="../assets/css/grammar.css" />
+        <!-- icon -->
+        <link
+            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+            rel="stylesheet"
+        />
+        <title>Ngữ pháp</title>
     </head>
     <body>
         <header class="header">
@@ -73,51 +80,51 @@
                         </label>
                         <ul class="nav-mobile-list">
                             <li>
-                                <a href="./index.html" class="item-nav-mobile"
+                                <a href="./index.php" class="item-nav-mobile"
                                     >Trang&nbsp;chủ</a
                                 >
                             </li>
                             <li>
                                 <a
-                                    href="./Listen_Reading.html"
+                                    href="./Listen_Reading.php"
                                     class="item-nav-mobile"
                                     >Luyện&nbsp;L&R</a
                                 >
                             </li>
                             <li>
                                 <a
-                                    href="./Speaking_Writing.html"
+                                    href="./Speaking_Writing.php"
                                     class="item-nav-mobile"
                                     >Luyện&nbsp;S&W</a
                                 >
                             </li>
                             <li>
                                 <a
-                                    href="./Mock_exams.html"
+                                    href="./Mock_exams.php"
                                     class="item-nav-mobile"
                                     >Đề&nbsp;thi&nbsp;thử</a
                                 >
                             </li>
                             <li>
-                                <a href="./grammar.html" class="item-nav-mobile"
+                                <a href="./grammar.php" class="item-nav-mobile"
                                     >Ngữ&nbsp;pháp</a
                                 >
                             </li>
                             <li>
-                                <a href="./voca.html" class="item-nav-mobile"
+                                <a href="./voca.php" class="item-nav-mobile"
                                     >Từ&nbsp;vựng</a
                                 >
                             </li>
                             <li>
-                                <a href="./blog.html" class="item-nav-mobile">Blog</a>
+                                <a href="./blog.php" class="item-nav-mobile">Blog</a>
                             </li>
                             <li>
-                                <a href="./toeic-tip.html" class="item-nav-mobile"
+                                <a href="./toeic-tip.php" class="item-nav-mobile"
                                     >TOEIC&nbsp;Tips</a
                                 >
                             </li>
                             <li>
-                                <a href="./login.html" class="item-nav-mobile"
+                                <a href="./login.php" class="item-nav-mobile"
                                     >Đăng&nbsp;nhập</a
                                 >
                             </li>
@@ -125,9 +132,9 @@
                     </nav>
                     <!-- Logo -->
                     <div class="Logo-nav">
-                        <a href="./index.html" class="Logo">
+                        <a href="./index.php" class="Logo">
                             <img
-                                src="./assets/img/Logo.svg"
+                                src="../assets/img/Logo.svg"
                                 alt="Logo"
                                 class="lg"
                             />
@@ -138,44 +145,44 @@
                     <!-- Navigation pc-->
                     <ul class="nav-items">
                         <li>
-                            <a href="./index.html" class="item"
+                            <a href="./index.php" class="item"
                                 >Trang&nbsp;chủ</a
                             >
                         </li>
                         <li>
-                            <a href="./Listen_Reading.html" class="item"
+                            <a href="./Listen_Reading.php" class="item"
                                 >Luyện&nbsp;L&R</a
                             >
                         </li>
                         <li>
-                            <a href="./Speaking_Writing.html" class="item"
+                            <a href="./Speaking_Writing.php" class="item"
                                 >Luyện&nbsp;S&W</a
                             >
                         </li>
                         <li>
-                            <a href="./Mock_exams.html" class="item"
+                            <a href="./Mock_exams.php" class="item"
                                 >Đề&nbsp;thi&nbsp;thử</a
                             >
                         </li>
                         <li>
-                            <a href="./grammar.html" class="item"
+                            <a href="./grammar.php" class="item"
                                 >Ngữ&nbsp;pháp</a
                             >
                         </li>
                         <li>
-                            <a href="./voca.html" class="item">Từ&nbsp;vựng</a>
+                            <a href="./voca.php" class="item">Từ&nbsp;vựng</a>
                         </li>
                         <li>
-                            <a href="./blog.html" class="item">Blog</a>
+                            <a href="./blog.php" class="item">Blog</a>
                         </li>
                         <li>
-                            <a href="./toeic-tip.html" class="item">TOEIC&nbsp;Tips</a>
+                            <a href="./toeic-tip.php" class="item">TOEIC&nbsp;Tips</a>
                         </li>
                     </ul>
 
                     <!-- Button -->
                     <div class="actions">
-                        <a href="./prenium.html" class="pro btn" id="log">
+                        <a href="./prenium.php" class="pro btn">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 36 24"
@@ -186,166 +193,60 @@
                             </svg>
                             <p>Unlock&nbsp;Pro</p>
                         </a>
-                        <a href="./login.html" class="log btn">
+                        <a href="./login.php" class="log btn" id="log">
                             <p class="text">Đăng&nbsp;nhập</p>
                         </a>
                     </div>
                 </nav>
             </div>
         </header>
-
-        <main class="main">
-            <div class="tab-ui">
-                <div class="content">
-                    <div>
-                        <!-- Tab items -->
-                        <div class="tabs">
-                            <div class="tab-item tab-tips active">
-                                TOEIC Listening Tips
-                            </div>
-                            <div class="tab-item tab-tips">
-                                TOEIC Reading Tips
-                            </div>
-                            <div class="line tab-l"></div>
-                        </div>
-
-                        <!-- Tab content -->
-                        <div class="tab-content">
-                            <div class="tab-pane tp-tips active">
-                                <!-- Tab items -->
-                                <div class="tabs">
-                                    <div class="tab-item tips-listen active">
-                                        TOEIC Phần&nbsp;1
-                                    </div>
-                                    <div class="tab-item tips-listen">
-                                        TOEIC Phần&nbsp;2
-                                    </div>
-                                    <div class="tab-item tips-listen">
-                                        TOEIC Phần&nbsp;3
-                                    </div>
-                                    <div class="tab-item tips-listen">
-                                        TOEIC Phần&nbsp;4
-                                    </div>
-                                    <div class="line l-tips-listen"></div>
-                                </div>
-
-                                <!-- Tab content -->
-                                <div class="tab-content">
-                                    <div class="tab-pane tp-tips-listen active">
-                                        <div id="part1"></div>
-                                        <div class="continute-btn">
-                                            <a
-                                                href="#!"
-                                                class="btn readmore ctn"
-                                                id="load-more-part1"
-                                            >
-                                                <span class="txt"
-                                                    >Xem tiếp</span
-                                                >
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane tp-tips-listen">
-                                        <div id="part2"></div>
-                                        <div class="continute-btn">
-                                            <a
-                                                href="#!"
-                                                class="btn readmore ctn"
-                                                id="load-more-part2"
-                                            >
-                                                <span class="txt"
-                                                    >Xem tiếp</span
-                                                >
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane tp-tips-listen">
-                                        <div id="part3"></div>
-                                        <div class="continute-btn">
-                                            <a
-                                                href="#!"
-                                                class="btn readmore ctn"
-                                                id="load-more-part3"
-                                            >
-                                                <span class="txt"
-                                                    >Xem tiếp</span
-                                                >
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane tp-tips-listen">
-                                        <div id="part4"></div>
-                                        <div class="continute-btn">
-                                            <a
-                                                href="#!"
-                                                class="btn readmore ctn"
-                                                id="load-more-part4"
-                                            >
-                                                <span class="txt"
-                                                    >Xem tiếp</span
-                                                >
-                                            </a>
-                                        </div>
+        <main class="main" id="grammar-paper">
+            <div class="container">
+                <h1 class="title">
+                    Luyện thi TOEIC Listening&nbsp;&&nbsp;Reading
+                </h1>
+                <div class="grammar-wrap">
+                    <div class="grammar-wrap-left">
+                        <div class="main-practice-list">
+                            <div class="main-practice-list-view">
+                                <div class="list-child">
+                                    <div class="wrap-list">
+                                        <div
+                                            class="list-left"
+                                            id="grammar-items-left"
+                                        ></div>
+                                        <div
+                                            class="list-right"
+                                            id="grammar-items-right"
+                                        ></div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane tp-tips">
-                                <div class="tabs">
-                                    <div class="tab-item tips-read active">
-                                        TOEIC Phần&nbsp;5
+                            <div class="grammar-right">
+                                <div class="grammar-hinh"></div>
+                                <div class="other-practices-list">
+                                    <div>
+                                        <img
+                                            src="../assets/img/sach2.jpeg"
+                                            alt=""
+                                            class="hinhqc"
+                                        />
                                     </div>
-                                    <div class="tab-item tips-read">
-                                        TOEIC Phần&nbsp;6
-                                    </div>
-                                    <div class="tab-item tips-read">
-                                        TOEIC Phần&nbsp;7
-                                    </div>
-                                    <div class="line l-tips-read"></div>
-                                </div>
-
-                                <!-- Tab content -->
-                                <div class="tab-content">
-                                    <div class="tab-pane tp-tips-read active">
-                                        <div id="part5"></div>
-                                        <div class="continute-btn">
-                                            <a
-                                                href="#!"
-                                                class="btn readmore ctn"
-                                                id="load-more-part5"
-                                            >
-                                                <span class="txt"
-                                                    >Xem tiếp</span
-                                                >
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane tp-tips-read">
-                                        <div id="part6"></div>
-                                        <div class="continute-btn">
-                                            <a
-                                                href="#!"
-                                                class="btn readmore ctn"
-                                                id="load-more-part6"
-                                            >
-                                                <span class="txt"
-                                                    >Xem tiếp</span
-                                                >
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane tp-tips-read">
-                                        <div id="part7"></div>
-                                        <div class="continute-btn">
-                                            <a
-                                                href="#!"
-                                                class="btn readmore ctn"
-                                                id="load-more-part7"
-                                            >
-                                                <span class="txt"
-                                                    >Xem tiếp</span
-                                                >
-                                            </a>
-                                        </div>
+                                    <div class="title">Other Practices</div>
+                                    <div class="list" id="list-practices">
+                                        <a href="#">
+                                            <div class="list-item">
+                                                <div class="list-item-name">
+                                                    Phần 1: Mô tả tranh
+                                                </div>
+                                                <div class="list-item-icon">
+                                                    <img
+                                                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAOZJREFUaEPtmEsOwjAUA92bcTPgZHA0lEU2iE8kv3koyF110aQeT6Q0PbT5dWyeXwH4tcEYiAGzgSwhs0B7eAzYFZoTxMCbAk+S7ma5S8MJAxdJZ0lXSeMevaoBZvgZGoeoBBjL5vaibhSiEmBkfzaAm6gGaIcgAFohKIA2CBKgBYIGwCE6AFCILgAMIgCLHzrYBtdhAAs/yqMB0PA0AB6eBGgJTwG0hScAWsNXA/zlgQY9jVUbmHva1of6CbH1b5XFr4uax+iduCblh1kCgFf85QUxEANmA1lCZoH28BiwKzQn2N7AAwEtLjELaN2HAAAAAElFTkSuQmCC"
+                                                        alt="photo"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -354,7 +255,6 @@
                 </div>
             </div>
         </main>
-
         <footer class="footer">
             <div class="content">
                 <div class="row row-top">
@@ -362,25 +262,25 @@
                         <h2 class="heading">Luyện&nbsp;thi</h2>
                         <ul class="list">
                             <li class="item">
-                                <a href="./Listen_Reading.html"
+                                <a href="./Listen_Reading.php"
                                     >Luyện&nbsp;L&R</a
                                 >
                             </li>
                             <li class="item">
-                                <a href="./Speaking_Writing.html"
+                                <a href="./Speaking_Writing.php"
                                     >Luyện&nbsp;S&W</a
                                 >
                             </li>
                             <li class="item">
-                                <a href="./Mock_exams.html"
+                                <a href="./Mock_exams.php"
                                     >Đề&nbsp;thi&nbsp;thử</a
                                 >
                             </li>
                             <li class="item">
-                                <a href="./grammar.html">Ngữ&nbsp;pháp</a>
+                                <a href="./grammar.php">Ngữ&nbsp;pháp</a>
                             </li>
                             <li class="item">
-                                <a href="./voca.html">Từ&nbsp;vựng</a>
+                                <a href="./voca.php">Từ&nbsp;vựng</a>
                             </li>
                         </ul>
                     </div>
@@ -389,13 +289,13 @@
                         <h2 class="heading">Hỗ&nbsp;trợ</h2>
                         <ul class="list">
                             <li class="item">
-                                <a href="./aboutus.html">Giới&nbsp;thiệu</a>
+                                <a href="./aboutus.php">Giới&nbsp;thiệu</a>
                             </li>
                             <li class="item">
-                                <a href="./contact.html">Liên&nbsp;hệ</a>
+                                <a href="./contact.php">Liên&nbsp;hệ</a>
                             </li>
                             <li class="item">
-                                <a href="./term.html">Điều&nbsp;khoản</a>
+                                <a href="./term.php">Điều&nbsp;khoản</a>
                             </li>
                         </ul>
                     </div>
@@ -488,9 +388,9 @@
                 <div class="row row-bottom">
                     <!-- Logo -->
                     <div class="footer-Logo">
-                        <a href="./index.html" class="Logo">
+                        <a href="./index.php" class="Logo">
                             <img
-                                src="./assets/img/Logo.svg"
+                                src="../assets/img/Logo.svg"
                                 alt="Logo"
                                 class="lg"
                             />
@@ -501,7 +401,7 @@
                     <!-- Bank -->
                     <div class="footer-bank">
                         <img
-                            src="./assets/img/Bank.svg"
+                            src="../assets/img/Bank.svg"
                             alt="Bank"
                             class="bank"
                         />
@@ -521,7 +421,9 @@
         </a>
 
         <!-- Nhúng Javascript -->
-        <script src="./assets/js/tip.js"></script>
-        <script src="./assets/js/go-top.js"></script>
+        <script src="../assets/js/grammar.js"></script>
+        <script src="../assets/js/go-top.js"></script>
+        <script src="../assets/js/if_log.js"></script>
+
     </body>
 </html>
