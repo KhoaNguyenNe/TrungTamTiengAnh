@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- Favicon -->
         <link
             rel="shortcut icon"
-            href="../assets/favicon/favicon.ico"
+            href="./assets/favicon/favicon.ico"
             type="image/x-icon"
         />
         <!-- Nhúng CDN Font Awesome -->
@@ -18,17 +18,17 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         />
-        <!-- Font  -->
-        <link rel="stylesheet" href="../assets/font/stylesheet.css" />
-        <!-- Reset CSS -->
-        <link rel="stylesheet" href="../assets/css/reset.css" />
+        <!-- Font -->
+        <link rel="stylesheet" href="./assets/font/stylesheet.css" />
         <!-- Responsive -->
-        <link rel="stylesheet" href="../assets/css/responsive.css" />
-        <!-- Style CSS -->
-        <link rel="stylesheet" href="../assets/css/style.css" />
-        <!-- L_R CSS -->
-        <link rel="stylesheet" href="../assets/css/L_R_S_W.css" />
-        <title>Listen and Reading</title>
+        <link rel="stylesheet" href="./assets/css/responsive.css" />
+        <!-- Reset CSS -->
+        <link rel="stylesheet" href="./assets/css/reset.css" />
+        <!-- Style CSS  -->
+        <link rel="stylesheet" href="./assets/css/style.css" />
+        <!-- Mock CSS -->
+        <link rel="stylesheet" href="./assets/css/Mock.css" />
+        <title>Web luyện thi TOEIC</title>
     </head>
     <body>
         <header class="header">
@@ -71,7 +71,7 @@
                         </label>
                         <ul class="nav-mobile-list">
                             <li>
-                                <a href="./index.html" class="item-nav-mobile"
+                                <a href="./index.php" class="item-nav-mobile"
                                     >Trang&nbsp;chủ</a
                                 >
                             </li>
@@ -107,14 +107,10 @@
                                 >
                             </li>
                             <li>
-                                <a href="./blog.php" class="item-nav-mobile"
-                                    >Blog</a
-                                >
+                                <a href="./blog.php" class="item-nav-mobile">Blog</a>
                             </li>
                             <li>
-                                <a
-                                    href="./toeic-tip.php"
-                                    class="item-nav-mobile"
+                                <a href="./toeic-tip.php" class="item-nav-mobile"
                                     >TOEIC&nbsp;Tips</a
                                 >
                             </li>
@@ -127,9 +123,9 @@
                     </nav>
                     <!-- Logo -->
                     <div class="Logo-nav">
-                        <a href="./index.html" class="Logo">
+                        <a href="./index.php" class="Logo">
                             <img
-                                src="../assets/img/Logo.svg"
+                                src="./assets/img/Logo.svg"
                                 alt="Logo"
                                 class="lg"
                             />
@@ -140,7 +136,7 @@
                     <!-- Navigation pc-->
                     <ul class="nav-items">
                         <li>
-                            <a href="./index.html" class="item"
+                            <a href="./index.php" class="item"
                                 >Trang&nbsp;chủ</a
                             >
                         </li>
@@ -171,15 +167,13 @@
                             <a href="./blog.php" class="item">Blog</a>
                         </li>
                         <li>
-                            <a href="./toeic-tip.php" class="item"
-                                >TOEIC&nbsp;Tips</a
-                            >
+                            <a href="./toeic-tip.php" class="item">TOEIC&nbsp;Tips</a>
                         </li>
                     </ul>
 
                     <!-- Button -->
                     <div class="actions">
-                        <a href="./prenium.php" class="pro btn">
+                        <a href="./prenium.php" class="pro btn" id="log">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 36 24"
@@ -190,7 +184,7 @@
                             </svg>
                             <p>Unlock&nbsp;Pro</p>
                         </a>
-                        <a href="./login.php" class="log btn" id="log">
+                        <a href="./login.php" class="log btn">
                             <p class="text">Đăng&nbsp;nhập</p>
                         </a>
                     </div>
@@ -199,71 +193,80 @@
         </header>
 
         <main class="main">
-            <div class="LR">
+            <div class="mock">
                 <div class="content">
-                    <h1 class="title">
-                        Luyện thi TOEIC Listening&nbsp;&&nbsp;Reading
-                    </h1>
-                    <div class="part-1">
-                        <h2 class="list_title">Nghe</h2>
-                        <div class="courses" id="list_listening"></div>
-                    </div>
-
-                    <div class="part-2">
-                        <h2 class="list_title">Đọc</h2>
-                        <div class="courses" id="list_reading"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="to_test">
-                <div class="content">
-                    <div class="test-items">
+                    <h2 class="title">Luyện thi thử TOEIC miên phí</h2>
+                    <div class="test-item">
                         <div class="img">
                             <img
-                                src="../assets/img/test-item1.webp"
+                                src="./assets/img/pc_test.webp"
                                 alt=""
                                 class="img-test"
                             />
                         </div>
 
                         <div class="info">
-                            <h2 class="title-item">VOCABULARY</h2>
+                            <h2 class="title-item">Thi Mô Phỏng</h2>
                             <p class="desc">
-                                Our vocabulary practice divided into various
-                                topics and parts will assist you in boosting
-                                your vocabulary range
+                                Luyện thi mô phỏng trên máy tính như thi thật
+                                giúp bạn làm quen khi bước vào kì thi chính thức
                             </p>
                         </div>
 
                         <div class="to-test-btn">
-                            <a href="./voca.php" class="btn log"
-                                ><p class="text">Luyện tập</p></a
-                            >
-                        </div>
-                    </div>
-                    <div class="test-items">
-                        <div class="img">
-                            <img
-                                src="../assets/img/test-item2.webp"
-                                alt=""
-                                class="img-test"
-                            />
-                        </div>
-
-                        <div class="info">
-                            <h2 class="title-item">GRAMMAR</h2>
-                            <p class="desc">
-                                Our grammar exercises covering 30+ grammar
-                                topics will definitely help you enhance your
-                                English foundation
-                            </p>
-                        </div>
-
-                        <div class="to-test-btn">
-                            <a href="./grammar.php" class="btn log">
+                            <a href="" class="btn log">
                                 <p class="text">Luyện tập</p>
                             </a>
+                        </div>
+                    </div>
+
+                    <div class="mock-item">
+                        <div class="test-item">
+                            <div class="img">
+                                <img
+                                    src="./assets/img/mini-test.webp"
+                                    alt=""
+                                    class="img-test"
+                                />
+                            </div>
+
+                            <div class="info">
+                                <h2 class="title-item">MINI&nbsp;TEST</h2>
+                                <p class="desc">
+                                    Làm bài mini test với số lượng câu hỏi và
+                                    thời gian giảm một nửa so với bài thi thật.
+                                </p>
+                            </div>
+
+                            <div class="to-test-btn">
+                                <a href="" class="btn log">
+                                    <p class="text">Luyện&nbsp;tập</p>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="test-item">
+                            <div class="img">
+                                <img
+                                    src="./assets/img/full-test.webp"
+                                    alt=""
+                                    class="img-test"
+                                />
+                            </div>
+
+                            <div class="info">
+                                <h2 class="title-item">FULL&nbsp;TEST</h2>
+                                <p class="desc">
+                                    Làm bài full test với số lượng câu hỏi và
+                                    thời gian giống như bài thi thật
+                                </p>
+                            </div>
+
+                            <div class="to-test-btn">
+                                <a href="" class="btn log">
+                                    <p class="text">Luyện tập</p>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -403,9 +406,9 @@
                 <div class="row row-bottom">
                     <!-- Logo -->
                     <div class="footer-Logo">
-                        <a href="./index.html" class="Logo">
+                        <a href="./index.php" class="Logo">
                             <img
-                                src="../assets/img/Logo.svg"
+                                src="./assets/img/Logo.svg"
                                 alt="Logo"
                                 class="lg"
                             />
@@ -416,7 +419,7 @@
                     <!-- Bank -->
                     <div class="footer-bank">
                         <img
-                            src="../assets/img/Bank.svg"
+                            src="./assets/img/Bank.svg"
                             alt="Bank"
                             class="bank"
                         />
@@ -436,8 +439,8 @@
         </a>
 
         <!-- Nhúng Javascript -->
-        <script src="../assets/js/khoaHoc.js"></script>
-        <script src="../assets/js/go-top.js"></script>
-        <script src="../assets/js/if_log.js"></script>
-    </body>
+        <script src="./assets/js/index.js"></script>
+        <script src="./assets/js/go-top.js"></script>
+        <script src="./assets/js/if_log.js"></script>
+
 </html>

@@ -6,7 +6,7 @@
         <!-- Favicon -->
         <link
             rel="shortcut icon"
-            href="../assets/favicon/favicon.ico"
+            href="./assets/favicon/favicon.ico"
             type="image/x-icon"
         />
         <!-- Nhúng CDN Font Awesome -->
@@ -19,15 +19,15 @@
             referrerpolicy="no-referrer"
         />
         <!-- Font  -->
-        <link rel="stylesheet" href="../assets/font/stylesheet.css" />
+        <link rel="stylesheet" href="./assets/font/stylesheet.css" />
         <!-- Reset CSS -->
-        <link rel="stylesheet" href="../assets/css/reset.css" />
+        <link rel="stylesheet" href="./assets/css/reset.css" />
         <!-- Style CSS -->
-        <link rel="stylesheet" href="../assets/css/style.css" />
+        <link rel="stylesheet" href="./assets/css/style.css" />
         <!-- Responsive -->
-        <link rel="stylesheet" href="../assets/css/responsive.css" />
+        <link rel="stylesheet" href="./assets/css/responsive.css" />
         <!-- L_R CSS -->
-        <link rel="stylesheet" href="../assets/css/L_R_S_W.css" />
+        <link rel="stylesheet" href="./assets/css/L_R_S_W.css" />
         <title>Speaking and Writing</title>
     </head>
     <body>
@@ -71,7 +71,7 @@
                         </label>
                         <ul class="nav-mobile-list">
                             <li>
-                                <a href="./index.html" class="item-nav-mobile"
+                                <a href="./index.php" class="item-nav-mobile"
                                     >Trang&nbsp;chủ</a
                                 >
                             </li>
@@ -127,9 +127,9 @@
                     </nav>
                     <!-- Logo -->
                     <div class="Logo-nav">
-                        <a href="./index.html" class="Logo">
+                        <a href="./index.php" class="Logo">
                             <img
-                                src="../assets/img/Logo.svg"
+                                src="./assets/img/Logo.svg"
                                 alt="Logo"
                                 class="lg"
                             />
@@ -140,7 +140,7 @@
                     <!-- Navigation pc-->
                     <ul class="nav-items">
                         <li>
-                            <a href="./index.html" class="item"
+                            <a href="./index.php" class="item"
                                 >Trang&nbsp;chủ</a
                             >
                         </li>
@@ -221,7 +221,7 @@
                     <div class="test-items">
                         <div class="img">
                             <img
-                                src="../assets/img/test-item1.webp"
+                                src="./assets/img/test-item1.webp"
                                 alt=""
                                 class="img-test"
                             />
@@ -245,7 +245,7 @@
                     <div class="test-items">
                         <div class="img">
                             <img
-                                src="../assets/img/test-item2.webp"
+                                src="./assets/img/test-item2.webp"
                                 alt=""
                                 class="img-test"
                             />
@@ -403,9 +403,9 @@
                 <div class="row row-bottom">
                     <!-- Logo -->
                     <div class="footer-Logo">
-                        <a href="./index.html" class="Logo">
+                        <a href="./index.php" class="Logo">
                             <img
-                                src="../assets/img/Logo.svg"
+                                src="./assets/img/Logo.svg"
                                 alt="Logo"
                                 class="lg"
                             />
@@ -416,7 +416,7 @@
                     <!-- Bank -->
                     <div class="footer-bank">
                         <img
-                            src="../assets/img/Bank.svg"
+                            src="./assets/img/Bank.svg"
                             alt="Bank"
                             class="bank"
                         />
@@ -435,8 +435,8 @@
             <i class="fa-solid fa-jet-fighter-up"></i>
         </a>
         <!-- Nhúng Javascript -->
-        <script src="../assets/js/khoaHoc.js"></script>
-        <script src="../assets/js/go-top.js"></script>
-        <script src="../assets/js/if_log.js"></script>
+        <script src="./assets/js/khoaHoc.js"></script>
+        <script src="./assets/js/go-top.js"></script>
+        <script src="./assets/js/if_log.js"></script>
     </body>
 </html>

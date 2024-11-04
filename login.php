@@ -6,34 +6,29 @@
         <!-- Favicon -->
         <link
             rel="shortcut icon"
-            href="../assets/favicon/favicon.ico"
+            href="./assets/favicon/favicon.ico"
             type="image/x-icon"
         />
-        <!-- Nhúng CDN Font Awesome -->
-        <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
         <link
             rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-            integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-            crossorigin="anonymous"
-            referrerpolicy="no-referrer"
-        />
-        <!--icon GG-->
-        <link
-            href="https://fonts.googleapis.com/icon?family=Material+Icons"
-            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
         />
         <!-- Style CSS -->
-        <link rel="stylesheet" href="../assets/font/stylesheet.css" />
-        <!-- Responsive -->
-        <link rel="stylesheet" href="../assets/css/responsive.css" />
+        <link rel="stylesheet" href="./assets/font/stylesheet.css" />
         <!-- Reset CSS -->
-        <link rel="stylesheet" href="../assets/css/reset.css" />
+        <link rel="stylesheet" href="./assets/css/reset.css" />
         <!-- Font  -->
-        <link rel="stylesheet" href="../assets/css/style.css" />
-        <!-- Contact CSS -->
-        <link rel="stylesheet" href="../assets/css/contact.css" />
-        <title>Liên lạc - Web luyện thi TOEIC</title>
+        <link rel="stylesheet" href="./assets/css/style.css" />
+        <!--Style Login CSS-->
+        <link rel="stylesheet" href="./assets/css/login.css" />
+        <!-- Responsive -->
+        <link rel="stylesheet" href="./assets/css/responsive.css" />
+        <!-- icon -->
+        <link
+            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+            rel="stylesheet"
+        />
+        <title>Login</title>
     </head>
     <body>
         <header class="header">
@@ -76,7 +71,7 @@
                         </label>
                         <ul class="nav-mobile-list">
                             <li>
-                                <a href="./index.html" class="item-nav-mobile"
+                                <a href="./index.php" class="item-nav-mobile"
                                     >Trang&nbsp;chủ</a
                                 >
                             </li>
@@ -132,9 +127,9 @@
                     </nav>
                     <!-- Logo -->
                     <div class="Logo-nav">
-                        <a href="./index.html" class="Logo">
+                        <a href="./index.php" class="Logo">
                             <img
-                                src="../assets/img/Logo.svg"
+                                src="./assets/img/Logo.svg"
                                 alt="Logo"
                                 class="lg"
                             />
@@ -145,7 +140,7 @@
                     <!-- Navigation pc-->
                     <ul class="nav-items">
                         <li>
-                            <a href="./index.html" class="item"
+                            <a href="./index.php" class="item"
                                 >Trang&nbsp;chủ</a
                             >
                         </li>
@@ -184,7 +179,7 @@
 
                     <!-- Button -->
                     <div class="actions">
-                        <a href="./prenium.php" class="pro btn">
+                        <a href="./prenium.php" class="pro btn" id="log">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 36 24"
@@ -195,160 +190,176 @@
                             </svg>
                             <p>Unlock&nbsp;Pro</p>
                         </a>
-                        <a href="./login.php" class="log btn" id="log">
-                            <p class="text">Đăng&nbsp;nhập</p>
-                        </a>
                     </div>
                 </nav>
             </div>
         </header>
 
-        <div class="phara">
-            <div class="khungtrai">
-                <div>
-                    <h2 class="title-contact">Liên hệ</h2>
-                    <p class="nd-contact">
-                        Chúng tôi luôn sẵn sàng tiếp nhận mọi ý kiến đóng góp và
-                        giải đáp những yêu cầu của bạn. Hãy liên hệ ngay với
-                        chúng tôi.
-                    </p>
-                </div>
-                <div>
-                    <div class="nd-contact khung">
-                        <div class="wrap-contact">
-                            <a class="material-icons iconcontact">&#xe88a;</a>
-                            <p>
-                                371 Nguyễn Kiệm, Phường 3, Quận Gò Vấp, Thành
-                                Phố Hồ Chí Minh
-                            </p>
+        <div class="main-login">
+            <div class="sign">
+                <div id="form-login" class="login-phara">
+                    <div class="wrap login">
+                        <form class="form-group" onsubmit="login()">
+                            <div>
+                                <div class="title">ĐĂNG NHẬP</div>
+                            </div>
+                            <div class="input-box">
+                                <input
+                                    type="email"
+                                    id="mail-log"
+                                    class="email-input"
+                                    name="email"
+                                    placeholder="Nhập địa chỉ email"
+                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                    required
+                                />
+                                <i class="bx bxs-user"></i>
+                                <p class="form-error">
+                                    Vui lòng nhập đúng email
+                                </p>
+                            </div>
+                            <div class="input-box">
+                                <input
+                                    type="password"
+                                    id="pass-log"
+                                    class="pass-input"
+                                    name="password"
+                                    placeholder="Nhập mật khẩu"
+                                    required
+                                />
+                                <i class="bx bxs-lock-alt"></i>
+                            </div>
+                            <div class="remember-forgot">
+                                <a href="#">Quên mật khẩu?</a>
+                            </div>
+                            <div class="submit">
+                                <button type="submit" class="buttonlogin">
+                                    Đăng nhập
+                                </button>
+                            </div>
+                            <p class="nhap_sai_mk">Đăng nhập thất bại</p>
+                        </form>
+                        <div class="loginwith">
+                            <span>Đăng nhập với</span>
                         </div>
-                        <div class="wrap-contact">
-                            <a class="fa iconcontact">&#xf095;</a>
-                            <p>0123456789</p>
+                        <div class="gg">
+                            <button class="signup-social logo-wrapper">
+                                <img
+                                    src="./assets/img/g-logo.png"
+                                    alt="logo GG"
+                                />
+                                <span class="signup-social-text"
+                                    >Đăng nhập bằng Google</span
+                                >
+                            </button>
                         </div>
-                        <div class="wrap-contact">
-                            <a class="material-icons iconcontact">&#xe0be;</a>
-                            <p>contact@gmail.com.vn</p>
+                        <div class="register">
+                            <p>Tạo tài khoản mới? <a id="next">Đăng kí</a></p>
                         </div>
                     </div>
-
-                    <div class="contact-form">
-                        <form>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label
-                                        for="first-name"
-                                        class="form-label tieude-contact"
-                                        >Họ và tên</label
-                                    >
-                                    <input
-                                        type="text"
-                                        id="first-name"
-                                        class="form-input textarea-contact"
-                                        name="first-name"
-                                        placeholder="Nhập tên đầy đủ"
-                                        required
-                                        minlength="2"
-                                    />
-                                    <p class="form-error">
-                                        Nhập ít nhất 2 kí tự
-                                    </p>
-                                </div>
+                    <div class="wrap signn">
+                        <form class="form-group" onsubmit="signup()">
+                            <div>
+                                <div class="title">TẠO TÀI KHOẢN</div>
                             </div>
-
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label
-                                        for="email"
-                                        class="form-label tieude-contact"
-                                        >Mail</label
-                                    >
-                                    <input
-                                        type="email"
-                                        id="email"
-                                        class="form-input textarea-contact"
-                                        name="email"
-                                        placeholder="Nhập email"
-                                        required
-                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                                    />
-                                    <p class="form-error">
-                                        Vui lòng nhập đúng email
-                                    </p>
-                                </div>
+                            <div class="input-box">
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    placeholder="Nhập username"
+                                    required
+                                    minlength="2"
+                                />
+                                <i class="bx bxs-user"></i>
+                                <p class="form-error">Nhập ít nhất 2 ký tự</p>
                             </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label
-                                        for="phone"
-                                        class="form-label tieude-contact"
-                                        >Điện thoại</label
-                                    >
-                                    <input
-                                        type="tel"
-                                        id="phone"
-                                        class="form-input textarea-contact"
-                                        name="phone"
-                                        placeholder="Nhập số điện thoại"
-                                        required
-                                        pattern="^(0|\+?84)(3|5|7|8|9)[0-9]{8}$"
-                                    />
-                                    <p class="form-error">
-                                        Nhập đúng số điện thoại
-                                    </p>
-                                </div>
+                            <div class="input-box">
+                                <input
+                                    type="email"
+                                    id="mail-signup"
+                                    class="email-input"
+                                    name="email"
+                                    placeholder="Nhập địa chỉ email"
+                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                    required
+                                />
+                                <i class="bx bxs-user"></i>
+                                <p class="form-error">
+                                    Vui lòng nhập đúng email
+                                </p>
                             </div>
-
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label
-                                        for="message"
-                                        class="form-label tieude-contact"
-                                        >Nội dung</label
-                                    >
-                                    <textarea
-                                        id="message"
-                                        class="form-textarea"
-                                        name="message"
-                                        placeholder="Nhập nội dung liên hệ..."
-                                        oninput="onResize(this)"
-                                        required
-                                        minlength="10"
-                                    ></textarea>
-                                    <p class="form-error">
-                                        Nhập ít nhất 10 kí tự
-                                    </p>
-                                </div>
+                            <div class="input-box">
+                                <input
+                                    type="password"
+                                    id="psw"
+                                    name="pass"
+                                    placeholder="Nhập mật khẩu"
+                                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                    minlength="8"
+                                    required
+                                />
+                                <i class="bx bxs-lock-alt"></i>
                             </div>
-
-                            <div class="form-row submit-box">
+                            <div id="pass-error">
+                                <p id="letter" class="invalid">
+                                    Có chữ viết thường
+                                </p>
+                                <p id="capital" class="invalid">
+                                    Có chữ viết hoa
+                                </p>
+                                <p id="number" class="invalid">Có số</p>
+                                <p id="length" class="invalid">
+                                    Tối đa 8 ký tự
+                                </p>
+                            </div>
+                            <div class="input-box">
+                                <input
+                                    type="password"
+                                    id="df-psw"
+                                    placeholder="Nhập lại mật khẩu"
+                                    required
+                                />
+                                <i class="bx bxs-lock-alt"></i>
+                                <p class="df-pass">
+                                    Vui lòng nhập giống với mất khẩu đã tạo
+                                    trước đó
+                                </p>
+                            </div>
+                            <div class="submit">
                                 <button
-                                    class="submit-btn log btn button-contact"
                                     type="submit"
+                                    class="buttonlogin"
+                                    id="dangky"
                                 >
-                                    Gửi đi
+                                    Đăng&nbsp;ký&nbsp;ngay
                                 </button>
                             </div>
                         </form>
+                        <div class="loginwith">
+                            <span>Hoặc đăng kí với</span>
+                        </div>
+                        <div class="gg">
+                            <button class="signup-social logo-wrapper">
+                                <img
+                                    src="./assets/img/g-logo.png"
+                                    alt="logo GG"
+                                />
+                                <span class="signup-social-text"
+                                    >Đăng nhập bằng Google</span
+                                >
+                            </button>
+                        </div>
+                        <div class="register">
+                            <p>
+                                Bạn đã có tài khoản ?
+                                <a id="prev">Đăng nhập ngay</a>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="phr-gg-map">
-                <div class="gg-map">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.925119767875!2d106.67453267520186!3d10.817042389334215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528e1f241211f%3A0xc9ef195798144b1f!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBN4bufIFRQLkhDTSAtIEPGoSBz4bufIDM!5e0!3m2!1svi!2s!4v1690475265917!5m2!1svi!2s"
-                        width="600"
-                        height="450"
-                        style="border: 0"
-                        allowfullscreen=""
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"
-                        class="mapp"
-                    ></iframe>
-                </div>
-            </div>
         </div>
-
         <footer class="footer">
             <div class="content">
                 <div class="row row-top">
@@ -482,9 +493,9 @@
                 <div class="row row-bottom">
                     <!-- Logo -->
                     <div class="footer-Logo">
-                        <a href="./index.html" class="Logo">
+                        <a href="./index.php" class="Logo">
                             <img
-                                src="../assets/img/Logo.svg"
+                                src="./assets/img/Logo.svg"
                                 alt="Logo"
                                 class="lg"
                             />
@@ -495,7 +506,7 @@
                     <!-- Bank -->
                     <div class="footer-bank">
                         <img
-                            src="../assets/img/Bank.svg"
+                            src="./assets/img/Bank.svg"
                             alt="Bank"
                             class="bank"
                         />
@@ -509,14 +520,13 @@
                 </div>
             </div>
         </footer>
-
-        <a href="#" class="btn-to-top">
-            <i class="fa-solid fa-jet-fighter-up"></i>
-        </a>
-
         <!-- Nhúng Javascript -->
-        <script src="../assets/js/go-top.js"></script>
-        <script src="../assets/js/if_log.js"></script>
-
+        <script src="./assets/js/login.js"></script>
+        <!-- Nhúng Jquery -->
+        <script
+            src="https://code.jquery.com/jquery-3.7.0.min.js"
+            integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+            crossorigin="anonymous"
+        ></script>
     </body>
 </html>

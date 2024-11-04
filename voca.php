@@ -6,7 +6,7 @@
         <!-- Favicon -->
         <link
             rel="shortcut icon"
-            href="../assets/favicon/favicon.ico"
+            href="./assets/favicon/favicon.ico"
             type="image/x-icon"
         />
         <link
@@ -23,15 +23,15 @@
             referrerpolicy="no-referrer"
         />
         <!-- Style CSS -->
-        <link rel="stylesheet" href="../assets/font/stylesheet.css" />
+        <link rel="stylesheet" href="./assets/font/stylesheet.css" />
         <!-- Responsive -->
-        <link rel="stylesheet" href="../assets/css/responsive.css" />
+        <link rel="stylesheet" href="./assets/css/responsive.css" />
         <!-- Reset CSS -->
-        <link rel="stylesheet" href="../assets/css/reset.css" />
+        <link rel="stylesheet" href="./assets/css/reset.css" />
         <!-- Font  -->
-        <link rel="stylesheet" href="../assets/css/style.css" />
+        <link rel="stylesheet" href="./assets/css/style.css" />
         <!--Style Grammar CSS-->
-        <link rel="stylesheet" href="../assets/css/grammar.css" />
+        <link rel="stylesheet" href="./assets/css/grammar.css" />
         <!-- icon -->
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <title>Từ vựng</title>
@@ -77,7 +77,7 @@
                         </label>
                         <ul class="nav-mobile-list">
                             <li>
-                                <a href="./index.html" class="item-nav-mobile"
+                                <a href="./index.php" class="item-nav-mobile"
                                     >Trang&nbsp;chủ</a
                                 >
                             </li>
@@ -129,9 +129,9 @@
                     </nav>
                     <!-- Logo -->
                     <div class="Logo-nav">
-                        <a href="./index.html" class="Logo">
+                        <a href="./index.php" class="Logo">
                             <img
-                                src="../assets/img/Logo.svg"
+                                src="./assets/img/Logo.svg"
                                 alt="Logo"
                                 class="lg"
                             />
@@ -142,7 +142,7 @@
                     <!-- Navigation pc-->
                     <ul class="nav-items">
                         <li>
-                            <a href="./index.html" class="item"
+                            <a href="./index.php" class="item"
                                 >Trang&nbsp;chủ</a
                             >
                         </li>
@@ -226,7 +226,7 @@
                                 <div class="grammar-hinh"></div>
                                 <div class="other-practices-list">
                                     <div>
-                                        <img src="../assets/img/sach1.jpeg"
+                                        <img src="./assets/img/sach1.jpeg"
                                         alt="" class="hinhqc"/>
                                     </div>
                                     <div class="title">Other Practices</div>
@@ -377,9 +377,9 @@
                     <div class="row row-bottom">
                         <!-- Logo -->
                         <div class="footer-Logo">
-                            <a href="./index.html" class="Logo">
+                            <a href="./index.php" class="Logo">
                                 <img
-                                    src="../assets/img/Logo.svg"
+                                    src="./assets/img/Logo.svg"
                                     alt="Logo"
                                     class="lg"
                                 />
@@ -390,7 +390,7 @@
                         <!-- Bank -->
                         <div class="footer-bank">
                             <img
-                                src="../assets/img/Bank.svg"
+                                src="./assets/img/Bank.svg"
                                 alt="Bank"
                                 class="bank"
                             />
@@ -410,7 +410,7 @@
         </a>
 
         <!-- Nhúng Javascript -->
-        <script src="../assets/js/vocabulary.js"></script>
-        <script src="../assets/js/go-top.js"></script>
+        <script src="./assets/js/vocabulary.js"></script>
+        <script src="./assets/js/go-top.js"></script>
     </body>
 </html>

@@ -1,20 +1,20 @@
 [
-  {
-    "img": "Reading1.webp",
-    "part": "Phần 5",
-    "title_img": "Hoàn thành câu",
-    "desc": "Chọn đáp án đúng nhất trong 4 đáp án để hoàn thành câu."
-  },
-  {
-    "img": "Reading2.webp",
-    "part": "Phần 6",
-    "title_img": "Hoàn thành đoạn văn",
-    "desc": "Chọn đáp án đúng nhất trong 4 đáp án (từ, cụm từ hoặc câu) để hoàn thành đoạn văn. Mỗi đoạn văn sẽ có 4 câu hỏi."
-  },
-  {
-    "img": "Reading3.webp",
-    "part": "Phần 7",
-    "title_img": "Đọc hiểu",
-    "desc": "Thí sinh sẽ đọc các bài đọc hiểu sau đó chọn đáp án đúng nhất cho các câu hỏi. Mỗi bài đọc sẽ bao gồm 2 - 5 câu hỏi."
-  }
+    {
+        "img": "Reading1.webp",
+        "part": "Phần 5",
+        "title_img": "Hoàn thành câu",
+        "desc": "Chọn đáp án đúng nhất trong 4 đáp án để hoàn thành câu."
+    },
+    {
+        "img": "Reading2.webp",
+        "part": "Phần 6",
+        "title_img": "Hoàn thành đoạn văn",
+        "desc": "Chọn đáp án đúng nhất trong 4 đáp án (từ, cụm từ hoặc câu) để hoàn thành đoạn văn. Mỗi đoạn văn sẽ có 4 câu hỏi."
+    },
+    {
+        "img": "Reading3.webp",
+        "part": "Phần 7",
+        "title_img": "Đọc hiểu",
+        "desc": "Thí sinh sẽ đọc các bài đọc hiểu sau đó chọn đáp án đúng nhất cho các câu hỏi. Mỗi bài đọc sẽ bao gồm 2 - 5 câu hỏi."
+    }
 ]

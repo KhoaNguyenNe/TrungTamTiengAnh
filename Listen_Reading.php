@@ -6,12 +6,8 @@
         <!-- Favicon -->
         <link
             rel="shortcut icon"
-            href="../assets/favicon/favicon.ico"
+            href="./assets/favicon/favicon.ico"
             type="image/x-icon"
-        />
-        <link
-            rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
         />
         <!-- Nhúng CDN Font Awesome -->
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
@@ -22,22 +18,17 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         />
-        <!-- Style CSS -->
-        <link rel="stylesheet" href="../assets/font/stylesheet.css" />
-        <!-- Responsive -->
-        <link rel="stylesheet" href="../assets/css/responsive.css" />
-        <!-- Reset CSS -->
-        <link rel="stylesheet" href="../assets/css/reset.css" />
         <!-- Font  -->
-        <link rel="stylesheet" href="../assets/css/style.css" />
-        <!--Style Prenium CSS-->
-        <link rel="stylesheet" href="../assets/css/prenium.css" />
-        <!-- icon -->
-        <link
-            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-            rel="stylesheet"
-        />
-        <title>Từ vựng</title>
+        <link rel="stylesheet" href="./assets/font/stylesheet.css" />
+        <!-- Reset CSS -->
+        <link rel="stylesheet" href="./assets/css/reset.css" />
+        <!-- Responsive -->
+        <link rel="stylesheet" href="./assets/css/responsive.css" />
+        <!-- Style CSS -->
+        <link rel="stylesheet" href="./assets/css/style.css" />
+        <!-- L_R CSS -->
+        <link rel="stylesheet" href="./assets/css/L_R_S_W.css" />
+        <title>Listen and Reading</title>
     </head>
     <body>
         <header class="header">
@@ -80,7 +71,7 @@
                         </label>
                         <ul class="nav-mobile-list">
                             <li>
-                                <a href="./index.html" class="item-nav-mobile"
+                                <a href="./index.php" class="item-nav-mobile"
                                     >Trang&nbsp;chủ</a
                                 >
                             </li>
@@ -116,10 +107,14 @@
                                 >
                             </li>
                             <li>
-                                <a href="./blog.php" class="item-nav-mobile">Blog</a>
+                                <a href="./blog.php" class="item-nav-mobile"
+                                    >Blog</a
+                                >
                             </li>
                             <li>
-                                <a href="./toeic-tip.php" class="item-nav-mobile"
+                                <a
+                                    href="./toeic-tip.php"
+                                    class="item-nav-mobile"
                                     >TOEIC&nbsp;Tips</a
                                 >
                             </li>
@@ -132,9 +127,9 @@
                     </nav>
                     <!-- Logo -->
                     <div class="Logo-nav">
-                        <a href="./index.html" class="Logo">
+                        <a href="./index.php" class="Logo">
                             <img
-                                src="../assets/img/Logo.svg"
+                                src="./assets/img/Logo.svg"
                                 alt="Logo"
                                 class="lg"
                             />
@@ -145,7 +140,7 @@
                     <!-- Navigation pc-->
                     <ul class="nav-items">
                         <li>
-                            <a href="./index.html" class="item"
+                            <a href="./index.php" class="item"
                                 >Trang&nbsp;chủ</a
                             >
                         </li>
@@ -176,7 +171,9 @@
                             <a href="./blog.php" class="item">Blog</a>
                         </li>
                         <li>
-                            <a href="./toeic-tip.php" class="item">TOEIC&nbsp;Tips</a>
+                            <a href="./toeic-tip.php" class="item"
+                                >TOEIC&nbsp;Tips</a
+                            >
                         </li>
                     </ul>
 
@@ -201,214 +198,78 @@
             </div>
         </header>
 
-        <div class="main-prenium">
-            <div class="Text">
-                <h2>CÁC&nbsp;TÀI&nbsp;KHOẢN</h2>
+        <main class="main">
+            <div class="LR">
+                <div class="content">
+                    <h1 class="title">
+                        Luyện thi TOEIC Listening&nbsp;&&nbsp;Reading
+                    </h1>
+                    <div class="part-1">
+                        <h2 class="list_title">Nghe</h2>
+                        <div class="courses" id="list_listening"></div>
+                    </div>
+
+                    <div class="part-2">
+                        <h2 class="list_title">Đọc</h2>
+                        <div class="courses" id="list_reading"></div>
+                    </div>
+                </div>
             </div>
-            <div class="Group1">
-                <div class="box prenium-left">
-                    <div class="in-box">
-                        <div class="noidung">
-                            <div class="test-pre">Cơ&nbsp;bản</div>
-                            <div class="cost">
-                                <div class="tien">Miễn&nbsp;phí</div>
-                                <div class="tgian"></div>
-                            </div>
-                            <div class="mota-prenium">
-                                Các bài học tương tác & thực hành hàng ngày.
-                            </div>
+
+            <div class="to_test">
+                <div class="content">
+                    <div class="test-items">
+                        <div class="img">
+                            <img
+                                src="./assets/img/test-item1.webp"
+                                alt=""
+                                class="img-test"
+                            />
                         </div>
-                        <div class="prenium-lists">
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Các khóa học cơ bản
-                                </div>
-                            </div>
+
+                        <div class="info">
+                            <h2 class="title-item">VOCABULARY</h2>
+                            <p class="desc">
+                                Our vocabulary practice divided into various
+                                topics and parts will assist you in boosting
+                                your vocabulary range
+                            </p>
                         </div>
-                        <div class="k-hoc">
-                            <div class="head-actions">
-                                <a
-                                    class="log btn head-btn hoc-ngay prenium-hocngay"
-                                    href="#"
-                                >
-                                    <p class="text">Học&nbsp;ngay</p>
-                                </a>
-                            </div>
+
+                        <div class="to-test-btn">
+                            <a href="./voca.php" class="btn log"
+                                ><p class="text">Luyện tập</p></a
+                            >
                         </div>
                     </div>
-                </div>
-                <div class="box prenium-mid">
-                    <div class="in-box">
-                        <div class="noidung">
-                            <div class="test-pre">Chuyên&nbsp;nghiệp</div>
-                            <div class="cost">
-                                <div class="tien">$50</div>
-                                <div class="tgian">/tháng</div>
-                            </div>
-                            <div class="mota-prenium">
-                                Học một kỹ năng với các khóa học, lộ trình kỹ
-                                năng, và các dự án.
-                            </div>
+                    <div class="test-items">
+                        <div class="img">
+                            <img
+                                src="./assets/img/test-item2.webp"
+                                alt=""
+                                class="img-test"
+                            />
                         </div>
-                        <div class="prenium-lists">
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Các khóa học cơ bản
-                                </div>
-                            </div>
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Các khóa học chuyên nghiệp
-                                </div>
-                            </div>
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Con đường kỹ năng
-                                </div>
-                            </div>
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Chuẩn Bị Phỏng Vấn
-                                </div>
-                            </div>
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Các khóa học chuyên nghiệp
-                                </div>
-                            </div>
+
+                        <div class="info">
+                            <h2 class="title-item">GRAMMAR</h2>
+                            <p class="desc">
+                                Our grammar exercises covering 30+ grammar
+                                topics will definitely help you enhance your
+                                English foundation
+                            </p>
                         </div>
-                        <div class="k-hoc">
-                            <div class="head-actions">
-                                <a
-                                    class="log btn head-btn hoc-ngay prenium-hocngay"
-                                    href="#"
-                                >
-                                    <p class="text">Học&nbsp;ngay</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="box prenium-right">
-                    <div class="in-box">
-                        <div class="noidung">
-                            <div class="test-pre">Kế hoạch doanh nghiệp</div>
-                            <div class="cost">
-                                <div class="tien">$250</div>
-                                <div class="tgian">/năm</div>
-                            </div>
-                            <div class="mota-prenium">
-                                Phát triển sự nghiệp với các khóa học, con đường
-                                sự nghiệp, dự án và chuẩn bị phỏng vấn.
-                            </div>
-                        </div>
-                        <div class="prenium-lists">
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Tất cả các tính năng trong tiêu chuẩn
-                                </div>
-                            </div>
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Các khóa học chuyên nghiệp
-                                </div>
-                            </div>
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Con đường kỹ năng
-                                </div>
-                            </div>
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Chuẩn Bị Phỏng Vấn
-                                </div>
-                            </div>
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Các khóa học chuyên nghiệp
-                                </div>
-                            </div>
-                        </div>
-                        <div class="k-hoc">
-                            <div class="head-actions">
-                                <a
-                                    class="log btn head-btn hoc-ngay prenium-hocngay"
-                                    href="#"
-                                >
-                                    <p class="text">Học&nbsp;ngay</p>
-                                </a>
-                            </div>
+
+                        <div class="to-test-btn">
+                            <a href="./grammar.php" class="btn log">
+                                <p class="text">Luyện tập</p>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
+
         <footer class="footer">
             <div class="content">
                 <div class="row row-top">
@@ -542,9 +403,9 @@
                 <div class="row row-bottom">
                     <!-- Logo -->
                     <div class="footer-Logo">
-                        <a href="./index.html" class="Logo">
+                        <a href="./index.php" class="Logo">
                             <img
-                                src="../assets/img/Logo.svg"
+                                src="./assets/img/Logo.svg"
                                 alt="Logo"
                                 class="lg"
                             />
@@ -555,7 +416,7 @@
                     <!-- Bank -->
                     <div class="footer-bank">
                         <img
-                            src="../assets/img/Bank.svg"
+                            src="./assets/img/Bank.svg"
                             alt="Bank"
                             class="bank"
                         />
@@ -575,9 +436,8 @@
         </a>
 
         <!-- Nhúng Javascript -->
-        <script src="../assets/js/vocabulary.js"></script>
-        <script src="../assets/js/go-top.js"></script>
-        <script src="../assets/js/if_log.js"></script>
-
+        <script src="./assets/js/khoaHoc.js"></script>
+        <script src="./assets/js/go-top.js"></script>
+        <script src="./assets/js/if_log.js"></script>
     </body>
 </html>

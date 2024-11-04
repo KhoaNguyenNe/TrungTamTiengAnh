@@ -1,5 +1,5 @@
 function docJSON(file, id) {
-    fetch("../json/" + file)
+    fetch("./json/" + file)
         .then(function (response) {
             return response.json();
         })
@@ -11,7 +11,7 @@ function docJSON(file, id) {
             blogs.forEach(function (blog, index) {
                 hold += `<div class="blg">
                     <div class="img" title="${blog.title}">
-                        <img src="../assets/img/${blog.img}" alt="${blog.title}" class="blg-img" />
+                        <img src="./assets/img/${blog.img}" alt="${blog.title}" class="blg-img" />
                     </div>
                     <div class="info">
                         <h3 class="inf-title">${blog.title}</h3>

@@ -6,12 +6,8 @@
         <!-- Favicon -->
         <link
             rel="shortcut icon"
-            href="../assets/favicon/favicon.ico"
+            href="./assets/favicon/favicon.ico"
             type="image/x-icon"
-        />
-        <link
-            rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
         />
         <!-- Nhúng CDN Font Awesome -->
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
@@ -23,21 +19,16 @@
             referrerpolicy="no-referrer"
         />
         <!-- Style CSS -->
-        <link rel="stylesheet" href="../assets/font/stylesheet.css" />
+        <link rel="stylesheet" href="./assets/font/stylesheet.css" />
         <!-- Responsive -->
-        <link rel="stylesheet" href="../assets/css/responsive.css" />
+        <link rel="stylesheet" href="./assets/css/responsive.css" />
         <!-- Reset CSS -->
-        <link rel="stylesheet" href="../assets/css/reset.css" />
+        <link rel="stylesheet" href="./assets/css/reset.css" />
         <!-- Font  -->
-        <link rel="stylesheet" href="../assets/css/style.css" />
-        <!--Style Grammar CSS-->
-        <link rel="stylesheet" href="../assets/css/grammar.css" />
-        <!-- icon -->
-        <link
-            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-            rel="stylesheet"
-        />
-        <title>Ngữ pháp</title>
+        <link rel="stylesheet" href="./assets/css/style.css" />
+        <!-- Aboutus CSS -->
+        <link rel="stylesheet" href="./assets/css/aboutus.css" />
+        <title>Giới thiệu - Web luyện thi TOEIC</title>
     </head>
     <body>
         <header class="header">
@@ -80,7 +71,7 @@
                         </label>
                         <ul class="nav-mobile-list">
                             <li>
-                                <a href="./index.html" class="item-nav-mobile"
+                                <a href="./index.php" class="item-nav-mobile"
                                     >Trang&nbsp;chủ</a
                                 >
                             </li>
@@ -132,9 +123,9 @@
                     </nav>
                     <!-- Logo -->
                     <div class="Logo-nav">
-                        <a href="./index.html" class="Logo">
+                        <a href="./index.php" class="Logo">
                             <img
-                                src="../assets/img/Logo.svg"
+                                src="./assets/img/Logo.svg"
                                 alt="Logo"
                                 class="lg"
                             />
@@ -145,7 +136,7 @@
                     <!-- Navigation pc-->
                     <ul class="nav-items">
                         <li>
-                            <a href="./index.html" class="item"
+                            <a href="./index.php" class="item"
                                 >Trang&nbsp;chủ</a
                             >
                         </li>
@@ -200,61 +191,65 @@
                 </nav>
             </div>
         </header>
-        <main class="main" id="grammar-paper">
-            <div class="container">
-                <h1 class="title">
-                    Luyện thi TOEIC Listening&nbsp;&&nbsp;Reading
-                </h1>
-                <div class="grammar-wrap">
-                    <div class="grammar-wrap-left">
-                        <div class="main-practice-list">
-                            <div class="main-practice-list-view">
-                                <div class="list-child">
-                                    <div class="wrap-list">
-                                        <div
-                                            class="list-left"
-                                            id="grammar-items-left"
-                                        ></div>
-                                        <div
-                                            class="list-right"
-                                            id="grammar-items-right"
-                                        ></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="grammar-right">
-                                <div class="grammar-hinh"></div>
-                                <div class="other-practices-list">
-                                    <div>
-                                        <img
-                                            src="../assets/img/sach2.jpeg"
-                                            alt=""
-                                            class="hinhqc"
-                                        />
-                                    </div>
-                                    <div class="title">Other Practices</div>
-                                    <div class="list" id="list-practices">
-                                        <a href="#">
-                                            <div class="list-item">
-                                                <div class="list-item-name">
-                                                    Phần 1: Mô tả tranh
-                                                </div>
-                                                <div class="list-item-icon">
-                                                    <img
-                                                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAOZJREFUaEPtmEsOwjAUA92bcTPgZHA0lEU2iE8kv3koyF110aQeT6Q0PbT5dWyeXwH4tcEYiAGzgSwhs0B7eAzYFZoTxMCbAk+S7ma5S8MJAxdJZ0lXSeMevaoBZvgZGoeoBBjL5vaibhSiEmBkfzaAm6gGaIcgAFohKIA2CBKgBYIGwCE6AFCILgAMIgCLHzrYBtdhAAs/yqMB0PA0AB6eBGgJTwG0hScAWsNXA/zlgQY9jVUbmHva1of6CbH1b5XFr4uax+iduCblh1kCgFf85QUxEANmA1lCZoH28BiwKzQn2N7AAwEtLjELaN2HAAAAAElFTkSuQmCC"
-                                                        alt="photo"
-                                                    />
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+        <div class="phara">
+            <div class="paper">
+                <h2 class="tieude">Giới thiệu về Toeic Test Pro</h2>
+                <h3>Mục tiêu: </h3>
+                <p>Mục tiêu của <a class="bold">Koolsoft E-learning</a> chính là mang <a class="bold">TOEIC TEST PRO</a> trở thành một nền tảng luyện tập TOEIC online cho tất cả mọi người, giúp học tập tiếng anh ở bất kỳ đâu, bất kỳ lúc nào. Với thao tác đơn giản, dễ tiếp cận nhưng vẫn đảm bảo chất lượng và đầy đủ các kỹ năng luyện tập cho bất kỳ ai.</p>
+                <h3><a class="bold">Tầm nhìn: </a></h3>
+                <p>Với tầm nhìn của mình, TOEIC test pro tạo ra ứng dụng học tập trên app, website phù hợp với tất cả những ai yêu thích tiếng anh. Chúng tôi tin tưởng mạnh mẽ rằng sẽ cần một cách tiếp cận hoàn toàn mới để tái định nghĩa lại việc học tiếng anh trong thời đại công nghệ mới.</p>
+                <h3><a class="bold">Sứ mệnh: </a></h3>
+                <p>Chúng tôi tin rằng với sứ mệnh mang đến cách tiếp cận TOEIC hoàn toàn mới sẽ giúp mọi người nâng cao kỹ năng, phát triển bản thân, thành thạo một ngôn ngữ mới sẽ là điều đơn giản hơn bao giờ hết. Với đội ngũ đầy nhiệt huyết của Estudyme mong muốn mang đến lợi ích, sự thuận tiện nhất và tốt nhất cho người học thông qua TOEIC Test Pro ở 2 nền tảng app và website.</p>
+                <h2 class="tieude">Những sản phẩm của Koolsoft E-Learning</h2>
+                <p>
+                    <span class="s1">
+                        <a href="http://Asvabtestpro.com"><span class="s2">Asvabtestpro.com</span></a>
+                    </span>
+                </p>
+                <p>
+                    <span class="s1">
+                        <a href="http://Cscsprep.com"><span class="s2">Cscsprep.com</span></a>
+                    </span>
+                </p>
+                <p>
+                    <span class="s1">
+                        <a href="http://Ielts-testpro.com"><span class="s2">Ielts-testpro.com</span></a>
+                    </span>
+                </p>
+                <p>
+                    <span class="s1">
+                        <a href="http://Gedtestpro.com"><span class="s2">Gedtestpro.com</span></a>
+                    </span>
+                </p>
+                <p>
+                    <span class="s1">
+                        <a href="http://Hvacprep.com"><span class="s2">Hvacprep.com</span></a>
+                    </span>
+                </p>
+                <p>
+                    <span class="s1">
+                        <a href="http://Nclextestpro.com"><span class="s2">Nclextestpro.com</span></a>
+                    </span>
+                </p>
+                <p>
+                    <span class="s1">
+                        <a href="http://Cdl-testpro.com"><span class="s2">Cdl-testpro.com</span></a>
+                    </span>
+                </p>
+                <p>
+                    <span class="s1">
+                        <a href="http://Driving-testpro.com"><span class="s2">Driving-testpro.com</span></a>
+                    </span>
+                </p>
+                <p>
+                    <span class="s1">
+                        <a href="http://Hocthongminh.com"><span class="s2">Hocthongminh.com</span></a>
+                    </span>
+                </p>
             </div>
-        </main>
+        </div>
+
         <footer class="footer">
             <div class="content">
                 <div class="row row-top">
@@ -388,9 +383,9 @@
                 <div class="row row-bottom">
                     <!-- Logo -->
                     <div class="footer-Logo">
-                        <a href="./index.html" class="Logo">
+                        <a href="./index.php" class="Logo">
                             <img
-                                src="../assets/img/Logo.svg"
+                                src="./assets/img/Logo.svg"
                                 alt="Logo"
                                 class="lg"
                             />
@@ -401,7 +396,7 @@
                     <!-- Bank -->
                     <div class="footer-bank">
                         <img
-                            src="../assets/img/Bank.svg"
+                            src="./assets/img/Bank.svg"
                             alt="Bank"
                             class="bank"
                         />
@@ -421,9 +416,8 @@
         </a>
 
         <!-- Nhúng Javascript -->
-        <script src="../assets/js/grammar.js"></script>
-        <script src="../assets/js/go-top.js"></script>
-        <script src="../assets/js/if_log.js"></script>
+        <script src="./assets/js/go-top.js"></script>
+        <script src="./assets/js/if_log.js"></script>
 
     </body>
 </html>

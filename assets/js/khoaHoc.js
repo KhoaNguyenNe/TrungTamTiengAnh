@@ -1,6 +1,6 @@
 // Đọc file JSON và thêm vào HTML
 function docJSON(file, id) {
-    fetch("../json/" + file)
+    fetch("./json/" + file)
         .then(function (docFileJS) {
             return docFileJS.json();
         })
@@ -11,7 +11,7 @@ function docJSON(file, id) {
                 out += `<a class="course" href="" title = "${motKhoaHoc.part} - ${motKhoaHoc.title_img}: ${motKhoaHoc.desc}">
                     <div class="subject-img">
                         <img
-                            src="../assets/img/${motKhoaHoc.img}"
+                            src="./assets/img/${motKhoaHoc.img}"
                             alt="${motKhoaHoc.title_img}"
                             class="img"
                         />

@@ -6,29 +6,38 @@
         <!-- Favicon -->
         <link
             rel="shortcut icon"
-            href="../assets/favicon/favicon.ico"
+            href="./assets/favicon/favicon.ico"
             type="image/x-icon"
         />
         <link
             rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
         />
+        <!-- Nhúng CDN Font Awesome -->
+        <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
         <!-- Style CSS -->
-        <link rel="stylesheet" href="../assets/font/stylesheet.css" />
-        <!-- Reset CSS -->
-        <link rel="stylesheet" href="../assets/css/reset.css" />
-        <!-- Font  -->
-        <link rel="stylesheet" href="../assets/css/style.css" />
-        <!--Style Login CSS-->
-        <link rel="stylesheet" href="../assets/css/login.css" />
+        <link rel="stylesheet" href="./assets/font/stylesheet.css" />
         <!-- Responsive -->
-        <link rel="stylesheet" href="../assets/css/responsive.css" />
+        <link rel="stylesheet" href="./assets/css/responsive.css" />
+        <!-- Reset CSS -->
+        <link rel="stylesheet" href="./assets/css/reset.css" />
+        <!-- Font  -->
+        <link rel="stylesheet" href="./assets/css/style.css" />
+        <!--Style Grammar CSS-->
+        <link rel="stylesheet" href="./assets/css/grammar.css" />
         <!-- icon -->
         <link
             href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
             rel="stylesheet"
         />
-        <title>Login</title>
+        <title>Ngữ pháp</title>
     </head>
     <body>
         <header class="header">
@@ -71,7 +80,7 @@
                         </label>
                         <ul class="nav-mobile-list">
                             <li>
-                                <a href="./index.html" class="item-nav-mobile"
+                                <a href="./index.php" class="item-nav-mobile"
                                     >Trang&nbsp;chủ</a
                                 >
                             </li>
@@ -107,14 +116,10 @@
                                 >
                             </li>
                             <li>
-                                <a href="./blog.php" class="item-nav-mobile"
-                                    >Blog</a
-                                >
+                                <a href="./blog.php" class="item-nav-mobile">Blog</a>
                             </li>
                             <li>
-                                <a
-                                    href="./toeic-tip.php"
-                                    class="item-nav-mobile"
+                                <a href="./toeic-tip.php" class="item-nav-mobile"
                                     >TOEIC&nbsp;Tips</a
                                 >
                             </li>
@@ -127,9 +132,9 @@
                     </nav>
                     <!-- Logo -->
                     <div class="Logo-nav">
-                        <a href="./index.html" class="Logo">
+                        <a href="./index.php" class="Logo">
                             <img
-                                src="../assets/img/Logo.svg"
+                                src="./assets/img/Logo.svg"
                                 alt="Logo"
                                 class="lg"
                             />
@@ -140,7 +145,7 @@
                     <!-- Navigation pc-->
                     <ul class="nav-items">
                         <li>
-                            <a href="./index.html" class="item"
+                            <a href="./index.php" class="item"
                                 >Trang&nbsp;chủ</a
                             >
                         </li>
@@ -171,15 +176,13 @@
                             <a href="./blog.php" class="item">Blog</a>
                         </li>
                         <li>
-                            <a href="./toeic-tip.php" class="item"
-                                >TOEIC&nbsp;Tips</a
-                            >
+                            <a href="./toeic-tip.php" class="item">TOEIC&nbsp;Tips</a>
                         </li>
                     </ul>
 
                     <!-- Button -->
                     <div class="actions">
-                        <a href="./prenium.php" class="pro btn" id="log">
+                        <a href="./prenium.php" class="pro btn">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 36 24"
@@ -190,176 +193,68 @@
                             </svg>
                             <p>Unlock&nbsp;Pro</p>
                         </a>
+                        <a href="./login.php" class="log btn" id="log">
+                            <p class="text">Đăng&nbsp;nhập</p>
+                        </a>
                     </div>
                 </nav>
             </div>
         </header>
-
-        <div class="main-login">
-            <div class="sign">
-                <div id="form-login" class="login-phara">
-                    <div class="wrap login">
-                        <form class="form-group" onsubmit="login()">
-                            <div>
-                                <div class="title">ĐĂNG NHẬP</div>
+        <main class="main" id="grammar-paper">
+            <div class="container">
+                <h1 class="title">
+                    Luyện thi TOEIC Listening&nbsp;&&nbsp;Reading
+                </h1>
+                <div class="grammar-wrap">
+                    <div class="grammar-wrap-left">
+                        <div class="main-practice-list">
+                            <div class="main-practice-list-view">
+                                <div class="list-child">
+                                    <div class="wrap-list">
+                                        <div
+                                            class="list-left"
+                                            id="grammar-items-left"
+                                        ></div>
+                                        <div
+                                            class="list-right"
+                                            id="grammar-items-right"
+                                        ></div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="input-box">
-                                <input
-                                    type="email"
-                                    id="mail-log"
-                                    class="email-input"
-                                    name="email"
-                                    placeholder="Nhập địa chỉ email"
-                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                                    required
-                                />
-                                <i class="bx bxs-user"></i>
-                                <p class="form-error">
-                                    Vui lòng nhập đúng email
-                                </p>
+                            <div class="grammar-right">
+                                <div class="grammar-hinh"></div>
+                                <div class="other-practices-list">
+                                    <div>
+                                        <img
+                                            src="./assets/img/sach2.jpeg"
+                                            alt=""
+                                            class="hinhqc"
+                                        />
+                                    </div>
+                                    <div class="title">Other Practices</div>
+                                    <div class="list" id="list-practices">
+                                        <a href="#">
+                                            <div class="list-item">
+                                                <div class="list-item-name">
+                                                    Phần 1: Mô tả tranh
+                                                </div>
+                                                <div class="list-item-icon">
+                                                    <img
+                                                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAOZJREFUaEPtmEsOwjAUA92bcTPgZHA0lEU2iE8kv3koyF110aQeT6Q0PbT5dWyeXwH4tcEYiAGzgSwhs0B7eAzYFZoTxMCbAk+S7ma5S8MJAxdJZ0lXSeMevaoBZvgZGoeoBBjL5vaibhSiEmBkfzaAm6gGaIcgAFohKIA2CBKgBYIGwCE6AFCILgAMIgCLHzrYBtdhAAs/yqMB0PA0AB6eBGgJTwG0hScAWsNXA/zlgQY9jVUbmHva1of6CbH1b5XFr4uax+iduCblh1kCgFf85QUxEANmA1lCZoH28BiwKzQn2N7AAwEtLjELaN2HAAAAAElFTkSuQmCC"
+                                                        alt="photo"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="input-box">
-                                <input
-                                    type="password"
-                                    id="pass-log"
-                                    class="pass-input"
-                                    name="password"
-                                    placeholder="Nhập mật khẩu"
-                                    required
-                                />
-                                <i class="bx bxs-lock-alt"></i>
-                            </div>
-                            <div class="remember-forgot">
-                                <a href="#">Quên mật khẩu?</a>
-                            </div>
-                            <div class="submit">
-                                <button type="submit" class="buttonlogin">
-                                    Đăng nhập
-                                </button>
-                            </div>
-                            <p class="nhap_sai_mk">Đăng nhập thất bại</p>
-                        </form>
-                        <div class="loginwith">
-                            <span>Đăng nhập với</span>
-                        </div>
-                        <div class="gg">
-                            <button class="signup-social logo-wrapper">
-                                <img
-                                    src="../assets/img/g-logo.png"
-                                    alt="logo GG"
-                                />
-                                <span class="signup-social-text"
-                                    >Đăng nhập bằng Google</span
-                                >
-                            </button>
-                        </div>
-                        <div class="register">
-                            <p>Tạo tài khoản mới? <a id="next">Đăng kí</a></p>
-                        </div>
-                    </div>
-                    <div class="wrap signn">
-                        <form class="form-group" onsubmit="signup()">
-                            <div>
-                                <div class="title">TẠO TÀI KHOẢN</div>
-                            </div>
-                            <div class="input-box">
-                                <input
-                                    type="text"
-                                    id="name"
-                                    name="name"
-                                    placeholder="Nhập tên"
-                                    required
-                                    minlength="2"
-                                />
-                                <i class="bx bxs-user"></i>
-                                <p class="form-error">Nhập ít nhất 2 ký tự</p>
-                            </div>
-                            <div class="input-box">
-                                <input
-                                    type="email"
-                                    id="mail-signup"
-                                    class="email-input"
-                                    name="email"
-                                    placeholder="Nhập địa chỉ email"
-                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                                    required
-                                />
-                                <i class="bx bxs-user"></i>
-                                <p class="form-error">
-                                    Vui lòng nhập đúng email
-                                </p>
-                            </div>
-                            <div class="input-box">
-                                <input
-                                    type="password"
-                                    id="psw"
-                                    name="pass"
-                                    placeholder="Nhập mật khẩu"
-                                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                                    minlength="8"
-                                    required
-                                />
-                                <i class="bx bxs-lock-alt"></i>
-                            </div>
-                            <div id="pass-error">
-                                <p id="letter" class="invalid">
-                                    Có chữ viết thường
-                                </p>
-                                <p id="capital" class="invalid">
-                                    Có chữ viết hoa
-                                </p>
-                                <p id="number" class="invalid">Có số</p>
-                                <p id="length" class="invalid">
-                                    Tối đa 8 ký tự
-                                </p>
-                            </div>
-                            <div class="input-box">
-                                <input
-                                    type="password"
-                                    id="df-psw"
-                                    placeholder="Nhập lại mật khẩu"
-                                    required
-                                />
-                                <i class="bx bxs-lock-alt"></i>
-                                <p class="df-pass">
-                                    Vui lòng nhập giống với mất khẩu đã tạo
-                                    trước đó
-                                </p>
-                            </div>
-                            <div class="submit">
-                                <button
-                                    type="submit"
-                                    class="buttonlogin"
-                                    id="dangky"
-                                >
-                                    Đăng&nbsp;ký&nbsp;ngay
-                                </button>
-                            </div>
-                        </form>
-                        <div class="loginwith">
-                            <span>Hoặc đăng kí với</span>
-                        </div>
-                        <div class="gg">
-                            <button class="signup-social logo-wrapper">
-                                <img
-                                    src="../assets/img/g-logo.png"
-                                    alt="logo GG"
-                                />
-                                <span class="signup-social-text"
-                                    >Đăng nhập bằng Google</span
-                                >
-                            </button>
-                        </div>
-                        <div class="register">
-                            <p>
-                                Bạn đã có tài khoản ?
-                                <a id="prev">Đăng nhập ngay</a>
-                            </p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
         <footer class="footer">
             <div class="content">
                 <div class="row row-top">
@@ -493,9 +388,9 @@
                 <div class="row row-bottom">
                     <!-- Logo -->
                     <div class="footer-Logo">
-                        <a href="./index.html" class="Logo">
+                        <a href="./index.php" class="Logo">
                             <img
-                                src="../assets/img/Logo.svg"
+                                src="./assets/img/Logo.svg"
                                 alt="Logo"
                                 class="lg"
                             />
@@ -506,7 +401,7 @@
                     <!-- Bank -->
                     <div class="footer-bank">
                         <img
-                            src="../assets/img/Bank.svg"
+                            src="./assets/img/Bank.svg"
                             alt="Bank"
                             class="bank"
                         />
@@ -520,13 +415,15 @@
                 </div>
             </div>
         </footer>
+
+        <a href="#" class="btn-to-top">
+            <i class="fa-solid fa-jet-fighter-up"></i>
+        </a>
+
         <!-- Nhúng Javascript -->
-        <script src="../assets/js/login.js"></script>
-        <!-- Nhúng Jquery -->
-        <script
-            src="https://code.jquery.com/jquery-3.7.0.min.js"
-            integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
-            crossorigin="anonymous"
-        ></script>
+        <script src="./assets/js/grammar.js"></script>
+        <script src="./assets/js/go-top.js"></script>
+        <script src="./assets/js/if_log.js"></script>
+
     </body>
 </html>

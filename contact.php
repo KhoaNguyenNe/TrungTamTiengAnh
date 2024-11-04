@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- Favicon -->
         <link
             rel="shortcut icon"
-            href="../assets/favicon/favicon.ico"
+            href="./assets/favicon/favicon.ico"
             type="image/x-icon"
         />
         <!-- Nhúng CDN Font Awesome -->
@@ -18,17 +18,22 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         />
-        <!-- Font -->
-        <link rel="stylesheet" href="../assets/font/stylesheet.css" />
+        <!--icon GG-->
+        <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet"
+        />
+        <!-- Style CSS -->
+        <link rel="stylesheet" href="./assets/font/stylesheet.css" />
         <!-- Responsive -->
-        <link rel="stylesheet" href="../assets/css/responsive.css" />
+        <link rel="stylesheet" href="./assets/css/responsive.css" />
         <!-- Reset CSS -->
-        <link rel="stylesheet" href="../assets/css/reset.css" />
-        <!-- Style CSS  -->
-        <link rel="stylesheet" href="../assets/css/style.css" />
-        <!-- Mock CSS -->
-        <link rel="stylesheet" href="../assets/css/Mock.css" />
-        <title>Web luyện thi TOEIC</title>
+        <link rel="stylesheet" href="./assets/css/reset.css" />
+        <!-- Font  -->
+        <link rel="stylesheet" href="./assets/css/style.css" />
+        <!-- Contact CSS -->
+        <link rel="stylesheet" href="./assets/css/contact.css" />
+        <title>Liên lạc - Web luyện thi TOEIC</title>
     </head>
     <body>
         <header class="header">
@@ -71,7 +76,7 @@
                         </label>
                         <ul class="nav-mobile-list">
                             <li>
-                                <a href="./index.html" class="item-nav-mobile"
+                                <a href="./index.php" class="item-nav-mobile"
                                     >Trang&nbsp;chủ</a
                                 >
                             </li>
@@ -107,10 +112,14 @@
                                 >
                             </li>
                             <li>
-                                <a href="./blog.php" class="item-nav-mobile">Blog</a>
+                                <a href="./blog.php" class="item-nav-mobile"
+                                    >Blog</a
+                                >
                             </li>
                             <li>
-                                <a href="./toeic-tip.php" class="item-nav-mobile"
+                                <a
+                                    href="./toeic-tip.php"
+                                    class="item-nav-mobile"
                                     >TOEIC&nbsp;Tips</a
                                 >
                             </li>
@@ -123,9 +132,9 @@
                     </nav>
                     <!-- Logo -->
                     <div class="Logo-nav">
-                        <a href="./index.html" class="Logo">
+                        <a href="./index.php" class="Logo">
                             <img
-                                src="../assets/img/Logo.svg"
+                                src="./assets/img/Logo.svg"
                                 alt="Logo"
                                 class="lg"
                             />
@@ -136,7 +145,7 @@
                     <!-- Navigation pc-->
                     <ul class="nav-items">
                         <li>
-                            <a href="./index.html" class="item"
+                            <a href="./index.php" class="item"
                                 >Trang&nbsp;chủ</a
                             >
                         </li>
@@ -167,13 +176,15 @@
                             <a href="./blog.php" class="item">Blog</a>
                         </li>
                         <li>
-                            <a href="./toeic-tip.php" class="item">TOEIC&nbsp;Tips</a>
+                            <a href="./toeic-tip.php" class="item"
+                                >TOEIC&nbsp;Tips</a
+                            >
                         </li>
                     </ul>
 
                     <!-- Button -->
                     <div class="actions">
-                        <a href="./prenium.php" class="pro btn" id="log">
+                        <a href="./prenium.php" class="pro btn">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 36 24"
@@ -184,7 +195,7 @@
                             </svg>
                             <p>Unlock&nbsp;Pro</p>
                         </a>
-                        <a href="./login.php" class="log btn">
+                        <a href="./login.php" class="log btn" id="log">
                             <p class="text">Đăng&nbsp;nhập</p>
                         </a>
                     </div>
@@ -192,86 +203,151 @@
             </div>
         </header>
 
-        <main class="main">
-            <div class="mock">
-                <div class="content">
-                    <h2 class="title">Luyện thi thử TOEIC miên phí</h2>
-                    <div class="test-item">
-                        <div class="img">
-                            <img
-                                src="../assets/img/pc_test.webp"
-                                alt=""
-                                class="img-test"
-                            />
-                        </div>
-
-                        <div class="info">
-                            <h2 class="title-item">Thi Mô Phỏng</h2>
-                            <p class="desc">
-                                Luyện thi mô phỏng trên máy tính như thi thật
-                                giúp bạn làm quen khi bước vào kì thi chính thức
+        <div class="phara">
+            <div class="khungtrai">
+                <div>
+                    <h2 class="title-contact">Liên hệ</h2>
+                    <p class="nd-contact">
+                        Chúng tôi luôn sẵn sàng tiếp nhận mọi ý kiến đóng góp và
+                        giải đáp những yêu cầu của bạn. Hãy liên hệ ngay với
+                        chúng tôi.
+                    </p>
+                </div>
+                <div>
+                    <div class="nd-contact khung">
+                        <div class="wrap-contact">
+                            <a class="material-icons iconcontact">&#xe88a;</a>
+                            <p>
+                                371 Nguyễn Kiệm, Phường 3, Quận Gò Vấp, Thành
+                                Phố Hồ Chí Minh
                             </p>
                         </div>
-
-                        <div class="to-test-btn">
-                            <a href="" class="btn log">
-                                <p class="text">Luyện tập</p>
-                            </a>
+                        <div class="wrap-contact">
+                            <a class="fa iconcontact">&#xf095;</a>
+                            <p>0123456789</p>
+                        </div>
+                        <div class="wrap-contact">
+                            <a class="material-icons iconcontact">&#xe0be;</a>
+                            <p>contact@gmail.com.vn</p>
                         </div>
                     </div>
 
-                    <div class="mock-item">
-                        <div class="test-item">
-                            <div class="img">
-                                <img
-                                    src="../assets/img/mini-test.webp"
-                                    alt=""
-                                    class="img-test"
-                                />
+                    <div class="contact-form">
+                        <form>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label
+                                        for="first-name"
+                                        class="form-label tieude-contact"
+                                        >Họ và tên</label
+                                    >
+                                    <input
+                                        type="text"
+                                        id="first-name"
+                                        class="form-input textarea-contact"
+                                        name="first-name"
+                                        placeholder="Nhập tên đầy đủ"
+                                        required
+                                        minlength="2"
+                                    />
+                                    <p class="form-error">
+                                        Nhập ít nhất 2 kí tự
+                                    </p>
+                                </div>
                             </div>
 
-                            <div class="info">
-                                <h2 class="title-item">MINI&nbsp;TEST</h2>
-                                <p class="desc">
-                                    Làm bài mini test với số lượng câu hỏi và
-                                    thời gian giảm một nửa so với bài thi thật.
-                                </p>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label
+                                        for="email"
+                                        class="form-label tieude-contact"
+                                        >Mail</label
+                                    >
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        class="form-input textarea-contact"
+                                        name="email"
+                                        placeholder="Nhập email"
+                                        required
+                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                    />
+                                    <p class="form-error">
+                                        Vui lòng nhập đúng email
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label
+                                        for="phone"
+                                        class="form-label tieude-contact"
+                                        >Điện thoại</label
+                                    >
+                                    <input
+                                        type="tel"
+                                        id="phone"
+                                        class="form-input textarea-contact"
+                                        name="phone"
+                                        placeholder="Nhập số điện thoại"
+                                        required
+                                        pattern="^(0|\+?84)(3|5|7|8|9)[0-9]{8}$"
+                                    />
+                                    <p class="form-error">
+                                        Nhập đúng số điện thoại
+                                    </p>
+                                </div>
                             </div>
 
-                            <div class="to-test-btn">
-                                <a href="" class="btn log">
-                                    <p class="text">Luyện&nbsp;tập</p>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="test-item">
-                            <div class="img">
-                                <img
-                                    src="../assets/img/full-test.webp"
-                                    alt=""
-                                    class="img-test"
-                                />
-                            </div>
-
-                            <div class="info">
-                                <h2 class="title-item">FULL&nbsp;TEST</h2>
-                                <p class="desc">
-                                    Làm bài full test với số lượng câu hỏi và
-                                    thời gian giống như bài thi thật
-                                </p>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label
+                                        for="message"
+                                        class="form-label tieude-contact"
+                                        >Nội dung</label
+                                    >
+                                    <textarea
+                                        id="message"
+                                        class="form-textarea"
+                                        name="message"
+                                        placeholder="Nhập nội dung liên hệ..."
+                                        oninput="onResize(this)"
+                                        required
+                                        minlength="10"
+                                    ></textarea>
+                                    <p class="form-error">
+                                        Nhập ít nhất 10 kí tự
+                                    </p>
+                                </div>
                             </div>
 
-                            <div class="to-test-btn">
-                                <a href="" class="btn log">
-                                    <p class="text">Luyện tập</p>
-                                </a>
+                            <div class="form-row submit-box">
+                                <button
+                                    class="submit-btn log btn button-contact"
+                                    type="submit"
+                                >
+                                    Gửi đi
+                                </button>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
-        </main>
+            <div class="phr-gg-map">
+                <div class="gg-map">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.925119767875!2d106.67453267520186!3d10.817042389334215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528e1f241211f%3A0xc9ef195798144b1f!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBN4bufIFRQLkhDTSAtIEPGoSBz4bufIDM!5e0!3m2!1svi!2s!4v1690475265917!5m2!1svi!2s"
+                        width="600"
+                        height="450"
+                        style="border: 0"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        class="mapp"
+                    ></iframe>
+                </div>
+            </div>
+        </div>
 
         <footer class="footer">
             <div class="content">
@@ -406,9 +482,9 @@
                 <div class="row row-bottom">
                     <!-- Logo -->
                     <div class="footer-Logo">
-                        <a href="./index.html" class="Logo">
+                        <a href="./index.php" class="Logo">
                             <img
-                                src="../assets/img/Logo.svg"
+                                src="./assets/img/Logo.svg"
                                 alt="Logo"
                                 class="lg"
                             />
@@ -419,7 +495,7 @@
                     <!-- Bank -->
                     <div class="footer-bank">
                         <img
-                            src="../assets/img/Bank.svg"
+                            src="./assets/img/Bank.svg"
                             alt="Bank"
                             class="bank"
                         />
@@ -439,8 +515,8 @@
         </a>
 
         <!-- Nhúng Javascript -->
-        <script src="../assets/js/index.js"></script>
-        <script src="../assets/js/go-top.js"></script>
-        <script src="../assets/js/if_log.js"></script>
+        <script src="./assets/js/go-top.js"></script>
+        <script src="./assets/js/if_log.js"></script>
 
+    </body>
 </html>

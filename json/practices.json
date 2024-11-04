@@ -1,29 +1,29 @@
 [
-  {
-    "desc": "Phần 1: Mô tả tranh"
-  },
-  {
-    "desc": "Phần 2: Hỏi - Đáp"
-  },
-  {
-    "desc": "Phần 3: Đoạn hội thoại"
-  },
-  {
-    "desc": "Phần 4: Bài nói ngắn"
-  },
-  {
-    "desc": "Phần 5: Hoàn thành câu"
-  },
-  {
-    "desc": "Phần 6: Hoàn thành đoạn văn"
-  },
-  {
-    "desc": "Phần 7: Đoạn đơn"
-  },
-  {
-    "desc": "Phần 7: Đoạn kép"
-  },
-  {
-    "desc": "Phần 7: Đoạn ba"
-  }
+    {
+        "desc": "Phần 1: Mô tả tranh"
+    },
+    {
+        "desc": "Phần 2: Hỏi - Đáp"
+    },
+    {
+        "desc": "Phần 3: Đoạn hội thoại"
+    },
+    {
+        "desc": "Phần 4: Bài nói ngắn"
+    },
+    {
+        "desc": "Phần 5: Hoàn thành câu"
+    },
+    {
+        "desc": "Phần 6: Hoàn thành đoạn văn"
+    },
+    {
+        "desc": "Phần 7: Đoạn đơn"
+    },
+    {
+        "desc": "Phần 7: Đoạn kép"
+    },
+    {
+        "desc": "Phần 7: Đoạn ba"
+    }
 ]
