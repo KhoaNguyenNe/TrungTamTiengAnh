@@ -1,48 +1,55 @@
 <?php
-session_start();
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Kết nối đến cơ sở dữ liệu
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "ten_cua_database"; // Thay thế bằng tên cơ sở dữ liệu của bạn
+// Thông tin kết nối cơ sở dữ liệu
+$servername = "localhost";
+$username = "root";
+$password = ""; // Mặc định XAMPP là rỗng
+$dbname = "login_db"; // Tên cơ sở dữ liệu của bạn
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
+// Tạo kết nối
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-    // Kiểm tra kết nối
-    if ($conn->connect_error) {
-        die("Lỗi kết nối: " . $conn->connect_error);
-    }
+// Kiểm tra kết nối
+if ($conn->connect_error) {
+    die("Kết nối thất bại: " . $conn->connect_error);
+}
 
-    // Lấy thông tin từ form
-    $email = htmlspecialchars(trim($_POST['email']));
-    $password = htmlspecialchars(trim($_POST['password']));
+// Kiểm tra xem người dùng đã gửi form đăng nhập hay chưa
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
-    // Truy vấn kiểm tra email trong cơ sở dữ liệu
+    // Truy vấn để lấy thông tin người dùng
     $sql = "SELECT * FROM users WHERE email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
 
+    // Kiểm tra nếu tìm thấy người dùng
     if ($result->num_rows > 0) {
-        // Lấy thông tin tài khoản
         $user = $result->fetch_assoc();
-        
-        // Kiểm tra mật khẩu (giả sử mật khẩu đã mã hóa bằng password_hash)
+
+        // Xác minh mật khẩu
         if (password_verify($password, $user['password'])) {
+            // Đăng nhập thành công, lưu thông tin đăng nhập vào session
+            session_start();
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['email'] = $user['email'];
-            header("Location: dashboard.php"); // Chuyển hướng sau khi đăng nhập thành công
+
+            // Chuyển hướng đến trang chủ
+            header("Location: index.php");
             exit();
         } else {
-            echo "<p class='form-error'>Sai mật khẩu</p>";
+            // Mật khẩu không đúng
+            echo "<p class='nhap_sai_mk'>Sai mật khẩu</p>";
         }
     } else {
-        echo "<p class='form-error'>Email không tồn tại</p>";
+        // Không tìm thấy người dùng
+        echo "<p class='nhap_sai_mk'>Email không tồn tại</p>";
     }
 
     $stmt->close();
-    $conn->close();
 }
+
+$conn->close();
 ?>

@@ -199,7 +199,7 @@
             <div class="sign">
                 <div id="form-login" class="login-phara">
                     <div class="wrap login">
-                        <form class="form-group" onsubmit="login()">
+                        <form class="form-group" action="/TRUNGTAMTIENGANH/LOGCODE/login_process.php" method="POST">
                             <div>
                                 <div class="title">ĐĂNG NHẬP</div>
                             </div>

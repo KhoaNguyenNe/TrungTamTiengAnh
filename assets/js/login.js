@@ -88,16 +88,41 @@ function signup(e) {
 }
 
 function login(e) {
-    event.preventDefault();
+    e.preventDefault(); // Ngăn không cho form reload trang
+
     var email = document.getElementById("mail-log").value;
     var password = document.getElementById("pass-log").value;
+
+    // Lấy dữ liệu người dùng từ localStorage
     var user = localStorage.getItem(email);
+
+    // Kiểm tra nếu không có dữ liệu nào cho email này trong localStorage
+    if (!user) {
+        var text = document.querySelector(".nhap_sai_mk");
+        text.innerText = "Email không tồn tại";
+        text.style.visibility = "visible";
+        return;
+    }
+
+    // Nếu có dữ liệu, parse dữ liệu JSON
     var data = JSON.parse(user);
+
+    // Kiểm tra email và mật khẩu
     if (email === data.email && password === data.password) {
-    localStorage.setItem("islog", "true")
-        window.location.href = "./index.html";
+        localStorage.setItem("islog", "true"); // Đánh dấu trạng thái đăng nhập
+        window.location.href = "./index.html"; // Chuyển hướng nếu đăng nhập thành công
     } else {
         var text = document.querySelector(".nhap_sai_mk");
+        text.innerText = "Sai mật khẩu";
         text.style.visibility = "visible";
     }
+
+    // Ẩn thông báo lỗi khi người dùng bắt đầu nhập lại
+    document.getElementById("mail-log").addEventListener("input", function() {
+        text.style.visibility = "hidden";
+    });
+    document.getElementById("pass-log").addEventListener("input", function() {
+        text.style.visibility = "hidden";
+    });
 }
+
