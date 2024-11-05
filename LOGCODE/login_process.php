@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['email'] = $user['email'];
 
             // Chuyển hướng đến trang chủ
-            header("Location: index.php");
+            header("Location: /TRUNGTAMTIENGANH/index.php");
             exit();
         } else {
             // Mật khẩu không đúng
