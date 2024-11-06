@@ -3,7 +3,7 @@
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "login_db"; 
+    $dbname = "trungtamtienganh"; 
 
     // Kết nối tới cơ sở dữ liệu
     $conn = new mysqli($servername, $username, $password, $dbname);
