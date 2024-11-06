@@ -10,26 +10,6 @@
     require '../PHPMailer-master/src/PHPMailer.php';
     require '../PHPMailer-master/src/SMTP.php';
 
-// Hàm băm mật mã sài PBKDF2
-function pbkdf2HashPassword($password, $salt = null, $iterations = 10000, $keyLength = 64) {
-    if ($salt === null) {
-        $salt = bin2hex(random_bytes(16)); // Tạo salt 32 ký tự
-    }
-
-    // Sử dụng hàm hash_pbkdf2 để tạo ra khóa
-    $hash = hash_pbkdf2(
-        'sha256', // Thuật toán băm
-        $password, // Mật khẩu
-        $salt, // Salt
-        $iterations, // Số lần lặp
-        $keyLength, // Độ dài khóa
-        false // Trả về dưới dạng chuỗi hex
-    );
-
-    // Trả về mật khẩu đã băm cùng với salt
-    return $salt . $hash;
-}
-
 // Kiểm tra kết nối
 if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
@@ -39,7 +19,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     {
         $name = $_POST['name'];
         $email = $_POST['email'];
-        $pass = pbkdf2HashPassword($_POST["pass"]);
+        $pass = md5($_POST["pass"]);
         $user_type = "Học viên";
 
         $select = "select * from user where email = '$email'";
