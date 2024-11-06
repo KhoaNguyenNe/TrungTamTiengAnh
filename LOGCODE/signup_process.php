@@ -1,4 +1,7 @@
 <?php
+
+    include "../connect.php";
+
 // Hàm băm mật mã sài PBKDF2
 function pbkdf2HashPassword($password, $salt = null, $iterations = 10000, $keyLength = 64) {
     if ($salt === null) {
@@ -19,48 +22,46 @@ function pbkdf2HashPassword($password, $salt = null, $iterations = 10000, $keyLe
     return $salt . $hash;
 }
 
-// Thông tin kết nối cơ sở dữ liệu
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "login_db"; // Tên cơ sở dữ liệu chứa bảng 'users'
-
-// Kết nối tới cơ sở dữ liệu
-$conn = new mysqli($servername, $username, $password, $dbname);
-
 // Kiểm tra kết nối
 if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
 }
 
-// Kiểm tra nếu dữ liệu gửi bằng phương thức POST
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Lấy dữ liệu từ form
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = $_POST['pass'];
+if(isset($_POST['dangky']))
+    {
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $pass = pbkdf2HashPassword($_POST["pass"]);
+        $user_type = "Học viên";
 
-    // Băm mật khẩu với PBKDF2
-    $hashed_password = pbkdf2HashPassword($password);
+        $select = "select * from user where email = '$email'";
 
-    // Câu lệnh SQL để chèn dữ liệu vào bảng users
-    $sql = "INSERT INTO users (email, password, name) VALUES (?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sss", $email, $hashed_password, $name);
+        $rs = mysqli_query($conn, $select);
 
-    // Thực thi câu lệnh và kiểm tra thành công
-    if ($stmt->execute()) {
-        // Đăng ký thành công, chuyển hướng về trang đăng nhập
-        echo "<script>
-                alert('Đăng ký thành công! Đang chuyển về trang đăng nhập...');
-                window.location.href = '/TRUNGTAMTIENGANH/login.php';
-              </script>";
-    } else {
-        echo "<script>alert('Lỗi: " . $stmt->error . "');</script>";
+       
+        //Nếu đã có TK
+        if(mysqli_num_rows($rs) > 0)
+        {
+            ?> 
+            <script>
+                alert("Email đã tồn tại")
+            </script>
+            <?php
+        }
+        else
+        {
+            //Tạo OTP
+            $otp = rand(100000, 999999);
+            //Thời gian tồn tại của OTP là 3p
+            $otp_expiry = date("y-m-d H:i:s", strtotime("+3 phút"));
+
+            $subject = "OTP";
+
+            $insert = "insert into user(email, password, name, user_type) values ('$email', '$pass', '$name', '$user_type')";
+            mysqli_query($conn, $insert);
+            
+        }
     }
 
-    // Đóng kết nối
-    $stmt->close();
-}
 $conn->close();
 ?>

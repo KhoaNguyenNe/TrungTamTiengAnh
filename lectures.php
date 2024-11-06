@@ -1,19 +1,69 @@
 
 <?php
-    //Chưa biết tạo database Lectures
+
+    
     //Kiểm tra đăng nhập
+    checkRole();
+
+
+
+    
     //Xét user_type của user
-    // nhận ra là quản lý bài giảng là phần nằm trong quản lí khóa học (Bài giảng nằm trong khóa học)
-    //thắc mắc về Url 
-    // chưa phân quyền giảng viên và quản trị ở nút xóa tất cả
+    
+
+
+    // phân quyền giảng viên và quản trị ở nút xóa tất cả
+
+
+
+
+
+
+    //truy vấn dữ liệu vào database (không truy vấn được)
+    function getRaw($sql) {
+        // Thông tin kết nối cơ sở dữ liệu
+        $servername = "localhost"; // Tên server
+        $username = "root";    // Tên người dùng MySQL
+        $password = "";    // Mật khẩu MySQL
+        $dbname = "english_center"; // Tên cơ sở dữ liệu
+    
+        // Kết nối tới cơ sở dữ liệu
+        $conn = new mysqli($servername, $username, $password, $dbname);
+    
+        // Kiểm tra kết nối
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+    
+        // Thực hiện truy vấn SQL
+        $result = $conn->query($sql);
+    
+        // Tạo một mảng để lưu dữ liệu trả về
+        $data = [];
+    
+        // Kiểm tra và xử lý kết quả
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $data[] = $row;
+            }
+        }
+    
+        // Đóng kết nối
+        $conn->close();
+    
+        // Trả về mảng dữ liệu
+        return $data;
+    }
+
+    $listLectures= getRaw("SELECT * FROM lectures ORDER BY update_at");
+
+    echo '<pre>';
+    print_r($listLectures);
+    echo '</pre>';
 ?>
 
 
-<?php
-    //Truy vấn vào bảng lectures
-    $listLectures = getRaw("SELECT * FROM lectures ORDER BY update_at");
 
-?>
 
 
 
@@ -28,6 +78,7 @@
             href="./assets/favicon/favicon.ico"
             type="image/x-icon"
         />
+        
         <!-- Nhúng CDN Font Awesome -->
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
         <link
@@ -47,6 +98,7 @@
         <link rel="stylesheet" href="./assets/css/style.css" />
         <!-- L_R CSS -->
         <link rel="stylesheet" href="./assets/css/lectures.css" />
+        
         <title>Listen and Reading</title>
     </head>
     <body>
@@ -218,112 +270,54 @@
                 </nav>
             </div>
         </header>
-        
-         <main class="main-course">
-            <div class="left-main">
-                <div class="search-container">
-                    <input type="text" placeholder="Tìm ID">
-                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
-                </div>
-                
-                <section class="courses">
-                    <div class="courses-title">
-                        <h2>Khoá học của tôi</h2>
-                        <a href="#">Xem thêm</a>
-                    </div>
-                    <?php foreach ($courses as $course): ?>
-                        <div class="course-thumbnail"><?= htmlspecialchars($course['title']); ?></div>
-                    <?php endforeach; ?>
-                </section>
-            </div>
-            
-            <div class="middle-main">
-                <div class="tabs">
-                    <button class="tab active">Bài mới</button>
-                    <button class="tab">Bài chưa học</button>
-                    <button class="tab">Bài đã học</button>
-                    <button class="tab">Bài đã lưu</button>
-                </div>
-                <div class="lesson-list">
-                    <table>
-                        <thead>
-                            <div class="main-btn">
-                                
-                                <?php //ẩn hiện nút thêm bài giảng và xóa bài giảng theo usertype 
-                                    if ($_SESSION['user_type'] == 'giangvien' || $_SESSION['user_type'] == 'quantri'): ?>
-                                    <a href=""><button href=" " class="add-button">Thêm bài học</button></a>
-                                    <button onclick = "return confirm('Bạn có chắc chắn muốn xóa?')" class="delete-button">Xóa tất cả</button>
-                                <?php endif; ?>    
-                            </div>
-                            
-                            <tr>
-                                <th>STT</th>
-                                <th>Bài học</th>
-                                <th>Sửa</th>
-                                <th>Xóa</th>
-                                
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php 
-                                // có dữ liệu
-                                if(!empty($listLectures)):
-                                    $count = 0; // số thứ tự
-                                    foreach ($listLectures as $item):
-                                        count++;
-                            ?>
-                            
-                                <tr>
-                                    <td><i class="fa-solid fa-play"></i><td>
-                                    <td><?php echo $count ?></td>
-                                    <td>
-                                        <?php echo $item['lecture_name']; ?>
-                                    </td>
-                                   
-                                    <td>
-                        
-                                    <?php //ẩn hiện nút sửa bài giảng
-                                        if ($_SESSION['user_type'] == 'giangvien' || $_SESSION['user_type'] == 'quantri'): ?>
-                                        <button><i class="fa-solid fa-file-signature"></i></button>
-                                    <?php endif; ?>
-                                    </td>
-                                    <td>
-                                    <?php // ẩn hiện nút xóa bài giảng
-                                        if ($_SESSION['user_type'] == 'giangvien' || $_SESSION['user_type'] == 'quantri'): ?>
-                                        <button onclick = "return confirm('Bạn có chắc chắn muốn xóa?')"><i class="fa-solid fa-trash"></i></button>
-                                    <?php endif; ?>
-                                       
-                                    </td>
-                                </tr>
-                            <?php
-                                endif;
-                        endforeach; ?>
+
+        <main>
+            <div class="container">
+                <hr>
+                <h2>Quản lí bài giảng</h2>
+                <p>
+                    <button class="add-button"><a href=""><i class="fa-solid fa-plus"></i>Thêm bài giảng</a></button>
+                </p>
+                <table class="table table-bordered">
+                    <thead>
+                        <th>STT</th>
+                        <th>Tiêu đề</th>
+                        <th>Mô tả</th>
+                        <th>Nội dung</th>
+                        <th>Giảng Viên</th>
+                        <th>Trạng Thái</th>
+                        <th width = "5%">Sửa</th>
+                        <th width="5%">Xóa</th>
+                    </thead>
+                    <tbody>
+                    <?php
+                        if(!temp($listLectures)):
+                            $count = 0;
+                            foreach($listLectures as $item):
+                                $count++;
+                    ?>
+                    <tr>
+                        <td><?php echo $count; ?></td>
+                        <td><?php echo $item['title']; ?></td>
+                        <td><?php echo $item['description']; ?></td>
+                        <td><?php echo $item['content']; ?></td>
+                        <td><?php echo $item['teacher_id']; ?></td>
+                        <td><?php echo $item['status']; ?></td>
+                        <td><button class="fix-button"><a href=""><i class="fa-solid fa-pen-to-square"></i></a></button></td>
+                        <td><button class="delete-button""><a href=""onclick = "return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a></button></td>
+                    </tr>
+                    <?php
+                            endforeach;
+                        endif;
+                    ?>
+                    
                         </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="right-main">
-                <div class="profile-header">
-                    <img src="profile-picture.jpg" alt="Cô Trang Anh" class="profile-picture">
-                    <div class="profile-info">
-                        <h2>Cô Trang Anh <span class="verified-badge">✔</span></h2>
-                        
-                    </div>
-                </div>
-                <div class="profile-details">
-                    <ul>
-                        <li>Giáo viên với hơn 20 năm kinh nghiệm dạy học và luyện thi Đại học môn Tiếng Anh</li>
-                        <li>Tác giả của hơn 30 đầu sách tiếng Anh và các tài liệu luyện thi môn Tiếng Anh.</li>
-                    </ul>
-                    <h4>Thành tích đạt được:</h4>
-                    <ul>
-                        <li>Giải khuyến khích cấp Quốc Gia cuộc thi "Thiết kế bài giảng điện tử" (2015)</li>
-                        <li>Giải Nhất cấp Quốc gia cuộc thi "Thiết kế bài giảng điện tử" (2017)</li>
-                        <li>Chứng chỉ C1 - Chứng chỉ dạy học ngoại ngữ theo đề án Ngoại ngữ 2020</li>
-                    </ul>
-                </div>
+                </table>
             </div>
         </main>
+
+        
+        
 
         <footer class="footer">
             <div class="content">

@@ -1,109 +1,11 @@
-.main-course{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 100%;
-    height: 700px;
-    font-size: 14px;
+
+.container{
+    margin: 0 150px;
+    font-size: 15px;
 }
 
-.left-main {
-    width: 25%;
-    padding: 20px;
-    background-color: #fff;
-    border-right: 1px solid #ddd;
-}
-
-.search-container {
-    display: flex;
-    align-items: center;
-    border: 2px solid #007bff; /* Blue border color */
-    border-radius: 8px;
-    overflow: hidden;
-    width: 100%;
-    max-width: 300px; /* Adjust as needed */
-}
-
-/* Search input field */
-.search-container input[type="text"] {
-    border: none;
-    outline: none;
-    padding: 8px 12px;
-    font-size: 14px;
-    width: 100%;
-    color: #333;
-}
-
-/* Placeholder text */
-.search-container input[type="text"]::placeholder {
-    color: #bbb;
-}
-
-/* Search icon button */
-.search-container button {
-    background-color: #007bff; /* Blue background color */
-    border: none;
-    outline: none;
-    padding: 0 12px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.search-container button i{
-    padding: 10px 6px;
-    color: white;
-}
-
-.courses-title{
-    margin-top: 10px;
-    display: flex;
-    justify-content: space-between;
-    max-width: 300px;
-}
-
-
-.middle-main {
-    width: 75%;
-    padding: 20px;
-}
-
-.tabs {
-    
-    margin-bottom: 10px;
-    
-}
-
-.tab {
-    background-color: #f1f1f1;
-    padding: 8px 12px;
-    border: none;
-    cursor: pointer;
-    margin-right: 20px;
-    border-radius: 4px;
-    border: 1px solid black;
-}
-
-.tab.active {
-    background-color: #007bff;
-    color: #fff;
-}
-
-.lesson-list table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-
-.lesson-list th, .lesson-list td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-.lesson-list button{
-    margin: 20px;
+main button{
+    margin: 10px;
     cursor: pointer;
     color: white;
     padding: 10px 20px ;
@@ -111,16 +13,6 @@
     border-radius: 10%;
 }
 
-.lesson-list th {
-
-    background-color: #f1f1f1;
-    color: #333;
-    
-}
-
-.lesson-list th:nth-child(1) {
-    width: 30px;
-}
 
 .add-button{
    
@@ -134,7 +26,7 @@
 
 
 .delete-button {
-   
+    padding: 10px 0;
     background-color: rgb(226, 66, 66);
    
 }
@@ -144,55 +36,11 @@
 }
 
 .fix-button{
-    background-color: rgb(68, 63, 228);
+    padding: 13px 20px;
+    background-color: rgb(86, 81, 225);
    
 }
 .fix-button:hover {
     background-color: rgb(52, 46, 218);
 }
 
-.right-main {
-    width: 400px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-}
-
-.profile-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.profile-picture {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    margin-right: 15px;
-}
-
-.profile-info h2 {
-    font-size: 18px;
-    margin: 0;
-    display: flex;
-    align-items: center;
-}
-
-.verified-badge {
-    font-size: 16px;
-    color: #4CAF50;
-    margin-left: 5px;
-}
-
-.stats {
-    font-size: 14px;
-    color: #777;
-}
-
-
-.right-main> p, ul li {
-    font-size: 14px;
-    line-height: 1.6;
-    color: #333;
-}
