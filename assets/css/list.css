@@ -1,0 +1,120 @@
+body {
+    font-family: 'Lato', sans-serif;
+    font-weight: normal;
+    color: #333;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Container */
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Tiêu đề */
+.user_manager {
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+    /* Black weight */
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
+    /* Tăng kích thước chữ lên 24px */
+}
+
+/* Phong cách cho các nút */
+.btn {
+    font-family: 'Lato', sans-serif;
+    padding: 10px 15px;
+    font-size: 14px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+/* Nút Thêm người dùng */
+.btn-success {
+    background-color: #28a745;
+    color: #ffffff;
+    font-weight: 600;
+    /* Semi-bold */
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    /* Đỏ */
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 12px;
+}
+
+/* Bảng */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.table th,
+.table td {
+    padding: 12px 15px;
+    border: 1px solid #dee2e6;
+    text-align: center;
+}
+
+.table th {
+    background-color: #f8f9fa;
+    font-weight: 700;
+    /* Bold weight */
+    color: #333;
+}
+
+/* Trạng thái */
+.btn-activated {
+    background-color: #28a745;
+    /* Đã kích hoạt - màu xanh lá */
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.btn-deactivated {
+    background-color: #dc3545;
+    /* Chưa kích hoạt - màu đỏ */
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* Hiệu ứng khi hover */
+.btn:hover {
+    opacity: 0.85;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Thông báo xác nhận xóa */
+a[onclick] {
+    color: #dc3545;
+    font-weight: bold;
+    text-decoration: underline;
+}
