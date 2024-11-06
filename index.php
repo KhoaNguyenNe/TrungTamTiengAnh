@@ -109,6 +109,7 @@
                                     >Blog</a
                                 >
                             </li>
+                            
                             <li>
                                 <a
                                     href="./toeic-tip.php"
@@ -117,8 +118,20 @@
                                 >
                             </li>
                             <li>
+                                
+                                    <a href="./course.php" class="item-nav-mobile"
+                                    >Bài&nbsp;giảng</a
+                                    >
+                                
+                            </li>
+                            <li>
                                 <a href="./login.php" class="item-nav-mobile"
                                     >Đăng&nbsp;nhập</a
+                                >
+                            </li>
+                            <li>
+                                <a href="./index.php" class="item-nav-mobile"
+                                    >Bài&nbsp;giảng</a
                                 >
                             </li>
                         </ul>
@@ -172,6 +185,13 @@
                             <a href="./toeic-tip.php" class="item"
                                 >TOEIC&nbsp;Tips</a
                             >
+                        </li>
+                        <li>
+                           
+                                <a href="./course.php" class="item-nav-mobile"
+                                >Bài&nbsp;giảng</a
+                                >
+                            
                         </li>
                     </ul>
 
