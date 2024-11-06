@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
 
     // Truy vấn để lấy thông tin người dùng
-    $sql = "SELECT * FROM user WHERE email = ?";
+    $sql = "SELECT * FROM users WHERE email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $email);
     $stmt->execute();
@@ -56,14 +56,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $user_agent = $_SERVER['HTTP_USER_AGENT'];
 
             // Ghi nhận trạng thái đăng nhập vào cơ sở dữ liệu
-            $log_sql = "INSERT INTO login_logs (user_id, login_time, ip_address, user_agent) VALUES (?, ?, ?, ?)";
+            $log_sql = "INSERT INTO login_records (user_id, login_time, ip_address, user_agent) VALUES (?, ?, ?, ?)";
             $log_stmt = $conn->prepare($log_sql);
             $log_stmt->bind_param("isss", $_SESSION['user_id'], $login_time, $ip_address, $user_agent);
             $log_stmt->execute();
             $log_stmt->close();
 
-            // Chuyển hướng đến trang chủ
-            header("Location: /TRUNGTAMTIENGANH/index.php");
+            // Chuyển hướng đến trang chủ kèm theo trạng thái đăng nhập
+            header("Location: /TRUNGTAMTIENGANH/index.php?status=success&user_id=" . $_SESSION['user_id']);
             exit();
         } else {
             // Mật khẩu không đúng

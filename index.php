@@ -1,3 +1,9 @@
+<?php
+session_start();
+$isLoggedIn = isset($_SESSION['user_id']); // Kiểm tra nếu người dùng đã đăng nhập
+?>
+
+
 <!DOCTYPE html>
 <html lang="vi">
     <head>
@@ -116,11 +122,16 @@
                                     >TOEIC&nbsp;Tips</a
                                 >
                             </li>
-                            <li>
-                                <a href="./login.php" class="item-nav-mobile"
-                                    >Đăng&nbsp;nhập</a
-                                >
-                            </li>
+                            <?php if (!$isLoggedIn): ?>
+                                <li>
+                                    <a href="./login.php" class="item-nav-mobile">Đăng&nbsp;nhập</a>
+                                </li>
+                            <?php else: ?>
+                                <li>
+                                    <a href="./information.php" class="item-nav-mobile">Cài&nbsp;đặt</a>
+                                </li>
+                            <?php endif; ?>
+
                         </ul>
                     </nav>
                     <!-- Logo -->
@@ -188,9 +199,9 @@
                             </svg>
                             <p>Unlock&nbsp;Pro</p>
                         </a>
-                        <a href="./login.php" class="log btn" id="log">
-                            <p class="text">Đăng&nbsp;nhập</p>
-                        </a>
+                        <?php
+                        
+                        ?>
                     </div>
                 </nav>
             </div>

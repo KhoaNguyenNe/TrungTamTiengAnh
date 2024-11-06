@@ -29,12 +29,12 @@ if ($conn->connect_error) {
 
 if(isset($_POST['dangky']))
     {
-        $name = $_POST['name'];
         $email = $_POST['email'];
         $pass = pbkdf2HashPassword($_POST["pass"]);
+        $name = $_POST['name'];
         $user_type = "Học viên";
 
-        $select = "select * from user where email = '$email'";
+        $select = "select * from users where email = '$email'";
 
         $rs = mysqli_query($conn, $select);
 
@@ -57,7 +57,7 @@ if(isset($_POST['dangky']))
 
             $subject = "OTP";
 
-            $insert = "insert into user(email, password, name, user_type) values ('$email', '$pass', '$name', '$user_type')";
+            $insert = "insert into users(email, password, name, user_type) values ('$email', '$pass', '$name', '$user_type')";
             mysqli_query($conn, $insert);
             
         }
