@@ -38,6 +38,89 @@
             rel="stylesheet"
         />
         <title>Từ vựng</title>
+        <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: 100%;
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .service-info {
+      background-color: #e9f7fa;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      text-align: center;
+    }
+    .service-info h3 {
+      margin: 0;
+      color: #00796b;
+    }
+    .service-info p {
+      font-size: 16px;
+      color: #555;
+    }
+    .payment-methods {
+      margin-bottom: 20px;
+    }
+    .payment-methods label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+    select, input[type="text"], input[type="email"], input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 15px;
+      width: 100%;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 14px;
+      color: #555;
+    }
+    .footer a {
+      color: #00796b;
+      text-decoration: none;
+    }
+    input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Ẩn nút tăng/giảm trên Firefox */
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+  </style>
     </head>
     <body>
         <header class="header">
@@ -200,216 +283,108 @@
                 </nav>
             </div>
         </header>
+        <div class="container">
+    <!-- Thông tin gói dịch vụ -->
+    <div class="service-info">
+      <h3>Khóa Học Tiếng Anh</h3>
+      <p>Khóa học Tiếng Anh dành cho doanh nghiệp - $50/tháng</p>
+      <p><strong>Đăng ký ngay hôm nay để bắt đầu học ngay!</strong></p>
+    </div>
 
-        <div class="main-prenium">
-            <div class="Text">
-                <h2>CÁC&nbsp;TÀI&nbsp;KHOẢN</h2>
-            </div>
-            <div class="Group1">
-                <div class="box prenium-left">
-                    <div class="in-box">
-                        <div class="noidung">
-                            <div class="test-pre">Cơ&nbsp;bản</div>
-                            <div class="cost">
-                                <div class="tien">Miễn&nbsp;phí</div>
-                                <div class="tgian"></div>
-                            </div>
-                            <div class="mota-prenium">
-                                Các bài học tương tác & thực hành hàng ngày.
-                            </div>
-                        </div>
-                        <div class="prenium-lists">
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Các khóa học cơ bản
-                                </div>
-                            </div>
-                        </div>
-                        <div class="k-hoc">
-                            <div class="head-actions">
-                                <a
-                                    href="./coursefree.php"    
-                                    class="log btn head-btn hoc-ngay prenium-hocngay"
-                                    
-                                >
-                                    <p class="text">Học&nbsp;ngay</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="box prenium-mid">
-                    <div class="in-box">
-                        <div class="noidung">
-                            <div class="test-pre">Chuyên&nbsp;nghiệp</div>
-                            <div class="cost">
-                                <div class="tien">$50</div>
-                                <div class="tgian">/tháng</div>
-                            </div>
-                            <div class="mota-prenium">
-                                Học một kỹ năng với các khóa học, lộ trình kỹ
-                                năng, và các dự án.
-                            </div>
-                        </div>
-                        <div class="prenium-lists">
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Các khóa học cơ bản
-                                </div>
-                            </div>
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Các khóa học chuyên nghiệp
-                                </div>
-                            </div>
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Con đường kỹ năng
-                                </div>
-                            </div>
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Chuẩn Bị Phỏng Vấn
-                                </div>
-                            </div>
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Các khóa học chuyên nghiệp
-                                </div>
-                            </div>
-                        </div>
-                        <div class="k-hoc">
-                            <div class="head-actions">
-                                <a
-                                    class="log btn head-btn hoc-ngay prenium-hocngay"
-                                    href="./course50.php"
-                                >
-                                    <p class="text">Học&nbsp;ngay</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="box prenium-right">
-                    <div class="in-box">
-                        <div class="noidung">
-                            <div class="test-pre">Kế hoạch doanh nghiệp</div>
-                            <div class="cost">
-                                <div class="tien">$250</div>
-                                <div class="tgian">/năm</div>
-                            </div>
-                            <div class="mota-prenium">
-                                Phát triển sự nghiệp với các khóa học, con đường
-                                sự nghiệp, dự án và chuẩn bị phỏng vấn.
-                            </div>
-                        </div>
-                        <div class="prenium-lists">
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Tất cả các tính năng trong tiêu chuẩn
-                                </div>
-                            </div>
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Các khóa học chuyên nghiệp
-                                </div>
-                            </div>
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Con đường kỹ năng
-                                </div>
-                            </div>
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Chuẩn Bị Phỏng Vấn
-                                </div>
-                            </div>
-                            <div class="prenium-list">
-                                <div class="vector">
-                                    <i
-                                        class="bx bxs-check-circle"
-                                        style="color: #434ec4"
-                                    ></i>
-                                </div>
-                                <div class="name-prenium-list">
-                                    Các khóa học chuyên nghiệp
-                                </div>
-                            </div>
-                        </div>
-                        <div class="k-hoc">
-                            <div class="head-actions">
-                                <a
-                                    class="log btn head-btn hoc-ngay prenium-hocngay"
-                                    href="./course250.php"
-                                >
-                                    <p class="text">Học&nbsp;ngay</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- Form thanh toán -->
+    <h1>Thanh toán dịch vụ</h1>
+
+<form id="payment-form">
+    <!-- Các thông tin người dùng -->
+    <label for="full-name">Họ và tên:</label>
+    <input type="text" id="full-name" name="full-name" required><br><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <label for="sdt">Số điện thoại:</label>
+    <input type="number" id="sdt" name="sdt" min="0100000000" max="0999999999"required><br><br>
+
+    <!-- Chọn phương thức thanh toán -->
+    <label for="payment-method">Phương thức thanh toán:</label>
+    <select id="payment-method" name="payment-method">
+        <option value="">Chọn phương thức thanh toán</option>
+        <option value="credit-card">Thẻ tín dụng</option>
+        <option value="paypal">PayPal</option>
+        <option value="bank-transfer">Chuyển khoản ngân hàng</option>
+    </select><br><br>
+
+    <!-- Chi tiết thẻ tín dụng -->
+    <div id="credit-card-details" class="payment-details" style="display: none;">
+        <label for="credit-card-number">Số thẻ tín dụng:</label>
+        <input type="text" id="credit-card-number" name="credit-card-number"><br><br>
+        <label for="credit-account-name">Tên ngân hàng:</label>
+        <input type="text" id="credit-account-name" name="credit-account-name"><br><br>
+    </div>
+
+    <!-- Chi tiết PayPal -->
+    <div id="paypal-details" class="payment-details" style="display: none;">
+        <label for="paypal-email">Email PayPal:</label>
+        <input type="email" id="paypal-email" name="paypal-email"><br><br>
+    </div>
+
+    <!-- Chi tiết chuyển khoản ngân hàng -->
+    <div id="bank-transfer-details" class="payment-details" style="display: none;">
+        <label for="bank-account">Số tài khoản ngân hàng:</label>
+        <input type="number" id="bank-account" name="bank-account"><br><br>
+        <label for="bank-account-name">Tên ngân hàng:</label>
+        <input type="text" id="bank-account-name" name="bank-account-name"><br><br>
+    </div>
+    <button type="submit">Thanh toán $50</button>
+
+    </form>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>Bằng cách thanh toán, bạn đồng ý với <a href="#">Điều khoản và Điều kiện</a></p>
+    </div>
+  </div>
+
+  <script>
+      // Hiển thị các chi tiết thanh toán dựa trên phương thức chọn
+        document.getElementById("payment-method").addEventListener("change", function() {
+            const method = this.value;
+
+            // Ẩn tất cả các phương thức thanh toán chi tiết
+            const paymentDetails = document.querySelectorAll('.payment-details');
+            paymentDetails.forEach(detail => detail.style.display = 'none');
+            
+            // Hiển thị phương thức thanh toán đã chọn
+            if (method === "credit-card") {
+                document.getElementById("credit-card-details").style.display = "block";
+            } else if (method === "paypal") {
+                document.getElementById("paypal-details").style.display = "block";
+            } else if (method === "bank-transfer") {
+                document.getElementById("bank-transfer-details").style.display = "block";
+            }
+        });
+
+        // Xử lý form thanh toán khi gửi
+        document.getElementById("payment-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            // Kiểm tra xem người dùng đã điền đầy đủ thông tin chưa
+            const paymentMethod = document.getElementById("payment-method").value;
+            const name = document.getElementById("full-name").value;
+            const email = document.getElementById("email").value;
+            const bank = document.getElementById("bank-account").value;
+            const paypal = document.getElementById("paypal-email").value;
+            const creditcard = document.getElementById("credit-card-number").value;
+            
+            if (!paymentMethod || !name || !email) {
+                alert("Vui lòng điền đầy đủ thông tin.");
+                return;
+            } else {
+                window.location.href = "./verification.php";
+
+            }
+        });
+  </script>
         <footer class="footer">
             <div class="content">
                 <div class="row row-top">
