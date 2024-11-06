@@ -115,6 +115,7 @@ $isLoggedIn = isset($_SESSION['user_id']); // Kiểm tra nếu người dùng đ
                                     >Blog</a
                                 >
                             </li>
+                            
                             <li>
                                 <a
                                     href="./toeic-tip.php"
@@ -183,6 +184,13 @@ $isLoggedIn = isset($_SESSION['user_id']); // Kiểm tra nếu người dùng đ
                             <a href="./toeic-tip.php" class="item"
                                 >TOEIC&nbsp;Tips</a
                             >
+                        </li>
+                        <li>
+                           
+                                <a href="./course.php" class="item-nav-mobile"
+                                >Bài&nbsp;giảng</a
+                                >
+                            
                         </li>
                     </ul>
 
