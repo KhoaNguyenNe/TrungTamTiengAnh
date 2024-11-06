@@ -258,7 +258,7 @@
                         </div>
                     </div>
                     <div class="wrap signn">
-                        <form class="form-group" onsubmit="signup()">
+                        <form class="form-group" action="/TRUNGTAMTIENGANH/LOGCODE/signup_process.php" method="POST">
                             <div>
                                 <div class="title">TẠO TÀI KHOẢN</div>
                             </div>
@@ -317,12 +317,13 @@
                                 <input
                                     type="password"
                                     id="df-psw"
+                                    name="confirm_pass"
                                     placeholder="Nhập lại mật khẩu"
                                     required
                                 />
                                 <i class="bx bxs-lock-alt"></i>
                                 <p class="df-pass">
-                                    Vui lòng nhập giống với mất khẩu đã tạo
+                                    Vui lòng nhập giống với mật khẩu đã tạo
                                     trước đó
                                 </p>
                             </div>

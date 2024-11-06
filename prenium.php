@@ -399,7 +399,7 @@
                             <div class="head-actions">
                                 <a
                                     class="log btn head-btn hoc-ngay prenium-hocngay"
-                                    href="#"
+                                    href="./Thanhtoan.php"
                                 >
                                     <p class="text">Học&nbsp;ngay</p>
                                 </a>
