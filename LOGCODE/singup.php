@@ -1,4 +1,7 @@
 <?php
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+
     session_start();
 
     include "../connect.php";
@@ -42,7 +45,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         $pass = pbkdf2HashPassword($_POST["pass"]);
         $user_type = "Học viên";
 
-        $select = "select * from user where email = '$email'";
+        $select = "select * from users where email = '$email'";
 
         $rs = mysqli_query($conn, $select);
 

@@ -49,6 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             session_start();
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['email'] = $user['email'];
+            $_SESSION['name'] = $user['name'];  // Lưu tên người dùng vào session
 
             // Lưu thông tin đăng nhập
             $login_time = date('Y-m-d H:i:s');

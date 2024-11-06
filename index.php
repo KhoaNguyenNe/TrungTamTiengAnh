@@ -24,6 +24,9 @@ $isLoggedIn = isset($_SESSION['user_id']); // Kiểm tra nếu người dùng đ
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         />
+        <!-- Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <!-- Font -->
         <link rel="stylesheet" href="./assets/font/stylesheet.css" />
         <!-- Reset CSS -->
@@ -123,15 +126,14 @@ $isLoggedIn = isset($_SESSION['user_id']); // Kiểm tra nếu người dùng đ
                                     >TOEIC&nbsp;Tips</a
                                 >
                             </li>
-                            <?php if (!$isLoggedIn): ?>
-                                <li>
-                                    <a href="./login.php" class="item-nav-mobile">Đăng&nbsp;nhập</a>
-                                </li>
-                            <?php else: ?>
-                                <li>
-                                    <a href="./information.php" class="item-nav-mobile">Cài&nbsp;đặt</a>
-                                </li>
-                            <?php endif; ?>
+                            <li>
+                                <a href="./login_process.php" class="item-nav-mobile">Đăng&nbsp;nhập</a>
+                            </li>
+                            
+                            <li>
+                                <a href="./information.php" class="item-nav-mobile">Cài&nbsp;đặt</a>
+                            </li>
+                            
 
                         </ul>
                     </nav>
@@ -186,11 +188,9 @@ $isLoggedIn = isset($_SESSION['user_id']); // Kiểm tra nếu người dùng đ
                             >
                         </li>
                         <li>
-                           
-                                <a href="./course.php" class="item-nav-mobile"
+                            <a href="./course.php" class="item"
                                 >Bài&nbsp;giảng</a
-                                >
-                            
+                            >
                         </li>
                     </ul>
 
@@ -207,9 +207,19 @@ $isLoggedIn = isset($_SESSION['user_id']); // Kiểm tra nếu người dùng đ
                             </svg>
                             <p>Unlock&nbsp;Pro</p>
                         </a>
-                        <?php
-                        
-                        ?>
+                        <?php if (!isset($_SESSION['user_id'])): ?>
+                            <a href="/TRUNGTAMTIENGANH/login.php" class="log btn" id="log">
+                                <p class="text">Đăng&nbsp;nhập</p>
+                            </a>
+                        <?php else: ?>
+                            <li class="nav-item dropdown btn">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><?php echo htmlspecialchars($_SESSION['name']); ?></a>
+                            <ul class="dropdown-menu dropmn">
+                                <li><a class="dropdown-item" href="/information.php">Cài đặt</a></li>
+                                <li><a class="dropdown-item" href="/TRUNGTAMTIENGANH/LOGCODE/logout.php">Đăng xuất</a></li>
+                            </ul>
+                            </li>
+                        <?php endif; ?>
                     </div>
                 </nav>
             </div>
