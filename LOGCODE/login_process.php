@@ -1,21 +1,6 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-// Gửi email thông báo
-require '../PHPMailer/src/Exception.php';
-require '../PHPMailer/src/PHPMailer.php';
-require '../PHPMailer/src/SMTP.php';
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-// Thông tin kết nối cơ sở dữ liệu
-$servername = "localhost";
-$username = "root";
-$password = ""; // Mặc định XAMPP là rỗng
-$dbname = "login_db"; // Tên cơ sở dữ liệu của bạn
-
-// Tạo kết nối
-$conn = new mysqli($servername, $username, $password, $dbname);
+    include "../connect.php";
 
 // Kiểm tra kết nối
 if ($conn->connect_error) {
@@ -48,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
 
     // Truy vấn để lấy thông tin người dùng
-    $sql = "SELECT * FROM users WHERE email = ?";
+    $sql = "SELECT * FROM user WHERE email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $email);
     $stmt->execute();
@@ -76,36 +61,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $log_stmt->bind_param("isss", $_SESSION['user_id'], $login_time, $ip_address, $user_agent);
             $log_stmt->execute();
             $log_stmt->close();
-
-            
-
-            $mail = new PHPMailer(true);
-            try {
-                // Cấu hình SMTP
-                $mail->isSMTP();                                     
-                $mail->Host = 'smtp.gmail.com';                     
-                $mail->SMTPAuth = true;                             
-                $mail->Username = 'lucius.nuxi@gmail.com';         
-                $mail->Password = 'huynhxuanchinh';         
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; 
-                $mail->Port = 587;                                  
-
-                // Người gửi và người nhận
-                $mail->setFrom('your_email@gmail.com', 'Mailer');
-                $mail->addAddress($email);                         
-
-                // Nội dung email
-                $mail->isHTML(true);                                  
-                $mail->Subject = 'Thông báo đăng nhập';
-                $mail->Body    = "Bạn đã đăng nhập vào tài khoản của mình lúc " . $login_time . "<br>" .
-                                 "Địa chỉ IP: " . $ip_address . "<br>" .
-                                 "Thiết bị: " . $user_agent;
-
-                $mail->send();
-                echo 'Email đã được gửi';
-            } catch (Exception $e) {
-                echo "Không thể gửi email. Lỗi: {$mail->ErrorInfo}";
-            }
 
             // Chuyển hướng đến trang chủ
             header("Location: /TRUNGTAMTIENGANH/index.php");

@@ -332,6 +332,7 @@
                                     type="submit"
                                     class="buttonlogin"
                                     id="dangky"
+                                    name = "dangky"
                                 >
                                     Đăng&nbsp;ký&nbsp;ngay
                                 </button>
