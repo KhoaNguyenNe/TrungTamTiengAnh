@@ -1,7 +1,7 @@
 <?php
 
     include "../connect.php";
-
+    date_default_timezone_set('Asia/Ho_Chi_Minh');  // Đặt múi giờ là giờ Việt Nam
 // Kiểm tra kết nối
 if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
@@ -48,8 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Đăng nhập thành công, lưu thông tin đăng nhập vào session
             session_start();
             $_SESSION['user_id'] = $user['id'];
+            $_SESSION['user_name'] = $user['name'];
             $_SESSION['email'] = $user['email'];
-            $_SESSION['name'] = $user['name'];  // Lưu tên người dùng vào session
 
             // Lưu thông tin đăng nhập
             $login_time = date('Y-m-d H:i:s');

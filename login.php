@@ -313,7 +313,7 @@
                                 </p>
                                 <p id="number" class="invalid">Có số</p>
                                 <p id="length" class="invalid">
-                                    Tối đa 8 ký tự
+                                    Ít nhất 8 ký tự
                                 </p>
                             </div>
                             <div class="input-box">

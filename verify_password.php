@@ -2,17 +2,18 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 include "./connect.php";
 
-// Kiểm tra nếu người dùng đã đăng nhập
-if (!isset($_SESSION['user_id'])) {
-    echo "Vui lòng đăng nhập trước.";
-    exit();
+// Kiểm tra kết nối
+if ($conn->connect_error) {
+    die("Kết nối thất bại: " . $conn->connect_error);
 }
 
 $user_id = $_SESSION['user_id'];
-$message = '';
 
 // Lấy thông tin người dùng từ cơ sở dữ liệu
 $sql = "SELECT name, email FROM users WHERE id = ?";
@@ -23,56 +24,62 @@ $stmt->bind_result($name, $email);
 $stmt->fetch();
 $stmt->close();
 
+function pbkdf2HashPassword($password, $salt = null, $iterations = 10000, $keyLength = 64) {
+    if ($salt === null) {
+        $salt = bin2hex(random_bytes(16)); // Tạo salt 32 ký tự
+    }
+
+    // Sử dụng hàm hash_pbkdf2 để tạo ra khóa
+    $hash = hash_pbkdf2(
+        'sha256', // Thuật toán băm
+        $password, // Mật khẩu
+        $salt, // Salt
+        $iterations, // Số lần lặp
+        $keyLength, // Độ dài khóa
+        false // Trả về dưới dạng chuỗi hex
+    );
+
+    // Trả về mật khẩu đã băm cùng với salt
+    return $salt . $hash;
+}
+
 // Kiểm tra nếu có form gửi lên
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = isset($_POST['name']) ? trim($_POST['name']) : null;
-    $password = isset($_POST['password']) ? trim($_POST['password']) : null;
+    $old_password = $_POST['old_password'];
 
-    // Khởi tạo mảng chứa các phần câu lệnh SQL cần cập nhật
-    $updates = [];
-    $params = [];
+    // Lấy mật khẩu đã mã hóa từ cơ sở dữ liệu
+    $sql = "SELECT password FROM users WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $stmt->bind_result($stored_password);
+    $stmt->fetch();
+    $stmt->close();
 
-    // Chỉ thêm phần cập nhật cho tên nếu người dùng đã nhập tên mới
-    if (!empty($name)) {
-        $updates[] = "name = ?";
-        $params[] = $name;
-    }
+    // Kiểm tra nếu người dùng tồn tại
+    if ($stored_password) {
+        // Lấy phần salt từ mật khẩu đã mã hóa trong cơ sở dữ liệu
+        $salt = substr($stored_password, 0, 32); // 32 ký tự đầu là salt
+        // Băm mật khẩu cũ với salt
+        $hashed_password = pbkdf2HashPassword($old_password, $salt);
 
-    // Chỉ thêm phần cập nhật cho mật khẩu nếu người dùng đã nhập mật khẩu mới
-    if (!empty($password)) {
-        // Mã hóa mật khẩu mới trước khi lưu vào database
-        $hashed_password = pbkdf2HashPassword($password);
-        $updates[] = "password = ?";
-        $params[] = $hashed_password;
-    }
-
-    // Nếu không có gì cần cập nhật, chuyển hướng lại trang thông tin người dùng
-    if (empty($updates)) {
-        $message = "Không có thông tin nào để cập nhật.";
-    } else {
-        // Xây dựng câu lệnh SQL động
-        $sql = "UPDATE users SET " . implode(", ", $updates) . " WHERE id = ?";
-        $params[] = $user_id;
-
-        // Chuẩn bị và thực thi truy vấn
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param(str_repeat("s", count($params) - 1) . "i", ...$params);
-
-        if ($stmt->execute()) {
-            $message = "Cập nhật thông tin thành công.";
+        // Xác minh mật khẩu
+        if ($hashed_password === $stored_password) {
+            // Mật khẩu đúng, chuyển hướng đến trang cập nhật thông tin
+            header("Location: /TRUNGTAMTIENGANH/information.php");
+            exit();
         } else {
-            $message = "Cập nhật thông tin thất bại.";
+            $message = "Mật khẩu cũ không chính xác. Vui lòng thử lại.";
         }
-
-        $stmt->close();
+    } else {
+        $message = "Lỗi: Không tìm thấy người dùng.";
     }
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="vi">
-    <head>
+<head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- Favicon -->
@@ -105,9 +112,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <link rel="stylesheet" href="./assets/css/responsive.css" />
         
         <title>Web luyện thi TOEIC</title>
-    </head>
-    <body>
-        <header class="header">
+</head>
+<body>
+<header class="header">
             <div class="content nav-content">
                 <nav class="navbar">
                     <!--nav mobile-->
@@ -278,8 +285,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <?php else: ?>
                             <li class="nav-item dropdown btn">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><?php echo htmlspecialchars($_SESSION['name']); ?></a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/TRUNGTAMTIENGANH/information.php">Thay đổi thông tin</a></li>
+                            <ul class="dropdown-menu dropmn">
+                                <li><a class="dropdown-item" href="/TRUNGTAMTIENGANH/verify_password.php">Thay đổi thông tin</a></li>
                                 <li><a class="dropdown-item" href="/TRUNGTAMTIENGANH/LOGCODE/logout.php">Đăng xuất</a></li>
                             </ul>
                             </li>
@@ -288,10 +295,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </nav>
             </div>
         </header>
-
         <body>
         <div class="user-info">
-            <h2 class="text-uppercase">Cập nhật thông tin người dùng</h2>
+            <h2 class="text-uppercase">Xác thực mật khẩu cũ</h2>
 
             
 
@@ -300,24 +306,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="alert alert-info"><?php echo htmlspecialchars($message); ?></div>
             <?php endif; ?>
 
-            <form method="POST" action="/TRUNGTAMTIENGANH/LOGCODE/update_profile.php">
-            <div class="form-group">
-                <label for="name">Họ và tên:</label>
-                <input type="text" id="name" name="name" placeholder="<?php echo htmlspecialchars($name); ?>" oninput="enableUpdateButton()">
-            </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" readonly>
-            </div>
-            <div class="form-group">
-                <label for="password">Mật khẩu mới:</label>
-                <input type="password" id="password" name="password" placeholder="Nhập mật khẩu mới" oninput="enableUpdateButton()">
-            </div>
-            <button type="submit" id="updateButton" disabled>Cập nhật</button>
-        </form>
+            <!-- Form cập nhật thông tin -->
+            <form method="POST" action="verify_password.php">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mật khẩu:</label>
+                    <input type="password" id="old_password" name="old_password" required>
+                </div>
+                <button type="submit">Xác thực</button>
+            </form>
         </div>         
         </body>
-
         <footer class="footer">
             <div class="content">
                 <div class="row row-top">
@@ -478,6 +480,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
         </footer>
+
         <a href="#" class="btn-to-top">
             <i class="fa-solid fa-jet-fighter-up"></i>
         </a>
