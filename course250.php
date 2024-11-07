@@ -13,25 +13,114 @@
             rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
         />
-        <!-- Bootstrap -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <!-- Nhúng CDN Font Awesome -->
+        <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
         <!-- Style CSS -->
         <link rel="stylesheet" href="./assets/font/stylesheet.css" />
+        <!-- Responsive -->
+        <link rel="stylesheet" href="./assets/css/responsive.css" />
         <!-- Reset CSS -->
         <link rel="stylesheet" href="./assets/css/reset.css" />
         <!-- Font  -->
         <link rel="stylesheet" href="./assets/css/style.css" />
-        <!--Style Login CSS-->
-        <link rel="stylesheet" href="./assets/css/login.css" />
-        <!-- Responsive -->
-        <link rel="stylesheet" href="./assets/css/responsive.css" />
+        <!--Style Prenium CSS-->
+        <link rel="stylesheet" href="./assets/css/prenium.css" />
         <!-- icon -->
         <link
             href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
             rel="stylesheet"
         />
-        <title>Login</title>
+        <title>Từ vựng</title>
+        <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: 100%;
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .service-info {
+      background-color: #e9f7fa;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      text-align: center;
+    }
+    .service-info h3 {
+      margin: 0;
+      color: #00796b;
+    }
+    .service-info p {
+      font-size: 16px;
+      color: #555;
+    }
+    .payment-methods {
+      margin-bottom: 20px;
+    }
+    .payment-methods label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+    select, input[type="text"], input[type="email"], input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 15px;
+      width: 100%;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 14px;
+      color: #555;
+    }
+    .footer a {
+      color: #00796b;
+      text-decoration: none;
+    }
+    input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Ẩn nút tăng/giảm trên Firefox */
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+  </style>
     </head>
     <body>
         <header class="header">
@@ -110,14 +199,10 @@
                                 >
                             </li>
                             <li>
-                                <a href="./blog.php" class="item-nav-mobile"
-                                    >Blog</a
-                                >
+                                <a href="./blog.php" class="item-nav-mobile">Blog</a>
                             </li>
                             <li>
-                                <a
-                                    href="./toeic-tip.php"
-                                    class="item-nav-mobile"
+                                <a href="./toeic-tip.php" class="item-nav-mobile"
                                     >TOEIC&nbsp;Tips</a
                                 >
                             </li>
@@ -174,15 +259,13 @@
                             <a href="./blog.php" class="item">Blog</a>
                         </li>
                         <li>
-                            <a href="./toeic-tip.php" class="item"
-                                >TOEIC&nbsp;Tips</a
-                            >
+                            <a href="./toeic-tip.php" class="item">TOEIC&nbsp;Tips</a>
                         </li>
                     </ul>
 
                     <!-- Button -->
                     <div class="actions">
-                        <a href="./prenium.php" class="pro btn" id="log">
+                        <a href="./prenium.php" class="pro btn">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 36 24"
@@ -193,178 +276,115 @@
                             </svg>
                             <p>Unlock&nbsp;Pro</p>
                         </a>
+                        <a href="./login.php" class="log btn" id="log">
+                            <p class="text">Đăng&nbsp;nhập</p>
+                        </a>
                     </div>
                 </nav>
             </div>
         </header>
+        <div class="container">
+    <!-- Thông tin gói dịch vụ -->
+    <div class="service-info">
+      <h3>Khóa Học Tiếng Anh</h3>
+      <p>Khóa học Tiếng Anh dành cho doanh nghiệp - $250/năm</p>
+      <p><strong>Đăng ký ngay hôm nay để bắt đầu học ngay!</strong></p>
+    </div>
 
-        <div class="main-login">
-            <div class="sign">
-                <div id="form-login" class="login-phara">
-                    <div class="wrap login">
-                        <form class="form-group" action="./LOGCODE/login_process.php" method="POST">
-                            <div>
-                                <div class="title">ĐĂNG NHẬP</div>
-                            </div>
-                            <div class="input-box">
-                                <input
-                                    type="email"
-                                    id="mail-log"
-                                    class="email-input"
-                                    name="email"
-                                    placeholder="Nhập địa chỉ email"
-                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                                    required
-                                />
-                                <i class="bx bxs-user"></i>
-                                <p class="form-error">
-                                    Vui lòng nhập đúng email
-                                </p>
-                            </div>
-                            <div class="input-box">
-                                <input
-                                    type="password"
-                                    id="pass-log"
-                                    class="pass-input"
-                                    name="password"
-                                    placeholder="Nhập mật khẩu"
-                                    required
-                                />
-                                <i class="bx bxs-lock-alt"></i>
-                            </div>
-                            <div class="remember-forgot">
-                                <a href="#">Quên mật khẩu?</a>
-                            </div>
-                            <div class="submit">
-                                <button type="submit" class="buttonlogin">
-                                    Đăng nhập
-                                </button>
-                            </div>
-                            <p class="nhap_sai_mk">Đăng nhập thất bại</p>
-                        </form>
-                        <div class="loginwith">
-                            <span>Đăng nhập với</span>
-                        </div>
-                        <div class="gg">
-                            <button class="signup-social logo-wrapper">
-                                <img
-                                    src="./assets/img/g-logo.png"
-                                    alt="logo GG"
-                                />
-                                <span class="signup-social-text"
-                                    >Đăng nhập bằng Google</span
-                                >
-                            </button>
-                        </div>
-                        <div class="register">
-                            <p>Tạo tài khoản mới? <a id="next">Đăng kí</a></p>
-                        </div>
-                    </div>
-                    <div class="wrap signn">
-                        <form class="form-group" action="./LOGCODE/singup.php" method="POST">
-                            <div>
-                                <div class="title">TẠO TÀI KHOẢN</div>
-                            </div>
-                            <div class="input-box">
-                                <input
-                                    type="text"
-                                    id="name"
-                                    name="name"
-                                    placeholder="Nhập username"
-                                    required
-                                    minlength="2"
-                                />
-                                <i class="bx bxs-user"></i>
-                                <p class="form-error">Nhập ít nhất 2 ký tự</p>
-                            </div>
-                            <div class="input-box">
-                                <input
-                                    type="email"
-                                    id="mail-signup"
-                                    class="email-input"
-                                    name="email"
-                                    placeholder="Nhập địa chỉ email"
-                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                                    required
-                                />
-                                <i class="bx bxs-user"></i>
-                                <p class="form-error">
-                                    Vui lòng nhập đúng email
-                                </p>
-                            </div>
-                            <div class="input-box">
-                                <input
-                                    type="password"
-                                    id="psw"
-                                    name="pass"
-                                    placeholder="Nhập mật khẩu"
-                                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                                    minlength="8"
-                                    required
-                                />
-                                <i class="bx bxs-lock-alt"></i>
-                            </div>
-                            <div id="pass-error">
-                                <p id="letter" class="invalid">
-                                    Có chữ viết thường
-                                </p>
-                                <p id="capital" class="invalid">
-                                    Có chữ viết hoa
-                                </p>
-                                <p id="number" class="invalid">Có số</p>
-                                <p id="length" class="invalid">
-                                    Tối đa 8 ký tự
-                                </p>
-                            </div>
-                            <div class="input-box">
-                                <input
-                                    type="password"
-                                    id="df-psw"
-                                    name="confirm_pass"
-                                    placeholder="Nhập lại mật khẩu"
-                                    required
-                                />
-                                <i class="bx bxs-lock-alt"></i>
-                                <p class="df-pass">
-                                    Vui lòng nhập giống với mật khẩu đã tạo
-                                    trước đó
-                                </p>
-                            </div>
-                            <div class="submit">
-                                <button
-                                    type="submit"
-                                    class="buttonlogin"
-                                    id="dangky"
-                                    name = "dangky"
-                                >
-                                    Đăng&nbsp;ký&nbsp;ngay
-                                </button>
-                            </div>
-                        </form>
-                        <div class="loginwith">
-                            <span>Hoặc đăng kí với</span>
-                        </div>
-                        <div class="gg">
-                            <button class="signup-social logo-wrapper">
-                                <img
-                                    src="./assets/img/g-logo.png"
-                                    alt="logo GG"
-                                />
-                                <span class="signup-social-text"
-                                    >Đăng nhập bằng Google</span
-                                >
-                            </button>
-                        </div>
-                        <div class="register">
-                            <p>
-                                Bạn đã có tài khoản ?
-                                <a id="prev">Đăng nhập ngay</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- Form thanh toán -->
+    <h1>Thanh toán dịch vụ</h1>
+
+<form id="payment-form">
+    <!-- Các thông tin người dùng -->
+    <label for="full-name">Họ và tên:</label>
+    <input type="text" id="full-name" name="full-name" required><br><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <label for="sdt">Số điện thoại:</label>
+    <input type="number" id="sdt" name="sdt" min="0100000000" max="0999999999"required><br><br>
+
+    <!-- Chọn phương thức thanh toán -->
+    <label for="payment-method">Phương thức thanh toán:</label>
+    <select id="payment-method" name="payment-method">
+        <option value="">Chọn phương thức thanh toán</option>
+        <option value="credit-card">Thẻ tín dụng</option>
+        <option value="paypal">PayPal</option>
+        <option value="bank-transfer">Chuyển khoản ngân hàng</option>
+    </select><br><br>
+
+    <!-- Chi tiết thẻ tín dụng -->
+    <div id="credit-card-details" class="payment-details" style="display: none;">
+        <label for="credit-card-number">Số thẻ tín dụng:</label>
+        <input type="text" id="credit-card-number" name="credit-card-number"><br><br>
+        <label for="credit-account-name">Tên ngân hàng:</label>
+        <input type="text" id="credit-account-name" name="credit-account-name"><br><br>
+    </div>
+
+    <!-- Chi tiết PayPal -->
+    <div id="paypal-details" class="payment-details" style="display: none;">
+        <label for="paypal-email">Email PayPal:</label>
+        <input type="email" id="paypal-email" name="paypal-email"><br><br>
+    </div>
+
+    <!-- Chi tiết chuyển khoản ngân hàng -->
+    <div id="bank-transfer-details" class="payment-details" style="display: none;">
+        <label for="bank-account">Số tài khoản ngân hàng:</label>
+        <input type="number" id="bank-account" name="bank-account"><br><br>
+        <label for="bank-account-name">Tên ngân hàng:</label>
+        <input type="text" id="bank-account-name" name="bank-account-name"><br><br>
+    </div>
+    <button type="submit">Thanh toán $250</button>
+
+    </form>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>Bằng cách thanh toán, bạn đồng ý với <a href="#">Điều khoản và Điều kiện</a></p>
+    </div>
+  </div>
+
+  <script>
+      // Hiển thị các chi tiết thanh toán dựa trên phương thức chọn
+        document.getElementById("payment-method").addEventListener("change", function() {
+            const method = this.value;
+
+            // Ẩn tất cả các phương thức thanh toán chi tiết
+            const paymentDetails = document.querySelectorAll('.payment-details');
+            paymentDetails.forEach(detail => detail.style.display = 'none');
+            
+            // Hiển thị phương thức thanh toán đã chọn
+            if (method === "credit-card") {
+                document.getElementById("credit-card-details").style.display = "block";
+            } else if (method === "paypal") {
+                document.getElementById("paypal-details").style.display = "block";
+            } else if (method === "bank-transfer") {
+                document.getElementById("bank-transfer-details").style.display = "block";
+            }
+        });
+
+        // Xử lý form thanh toán khi gửi
+        document.getElementById("payment-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            // Kiểm tra xem người dùng đã điền đầy đủ thông tin chưa
+            const paymentMethod = document.getElementById("payment-method").value;
+            const name = document.getElementById("full-name").value;
+            const email = document.getElementById("email").value;
+            const bank = document.getElementById("bank-account").value;
+            const paypal = document.getElementById("paypal-email").value;
+            const creditcard = document.getElementById("credit-card-number").value;
+            
+            if (!paymentMethod || !name || !email) {
+                alert("Vui lòng điền đầy đủ thông tin.");
+                return;
+            } else {
+                window.location.href = "./verification.php";
+
+            }
+        });
+  </script>
         <footer class="footer">
             <div class="content">
                 <div class="row row-top">
@@ -525,13 +545,15 @@
                 </div>
             </div>
         </footer>
+
+        <a href="#" class="btn-to-top">
+            <i class="fa-solid fa-jet-fighter-up"></i>
+        </a>
+
         <!-- Nhúng Javascript -->
-        <script src="./assets/js/login.js"></script>
-        <!-- Nhúng Jquery -->
-        <script
-            src="https://code.jquery.com/jquery-3.7.0.min.js"
-            integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
-            crossorigin="anonymous"
-        ></script>
+        <script src="./assets/js/vocabulary.js"></script>
+        <script src="./assets/js/go-top.js"></script>
+        <script src="./assets/js/if_log.js"></script>
+
     </body>
 </html>
