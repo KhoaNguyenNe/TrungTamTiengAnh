@@ -1,49 +1,3 @@
-
-<?php
-
-    
-    //Kiểm tra đăng nhập
-    include 'checkRole.php';
-
-
-
-
-    //Xét user_type của user
-    // phân quyền giảng viên và quản trị ở nút xóa tất cả
-     // Kiểm tra và phân quyền
-     function checkPermission($lecture_teacher_id, $user_role, $user_id) {
-        if ($user_role == 'admin') {
-            return true; // Quản trị viên có quyền sửa và xóa tất cả
-        }
-        if ($user_role == 'teacher' && $lecture_teacher_id == $user_id) {
-            return true; // Giảng viên chỉ có thể sửa và xóa bài giảng của mình
-        }
-        return false; // Không có quyền
-    }
-
-    include 'connect.php';
-
-    $sql = "SELECT * FROM lectures";
-    $result = $conn->query($sql);
-
-    // Lưu kết quả vào biến $listLectures dưới dạng một mảng
-    $listLectures = [];
-    if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-            $listLectures[] = $row;  // Lưu từng dòng kết quả vào mảng
-        }
-    } else {
-        echo "0 results";
-    }
-
-    // Đóng kết nối
-    $conn->close();
-
-?>
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -55,7 +9,10 @@
             href="./assets/favicon/favicon.ico"
             type="image/x-icon"
         />
-        
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
         <!-- Nhúng CDN Font Awesome -->
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
         <link
@@ -65,18 +22,105 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         />
-        <!-- Font  -->
+        <!-- Style CSS -->
         <link rel="stylesheet" href="./assets/font/stylesheet.css" />
-        <!-- Reset CSS -->
-        <link rel="stylesheet" href="./assets/css/reset.css" />
         <!-- Responsive -->
         <link rel="stylesheet" href="./assets/css/responsive.css" />
-        <!-- Style CSS -->
+        <!-- Reset CSS -->
+        <link rel="stylesheet" href="./assets/css/reset.css" />
+        <!-- Font  -->
         <link rel="stylesheet" href="./assets/css/style.css" />
-        <!-- L_R CSS -->
-        <link rel="stylesheet" href="./assets/css/lectures.css" />
-        
-        <title>Listen and Reading</title>
+        <!--Style Prenium CSS-->
+        <link rel="stylesheet" href="./assets/css/prenium.css" />
+        <!-- icon -->
+        <link
+            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+            rel="stylesheet"
+        />
+        <title>Từ vựng</title>
+        <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: 100%;
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .service-info {
+      background-color: #e9f7fa;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      text-align: center;
+    }
+    .service-info h3 {
+      margin: 0;
+      color: #00796b;
+    }
+    .service-info p {
+      font-size: 16px;
+      color: #555;
+    }
+    .payment-methods {
+      margin-bottom: 20px;
+    }
+    .payment-methods label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+    select, input[type="text"], input[type="email"], input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 15px;
+      width: 100%;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 14px;
+      color: #555;
+    }
+    .footer a {
+      color: #00796b;
+      text-decoration: none;
+    }
+    input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Ẩn nút tăng/giảm trên Firefox */
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+  </style>
     </head>
     <body>
         <header class="header">
@@ -155,15 +199,10 @@
                                 >
                             </li>
                             <li>
-                                <a href="./blog.php" class="item-nav-mobile"
-                                    >Blog</a
-                                >
+                                <a href="./blog.php" class="item-nav-mobile">Blog</a>
                             </li>
-                            
                             <li>
-                                <a
-                                    href="./toeic-tip.php"
-                                    class="item-nav-mobile"
+                                <a href="./toeic-tip.php" class="item-nav-mobile"
                                     >TOEIC&nbsp;Tips</a
                                 >
                             </li>
@@ -172,7 +211,6 @@
                                     >Đăng&nbsp;nhập</a
                                 >
                             </li>
-                            
                         </ul>
                     </nav>
                     <!-- Logo -->
@@ -221,9 +259,7 @@
                             <a href="./blog.php" class="item">Blog</a>
                         </li>
                         <li>
-                            <a href="./toeic-tip.php" class="item"
-                                >TOEIC&nbsp;Tips</a
-                            >
+                            <a href="./toeic-tip.php" class="item">TOEIC&nbsp;Tips</a>
                         </li>
                     </ul>
 
@@ -247,54 +283,108 @@
                 </nav>
             </div>
         </header>
+        <div class="container">
+    <!-- Thông tin gói dịch vụ -->
+    <div class="service-info">
+      <h3>Khóa Học Tiếng Anh</h3>
+      <p>Khóa học Tiếng Anh dành cho doanh nghiệp - $50/tháng</p>
+      <p><strong>Đăng ký ngay hôm nay để bắt đầu học ngay!</strong></p>
+    </div>
 
-        <main>
-            <div class="container">
-                <hr>
-                <h2>Quản lí bài giảng</h2>
-                <p>
-                    <button class="add-button"><a href="/TrungTamTiengAnh/Lectures/addlecture.php"><i class="fa-solid fa-plus"></i>Thêm bài giảng</a></button>
-                </p>
-                <table class="table table-bordered">
-                    <thead>
-                        <th>STT</th>
-                        <th>Tiêu đề</th>
-                        <th>Mô tả</th>
-                        <th>Nội dung</th>
-                        <th>Giảng Viên</th>
-                        <th>Trạng Thái</th>
-                        <th width = "5%">Sửa</th>
-                        <th width="5%">Xóa</th>
-                    </thead>
-                    <tbody>
-                    <?php
-                        $count = 0;
-                        foreach($listLectures as $item):
-                                $count++;
-                    ?>
-                    <tr>
-                        <td><?php echo $count; ?></td>
-                        <td><?php echo $item['title']; ?></td>
-                        <td><?php echo $item['description']; ?></td>
-                        <td><?php echo $item['content']; ?></td>
-                        <td><?php echo $item['teacher_id']; ?></td>
-                        <td><?php echo $item['status']; ?></td>
-                        <td><button class="fix-button"><a href=""><i class="fa-solid fa-pen-to-square"></i></a></button></td>
-                        <td><button class="delete-button""><a href=""onclick = "return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a></button></td>
-                    </tr>
-                    <?php
-                        endforeach;
-                        
-                    ?>
-                    
-                        </tbody>
-                </table>
-            </div>
-        </main>
+    <!-- Form thanh toán -->
+    <h1>Thanh toán dịch vụ</h1>
 
-        
-        
+<form id="payment-form">
+    <!-- Các thông tin người dùng -->
+    <label for="full-name">Họ và tên:</label>
+    <input type="text" id="full-name" name="full-name" required><br><br>
 
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <label for="sdt">Số điện thoại:</label>
+    <input type="number" id="sdt" name="sdt" min="0100000000" max="0999999999"required><br><br>
+
+    <!-- Chọn phương thức thanh toán -->
+    <label for="payment-method">Phương thức thanh toán:</label>
+    <select id="payment-method" name="payment-method">
+        <option value="">Chọn phương thức thanh toán</option>
+        <option value="credit-card">Thẻ tín dụng</option>
+        <option value="paypal">PayPal</option>
+        <option value="bank-transfer">Chuyển khoản ngân hàng</option>
+    </select><br><br>
+
+    <!-- Chi tiết thẻ tín dụng -->
+    <div id="credit-card-details" class="payment-details" style="display: none;">
+        <label for="credit-card-number">Số thẻ tín dụng:</label>
+        <input type="text" id="credit-card-number" name="credit-card-number"><br><br>
+        <label for="credit-account-name">Tên ngân hàng:</label>
+        <input type="text" id="credit-account-name" name="credit-account-name"><br><br>
+    </div>
+
+    <!-- Chi tiết PayPal -->
+    <div id="paypal-details" class="payment-details" style="display: none;">
+        <label for="paypal-email">Email PayPal:</label>
+        <input type="email" id="paypal-email" name="paypal-email"><br><br>
+    </div>
+
+    <!-- Chi tiết chuyển khoản ngân hàng -->
+    <div id="bank-transfer-details" class="payment-details" style="display: none;">
+        <label for="bank-account">Số tài khoản ngân hàng:</label>
+        <input type="number" id="bank-account" name="bank-account"><br><br>
+        <label for="bank-account-name">Tên ngân hàng:</label>
+        <input type="text" id="bank-account-name" name="bank-account-name"><br><br>
+    </div>
+    <button type="submit">Thanh toán $50</button>
+
+    </form>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>Bằng cách thanh toán, bạn đồng ý với <a href="#">Điều khoản và Điều kiện</a></p>
+    </div>
+  </div>
+
+  <script>
+      // Hiển thị các chi tiết thanh toán dựa trên phương thức chọn
+        document.getElementById("payment-method").addEventListener("change", function() {
+            const method = this.value;
+
+            // Ẩn tất cả các phương thức thanh toán chi tiết
+            const paymentDetails = document.querySelectorAll('.payment-details');
+            paymentDetails.forEach(detail => detail.style.display = 'none');
+            
+            // Hiển thị phương thức thanh toán đã chọn
+            if (method === "credit-card") {
+                document.getElementById("credit-card-details").style.display = "block";
+            } else if (method === "paypal") {
+                document.getElementById("paypal-details").style.display = "block";
+            } else if (method === "bank-transfer") {
+                document.getElementById("bank-transfer-details").style.display = "block";
+            }
+        });
+
+        // Xử lý form thanh toán khi gửi
+        document.getElementById("payment-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            // Kiểm tra xem người dùng đã điền đầy đủ thông tin chưa
+            const paymentMethod = document.getElementById("payment-method").value;
+            const name = document.getElementById("full-name").value;
+            const email = document.getElementById("email").value;
+            const bank = document.getElementById("bank-account").value;
+            const paypal = document.getElementById("paypal-email").value;
+            const creditcard = document.getElementById("credit-card-number").value;
+            
+            if (!paymentMethod || !name || !email) {
+                alert("Vui lòng điền đầy đủ thông tin.");
+                return;
+            } else {
+                window.location.href = "./verification.php";
+
+            }
+        });
+  </script>
         <footer class="footer">
             <div class="content">
                 <div class="row row-top">
@@ -461,8 +551,9 @@
         </a>
 
         <!-- Nhúng Javascript -->
-        <script src="./assets/js/khoaHoc.js"></script>
+        <script src="./assets/js/vocabulary.js"></script>
         <script src="./assets/js/go-top.js"></script>
         <script src="./assets/js/if_log.js"></script>
+
     </body>
 </html>
