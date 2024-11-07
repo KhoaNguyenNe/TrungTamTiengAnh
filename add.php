@@ -1,4 +1,5 @@
-<?php
+<<?php
+include ("./connect.php");
 
 // Xử lý dữ liệu khi form được gửi
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -36,20 +37,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Nếu không có lỗi, xử lý thêm người dùng vào cơ sở dữ liệu
     if (empty($errors)) {
         // Kết nối cơ sở dữ liệu và thực hiện thêm người dùng
-        // Giả sử bạn đã kết nối với cơ sở dữ liệu và tạo câu lệnh SQL để thêm người dùng
-        // Ví dụ:
-        /*
-        $query = "INSERT INTO users (fullname, email, phone, password, status) VALUES (?, ?, ?, ?, ?)";
-        $stmt = $mysqli->prepare($query);
-        $stmt->bind_param("sssss", $fullname, $email, $phone, password_hash($password, PASSWORD_DEFAULT), $status);
-        $stmt->execute();
-        */
-        echo "Người dùng đã được thêm thành công!";
-        // Chuyển hướng sau khi thêm thành công
-        // header("Location: list.php");
+        $insert = "INSERT INTO `user` (email, password, name, phone, user_type, status) VALUES ('$email', '$password', '$fullname', '$phone', 'Học viên', '$status')";
+        if (mysqli_query($conn, $insert)) {
+            echo "Người dùng đã được thêm thành công!";
+            // Chuyển hướng sau khi thêm thành công
+            header("Location: list.php");
+            exit();
+        } else {
+            echo "Error: " . $insert . "<br>" . mysqli_error($conn);
+        }
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -91,10 +91,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <label for="status">Trạng thái:</label><br>
         <select id="status" name="status">
-            <option value="active" <?= isset($status) && $status == 'active' ? 'selected' : '' ?>>Đã kích hoạt</option>
-            <option value="inactive" <?= isset($status) && $status == 'inactive' ? 'selected' : '' ?>>Chưa kích hoạt
-            </option>
+            <option value="1" <?= isset($status) && $status == '1' ? 'selected' : '' ?>>Đã kích hoạt</option>
+            <option value="0" <?= isset($status) && $status == '0' ? 'selected' : '' ?>>Chưa kích hoạt</option>
         </select><br><br>
+
 
         <button type="submit">Thêm người dùng</button>
         <p>

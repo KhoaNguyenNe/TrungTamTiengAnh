@@ -2,7 +2,7 @@
 include 'connect.php';
 
 $id = $_GET['id'];
-$result = $conn->query("SELECT * FROM users WHERE id = $id");
+$result = $conn->query("SELECT * FROM user WHERE id = $id");
 $row = $result->fetch_assoc();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
