@@ -2,7 +2,7 @@
 include 'connect.php'; // Đảm bảo rằng đường dẫn đúng
 
 // Lấy danh sách người dùng
-$result = $conn->query("SELECT * FROM users");
+$result = $conn->query("SELECT * FROM user");
 
 // Kiểm tra lỗi truy vấn
 if (!$result) {
@@ -174,7 +174,7 @@ if (!$result) {
                         ?>
                         <tr>
                             <td><?php echo $count; ?></td>
-                            <td><?php echo $item['fullname']; ?></td>
+                            <td><?php echo $item['name']; ?></td>
                             <td><?php echo $item['email']; ?></td>
                             <td><?php echo $item['phone']; ?></td>
                             <td><?php echo $item['status'] == 1 ? '<button class="btn btn-activated btn-sm">Đã kích hoạt</button>' : '<button class="btn btn-deactivated btn-sm">Chưa kích hoạt</button>'; ?>
