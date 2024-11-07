@@ -50,5 +50,4 @@
         </form>
     </body>
     <img src="<?=$dan->link;?>" alt="Image">
-    2|99|sdtmomo|Bui Khanh Dang|0|0|sotien|noidung|tranfer_myqr
 </html>
