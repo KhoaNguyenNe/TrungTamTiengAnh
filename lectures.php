@@ -3,66 +3,43 @@
 
     
     //Kiểm tra đăng nhập
-    checkRole();
+    include 'checkRole.php';
 
 
 
-    
+
     //Xét user_type của user
-    
-
-
     // phân quyền giảng viên và quản trị ở nút xóa tất cả
-
-
-
-
-
-
-    //truy vấn dữ liệu vào database (không truy vấn được)
-    function getRaw($sql) {
-        // Thông tin kết nối cơ sở dữ liệu
-        $servername = "localhost"; // Tên server
-        $username = "root";    // Tên người dùng MySQL
-        $password = "";    // Mật khẩu MySQL
-        $dbname = "english_center"; // Tên cơ sở dữ liệu
-    
-        // Kết nối tới cơ sở dữ liệu
-        $conn = new mysqli($servername, $username, $password, $dbname);
-    
-        // Kiểm tra kết nối
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
+     // Kiểm tra và phân quyền
+     function checkPermission($lecture_teacher_id, $user_role, $user_id) {
+        if ($user_role == 'admin') {
+            return true; // Quản trị viên có quyền sửa và xóa tất cả
         }
-    
-        // Thực hiện truy vấn SQL
-        $result = $conn->query($sql);
-    
-        // Tạo một mảng để lưu dữ liệu trả về
-        $data = [];
-    
-        // Kiểm tra và xử lý kết quả
-        if ($result && $result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $data[] = $row;
-            }
+        if ($user_role == 'teacher' && $lecture_teacher_id == $user_id) {
+            return true; // Giảng viên chỉ có thể sửa và xóa bài giảng của mình
         }
-    
-        // Đóng kết nối
-        $conn->close();
-    
-        // Trả về mảng dữ liệu
-        return $data;
+        return false; // Không có quyền
     }
 
-    $listLectures= getRaw("SELECT * FROM lectures ORDER BY update_at");
+    include 'connect.php';
 
-    echo '<pre>';
-    print_r($listLectures);
-    echo '</pre>';
+    $sql = "SELECT * FROM lectures";
+    $result = $conn->query($sql);
+
+    // Lưu kết quả vào biến $listLectures dưới dạng một mảng
+    $listLectures = [];
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $listLectures[] = $row;  // Lưu từng dòng kết quả vào mảng
+        }
+    } else {
+        echo "0 results";
+    }
+
+    // Đóng kết nối
+    $conn->close();
+
 ?>
-
-
 
 
 
@@ -276,7 +253,7 @@
                 <hr>
                 <h2>Quản lí bài giảng</h2>
                 <p>
-                    <button class="add-button"><a href=""><i class="fa-solid fa-plus"></i>Thêm bài giảng</a></button>
+                    <button class="add-button"><a href="/TrungTamTiengAnh/Lectures/addlecture.php"><i class="fa-solid fa-plus"></i>Thêm bài giảng</a></button>
                 </p>
                 <table class="table table-bordered">
                     <thead>
@@ -291,9 +268,8 @@
                     </thead>
                     <tbody>
                     <?php
-                        if(!temp($listLectures)):
-                            $count = 0;
-                            foreach($listLectures as $item):
+                        $count = 0;
+                        foreach($listLectures as $item):
                                 $count++;
                     ?>
                     <tr>
@@ -307,8 +283,8 @@
                         <td><button class="delete-button""><a href=""onclick = "return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a></button></td>
                     </tr>
                     <?php
-                            endforeach;
-                        endif;
+                        endforeach;
+                        
                     ?>
                     
                         </tbody>
