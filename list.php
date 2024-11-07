@@ -1,5 +1,5 @@
 <?php
-include 'connect.php'; // Đảm bảo rằng đường dẫn đúng
+include './connect.php'; // Đảm bảo rằng đường dẫn đúng
 
 // Lấy danh sách người dùng
 $result = $conn->query("SELECT * FROM user");
