@@ -1,12 +1,7 @@
 
 <?php
-
-    
     //Kiểm tra đăng nhập
     include 'checkRole.php';
-
-
-
 
     //Xét user_type của user
     // phân quyền giảng viên và quản trị ở nút xóa tất cả

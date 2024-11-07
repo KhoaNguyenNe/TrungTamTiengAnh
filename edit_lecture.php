@@ -2,6 +2,11 @@
 // Database connection
 include'connect.php';
 
+session_start();
+$user_role = 'teacher'; //$_SESSION['user_type'];  // Vai trò của người dùng
+$user_id = 1; //$_SESSION['user_id']; // ID của người dùng hiện tại
+
+
 // Check the connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -9,64 +14,71 @@ if ($conn->connect_error) {
 
 // Get the lecture ID from the URL
 $lecture_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
-
+$result = $conn->query("SELECT * FROM lectures WHERE id = $lecture_id");
+$lecture = $result->fetch_assoc();
 // Initialize error and data variables
 $errors = [];
 $title = $description = $content = $teacher_id = $status = "";
 
-// Check if lecture ID is valid and retrieve data
-if ($lecture_id > 0) {
-    $stmt = $conn->prepare("SELECT title, description, content, teacher_id, status FROM lectures WHERE id = ?");
-    $stmt->bind_param("i", $lecture_id);
-    $stmt->execute();
-    $stmt->bind_result($title, $description, $content, $teacher_id, $status);
-    $stmt->fetch();
-    $stmt->close();
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Get updated data from form
-        $title = $_POST['title'];
-        $description = $_POST['description'];
-        $content = $_POST['content'];
-        $teacher_id = $_POST['teacher_id'];
-        $status = $_POST['status'];
-
-        // Validate form data
-        if (empty($title)) {
-            $errors['title'] = "Tiêu đề bắt buộc phải nhập";
-        }
-        if (empty($description)) {
-            $errors['description'] = "Mô tả bắt buộc phải nhập";
-        }
-        if (empty($content)) {
-            $errors['content'] = "Nội dung bắt buộc phải nhập";
-        }
-        if (empty($teacher_id)) {
-            $errors['teacher_id'] = "Giảng Viên bắt buộc phải nhập";
-        }
-        if (empty($status)) {
-            $errors['status'] = "Trạng Thái bắt buộc phải nhập";
-        }
-
-        // Update the lecture if no errors
-        if (empty($errors)) {
-            $stmt = $conn->prepare("UPDATE lectures SET title = ?, description = ?, content = ?, teacher_id = ?, status = ? WHERE id = ?");
-            $stmt->bind_param("sssiii", $title, $description, $content, $teacher_id, $status, $lecture_id);
-
-            if ($stmt->execute()) {
-                echo "Bài giảng đã được cập nhật thành công!";
-                header("Location: lectures.php");
-                exit;
-            } else {
-                echo "Có lỗi xảy ra khi cập nhật bài giảng: " . $conn->error;
+if ($user_role == 'admin' || ($user_role == 'teacher' && $lecture['teacher_id'] == $user_id)) {
+    // Cho phép chỉnh sửa bài giảng
+    if ($lecture_id > 0) {
+        $stmt = $conn->prepare("SELECT title, description, content, teacher_id, status FROM lectures WHERE id = ?");
+        $stmt->bind_param("i", $lecture_id);
+        $stmt->execute();
+        $stmt->bind_result($title, $description, $content, $teacher_id, $status);
+        $stmt->fetch();
+        $stmt->close();
+    
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // Get updated data from form
+            $title = $_POST['title'];
+            $description = $_POST['description'];
+            $content = $_POST['content'];
+            $teacher_id = $_POST['teacher_id'];
+            $status = $_POST['status'];
+    
+            // Validate form data
+            if (empty($title)) {
+                $errors['title'] = "Tiêu đề bắt buộc phải nhập";
             }
-
-            $stmt->close();
+            if (empty($description)) {
+                $errors['description'] = "Mô tả bắt buộc phải nhập";
+            }
+            if (empty($content)) {
+                $errors['content'] = "Nội dung bắt buộc phải nhập";
+            }
+            if (empty($teacher_id)) {
+                $errors['teacher_id'] = "Giảng Viên bắt buộc phải nhập";
+            }
+            if (empty($status)) {
+                $errors['status'] = "Trạng Thái bắt buộc phải nhập";
+            }
+    
+            // Update the lecture if no errors
+            if (empty($errors)) {
+                $stmt = $conn->prepare("UPDATE lectures SET title = ?, description = ?, content = ?, teacher_id = ?, status = ? WHERE id = ?");
+                $stmt->bind_param("sssiii", $title, $description, $content, $teacher_id, $status, $lecture_id);
+    
+                if ($stmt->execute()) {
+                    echo "Bài giảng đã được cập nhật thành công!";
+                    header("Location: lectures.php");
+                    exit;
+                } else {
+                    echo "Có lỗi xảy ra khi cập nhật bài giảng: " . $conn->error;
+                }
+    
+                $stmt->close();
+            }
         }
+    } else {
+        echo "ID bài giảng không hợp lệ.";
     }
 } else {
-    echo "ID bài giảng không hợp lệ.";
+    echo "<script>alert('Bạn không có quyền thực hiện chức năng này'); window.location.href = 'lectures.php';</script>";
 }
+// Check if lecture ID is valid and retrieve data
+
 
 $conn->close();
 ?>
