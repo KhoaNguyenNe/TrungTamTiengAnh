@@ -1,12 +1,7 @@
 
 <?php
-
-    
     //Kiểm tra đăng nhập
     include 'checkRole.php';
-
-
-
 
     //Xét user_type của user
     // phân quyền giảng viên và quản trị ở nút xóa tất cả
@@ -253,7 +248,7 @@
                 <hr>
                 <h2>Quản lí bài giảng</h2>
                 <p>
-                    <button class="add-button"><a href="/TrungTamTiengAnh/Lectures/addlecture.php"><i class="fa-solid fa-plus"></i>Thêm bài giảng</a></button>
+                    <button class="add-button"><a href="add_lecture.php"><i class="fa-solid fa-plus"></i>Thêm bài giảng</a></button>
                 </p>
                 <table class="table table-bordered">
                     <thead>
@@ -270,17 +265,16 @@
                     <?php
                         $count = 0;
                         foreach($listLectures as $item):
-                                $count++;
                     ?>
                     <tr>
-                        <td><?php echo $count; ?></td>
+                        <td><?php echo $item['id']; ?></td>
                         <td><?php echo $item['title']; ?></td>
                         <td><?php echo $item['description']; ?></td>
                         <td><?php echo $item['content']; ?></td>
                         <td><?php echo $item['teacher_id']; ?></td>
                         <td><?php echo $item['status']; ?></td>
-                        <td><button class="fix-button"><a href=""><i class="fa-solid fa-pen-to-square"></i></a></button></td>
-                        <td><button class="delete-button""><a href=""onclick = "return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a></button></td>
+                        <td><button class="fix-button"><a href="edit_lecture.php?id=<?= $item['id'] ?>"><i class="fa-solid fa-pen-to-square"></i></a></button></td>
+                        <td><button class="delete-button""><a href="delete_lecture.php?id=<?= $item['id'] ?>"onclick = "return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a></button></td>
                     </tr>
                     <?php
                         endforeach;
