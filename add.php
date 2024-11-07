@@ -37,7 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Nếu không có lỗi, xử lý thêm người dùng vào cơ sở dữ liệu
     if (empty($errors)) {
         // Kết nối cơ sở dữ liệu và thực hiện thêm người dùng
-        $insert = "INSERT INTO `user` (email, password, name, phone, user_type, status) VALUES ('$email', '$password', '$fullname', '$phone', 'Học viên', '$status')";
+        $pass_hash = md5($password);
+        $insert = "INSERT INTO `user` (email, password, name, phone, user_type, status) VALUES ('$email', '$pass_hash', '$fullname', '$phone', 'Học viên', '$status')";
         if (mysqli_query($conn, $insert)) {
             echo "Người dùng đã được thêm thành công!";
             // Chuyển hướng sau khi thêm thành công

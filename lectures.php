@@ -12,10 +12,10 @@
     // phân quyền giảng viên và quản trị ở nút xóa tất cả
      // Kiểm tra và phân quyền
      function checkPermission($lecture_teacher_id, $user_role, $user_id) {
-        if ($user_role == 'admin') {
+        if ($user_role == 'Admin') {
             return true; // Quản trị viên có quyền sửa và xóa tất cả
         }
-        if ($user_role == 'teacher' && $lecture_teacher_id == $user_id) {
+        if ($user_role == 'Giảng viên' && $lecture_teacher_id == $user_id) {
             return true; // Giảng viên chỉ có thể sửa và xóa bài giảng của mình
         }
         return false; // Không có quyền
