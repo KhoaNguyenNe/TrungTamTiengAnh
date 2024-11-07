@@ -1,7 +1,9 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
     include "../connect.php";
-
+    date_default_timezone_set('Asia/Ho_Chi_Minh');  // Đặt múi giờ là giờ Việt Nam
 // Kiểm tra kết nối
 if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
@@ -13,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
 
     // Truy vấn để lấy thông tin người dùng
-    $sql = "SELECT * FROM user WHERE email = ?";
+    $sql = "SELECT * FROM users WHERE email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $email);
     $stmt->execute();
@@ -28,8 +30,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Đăng nhập thành công, lưu thông tin đăng nhập vào session
             session_start();
             $_SESSION['user_id'] = $user['id'];
+            $_SESSION['user_name'] = $user['name'];
             $_SESSION['email'] = $user['email'];
-            $_SESSION['name'] = $user['name'];  // Lưu tên người dùng vào session
 
             // Lưu thông tin đăng nhập
             $login_time = date('Y-m-d H:i:s');
