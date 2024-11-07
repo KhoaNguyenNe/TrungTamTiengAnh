@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
     include "../connect.php";
     date_default_timezone_set('Asia/Ho_Chi_Minh');  // Đặt múi giờ là giờ Việt Nam
@@ -13,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
 
     // Truy vấn để lấy thông tin người dùng
-    $sql = "SELECT * FROM user WHERE email = ?";
+    $sql = "SELECT * FROM users WHERE email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $email);
     $stmt->execute();
