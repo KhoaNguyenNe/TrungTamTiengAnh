@@ -234,8 +234,9 @@
                         <div class="k-hoc">
                             <div class="head-actions">
                                 <a
+                                    href="./coursefree.php"    
                                     class="log btn head-btn hoc-ngay prenium-hocngay"
-                                    href="#"
+                                    
                                 >
                                     <p class="text">Học&nbsp;ngay</p>
                                 </a>
@@ -317,7 +318,7 @@
                             <div class="head-actions">
                                 <a
                                     class="log btn head-btn hoc-ngay prenium-hocngay"
-                                    href="#"
+                                    href="./course50.php"
                                 >
                                     <p class="text">Học&nbsp;ngay</p>
                                 </a>
@@ -399,7 +400,7 @@
                             <div class="head-actions">
                                 <a
                                     class="log btn head-btn hoc-ngay prenium-hocngay"
-                                    href="./Thanhtoan.php"
+                                    href="./course250.php"
                                 >
                                     <p class="text">Học&nbsp;ngay</p>
                                 </a>
