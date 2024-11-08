@@ -2,66 +2,152 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-    include "./connect.php";
-    date_default_timezone_set('Asia/Ho_Chi_Minh');  // Đặt múi giờ là giờ Việt Nam
-// Kiểm tra kết nối
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require '../PHPMailer-master/src/Exception.php';
+require '../PHPMailer-master/src/PHPMailer.php';
+require '../PHPMailer-master/src/SMTP.php';
+include "./connect.php";
+
+date_default_timezone_set('Asia/Ho_Chi_Minh');
+
 if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
 }
 
-// Kiểm tra xem người dùng đã gửi form đăng nhập hay chưa
+// Hàm gửi OTP qua email
+function sendEmailOTP($email, $otp) {
+    $mail = new PHPMailer(true);
+    try {
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'taotenk0912@gmail.com';
+        $mail->Password = 'krsxaldgjutrcodj';
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+        $mail->Port = 465;
+        $mail->SMTPDebug = 0; // Tắt chế độ debug
+        $mail->Debugoutput = 'html'; // Định dạng thông báo lỗi thành HTML (không cần sử dụng LoggerInterface)
+
+
+        $mail->setFrom('taotenk0912@gmail.com', 'Hệ thống');
+        $mail->addAddress($email);
+        $mail->isHTML(true);
+        $mail->Subject = "Xác Thực OTP Đăng Ký";
+        $mail->Body = "Mã OTP của bạn là: $otp";
+        
+        $mail->send();
+    } catch (Exception $e) {
+        echo "<script>alert('Không thể gửi email OTP: {$mail->ErrorInfo}');</script>";
+    }
+}
+
+// Hàm kiểm tra và cập nhật OTP
+function updateOrInsertOTP($conn, $email, $otp) {
+    $check_sql = "SELECT * FROM otp WHERE email = ?";
+    $check_stmt = $conn->prepare($check_sql);
+    $check_stmt->bind_param("s", $email);
+    $check_stmt->execute();
+    $result = $check_stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $otp_sql = "UPDATE otp SET otp = ? WHERE email = ?";
+    } else {
+        $otp_sql = "INSERT INTO otp (email, otp) VALUES (?, ?)";
+    }
+
+    $otp_stmt = $conn->prepare($otp_sql);
+    $otp_stmt->bind_param("ss", $otp, $email);
+    $otp_stmt->execute();
+
+    $check_stmt->close();
+    $otp_stmt->close();
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Truy vấn để lấy thông tin người dùng
     $sql = "SELECT * FROM user WHERE email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
 
-    // Kiểm tra nếu tìm thấy người dùng
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
 
-        // Xác minh mật khẩu
+        if ($user['status'] == 0) {
+            echo "<script>alert('Tài khoản của bạn đã bị khóa. Vui lòng xác thực OTP để mở khóa.');</script>";
+            header("Location: otp_verification.php");
+            exit();
+        }
+
         if (hash_equals(md5($password), $user['password'])) {
-            // Đăng nhập thành công, lưu thông tin đăng nhập vào session
             session_start();
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_name'] = $user['name'];
             $_SESSION['email'] = $user['email'];
 
-            // Lưu thông tin đăng nhập
             $login_time = date('Y-m-d H:i:s');
             $ip_address = $_SERVER['REMOTE_ADDR'];
             $user_agent = $_SERVER['HTTP_USER_AGENT'];
 
-            // Ghi nhận trạng thái đăng nhập vào cơ sở dữ liệu
             $log_sql = "INSERT INTO login_records (user_id, login_time, ip_address, user_agent) VALUES (?, ?, ?, ?)";
             $log_stmt = $conn->prepare($log_sql);
             $log_stmt->bind_param("isss", $_SESSION['user_id'], $login_time, $ip_address, $user_agent);
             $log_stmt->execute();
             $log_stmt->close();
 
-            // Chuyển hướng đến trang chủ kèm theo trạng thái đăng nhập
             header("Location: ./index.php?status=success&user_id=" . $_SESSION['user_id']);
             exit();
         } else {
-            // Mật khẩu không đúng
-            echo "<script> alert('Password Wrong! Please try again.');</script>" ;
+            $attempt_time = date('Y-m-d H:i:s');
+            $ip_address = $_SERVER['REMOTE_ADDR'];
+            $user_agent = $_SERVER['HTTP_USER_AGENT'];
+
+            $fail_log_sql = "INSERT INTO failed_login_attempts (email, attempt_time, ip_address, user_agent) VALUES (?, ?, ?, ?)";
+            $fail_log_stmt = $conn->prepare($fail_log_sql);
+            $fail_log_stmt->bind_param("ssss", $email, $attempt_time, $ip_address, $user_agent);
+            $fail_log_stmt->execute();
+            $fail_log_stmt->close();
+
+            $fail_check_sql = "SELECT COUNT(*) AS fail_count FROM failed_login_attempts WHERE email = ? AND attempt_time > NOW() - INTERVAL 1 HOUR";
+            $fail_check_stmt = $conn->prepare($fail_check_sql);
+            $fail_check_stmt->bind_param("s", $email);
+            $fail_check_stmt->execute();
+            $fail_check_result = $fail_check_stmt->get_result();
+            $fail_count_data = $fail_check_result->fetch_assoc();
+            $fail_check_stmt->close();
+
+            if ($fail_count_data['fail_count'] >= 5) {
+                $update_sql = "UPDATE user SET status = 0 WHERE email = ?";
+                $update_stmt = $conn->prepare($update_sql);
+                $update_stmt->bind_param("s", $email);
+                $update_stmt->execute();
+                $update_stmt->close();
+
+                $otp = rand(100000, 999999);
+                updateOrInsertOTP($conn, $email, $otp);
+                sendEmailOTP($email, $otp);
+
+                echo "<script>alert('Tài khoản của bạn đã bị khóa. Vui lòng kiểm tra email để nhận mã OTP.');</script>";
+                header("Location: /TRUNGTAMTIENGANH/LOGCODE/otp_MoKhoa.php");
+                exit();
+            } else {
+                echo "<script>alert('Password Wrong! Please try again.');</script>";
+            }
         }
     } else {
-        // Không tìm thấy người dùng
         echo "<p class='nhap_sai_mk'>Email không tồn tại</p>";
     }
 
     $stmt->close();
 }
-
-$conn->close();
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">

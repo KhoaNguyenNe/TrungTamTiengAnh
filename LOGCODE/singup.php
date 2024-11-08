@@ -86,10 +86,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                     alert("Tin nhắn không được gửi. Mailer Error: {$mail->?ErrorInfo}");
                 </script>
                 <?php
-            }
-
-            
-            
+            } 
         }
     }
 
