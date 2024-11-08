@@ -25,7 +25,6 @@ if(isset($_SESSION['email']) && isset( $_SESSION['user']))
             $user_type = $_SESSION["user"]["user_type"];
             $insert = "insert into user(email, password, name, user_type) values ('$email', '$pass', '$name', '$user_type')";
             mysqli_query($conn, $insert);
-
             header("Location: ../login.php");
         } else {
             echo "<script> alert('Invalid OTP. Please try again.');</script>";

@@ -25,7 +25,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         $pass = md5($_POST["pass"]);
         $user_type = "Học viên";
 
-        $select = "select * from users where email = '$email'";
+        $select = "select * from user where email = '$email'";
 
         $rs = mysqli_query($conn, $select);
 

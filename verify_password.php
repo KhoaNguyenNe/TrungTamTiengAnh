@@ -16,7 +16,7 @@ if ($conn->connect_error) {
 $user_id = $_SESSION['user_id'];
 
 // Lấy thông tin người dùng từ cơ sở dữ liệu
-$sql = "SELECT name, email FROM users WHERE id = ?";
+$sql = "SELECT name, email FROM user WHERE id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $old_password = $_POST['old_password'];
 
     // Lấy mật khẩu đã mã hóa từ cơ sở dữ liệu
-    $sql = "SELECT password FROM users WHERE id = ?";
+    $sql = "SELECT password FROM user WHERE id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $user_id);
     $stmt->execute();
@@ -58,15 +58,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Kiểm tra nếu người dùng tồn tại
     if ($stored_password) {
-        // Lấy phần salt từ mật khẩu đã mã hóa trong cơ sở dữ liệu
-        $salt = substr($stored_password, 0, 32); // 32 ký tự đầu là salt
-        // Băm mật khẩu cũ với salt
-        $hashed_password = pbkdf2HashPassword($old_password, $salt);
+        // // Lấy phần salt từ mật khẩu đã mã hóa trong cơ sở dữ liệu
+        // $salt = substr($stored_password, 0, 32); // 32 ký tự đầu là salt
+        // // Băm mật khẩu cũ với salt
+        // $hashed_password = pbkdf2HashPassword($old_password, $salt);
 
         // Xác minh mật khẩu
-        if ($hashed_password === $stored_password) {
+        if (hash_equals(md5($old_password), $stored_password)) {
             // Mật khẩu đúng, chuyển hướng đến trang cập nhật thông tin
-            header("Location: /TRUNGTAMTIENGANH/information.php");
+            header("Location: ./information.php");
             exit();
         } else {
             $message = "Mật khẩu cũ không chính xác. Vui lòng thử lại.";
@@ -284,7 +284,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </a>
                         <?php else: ?>
                             <li class="nav-item dropdown btn">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><?php echo htmlspecialchars($_SESSION['name']); ?></a>
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><?php echo htmlspecialchars($_SESSION['user_name']); ?></a>
                             <ul class="dropdown-menu dropmn">
                                 <li><a class="dropdown-item" href="/TRUNGTAMTIENGANH/verify_password.php">Thay đổi thông tin</a></li>
                                 <li><a class="dropdown-item" href="/TRUNGTAMTIENGANH/LOGCODE/logout.php">Đăng xuất</a></li>

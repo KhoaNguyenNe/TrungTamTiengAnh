@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $phone = $_POST['phone'];
 
-    $stmt = $conn->prepare("UPDATE users SET fullname = ?, email = ?, phone = ? WHERE id = ?");
+    $stmt = $conn->prepare("update user set name = ?, email = ?, phone = ? WHERE id = ?");
     $stmt->bind_param("sssi", $fullname, $email, $phone, $id);
     $stmt->execute();
     $stmt->close();
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <h1>Sửa người dùng</h1>
     <form method="POST">
         <label for="fullname">Họ tên:</label>
-        <input type="text" name="fullname" value="<?php echo $row['fullname']; ?>" required><br>
+        <input type="text" name="fullname" value="<?php echo $row['name']; ?>" required><br>
         <label for="email">Email:</label>
         <input type="email" name="email" value="<?php echo $row['email']; ?>" required><br>
         <label for="phone">Điện thoại:</label>

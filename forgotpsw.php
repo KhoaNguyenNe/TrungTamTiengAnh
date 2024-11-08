@@ -1,63 +1,87 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+    session_start();
 
     include "./connect.php";
-    date_default_timezone_set('Asia/Ho_Chi_Minh');  // Đặt múi giờ là giờ Việt Nam
-// Kiểm tra kết nối
-if ($conn->connect_error) {
-    die("Kết nối thất bại: " . $conn->connect_error);
-}
+
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
+
+    require './PHPMailer-master/src/Exception.php';
+    require './PHPMailer-master/src/PHPMailer.php';
+    require './PHPMailer-master/src/SMTP.php';
 
 // Kiểm tra xem người dùng đã gửi form đăng nhập hay chưa
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
-    $password = $_POST['password'];
 
-    // Truy vấn để lấy thông tin người dùng
-    $sql = "SELECT * FROM user WHERE email = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $select = "select * from user where email = '$email'";
 
-    // Kiểm tra nếu tìm thấy người dùng
-    if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc();
+    $rs = mysqli_query($conn, $select);
 
-        // Xác minh mật khẩu
-        if (hash_equals(md5($password), $user['password'])) {
-            // Đăng nhập thành công, lưu thông tin đăng nhập vào session
-            session_start();
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['user_name'] = $user['name'];
-            $_SESSION['email'] = $user['email'];
+       
+        //Nếu đã có TK
+    if(mysqli_num_rows($rs) > 0)
+    {
+        //Tạo OTP
+        $otp = rand(100000, 999999);
 
-            // Lưu thông tin đăng nhập
-            $login_time = date('Y-m-d H:i:s');
-            $ip_address = $_SERVER['REMOTE_ADDR'];
-            $user_agent = $_SERVER['HTTP_USER_AGENT'];
+        $subject = "Xác Thực OTP Đăng Ký";
+        $message = "Mã OTP của bạn là: $otp";
 
-            // Ghi nhận trạng thái đăng nhập vào cơ sở dữ liệu
-            $log_sql = "INSERT INTO login_records (user_id, login_time, ip_address, user_agent) VALUES (?, ?, ?, ?)";
-            $log_stmt = $conn->prepare($log_sql);
-            $log_stmt->bind_param("isss", $_SESSION['user_id'], $login_time, $ip_address, $user_agent);
-            $log_stmt->execute();
-            $log_stmt->close();
+        $mail = new PHPMailer(true);
 
-            // Chuyển hướng đến trang chủ kèm theo trạng thái đăng nhập
-            header("Location: ./index.php?status=success&user_id=" . $_SESSION['user_id']);
-            exit();
-        } else {
-            // Mật khẩu không đúng
-            echo "<script> alert('Password Wrong! Please try again.');</script>" ;
+        try {
+
+            //Cấu hình
+            $mail->isSMTP();  //Giao thức SMTP
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'taotenk0912@gmail.com';                     //SMTP username
+            $mail->Password   = 'krsxaldgjutrcodj';                          //SMTP password
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+            $mail->Port       = 465; 
+
+            //Người gửi, người nhận
+            $mail->setFrom('taotenk0912@gmail.com','Hệ thống');
+            $mail->addAddress($email, $name);
+
+            //Nội dung gửi
+            $mail->CharSet = 'utf-8';
+            $mail->isHTML(true);
+            $mail->Subject = $subject;
+            $mail->Body = $message;
+
+            $mail->send();
+
+            $insert = "insert into otp(email, otp) values ('$email', '$otp')";
+            mysqli_query($conn, $insert);
+            
+            // $_SESSION['email'] = $email;
+            // $_SESSION['user'] = ['email' => $email, 'pass' => $pass, 'name' => $name, 'user_type' => $user_type];
+            // header('location: ./LOGCODE/otp.php');
+
+            $password = md5($otp);
+            $update = "Update user set password ='$password' where email = '$email'";
+            mysqli_query($conn, $update);
+            header("Location: ./login.php");
+
+
+        } catch(Exception $e) {
+            ?>
+            <script>
+                alert("Tin nhắn không được gửi. Mailer Error: {$mail->?ErrorInfo}");
+            </script>
+            <?php
         }
-    } else {
-        // Không tìm thấy người dùng
-        echo "<p class='nhap_sai_mk'>Email không tồn tại</p>";
     }
-
-    $stmt->close();
+    else {
+        
+        ?>
+            <script>
+                alert("Không tồn tại mail này");
+            </script>
+        <?php
+    }
 }
 
 $conn->close();
@@ -267,9 +291,9 @@ $conn->close();
             <div class="sign">
                 <div id="form-login" class="login-phara">
                     <div class="wrap login">
-                        <form class="form-group" action="./login.php" method="POST">
+                        <form class="form-group" action="./forgotpsw.php" method="POST">
                             <div>
-                                <div class="title">ĐĂNG NHẬP</div>
+                                <div class="title">Quên mật khẩu</div>
                             </div>
                             <div class="input-box">
                                 <input
@@ -286,148 +310,13 @@ $conn->close();
                                     Vui lòng nhập đúng email
                                 </p>
                             </div>
-                            <div class="input-box">
-                                <input
-                                    type="password"
-                                    id="pass-log"
-                                    class="pass-input"
-                                    name="password"
-                                    placeholder="Nhập mật khẩu"
-                                    required
-                                />
-                                <i class="bx bxs-lock-alt"></i>
-                            </div>
-                            <div class="remember-forgot">
-                                <a href="./forgotpsw.php">Quên mật khẩu?</a>
-                            </div>
                             <div class="submit">
                                 <button type="submit" class="buttonlogin">
-                                    Đăng nhập
-                                </button>
-                            </div>
-                            <p class="nhap_sai_mk">Đăng nhập thất bại</p>
-                        </form>
-                        <div class="loginwith">
-                            <span>Đăng nhập với</span>
-                        </div>
-                        <div class="gg">
-                            <button class="signup-social logo-wrapper">
-                                <img
-                                    src="./assets/img/g-logo.png"
-                                    alt="logo GG"
-                                />
-                                <span class="signup-social-text"
-                                    >Đăng nhập bằng Google</span
-                                >
-                            </button>
-                        </div>
-                        <div class="register">
-                            <p>Tạo tài khoản mới? <a id="next">Đăng kí</a></p>
-                        </div>
-                    </div>
-                    <div class="wrap signn">
-                        <form class="form-group" action="./LOGCODE/singup.php" method="POST">
-                            <div>
-                                <div class="title">TẠO TÀI KHOẢN</div>
-                            </div>
-                            <div class="input-box">
-                                <input
-                                    type="text"
-                                    id="name"
-                                    name="name"
-                                    placeholder="Nhập username"
-                                    required
-                                    minlength="2"
-                                />
-                                <i class="bx bxs-user"></i>
-                                <p class="form-error">Nhập ít nhất 2 ký tự</p>
-                            </div>
-                            <div class="input-box">
-                                <input
-                                    type="email"
-                                    id="mail-signup"
-                                    class="email-input"
-                                    name="email"
-                                    placeholder="Nhập địa chỉ email"
-                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                                    required
-                                />
-                                <i class="bx bxs-user"></i>
-                                <p class="form-error">
-                                    Vui lòng nhập đúng email
-                                </p>
-                            </div>
-                            <div class="input-box">
-                                <input
-                                    type="password"
-                                    id="psw"
-                                    name="pass"
-                                    placeholder="Nhập mật khẩu"
-                                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                                    minlength="8"
-                                    required
-                                />
-                                <i class="bx bxs-lock-alt"></i>
-                            </div>
-                            <div id="pass-error">
-                                <p id="letter" class="invalid">
-                                    Có chữ viết thường
-                                </p>
-                                <p id="capital" class="invalid">
-                                    Có chữ viết hoa
-                                </p>
-                                <p id="number" class="invalid">Có số</p>
-                                <p id="length" class="invalid">
-                                    Ít nhất 8 ký tự
-                                </p>
-                            </div>
-                            <div class="input-box">
-                                <input
-                                    type="password"
-                                    id="df-psw"
-                                    name="confirm_pass"
-                                    placeholder="Nhập lại mật khẩu"
-                                    required
-                                />
-                                <i class="bx bxs-lock-alt"></i>
-                                <p class="df-pass">
-                                    Vui lòng nhập giống với mật khẩu đã tạo
-                                    trước đó
-                                </p>
-                            </div>
-                            <div class="submit">
-                                <button
-                                    type="submit"
-                                    class="buttonlogin"
-                                    id="dangky"
-                                    name = "dangky"
-                                >
-                                    Đăng&nbsp;ký&nbsp;ngay
+                                    Gửi OTP
                                 </button>
                             </div>
                         </form>
-                        <div class="loginwith">
-                            <span>Hoặc đăng kí với</span>
-                        </div>
-                        <div class="gg">
-                            <button class="signup-social logo-wrapper">
-                                <img
-                                    src="./assets/img/g-logo.png"
-                                    alt="logo GG"
-                                />
-                                <span class="signup-social-text"
-                                    >Đăng nhập bằng Google</span
-                                >
-                            </button>
-                        </div>
-                        <div class="register">
-                            <p>
-                                Bạn đã có tài khoản ?
-                                <a id="prev">Đăng nhập ngay</a>
-                            </p>
-                        </div>
                     </div>
-                </div>
             </div>
         </div>
         <footer class="footer">

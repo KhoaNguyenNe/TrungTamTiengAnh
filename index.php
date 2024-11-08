@@ -5,7 +5,9 @@ header("Cache-Control: no-cache, must-revalidate");
 header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
 
 $isLoggedIn = isset($_SESSION['user_id']); // Kiểm tra nếu người dùng đã đăng nhập
-$usernameindex = $_SESSION['user_name']
+if(isset($_SESSION['user_name'])) {
+    $usernameindex = $_SESSION['user_name'];
+}
 ?>
 
 

@@ -179,7 +179,7 @@ if (!$result) {
                             <td><?php echo $item['phone']; ?></td>
                             <td><?php echo $item['status'] == 1 ? '<button class="btn btn-activated btn-sm">Đã kích hoạt</button>' : '<button class="btn btn-deactivated btn-sm">Chưa kích hoạt</button>'; ?>
                             </td>
-                            <td><a href="" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                            <td><a href="edit.php?id=<?php echo $item['id']; ?>" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a></td>
                             <td><a href="delete.php?id=<?php echo $item['id']; ?>" onclick="return confirm('Bạn có chắc muốn xóa không?')" class="btn btn-warning btn-sm"><i class="fa-solid fa-trash"></i></a>
                             </td>
                         </tr>

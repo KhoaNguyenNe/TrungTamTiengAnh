@@ -8,7 +8,7 @@ $stmt->bind_param("i", $id);
 $stmt->execute();
 $stmt->close();
 
-header("Location: index.php");
+header("Location: ./list.php");
 ?>
 
 <?php

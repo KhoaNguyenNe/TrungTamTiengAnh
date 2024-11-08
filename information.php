@@ -15,7 +15,7 @@ $user_id = $_SESSION['user_id'];
 $message = '';
 
 // Lấy thông tin người dùng từ cơ sở dữ liệu
-$sql = "SELECT name, email FROM users WHERE id = ?";
+$sql = "SELECT name, email FROM user WHERE id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $message = "Không có thông tin nào để cập nhật.";
     } else {
         // Xây dựng câu lệnh SQL động
-        $sql = "UPDATE users SET " . implode(", ", $updates) . " WHERE id = ?";
+        $sql = "UPDATE user SET " . implode(", ", $updates) . " WHERE id = ?";
         $params[] = $user_id;
 
         // Chuẩn bị và thực thi truy vấn
@@ -277,7 +277,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </a>
                         <?php else: ?>
                             <li class="nav-item dropdown btn">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><?php echo htmlspecialchars($_SESSION['name']); ?></a>
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><?php echo htmlspecialchars($_SESSION['user_name']); ?></a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="/TRUNGTAMTIENGANH/information.php">Thay đổi thông tin</a></li>
                                 <li><a class="dropdown-item" href="/TRUNGTAMTIENGANH/LOGCODE/logout.php">Đăng xuất</a></li>

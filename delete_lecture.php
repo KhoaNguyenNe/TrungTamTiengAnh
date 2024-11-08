@@ -3,8 +3,8 @@
 include'connect.php';
 
 session_start();
-$user_role = 'teacher'; //$_SESSION['user_type'];  // Vai trò của người dùng
-$user_id = 1; //$_SESSION['user_id']; // ID của người dùng hiện tại
+$user_role = 'admin'; //$_SESSION['user_type'];  // Vai trò của người dùng
+$user_id = 0; //$_SESSION['user_id']; // ID của người dùng hiện tại
 
 $lecture_id = $_GET['id'];
 $result = $conn->query("SELECT * FROM lectures WHERE id = $lecture_id");
