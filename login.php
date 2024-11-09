@@ -2,17 +2,19 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-    include "./connect.php";
-    date_default_timezone_set('Asia/Ho_Chi_Minh');  // Đặt múi giờ là giờ Việt Nam
+include "./connect.php";
+date_default_timezone_set('Asia/Ho_Chi_Minh');  // Đặt múi giờ là giờ Việt Nam
+
 // Kiểm tra kết nối
 if ($conn->connect_error) {
-    die("Kết nối thất bại: " . $conn->connect_error);
+    die("Kết nối thất bại: " . htmlspecialchars($conn->connect_error));
 }
 
 // Kiểm tra xem người dùng đã gửi form đăng nhập hay chưa
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    // Sử dụng htmlspecialchars() để tránh các ký tự đặc biệt trong đầu vào
+    $email = htmlspecialchars($_POST['email'], ENT_QUOTES, 'UTF-8');
+    $password = htmlspecialchars($_POST['password'], ENT_QUOTES, 'UTF-8');
 
     // Truy vấn để lấy thông tin người dùng
     $sql = "SELECT * FROM user WHERE email = ?";
@@ -25,18 +27,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
 
-        // Xác minh mật khẩu
+        // Xác minh mật khẩu    
         if (hash_equals(md5($password), $user['password'])) {
             // Đăng nhập thành công, lưu thông tin đăng nhập vào session
             session_start();
             $_SESSION['user_id'] = $user['id'];
-            $_SESSION['user_name'] = $user['name'];
-            $_SESSION['email'] = $user['email'];
+            $_SESSION['user_name'] = htmlspecialchars($user['name'], ENT_QUOTES, 'UTF-8');
+            $_SESSION['email'] = htmlspecialchars($user['email'], ENT_QUOTES, 'UTF-8');
 
             // Lưu thông tin đăng nhập
             $login_time = date('Y-m-d H:i:s');
-            $ip_address = $_SERVER['REMOTE_ADDR'];
-            $user_agent = $_SERVER['HTTP_USER_AGENT'];
+            $ip_address = htmlspecialchars($_SERVER['REMOTE_ADDR'], ENT_QUOTES, 'UTF-8');
+            $user_agent = htmlspecialchars($_SERVER['HTTP_USER_AGENT'], ENT_QUOTES, 'UTF-8');
 
             // Ghi nhận trạng thái đăng nhập vào cơ sở dữ liệu
             $log_sql = "INSERT INTO login_records (user_id, login_time, ip_address, user_agent) VALUES (?, ?, ?, ?)";
@@ -46,15 +48,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $log_stmt->close();
 
             // Chuyển hướng đến trang chủ kèm theo trạng thái đăng nhập
-            header("Location: ./index.php?status=success&user_id=" . $_SESSION['user_id']);
+            header("Location: ./index.php?status=success&user_id=" . urlencode($_SESSION['user_id']));
             exit();
         } else {
             // Mật khẩu không đúng
-            echo "<script> alert('Password Wrong! Please try again.');</script>" ;
+            echo "<script>alert('Password Wrong! Please try again.');</script>";
         }
     } else {
         // Không tìm thấy người dùng
-        echo "<p class='nhap_sai_mk'>Email không tồn tại</p>";
+        echo "<p class='nhap_sai_mk'>" . htmlspecialchars("Email không tồn tại", ENT_QUOTES, 'UTF-8') . "</p>";
     }
 
     $stmt->close();
@@ -62,7 +64,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $conn->close();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
