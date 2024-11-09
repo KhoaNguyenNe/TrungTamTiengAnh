@@ -81,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $log_stmt->execute();
             $log_stmt->close();
 
-            header("Location: ./index.php?status=success&user_id=" . $_SESSION['user_id']);
+            header("Location: ../index.php?status=success&user_id=" . $_SESSION['user_id']);
             exit();
         } else {
             $attempt_time = date('Y-m-d H:i:s');
