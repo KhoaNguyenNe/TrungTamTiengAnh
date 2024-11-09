@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 session_start();
 
 include '../connect.php';
@@ -23,7 +26,8 @@ if(isset($_SESSION['email']) && isset( $_SESSION['user']))
             $pass = $_SESSION["user"]["pass"];
             $name = $_SESSION["user"]["name"];
             $user_type = $_SESSION["user"]["user_type"];
-            $insert = "insert into user(email, password, name, user_type) values ('$email', '$pass', '$name', '$user_type')";
+            $status = 1; // 
+            $insert = "insert into user(email, password, name, user_type, status) values ('$email', '$pass', '$name', '$user_type', '$status')";
             mysqli_query($conn, $insert);
             header("Location: ../login.php");
         } else {

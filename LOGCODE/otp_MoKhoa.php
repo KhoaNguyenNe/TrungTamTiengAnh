@@ -3,7 +3,7 @@ session_start();
 
 include '../connect.php';
 
-if(isset($_SESSION['email']) && isset( $_SESSION['user']))
+if(isset($_SESSION['email']))
 {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user_otp = $_POST['otp'];
@@ -27,10 +27,10 @@ if(isset($_SESSION['email']) && isset( $_SESSION['user']))
             $update_stmt->close();
 
             echo "<script>alert('Xác thực OTP thành công. Tài khoản của bạn đã được mở khóa.');</script>";
-            header("Location: ../login.php");
+            header("Location: ../forgotpsw.php");
             exit();
         } else {
-            echo "<script> alert('OTP không đúng. Vui lòng thử lại.');</script>";
+            echo "<script> alert('Invalid OTP. Please try again.');</script>";
         }
     }
 } else {
@@ -83,7 +83,7 @@ if(isset($_SESSION['email']) && isset( $_SESSION['user']))
     <div id="container">
         <h1>Two-Step Verification</h1>
         <p>Enter the 6 Digit OTP Code that has been sent <br> to your email address: <?php echo htmlspecialchars($_SESSION['email']); ?></p>
-        <form method="post" action="otp.php">
+        <form method="post" action="otp_MoKhoa.php">
             <label style="font-weight: bold; font-size: 18px;" for="otp">Enter OTP Code:</label><br>
             <input type="number" name="otp" pattern="\d{6}" placeholder="Six-Digit OTP" required><br><br>
             <button type="submit">Verify OTP</button>
