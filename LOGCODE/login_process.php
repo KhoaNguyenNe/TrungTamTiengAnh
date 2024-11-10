@@ -4,8 +4,9 @@ ini_set('display_errors', 1);
 
 session_start();
 
-include "/Applications/XAMPP/xamppfiles/htdocs/TrungTamTiengAnh/connect.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/TrungTamTiengAnh/LOGCODE/sendEmail.php";
+
+include "../connect.php";
+include "./sendEmail.php";
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 
 if ($conn->connect_error) {
@@ -61,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             updateOrInsertOTP($conn, $email, $otp);
             sendEmailOTP($email, $otp);
             echo "<script>alert('Tài khoản của bạn đã bị khóa. Vui lòng xác thực OTP để mở khóa.');</script>";
-            header("Location: /TRUNGTAMTIENGANH/LOGCODE/otp_MoKhoa.php");
+            header("Location: ./otp_MoKhoa.php");
             exit();
         }
 
@@ -114,9 +115,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 sendEmailOTP($email, $otp);
 
                 echo "<script>alert('Tài khoản của bạn đã bị khóa. Vui lòng kiểm tra email để nhận mã OTP.');</script>";
-                header("Location: /TRUNGTAMTIENGANH/LOGCODE/otp_MoKhoa.php");
+                header("Location: ./otp_MoKhoa.php");
                 exit();
             } else {
+                header('Location:../login.php');
                 echo "<script>alert('Password Wrong! Please try again.');</script>";
             }
         }

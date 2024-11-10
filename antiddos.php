@@ -3,12 +3,12 @@
 // $excluded_ips = ['127.0.0.1', 'localhost'];
 
 // Đường dẫn đến các tệp
-$LogPath = './.logs/log.txt'; // cho file log, cần tạo
+$LogPath = 'C:\xampp\htdocs\TrungTamTiengAnh\file_log\log.txt'; // cho file log, cần tạo
 $htaccessPath = './.htaccess'; // file .htaccess gốc
 
 // Tham số giới hạn
 $limit = 10;        // Số lượng yêu cầu được phép
-$time_limit = 10;   // Thời gian tính bằng giây để kiểm tra tần suất yêu cầu
+$time_limit = 1;   // Thời gian tính bằng giây để kiểm tra tần suất yêu cầu
 
 $ip = $_SERVER['REMOTE_ADDR'];
 
