@@ -104,6 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
+
     <header class="header">
         <div class="content nav-content">
             <nav class="navbar">
@@ -253,6 +254,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <button type="submit">Sửa người dùng</button>
             <a href="list.php" class="back-button">Quay lại</a>
         </div>
+
     </form>
     <footer class="footer">
         <div class="content">

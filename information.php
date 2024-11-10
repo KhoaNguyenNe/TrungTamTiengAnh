@@ -1,13 +1,77 @@
 <?php
-// Kiểm tra xem có tham số 'status' trong URL hay không và 'status' có phải là 'success'
-$isLoggedIn = isset($_GET['status']) && $_GET['status'] === 'success';
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-// Kiểm tra nếu 'user_id' có trong URL để xác nhận trạng thái người dùng
-$userId = isset($_GET['user_id']) ? $_GET['user_id'] : null;
+session_start();
+include "./connect.php";
+
+// Kiểm tra nếu người dùng đã đăng nhập
+if (!isset($_SESSION['user_id'])) {
+    echo "Vui lòng đăng nhập trước.";
+    exit();
+}
+
+$user_id = $_SESSION['user_id'];
+$message = '';
+
+// Lấy thông tin người dùng từ cơ sở dữ liệu
+$sql = "SELECT name, email FROM user WHERE id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$stmt->bind_result($name, $email);
+$stmt->fetch();
+$stmt->close();
+
+// Kiểm tra nếu có form gửi lên
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = isset($_POST['name']) ? trim($_POST['name']) : null;
+    $password = isset($_POST['password']) ? trim($_POST['password']) : null;
+
+    // Khởi tạo mảng chứa các phần câu lệnh SQL cần cập nhật
+    $updates = [];
+    $params = [];
+
+    // Chỉ thêm phần cập nhật cho tên nếu người dùng đã nhập tên mới
+    if (!empty($name)) {
+        $updates[] = "name = ?";
+        $params[] = $name;
+    }
+
+    // Chỉ thêm phần cập nhật cho mật khẩu nếu người dùng đã nhập mật khẩu mới
+    if (!empty($password)) {
+        // Mã hóa mật khẩu mới trước khi lưu vào database
+        $hashed_password = md5($password);
+        $updates[] = "password = ?";
+        $params[] = $hashed_password;
+    }
+
+    // Nếu không có gì cần cập nhật, chuyển hướng lại trang thông tin người dùng
+    if (empty($updates)) {
+        $message = "Không có thông tin nào để cập nhật.";
+    } else {
+        // Xây dựng câu lệnh SQL động
+        $sql = "UPDATE user SET " . implode(", ", $updates) . " WHERE id = ?";
+        $params[] = $user_id;
+
+        // Chuẩn bị và thực thi truy vấn
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param(str_repeat("s", count($params) - 1) . "i", ...$params);
+
+        if ($stmt->execute()) {
+            $message = "Cập nhật thông tin thành công.";
+        } else {
+            $message = "Cập nhật thông tin thất bại.";
+        }
+
+        $stmt->close();
+    }
+}
 ?>
 
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,6 +81,9 @@ $userId = isset($_GET['user_id']) ? $_GET['user_id'] : null;
             href="./assets/favicon/favicon.ico"
             type="image/x-icon"
         />
+        <!-- Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <!-- Nhúng CDN Font Awesome -->
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
         <link
@@ -26,25 +93,21 @@ $userId = isset($_GET['user_id']) ? $_GET['user_id'] : null;
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         />
-        <!--icon GG-->
-        <link
-            href="https://fonts.googleapis.com/icon?family=Material+Icons"
-            rel="stylesheet"
-        />
-        <!-- Style CSS -->
+        <!-- Font -->
         <link rel="stylesheet" href="./assets/font/stylesheet.css" />
-        <!-- Responsive -->
-        <link rel="stylesheet" href="./assets/css/responsive.css" />
+        <!-- infor CSS -->
+        <link rel="stylesheet" href="./assets/css/infor.css" />
         <!-- Reset CSS -->
         <link rel="stylesheet" href="./assets/css/reset.css" />
-        <!-- Font  -->
+        <!-- Style CSS  -->
         <link rel="stylesheet" href="./assets/css/style.css" />
-        <!-- Contact CSS -->
-        <link rel="stylesheet" href="./assets/css/contact.css" />
-        <title>Liên lạc - Web luyện thi TOEIC</title>
+        <!-- Responsive -->
+        <link rel="stylesheet" href="./assets/css/responsive.css" />
+        
+        <title>Web luyện thi TOEIC</title>
     </head>
     <body>
-    <header class="header">
+        <header class="header">
             <div class="content nav-content">
                 <nav class="navbar">
                     <!--nav mobile-->
@@ -133,14 +196,14 @@ $userId = isset($_GET['user_id']) ? $_GET['user_id'] : null;
                             </li>
                             <?php if (!$isLoggedIn): ?>
                                 <li>
-                                    <a href="./login.php" class="item-nav-mobile">Đăng nhập</a>
+                                    <a href="./login.php" class="item-nav-mobile">Đăng&nbsp;nhập</a>
                                 </li>
                             <?php else: ?>
-                                <!-- Hiển thị nút cài đặt nếu người dùng đã đăng nhập -->
                                 <li>
-                                    <a href="./settings.php?user_id=<?php echo $userId; ?>" class="item-nav-mobile">Cài đặt</a>
+                                    <a href="./information.php" class="item-nav-mobile">Cài&nbsp;đặt</a>
                                 </li>
                             <?php endif; ?>
+
                         </ul>
                     </nav>
                     <!-- Logo -->
@@ -188,16 +251,11 @@ $userId = isset($_GET['user_id']) ? $_GET['user_id'] : null;
                         <li>
                             <a href="./blog.php" class="item">Blog</a>
                         </li>
-                        <?php if (!$isLoggedIn): ?>
-                            <li>
-                                <a href="./login.php" class="item-nav-mobile">Đăng nhập</a>
-                            </li>
-                        <?php else: ?>
-                            <!-- Hiển thị nút cài đặt nếu người dùng đã đăng nhập -->
-                            <li>
-                                <a href="./settings.php?user_id=<?php echo $userId; ?>" class="item-nav-mobile">Cài đặt</a>
-                            </li>
-                        <?php endif; ?>
+                        <li>
+                            <a href="./toeic-tip.php" class="item"
+                                >TOEIC&nbsp;Tips</a
+                            >
+                        </li>
                     </ul>
 
                     <!-- Button -->
@@ -213,14 +271,52 @@ $userId = isset($_GET['user_id']) ? $_GET['user_id'] : null;
                             </svg>
                             <p>Unlock&nbsp;Pro</p>
                         </a>
+                        <?php if (!isset($_SESSION['user_id'])): ?>
                         <a href="./login.php" class="log btn" id="log">
                             <p class="text">Đăng&nbsp;nhập</p>
                         </a>
+                        <?php else: ?>
+                            <li class="nav-item dropdown btn">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><?php echo htmlspecialchars($_SESSION['user_name']); ?></a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/TRUNGTAMTIENGANH/information.php">Thay đổi thông tin</a></li>
+                                <li><a class="dropdown-item" href="/TRUNGTAMTIENGANH/LOGCODE/logout.php">Đăng xuất</a></li>
+                            </ul>
+                            </li>
+                        <?php endif; ?>
                     </div>
                 </nav>
             </div>
         </header>
 
+        <body>
+        <div class="user-info">
+            <h2 class="text-uppercase">Cập nhật thông tin người dùng</h2>
+
+            
+
+            <!-- Hiển thị thông báo -->
+            <?php if (!empty($message)): ?>
+                <div class="alert alert-info"><?php echo htmlspecialchars($message); ?></div>
+            <?php endif; ?>
+
+            <form method="POST" action="/TRUNGTAMTIENGANH/LOGCODE/update_profile.php">
+            <div class="form-group">
+                <label for="name">Họ và tên:</label>
+                <input type="text" id="name" name="name" placeholder="<?php echo htmlspecialchars($name); ?>" oninput="enableUpdateButton()">
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" readonly>
+            </div>
+            <div class="form-group">
+                <label for="password">Mật khẩu mới:</label>
+                <input type="password" id="password" name="password" placeholder="Nhập mật khẩu mới" oninput="enableUpdateButton()">
+            </div>
+            <button type="submit" id="updateButton" disabled>Cập nhật</button>
+        </form>
+        </div>         
+        </body>
 
         <footer class="footer">
             <div class="content">
@@ -389,6 +485,6 @@ $userId = isset($_GET['user_id']) ? $_GET['user_id'] : null;
         <!-- Nhúng Javascript -->
         <script src="./assets/js/go-top.js"></script>
         <script src="./assets/js/if_log.js"></script>
-
+        <script src="./assets/js/info.js"></script>
     </body>
 </html>

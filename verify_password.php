@@ -1,47 +1,85 @@
-
 <?php
-    //Kiểm tra đăng nhập
-    include 'checkRole.php';
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-    //Xét user_type của user
-    // phân quyền giảng viên và quản trị ở nút xóa tất cả
-     // Kiểm tra và phân quyền
-     function checkPermission($lecture_teacher_id, $user_role, $user_id) {
-        if ($user_role == 'Admin') {
-            return true; // Quản trị viên có quyền sửa và xóa tất cả
-        }
-        if ($user_role == 'Giảng viên' && $lecture_teacher_id == $user_id) {
-            return true; // Giảng viên chỉ có thể sửa và xóa bài giảng của mình
-        }
-        return false; // Không có quyền
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+include "./connect.php";
+
+// Kiểm tra kết nối
+if ($conn->connect_error) {
+    die("Kết nối thất bại: " . $conn->connect_error);
+}
+
+$user_id = $_SESSION['user_id'];
+
+// Lấy thông tin người dùng từ cơ sở dữ liệu
+$sql = "SELECT name, email FROM user WHERE id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$stmt->bind_result($name, $email);
+$stmt->fetch();
+$stmt->close();
+
+function pbkdf2HashPassword($password, $salt = null, $iterations = 10000, $keyLength = 64) {
+    if ($salt === null) {
+        $salt = bin2hex(random_bytes(16)); // Tạo salt 32 ký tự
     }
 
-    include 'connect.php';
+    // Sử dụng hàm hash_pbkdf2 để tạo ra khóa
+    $hash = hash_pbkdf2(
+        'sha256', // Thuật toán băm
+        $password, // Mật khẩu
+        $salt, // Salt
+        $iterations, // Số lần lặp
+        $keyLength, // Độ dài khóa
+        false // Trả về dưới dạng chuỗi hex
+    );
 
-    $sql = "SELECT * FROM lectures";
-    $result = $conn->query($sql);
+    // Trả về mật khẩu đã băm cùng với salt
+    return $salt . $hash;
+}
 
-    // Lưu kết quả vào biến $listLectures dưới dạng một mảng
-    $listLectures = [];
-    if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-            $listLectures[] = $row;  // Lưu từng dòng kết quả vào mảng
+// Kiểm tra nếu có form gửi lên
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $old_password = $_POST['old_password'];
+
+    // Lấy mật khẩu đã mã hóa từ cơ sở dữ liệu
+    $sql = "SELECT password FROM user WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $stmt->bind_result($stored_password);
+    $stmt->fetch();
+    $stmt->close();
+
+    // Kiểm tra nếu người dùng tồn tại
+    if ($stored_password) {
+        // // Lấy phần salt từ mật khẩu đã mã hóa trong cơ sở dữ liệu
+        // $salt = substr($stored_password, 0, 32); // 32 ký tự đầu là salt
+        // // Băm mật khẩu cũ với salt
+        // $hashed_password = pbkdf2HashPassword($old_password, $salt);
+
+        // Xác minh mật khẩu
+        if (hash_equals(md5($old_password), $stored_password)) {
+            // Mật khẩu đúng, chuyển hướng đến trang cập nhật thông tin
+            header("Location: ./information.php");
+            exit();
+        } else {
+            $message = "Mật khẩu cũ không chính xác. Vui lòng thử lại.";
         }
     } else {
-        echo "0 results";
+        $message = "Lỗi: Không tìm thấy người dùng.";
     }
-
-    // Đóng kết nối
-    $conn->close();
-
+}
 ?>
 
-
-
-
 <!DOCTYPE html>
-<html lang="en">
-    <head>
+<html lang="vi">
+<head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- Favicon -->
@@ -50,7 +88,9 @@
             href="./assets/favicon/favicon.ico"
             type="image/x-icon"
         />
-        
+        <!-- Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <!-- Nhúng CDN Font Awesome -->
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
         <link
@@ -60,21 +100,21 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         />
-        <!-- Font  -->
+        <!-- Font -->
         <link rel="stylesheet" href="./assets/font/stylesheet.css" />
+        <!-- infor CSS -->
+        <link rel="stylesheet" href="./assets/css/infor.css" />
         <!-- Reset CSS -->
         <link rel="stylesheet" href="./assets/css/reset.css" />
+        <!-- Style CSS  -->
+        <link rel="stylesheet" href="./assets/css/style.css" />
         <!-- Responsive -->
         <link rel="stylesheet" href="./assets/css/responsive.css" />
-        <!-- Style CSS -->
-        <link rel="stylesheet" href="./assets/css/style.css" />
-        <!-- L_R CSS -->
-        <link rel="stylesheet" href="./assets/css/lectures.css" />
         
-        <title>Listen and Reading</title>
-    </head>
-    <body>
-        <header class="header">
+        <title>Web luyện thi TOEIC</title>
+</head>
+<body>
+<header class="header">
             <div class="content nav-content">
                 <nav class="navbar">
                     <!--nav mobile-->
@@ -154,7 +194,6 @@
                                     >Blog</a
                                 >
                             </li>
-                            
                             <li>
                                 <a
                                     href="./toeic-tip.php"
@@ -162,12 +201,16 @@
                                     >TOEIC&nbsp;Tips</a
                                 >
                             </li>
-                            <li>
-                                <a href="./login.php" class="item-nav-mobile"
-                                    >Đăng&nbsp;nhập</a
-                                >
-                            </li>
-                            
+                            <?php if (!$isLoggedIn): ?>
+                                <li>
+                                    <a href="./login.php" class="item-nav-mobile">Đăng&nbsp;nhập</a>
+                                </li>
+                            <?php else: ?>
+                                <li>
+                                    <a href="./information.php" class="item-nav-mobile">Cài&nbsp;đặt</a>
+                                </li>
+                            <?php endif; ?>
+
                         </ul>
                     </nav>
                     <!-- Logo -->
@@ -235,60 +278,48 @@
                             </svg>
                             <p>Unlock&nbsp;Pro</p>
                         </a>
+                        <?php if (!isset($_SESSION['user_id'])): ?>
                         <a href="./login.php" class="log btn" id="log">
                             <p class="text">Đăng&nbsp;nhập</p>
                         </a>
+                        <?php else: ?>
+                            <li class="nav-item dropdown btn">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><?php echo htmlspecialchars($_SESSION['user_name']); ?></a>
+                            <ul class="dropdown-menu dropmn">
+                                <li><a class="dropdown-item" href="/TRUNGTAMTIENGANH/verify_password.php">Thay đổi thông tin</a></li>
+                                <li><a class="dropdown-item" href="/TRUNGTAMTIENGANH/LOGCODE/logout.php">Đăng xuất</a></li>
+                            </ul>
+                            </li>
+                        <?php endif; ?>
                     </div>
                 </nav>
             </div>
         </header>
+        <body>
+        <div class="user-info">
+            <h2 class="text-uppercase">Xác thực mật khẩu cũ</h2>
 
-        <main>
-            <div class="container">
-                <hr>
-                <h2>Quản lí bài giảng</h2>
-                <p>
-                    <button class="add-button"><a href="add_lecture.php"><i class="fa-solid fa-plus"></i>Thêm bài giảng</a></button>
-                </p>
-                <table class="table table-bordered">
-                    <thead>
-                        <th>STT</th>
-                        <th>Tiêu đề</th>
-                        <th>Mô tả</th>
-                        <th>Nội dung</th>
-                        <th>Giảng Viên</th>
-                        <th>Trạng Thái</th>
-                        <th width = "5%">Sửa</th>
-                        <th width="5%">Xóa</th>
-                    </thead>
-                    <tbody>
-                    <?php
-                        $count = 0;
-                        foreach($listLectures as $item):
-                    ?>
-                    <tr>
-                        <td><?php echo $item['id']; ?></td>
-                        <td><?php echo $item['title']; ?></td>
-                        <td><?php echo $item['description']; ?></td>
-                        <td><?php echo $item['content']; ?></td>
-                        <td><?php echo $item['teacher_id']; ?></td>
-                        <td><?php echo $item['status']; ?></td>
-                        <td><button class="fix-button"><a href="edit_lecture.php?id=<?= $item['id'] ?>"><i class="fa-solid fa-pen-to-square"></i></a></button></td>
-                        <td><button class="delete-button""><a href="delete_lecture.php?id=<?= $item['id'] ?>"onclick = "return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a></button></td>
-                    </tr>
-                    <?php
-                        endforeach;
-                        
-                    ?>
-                    
-                        </tbody>
-                </table>
-            </div>
-        </main>
+            
 
-        
-        
+            <!-- Hiển thị thông báo -->
+            <?php if (!empty($message)): ?>
+                <div class="alert alert-info"><?php echo htmlspecialchars($message); ?></div>
+            <?php endif; ?>
 
+            <!-- Form cập nhật thông tin -->
+            <form method="POST" action="verify_password.php">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mật khẩu:</label>
+                    <input type="password" id="old_password" name="old_password" required>
+                </div>
+                <button type="submit">Xác thực</button>
+            </form>
+        </div>         
+        </body>
         <footer class="footer">
             <div class="content">
                 <div class="row row-top">
@@ -455,8 +486,8 @@
         </a>
 
         <!-- Nhúng Javascript -->
-        <script src="./assets/js/khoaHoc.js"></script>
         <script src="./assets/js/go-top.js"></script>
         <script src="./assets/js/if_log.js"></script>
+        <script src="./assets/js/info.js"></script>
     </body>
 </html>

@@ -1,43 +1,106 @@
-
 <?php
-    //Kiểm tra đăng nhập
-    include 'checkRole.php';
+    session_start();
 
-    //Xét user_type của user
-    // phân quyền giảng viên và quản trị ở nút xóa tất cả
-     // Kiểm tra và phân quyền
-     function checkPermission($lecture_teacher_id, $user_role, $user_id) {
-        if ($user_role == 'Admin') {
-            return true; // Quản trị viên có quyền sửa và xóa tất cả
+    include "./connect.php";
+
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
+
+    require './PHPMailer-master/src/Exception.php';
+    require './PHPMailer-master/src/PHPMailer.php';
+    require './PHPMailer-master/src/SMTP.php';
+
+// Kiểm tra xem người dùng đã gửi form đăng nhập hay chưa
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'];
+
+    $select = "select * from user where email = '$email'";
+
+    $rs = mysqli_query($conn, $select);
+
+       
+        //Nếu đã có TK
+    if(mysqli_num_rows($rs) > 0)
+    {
+        //Tạo OTP
+        $otp = rand(100000, 999999);
+
+        $subject = "Xác Thực OTP Đăng Ký";
+        $message = "Mã OTP của bạn là: $otp";
+
+        $mail = new PHPMailer(true);
+
+        try {
+
+            //Cấu hình
+            $mail->isSMTP();  //Giao thức SMTP
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'taotenk0912@gmail.com';                     //SMTP username
+            $mail->Password   = 'krsxaldgjutrcodj';                          //SMTP password
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+            $mail->Port       = 465; 
+
+            //Người gửi, người nhận
+            $mail->setFrom('taotenk0912@gmail.com','Hệ thống');
+            $mail->addAddress($email, $name);
+
+            //Nội dung gửi
+            $mail->CharSet = 'utf-8';
+            $mail->isHTML(true);
+            $mail->Subject = $subject;
+            $mail->Body = $message;
+
+            $mail->send();
+
+            // Kiểm tra xem email đã tồn tại trong bảng `otp` chưa
+            $check_sql = "SELECT * FROM otp WHERE email = ?";
+            $check_stmt = $conn->prepare($check_sql);
+            $check_stmt->bind_param("s", $email);  // "s" cho email kiểu string
+            $check_stmt->execute();
+            $result = $check_stmt->get_result();
+
+            // Nếu email đã tồn tại, cập nhật OTP
+            if ($result->num_rows > 0) {
+                $otp_sql = "UPDATE otp SET otp = ? WHERE email = ?";
+                $otp_stmt = $conn->prepare($otp_sql);
+                $otp_stmt->bind_param("is", $otp, $email);  // "is" vì otp là integer và email là string
+            } else {
+                // Nếu email chưa tồn tại, chèn vào bảng
+                $otp_sql = "INSERT INTO otp (email, otp) VALUES (?, ?)";
+                $otp_stmt = $conn->prepare($otp_sql);
+                $otp_stmt->bind_param("si", $email, $otp);  // "si" vì email là string và otp là integer
+            }
+
+            // Thực thi câu lệnh SQL
+            $otp_stmt->execute();
+
+            // Đóng các statement
+            $check_stmt->close();
+            $otp_stmt->close();
+            
+            $_SESSION['email'] = $email;
+            header('location: ./LOGCODE/otp_forgotPW.php');
+        } catch(Exception $e) {
+            ?>
+            <script>
+                alert("Tin nhắn không được gửi. Mailer Error: {$mail->?ErrorInfo}");
+            </script>
+            <?php
         }
-        if ($user_role == 'Giảng viên' && $lecture_teacher_id == $user_id) {
-            return true; // Giảng viên chỉ có thể sửa và xóa bài giảng của mình
-        }
-        return false; // Không có quyền
     }
-
-    include 'connect.php';
-
-    $sql = "SELECT * FROM lectures";
-    $result = $conn->query($sql);
-
-    // Lưu kết quả vào biến $listLectures dưới dạng một mảng
-    $listLectures = [];
-    if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-            $listLectures[] = $row;  // Lưu từng dòng kết quả vào mảng
-        }
-    } else {
-        echo "0 results";
+    else {
+        
+        ?>
+            <script>
+                alert("Không tồn tại mail này");
+            </script>
+        <?php
     }
+}
 
-    // Đóng kết nối
-    $conn->close();
-
+$conn->close();
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -50,28 +113,29 @@
             href="./assets/favicon/favicon.ico"
             type="image/x-icon"
         />
-        
-        <!-- Nhúng CDN Font Awesome -->
-        <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
         <link
             rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-            integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-            crossorigin="anonymous"
-            referrerpolicy="no-referrer"
+            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
         />
-        <!-- Font  -->
+        <!-- Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <!-- Style CSS -->
         <link rel="stylesheet" href="./assets/font/stylesheet.css" />
         <!-- Reset CSS -->
         <link rel="stylesheet" href="./assets/css/reset.css" />
+        <!-- Font  -->
+        <link rel="stylesheet" href="./assets/css/style.css" />
+        <!--Style Login CSS-->
+        <link rel="stylesheet" href="./assets/css/login.css" />
         <!-- Responsive -->
         <link rel="stylesheet" href="./assets/css/responsive.css" />
-        <!-- Style CSS -->
-        <link rel="stylesheet" href="./assets/css/style.css" />
-        <!-- L_R CSS -->
-        <link rel="stylesheet" href="./assets/css/lectures.css" />
-        
-        <title>Listen and Reading</title>
+        <!-- icon -->
+        <link
+            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+            rel="stylesheet"
+        />
+        <title>Login</title>
     </head>
     <body>
         <header class="header">
@@ -154,7 +218,6 @@
                                     >Blog</a
                                 >
                             </li>
-                            
                             <li>
                                 <a
                                     href="./toeic-tip.php"
@@ -167,7 +230,6 @@
                                     >Đăng&nbsp;nhập</a
                                 >
                             </li>
-                            
                         </ul>
                     </nav>
                     <!-- Logo -->
@@ -224,7 +286,7 @@
 
                     <!-- Button -->
                     <div class="actions">
-                        <a href="./prenium.php" class="pro btn">
+                        <a href="./prenium.php" class="pro btn" id="log">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 36 24"
@@ -235,60 +297,43 @@
                             </svg>
                             <p>Unlock&nbsp;Pro</p>
                         </a>
-                        <a href="./login.php" class="log btn" id="log">
-                            <p class="text">Đăng&nbsp;nhập</p>
-                        </a>
                     </div>
                 </nav>
             </div>
         </header>
 
-        <main>
-            <div class="container">
-                <hr>
-                <h2>Quản lí bài giảng</h2>
-                <p>
-                    <button class="add-button"><a href="add_lecture.php"><i class="fa-solid fa-plus"></i>Thêm bài giảng</a></button>
-                </p>
-                <table class="table table-bordered">
-                    <thead>
-                        <th>STT</th>
-                        <th>Tiêu đề</th>
-                        <th>Mô tả</th>
-                        <th>Nội dung</th>
-                        <th>Giảng Viên</th>
-                        <th>Trạng Thái</th>
-                        <th width = "5%">Sửa</th>
-                        <th width="5%">Xóa</th>
-                    </thead>
-                    <tbody>
-                    <?php
-                        $count = 0;
-                        foreach($listLectures as $item):
-                    ?>
-                    <tr>
-                        <td><?php echo $item['id']; ?></td>
-                        <td><?php echo $item['title']; ?></td>
-                        <td><?php echo $item['description']; ?></td>
-                        <td><?php echo $item['content']; ?></td>
-                        <td><?php echo $item['teacher_id']; ?></td>
-                        <td><?php echo $item['status']; ?></td>
-                        <td><button class="fix-button"><a href="edit_lecture.php?id=<?= $item['id'] ?>"><i class="fa-solid fa-pen-to-square"></i></a></button></td>
-                        <td><button class="delete-button""><a href="delete_lecture.php?id=<?= $item['id'] ?>"onclick = "return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a></button></td>
-                    </tr>
-                    <?php
-                        endforeach;
-                        
-                    ?>
-                    
-                        </tbody>
-                </table>
+        <div class="main-login">
+            <div class="sign">
+                <div id="form-login" class="login-phara">
+                    <div class="wrap login">
+                        <form class="form-group" action="./forgotpsw.php" method="POST">
+                            <div>
+                                <div class="title">Quên mật khẩu</div>
+                            </div>
+                            <div class="input-box">
+                                <input
+                                    type="email"
+                                    id="mail-log"
+                                    class="email-input"
+                                    name="email"
+                                    placeholder="Nhập địa chỉ email"
+                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                    required
+                                />
+                                <i class="bx bxs-user"></i>
+                                <p class="form-error">
+                                    Vui lòng nhập đúng email
+                                </p>
+                            </div>
+                            <div class="submit">
+                                <button type="submit" class="buttonlogin">
+                                    Gửi OTP
+                                </button>
+                            </div>
+                        </form>
+                    </div>
             </div>
-        </main>
-
-        
-        
-
+        </div>
         <footer class="footer">
             <div class="content">
                 <div class="row row-top">
@@ -449,14 +494,13 @@
                 </div>
             </div>
         </footer>
-
-        <a href="#" class="btn-to-top">
-            <i class="fa-solid fa-jet-fighter-up"></i>
-        </a>
-
         <!-- Nhúng Javascript -->
-        <script src="./assets/js/khoaHoc.js"></script>
-        <script src="./assets/js/go-top.js"></script>
-        <script src="./assets/js/if_log.js"></script>
+        <script src="./assets/js/login.js"></script>
+        <!-- Nhúng Jquery -->
+        <script
+            src="https://code.jquery.com/jquery-3.7.0.min.js"
+            integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+            crossorigin="anonymous"
+        ></script>
     </body>
 </html>

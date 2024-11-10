@@ -1,46 +1,38 @@
-
 <?php
-    //Kiểm tra đăng nhập
-    include 'checkRole.php';
+session_start();
 
-    //Xét user_type của user
-    // phân quyền giảng viên và quản trị ở nút xóa tất cả
-     // Kiểm tra và phân quyền
-     function checkPermission($lecture_teacher_id, $user_role, $user_id) {
-        if ($user_role == 'Admin') {
-            return true; // Quản trị viên có quyền sửa và xóa tất cả
-        }
-        if ($user_role == 'Giảng viên' && $lecture_teacher_id == $user_id) {
-            return true; // Giảng viên chỉ có thể sửa và xóa bài giảng của mình
-        }
-        return false; // Không có quyền
+header("Cache-Control: no-cache, must-revalidate");
+header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+
+$isLoggedIn = isset($_SESSION['user_id']); // Kiểm tra nếu người dùng đã đăng nhập
+if(isset($_SESSION['user_name'])) {
+    $usernameindex = $_SESSION['user_name'];
+}
+
+include 'connect.php';
+
+$sql = "SELECT * FROM lectures";
+$result = $conn->query($sql);
+
+// Lưu kết quả vào biến $listLectures dưới dạng một mảng
+$listLectures = [];
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        $listLectures[] = $row;  // Lưu từng dòng kết quả vào mảng
     }
+} else {
+    echo "0 results";
+}
 
-    include 'connect.php';
+// Đóng kết nối
+$conn->close();
 
-    $sql = "SELECT * FROM lectures";
-    $result = $conn->query($sql);
-
-    // Lưu kết quả vào biến $listLectures dưới dạng một mảng
-    $listLectures = [];
-    if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-            $listLectures[] = $row;  // Lưu từng dòng kết quả vào mảng
-        }
-    } else {
-        echo "0 results";
-    }
-
-    // Đóng kết nối
-    $conn->close();
 
 ?>
 
 
-
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -50,7 +42,9 @@
             href="./assets/favicon/favicon.ico"
             type="image/x-icon"
         />
-        
+        <!-- Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <!-- Nhúng CDN Font Awesome -->
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
         <link
@@ -60,18 +54,16 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         />
-        <!-- Font  -->
+        <!-- Font -->
         <link rel="stylesheet" href="./assets/font/stylesheet.css" />
         <!-- Reset CSS -->
         <link rel="stylesheet" href="./assets/css/reset.css" />
+        <!-- Style CSS  -->
+        <link rel="stylesheet" href="./assets/css/style.css" />
         <!-- Responsive -->
         <link rel="stylesheet" href="./assets/css/responsive.css" />
-        <!-- Style CSS -->
-        <link rel="stylesheet" href="./assets/css/style.css" />
-        <!-- L_R CSS -->
-        <link rel="stylesheet" href="./assets/css/lectures.css" />
-        
-        <title>Listen and Reading</title>
+        <link rel="stylesheet" href="./assets/css/my_course.css" />
+        <title>Web luyện thi TOEIC</title>
     </head>
     <body>
         <header class="header">
@@ -154,7 +146,6 @@
                                     >Blog</a
                                 >
                             </li>
-                            
                             <li>
                                 <a
                                     href="./toeic-tip.php"
@@ -162,12 +153,16 @@
                                     >TOEIC&nbsp;Tips</a
                                 >
                             </li>
-                            <li>
-                                <a href="./login.php" class="item-nav-mobile"
-                                    >Đăng&nbsp;nhập</a
-                                >
-                            </li>
-                            
+                            <?php if (!$isLoggedIn): ?>
+                                <li>
+                                    <a href="./login.php" class="item-nav-mobile">Đăng&nbsp;nhập</a>
+                                </li>
+                            <?php else: ?>
+                                <li>
+                                    <a href="./information.php" class="item-nav-mobile">Cài&nbsp;đặt</a>
+                                </li>
+                            <?php endif; ?>
+
                         </ul>
                     </nav>
                     <!-- Logo -->
@@ -235,59 +230,86 @@
                             </svg>
                             <p>Unlock&nbsp;Pro</p>
                         </a>
+                        <?php if (!isset($_SESSION['user_id'])): ?>
                         <a href="./login.php" class="log btn" id="log">
                             <p class="text">Đăng&nbsp;nhập</p>
                         </a>
+                        <?php else: ?>
+                            <li class="nav-item dropdown btn">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><?php echo $usernameindex ?></a>
+                            <ul class="dropdown-menu dropmn">
+                                <li><a class="dropdown-item" href="/TRUNGTAMTIENGANH/verify_password.php">Thay đổi thông tin</a></li>
+                                <li><a class="dropdown-item" href="/TRUNGTAMTIENGANH/LOGCODE/logout.php">Đăng xuất</a></li>
+                            </ul>
+                            </li>
+                        <?php endif; ?>
                     </div>
                 </nav>
             </div>
         </header>
-
         <main>
-            <div class="container">
-                <hr>
-                <h2>Quản lí bài giảng</h2>
-                <p>
-                    <button class="add-button"><a href="add_lecture.php"><i class="fa-solid fa-plus"></i>Thêm bài giảng</a></button>
-                </p>
-                <table class="table table-bordered">
-                    <thead>
-                        <th>STT</th>
-                        <th>Tiêu đề</th>
-                        <th>Mô tả</th>
-                        <th>Nội dung</th>
-                        <th>Giảng Viên</th>
-                        <th>Trạng Thái</th>
-                        <th width = "5%">Sửa</th>
-                        <th width="5%">Xóa</th>
-                    </thead>
-                    <tbody>
+        <div class="d-flex">
+            <div style="width:25%;" class="p-2 flex-fill">
+                <div class="d-flex flex-column">
+                    <div class="p-2">
+                        <form class="d-flex" style="max-height:40px;">
+                            <input class="form-control me-2" type="text" placeholder="Tìm ID">
+                            <button style="padding: 5px 10px;" class="btn btn-primary" type="button">Search</button>
+                        </form>
+                    </div>
+                    <div class="p-2">
+                        <nav class="navbar navbar-expand-sm bg-light navbar-light">
+                            <div class="container-fluid course-bar">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Khóa học của tôi</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link emo" href="#">Xem thêm</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="p-2 ">
+                        <a href="#"><img style="width: 150px;" src="./assets/img/blg4.png" class="rounded" alt="Cinque Terre"></a>
+                    </div>
+                </div>
+            </div>
+            <div style="width:55%; border-right: 0.5px solid black; border-left: 0.5px solid black"  class="p-2 flex-fill">
+                <h2 style="font-size:20px; font-weight:bold">Tất cả Bài Giảng</h2>
+                <div class="d-flex flex-column">
+                    <div class="p-2 d-flex">
+                        <div style="width:20%; font-size:18px; font-weight:bold;" class="p-2 flex-fill">Tên bài giảng</div>
+                        <div style="width:40%; font-size:18px; font-weight:bold;" class="p-2 flex-fill">Mô tả</div>
+                        <div style="width:40%; font-size:18px; font-weight:bold;" class="p-2 flex-fill">Nội dung</div>
+                    </div>
                     <?php
                         $count = 0;
                         foreach($listLectures as $item):
                     ?>
-                    <tr>
-                        <td><?php echo $item['id']; ?></td>
-                        <td><?php echo $item['title']; ?></td>
-                        <td><?php echo $item['description']; ?></td>
-                        <td><?php echo $item['content']; ?></td>
-                        <td><?php echo $item['teacher_id']; ?></td>
-                        <td><?php echo $item['status']; ?></td>
-                        <td><button class="fix-button"><a href="edit_lecture.php?id=<?= $item['id'] ?>"><i class="fa-solid fa-pen-to-square"></i></a></button></td>
-                        <td><button class="delete-button""><a href="delete_lecture.php?id=<?= $item['id'] ?>"onclick = "return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a></button></td>
-                    </tr>
+                    <div class="p-2 d-flex">
+                        <div style="width:20%;"  class="p-2 flex-fill"><?php echo $item['title']; ?></div>
+                        <div style="width:40%;"  class="p-2 flex-fill"><?php echo $item['description']; ?></div>
+                        <div style="width:40%;"  class="p-2 flex-fill"><?php echo $item['content']; ?></div>
+                    </div>
                     <?php
                         endforeach;
                         
                     ?>
-                    
-                        </tbody>
-                </table>
+                </div>
+            </div>
+            <div style="width:20%;" class="p-2 flex-fill">
+                <div class="card" style="width:400px">
+                    <img style="max-width:200px;max-height:250px" class="card-img-top" src="./assets/img/Speaking1.jpg" alt="Card image">
+                    <div class="card-body">
+                        <h4 class="card-title">John Doe</h4>
+                        <p class="card-text">Some example text.</p>
+                        <a style="padding: 5px 10px;" href="#" class="btn btn-primary">See Profile</a>
+                    </div>
+                </div>
             </div>
         </main>
-
-        
-        
 
         <footer class="footer">
             <div class="content">
@@ -455,7 +477,7 @@
         </a>
 
         <!-- Nhúng Javascript -->
-        <script src="./assets/js/khoaHoc.js"></script>
+        <script src="./assets/js/index.js"></script>
         <script src="./assets/js/go-top.js"></script>
         <script src="./assets/js/if_log.js"></script>
     </body>

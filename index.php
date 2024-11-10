@@ -1,6 +1,13 @@
 <?php
 session_start();
+
+header("Cache-Control: no-cache, must-revalidate");
+header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+
 $isLoggedIn = isset($_SESSION['user_id']); // Kiểm tra nếu người dùng đã đăng nhập
+if(isset($_SESSION['user_name'])) {
+    $usernameindex = $_SESSION['user_name'];
+}
 ?>
 
 
@@ -208,9 +215,9 @@ $isLoggedIn = isset($_SESSION['user_id']); // Kiểm tra nếu người dùng đ
                         </a>
                         <?php else: ?>
                             <li class="nav-item dropdown btn">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><?php echo htmlspecialchars($_SESSION['name']); ?></a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/TRUNGTAMTIENGANH/information.php">Cài đặt</a></li>
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><?php echo $usernameindex ?></a>
+                            <ul class="dropdown-menu dropmn">
+                                <li><a class="dropdown-item" href="/TRUNGTAMTIENGANH/verify_password.php">Thay đổi thông tin</a></li>
                                 <li><a class="dropdown-item" href="/TRUNGTAMTIENGANH/LOGCODE/logout.php">Đăng xuất</a></li>
                             </ul>
                             </li>
@@ -239,7 +246,7 @@ $isLoggedIn = isset($_SESSION['user_id']); // Kiểm tra nếu người dùng đ
                             trang web/ứng dụng của chúng tôi ngay hôm nay!
                         </p>
                         <div class="head-actions">
-                            <a class="log btn head-btn hoc-ngay" href="#">
+                            <a class="log btn head-btn hoc-ngay" href="./my_course.php">
                                 <p class="text">Học&nbsp;ngay</p>
                             </a>
 
