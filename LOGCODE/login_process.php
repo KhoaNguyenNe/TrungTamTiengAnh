@@ -71,6 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['user_name'] = $user['name'];
             $_SESSION['email'] = $user['email'];
             $_SESSION['role'] = $user['user_type'];
+            $_SESSION['role'] = $user['user_type'];
 
             $login_time = date('Y-m-d H:i:s');
             $ip_address = $_SERVER['REMOTE_ADDR'];
@@ -81,6 +82,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $log_stmt->bind_param("isss", $_SESSION['user_id'], $login_time, $ip_address, $user_agent);
             $log_stmt->execute();
             $log_stmt->close();
+
+            // Xóa các bản ghi đăng nhập thất bại của email đó
+            $delete_fail_attempts_sql = "DELETE FROM failed_login_attempts WHERE email = ?";
+            $delete_fail_attempts_stmt = $conn->prepare($delete_fail_attempts_sql);
+            $delete_fail_attempts_stmt->bind_param("s", $email);
+            $delete_fail_attempts_stmt->execute();
+            $delete_fail_attempts_stmt->close();
 
             // Xóa các bản ghi đăng nhập thất bại của email đó
             $delete_fail_attempts_sql = "DELETE FROM failed_login_attempts WHERE email = ?";
@@ -122,15 +130,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 sendEmailOTP($email, $otp);
                 $tt = 'khoatk';
                 $_SESSION['trangthaidangnhap'] = $tt;
+                $tt = 'khoatk';
+                $_SESSION['trangthaidangnhap'] = $tt;
                 header("Location: /TRUNGTAMTIENGANH/LOGCODE/otp_MoKhoa.php");
                 exit();
             } else {
                 $tt = 'saimk';
                 $_SESSION['trangthaidangnhap'] = $tt;
                 header("Location: /TRUNGTAMTIENGANH/login.php");
+                $tt = 'saimk';
+                $_SESSION['trangthaidangnhap'] = $tt;
+                header("Location: /TRUNGTAMTIENGANH/login.php");
             }
         }
     } else {
+        $tt = 'saiemail';
+        $_SESSION['trangthaidangnhap'] = $tt;
+        header("Location: /TRUNGTAMTIENGANH/login.php");
         $tt = 'saiemail';
         $_SESSION['trangthaidangnhap'] = $tt;
         header("Location: /TRUNGTAMTIENGANH/login.php");
