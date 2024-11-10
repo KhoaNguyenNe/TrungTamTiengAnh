@@ -8,7 +8,9 @@ $stmt->bind_param("i", $id);
 $stmt->execute();
 $stmt->close();
 
+
 header("Location: ./list.php");
+
 ?>
 
 <?php
