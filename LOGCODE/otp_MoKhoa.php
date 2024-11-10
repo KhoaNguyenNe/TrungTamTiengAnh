@@ -5,6 +5,7 @@ include '../connect.php';
 
 if(isset($_SESSION['email']))
 {
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user_otp = $_POST['otp'];
         $email = $_SESSION['email'];
@@ -25,6 +26,13 @@ if(isset($_SESSION['email']))
             $update_stmt->bind_param("s", $email);
             $update_stmt->execute();
             $update_stmt->close();
+
+            // Xóa các bản ghi đăng nhập thất bại của email đó
+            $delete_fail_attempts_sql = "DELETE FROM failed_login_attempts WHERE email = ?";
+            $delete_fail_attempts_stmt = $conn->prepare($delete_fail_attempts_sql);
+            $delete_fail_attempts_stmt->bind_param("s", $email);
+            $delete_fail_attempts_stmt->execute();
+            $delete_fail_attempts_stmt->close();
 
             echo "<script>alert('Xác thực OTP thành công. Tài khoản của bạn đã được mở khóa.');</script>";
             header("Location: ../forgotpsw.php");
@@ -81,7 +89,14 @@ if(isset($_SESSION['email']))
 </head>
 <body>
     <div id="container">
-        <h1>Two-Step Verification</h1>
+        <?php
+        if(isset($_SESSION['trangthaidangnhap'])) {
+            if ($_SESSION['trangthaidangnhap'] == 'khoatk'){
+                echo "<script>alert('Bạn đã đăng nhập sai 5 lần nên tài khoản sẽ bị khoá');</script>";
+            }
+        }
+        ?>
+        <h1>Tài khoản đã bị khoá vui lòng nhập OTP để mở</h1>
         <p>Enter the 6 Digit OTP Code that has been sent <br> to your email address: <?php echo htmlspecialchars($_SESSION['email']); ?></p>
         <form method="post" action="otp_MoKhoa.php">
             <label style="font-weight: bold; font-size: 18px;" for="otp">Enter OTP Code:</label><br>

@@ -1,12 +1,16 @@
 <?php
 session_start();
 
+// Kết nối đến cơ sở dữ liệu
+include "connect.php"; // Đảm bảo kết nối đã được thiết lập trong file này
+
 header("Cache-Control: no-cache, must-revalidate");
 header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
 
 $isLoggedIn = isset($_SESSION['user_id']); // Kiểm tra nếu người dùng đã đăng nhập
 if(isset($_SESSION['user_name'])) {
     $usernameindex = $_SESSION['user_name'];
+    $role = $_SESSION['role'];
 }
 ?>
 
@@ -218,7 +222,16 @@ if(isset($_SESSION['user_name'])) {
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><?php echo $usernameindex ?></a>
                             <ul class="dropdown-menu dropmn">
                                 <li><a class="dropdown-item" href="/TRUNGTAMTIENGANH/verify_password.php">Thay đổi thông tin</a></li>
-                                <li><a class="dropdown-item" href="/TRUNGTAMTIENGANH/LOGCODE/logout.php">Đăng xuất</a></li>
+                                <?php
+                                    // Giả sử biến $role được lấy từ session hoặc cơ sở dữ liệu
+                                    if ($role == 'Admin') {
+                                        echo '<li><a class="dropdown-item" href="/TRUNGTAMTIENGANH/quan_ly.php">Trang quản lý</a></li>';
+                                    }
+                                    if ($role == 'Giảng viên') {
+                                        echo '<li><a class="dropdown-item" href="/TrungTamTiengAnh/lectures.php">Quản lý bài giảng</a></li>';
+                                    }
+                                ?>
+                                <li><a class="dropdown-item" href="/TrungTamTiengAnh/LOGCODE/logout.php">Đăng xuất</a></li>
                             </ul>
                             </li>
                         <?php endif; ?>
