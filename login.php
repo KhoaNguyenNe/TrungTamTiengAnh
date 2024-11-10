@@ -64,6 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $conn->close();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -268,7 +269,7 @@ $conn->close();
             <div class="sign">
                 <div id="form-login" class="login-phara">
                     <div class="wrap login">
-                        <form class="form-group" action="./login.php" method="POST">
+                        <form class="form-group" action="./LOGCODE/login_process.php" method="POST">
                             <div>
                                 <div class="title">ĐĂNG NHẬP</div>
                             </div>

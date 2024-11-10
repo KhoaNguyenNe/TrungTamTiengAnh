@@ -1,72 +1,33 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 session_start();
-include "./connect.php";
 
-// Kiểm tra nếu người dùng đã đăng nhập
-if (!isset($_SESSION['user_id'])) {
-    echo "Vui lòng đăng nhập trước.";
-    exit();
+header("Cache-Control: no-cache, must-revalidate");
+header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+
+$isLoggedIn = isset($_SESSION['user_id']); // Kiểm tra nếu người dùng đã đăng nhập
+if(isset($_SESSION['user_name'])) {
+    $usernameindex = $_SESSION['user_name'];
 }
 
-$user_id = $_SESSION['user_id'];
-$message = '';
+include 'connect.php';
 
-// Lấy thông tin người dùng từ cơ sở dữ liệu
-$sql = "SELECT name, email FROM user WHERE id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-$stmt->bind_result($name, $email);
-$stmt->fetch();
-$stmt->close();
+$sql = "SELECT * FROM lectures";
+$result = $conn->query($sql);
 
-// Kiểm tra nếu có form gửi lên
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = isset($_POST['name']) ? trim($_POST['name']) : null;
-    $password = isset($_POST['password']) ? trim($_POST['password']) : null;
-
-    // Khởi tạo mảng chứa các phần câu lệnh SQL cần cập nhật
-    $updates = [];
-    $params = [];
-
-    // Chỉ thêm phần cập nhật cho tên nếu người dùng đã nhập tên mới
-    if (!empty($name)) {
-        $updates[] = "name = ?";
-        $params[] = $name;
+// Lưu kết quả vào biến $listLectures dưới dạng một mảng
+$listLectures = [];
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        $listLectures[] = $row;  // Lưu từng dòng kết quả vào mảng
     }
-
-    // Chỉ thêm phần cập nhật cho mật khẩu nếu người dùng đã nhập mật khẩu mới
-    if (!empty($password)) {
-        // Mã hóa mật khẩu mới trước khi lưu vào database
-        $hashed_password = md5($password);
-        $updates[] = "password = ?";
-        $params[] = $hashed_password;
-    }
-
-    // Nếu không có gì cần cập nhật, chuyển hướng lại trang thông tin người dùng
-    if (empty($updates)) {
-        $message = "Không có thông tin nào để cập nhật.";
-    } else {
-        // Xây dựng câu lệnh SQL động
-        $sql = "UPDATE user SET " . implode(", ", $updates) . " WHERE id = ?";
-        $params[] = $user_id;
-
-        // Chuẩn bị và thực thi truy vấn
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param(str_repeat("s", count($params) - 1) . "i", ...$params);
-
-        if ($stmt->execute()) {
-            $message = "Cập nhật thông tin thành công.";
-        } else {
-            $message = "Cập nhật thông tin thất bại.";
-        }
-
-        $stmt->close();
-    }
+} else {
+    echo "0 results";
 }
+
+// Đóng kết nối
+$conn->close();
+
+
 ?>
 
 
@@ -95,15 +56,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         />
         <!-- Font -->
         <link rel="stylesheet" href="./assets/font/stylesheet.css" />
-        <!-- infor CSS -->
-        <link rel="stylesheet" href="./assets/css/infor.css" />
         <!-- Reset CSS -->
         <link rel="stylesheet" href="./assets/css/reset.css" />
         <!-- Style CSS  -->
         <link rel="stylesheet" href="./assets/css/style.css" />
         <!-- Responsive -->
         <link rel="stylesheet" href="./assets/css/responsive.css" />
-        
+        <link rel="stylesheet" href="./assets/css/my_course.css" />
         <title>Web luyện thi TOEIC</title>
     </head>
     <body>
@@ -277,9 +236,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </a>
                         <?php else: ?>
                             <li class="nav-item dropdown btn">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><?php echo htmlspecialchars($_SESSION['user_name']); ?></a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/TRUNGTAMTIENGANH/information.php">Thay đổi thông tin</a></li>
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><?php echo $usernameindex ?></a>
+                            <ul class="dropdown-menu dropmn">
+                                <li><a class="dropdown-item" href="/TRUNGTAMTIENGANH/verify_password.php">Thay đổi thông tin</a></li>
                                 <li><a class="dropdown-item" href="/TRUNGTAMTIENGANH/LOGCODE/logout.php">Đăng xuất</a></li>
                             </ul>
                             </li>
@@ -288,35 +247,69 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </nav>
             </div>
         </header>
-
-        <body>
-        <div class="user-info">
-            <h2 class="text-uppercase">Cập nhật thông tin người dùng</h2>
-
-            
-
-            <!-- Hiển thị thông báo -->
-            <?php if (!empty($message)): ?>
-                <div class="alert alert-info"><?php echo htmlspecialchars($message); ?></div>
-            <?php endif; ?>
-
-            <form method="POST" action="/TRUNGTAMTIENGANH/LOGCODE/update_profile.php">
-            <div class="form-group">
-                <label for="name">Họ và tên:</label>
-                <input type="text" id="name" name="name" placeholder="<?php echo htmlspecialchars($name); ?>" oninput="enableUpdateButton()">
+        <main>
+        <div class="d-flex">
+            <div style="width:25%;" class="p-2 flex-fill">
+                <div class="d-flex flex-column">
+                    <div class="p-2">
+                        <form class="d-flex" style="max-height:40px;">
+                            <input class="form-control me-2" type="text" placeholder="Tìm ID">
+                            <button style="padding: 5px 10px;" class="btn btn-primary" type="button">Search</button>
+                        </form>
+                    </div>
+                    <div class="p-2">
+                        <nav class="navbar navbar-expand-sm bg-light navbar-light">
+                            <div class="container-fluid course-bar">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Khóa học của tôi</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link emo" href="#">Xem thêm</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="p-2 ">
+                        <a href="#"><img style="width: 150px;" src="./assets/img/blg4.png" class="rounded" alt="Cinque Terre"></a>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" readonly>
+            <div style="width:55%; border-right: 0.5px solid black; border-left: 0.5px solid black"  class="p-2 flex-fill">
+                <h2 style="font-size:20px; font-weight:bold">Tất cả Bài Giảng</h2>
+                <div class="d-flex flex-column">
+                    <div class="p-2 d-flex">
+                        <div style="width:20%; font-size:18px; font-weight:bold;" class="p-2 flex-fill">Tên bài giảng</div>
+                        <div style="width:40%; font-size:18px; font-weight:bold;" class="p-2 flex-fill">Mô tả</div>
+                        <div style="width:40%; font-size:18px; font-weight:bold;" class="p-2 flex-fill">Nội dung</div>
+                    </div>
+                    <?php
+                        $count = 0;
+                        foreach($listLectures as $item):
+                    ?>
+                    <div class="p-2 d-flex">
+                        <div style="width:20%;"  class="p-2 flex-fill"><?php echo $item['title']; ?></div>
+                        <div style="width:40%;"  class="p-2 flex-fill"><?php echo $item['description']; ?></div>
+                        <div style="width:40%;"  class="p-2 flex-fill"><?php echo $item['content']; ?></div>
+                    </div>
+                    <?php
+                        endforeach;
+                        
+                    ?>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="password">Mật khẩu mới:</label>
-                <input type="password" id="password" name="password" placeholder="Nhập mật khẩu mới" oninput="enableUpdateButton()">
+            <div style="width:20%;" class="p-2 flex-fill">
+                <div class="card" style="width:400px">
+                    <img style="max-width:200px;max-height:250px" class="card-img-top" src="./assets/img/Speaking1.jpg" alt="Card image">
+                    <div class="card-body">
+                        <h4 class="card-title">John Doe</h4>
+                        <p class="card-text">Some example text.</p>
+                        <a style="padding: 5px 10px;" href="#" class="btn btn-primary">See Profile</a>
+                    </div>
+                </div>
             </div>
-            <button type="submit" id="updateButton" disabled>Cập nhật</button>
-        </form>
-        </div>         
-        </body>
+        </main>
 
         <footer class="footer">
             <div class="content">
@@ -478,13 +471,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
         </footer>
+
         <a href="#" class="btn-to-top">
             <i class="fa-solid fa-jet-fighter-up"></i>
         </a>
 
         <!-- Nhúng Javascript -->
+        <script src="./assets/js/index.js"></script>
         <script src="./assets/js/go-top.js"></script>
         <script src="./assets/js/if_log.js"></script>
-        <script src="./assets/js/info.js"></script>
     </body>
 </html>

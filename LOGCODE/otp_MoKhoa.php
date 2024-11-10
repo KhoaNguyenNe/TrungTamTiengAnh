@@ -1,12 +1,9 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 session_start();
 
 include '../connect.php';
 
-if(isset($_SESSION['email']) && isset( $_SESSION['user']))
+if(isset($_SESSION['email']))
 {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user_otp = $_POST['otp'];
@@ -23,13 +20,15 @@ if(isset($_SESSION['email']) && isset( $_SESSION['user']))
             $delete = "DELETE FROM otp WHERE email='$email'";
             mysqli_query($conn, $delete);
 
-            $pass = $_SESSION["user"]["pass"];
-            $name = $_SESSION["user"]["name"];
-            $user_type = $_SESSION["user"]["user_type"];
-            $status = 1; // 
-            $insert = "insert into user(email, password, name, user_type, status) values ('$email', '$pass', '$name', '$user_type', '$status')";
-            mysqli_query($conn, $insert);
-            header("Location: ../login.php");
+            $update_sql = "UPDATE user SET status = 1 WHERE email = ?";
+            $update_stmt = $conn->prepare($update_sql);
+            $update_stmt->bind_param("s", $email);
+            $update_stmt->execute();
+            $update_stmt->close();
+
+            echo "<script>alert('Xác thực OTP thành công. Tài khoản của bạn đã được mở khóa.');</script>";
+            header("Location: ../forgotpsw.php");
+            exit();
         } else {
             echo "<script> alert('Invalid OTP. Please try again.');</script>";
         }
@@ -84,7 +83,7 @@ if(isset($_SESSION['email']) && isset( $_SESSION['user']))
     <div id="container">
         <h1>Two-Step Verification</h1>
         <p>Enter the 6 Digit OTP Code that has been sent <br> to your email address: <?php echo htmlspecialchars($_SESSION['email']); ?></p>
-        <form method="post" action="otp.php">
+        <form method="post" action="otp_MoKhoa.php">
             <label style="font-weight: bold; font-size: 18px;" for="otp">Enter OTP Code:</label><br>
             <input type="number" name="otp" pattern="\d{6}" placeholder="Six-Digit OTP" required><br><br>
             <button type="submit">Verify OTP</button>
