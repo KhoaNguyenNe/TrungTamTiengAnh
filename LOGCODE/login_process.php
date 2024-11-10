@@ -118,8 +118,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("Location: ./otp_MoKhoa.php");
                 exit();
             } else {
-                header('Location:../login.php');
                 echo "<script>alert('Password Wrong! Please try again.');</script>";
+                header('Location:../login.php');
             }
         }
     } else {

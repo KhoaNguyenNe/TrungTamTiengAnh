@@ -31,7 +31,11 @@ if(isset($_SESSION['email']) && isset( $_SESSION['user']))
             mysqli_query($conn, $insert);
             header("Location: ../login.php");
         } else {
-            echo "<script> alert('Invalid OTP. Please try again.');</script>";
+            echo "?> 
+            <script>
+                alert(\"Email đã tồn tại\")
+            </script>
+            <?php";
         }
     }
 } else {
