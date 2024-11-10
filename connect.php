@@ -13,4 +13,5 @@ $conn = new mysqli($servername, $username, $password, $dbname);
         die("Kết nối thất bại: " . $conn->connect_error);
     }
 
+    
 ?>
