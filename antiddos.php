@@ -3,7 +3,7 @@
 // $excluded_ips = ['127.0.0.1', 'localhost'];
 
 // Đường dẫn đến các tệp
-$LogPath = './.logs/log.txt'; // cho file log, cần tạo
+$LogPath = './file_log/log.txt'; // cho file log, cần tạo
 $htaccessPath = './.htaccess'; // file .htaccess gốc
 
 // Tham số giới hạn
