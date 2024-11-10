@@ -217,132 +217,99 @@ $total_money = 1260000;
                 </nav>
             </div>
         </header>
+        <?php
+        if($_POST['ziller']) {
+        $curl = curl_init();
 
-        <div class="container-form">
-            <div>THANH TOÁN</div>
-            <div class="table-responsive">
-                <form action="./vnpay_create_payment.php" id="create_form" method="POST">
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => "https://bio.ziller.vn/api/qr/add",
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => "",
+                CURLOPT_MAXREDIRS => 2,
+                CURLOPT_TIMEOUT => 10,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_CUSTOMREQUEST => "POST",
+                CURLOPT_HTTPHEADER => array(
+                    "Authorization: Bearer 0f88bcc5320a390efc4ec202793befd0",
+                    "Content-Type: application/json",
+                ),
+                CURLOPT_POSTFIELDS => json_encode(
+                        array (
+                            'type' => 'text',
+                            'data' => ' 2|99|0817120130|Bui Khanh Dang||0|0|6350000|Lop tieng Anh danh cho doanh nghiep|tranfer_myqr',
+                            'background' => 'rgb(255,255,255)',
+                            'foreground' => 'rgb(0,0,0)',
+                            'logo' => 'https://img.ziller.vn/ib/C4IW2iAqc9.png',
+                        )
+                    ),
+                )
+            );
+            
+            $response = curl_exec($curl);
+            curl_close($curl);
 
-                    <div class="form-group">
-                        <label for="language">Chọn loại lớp: </label>
-                        <select name="order_type" id="order_type" class="form-control" required>
-                            
-                            <option value="professional">Chuyên nghiệp</option>
-                            <option value="businesses">Dành cho doanh nghiệp</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="amount">Số tiền</label>
-                        <input class="form-control" id="amount" name="amount" type="number" value="<?= $total_money ?>" readonly/>
-                    </div>
-                    <div class="form-group">
-                        <label for="order_id">Mã giao dịch</label>
-                        <input class="form-control" id="order_id" value="<?= $order_id ?>" name="order_id" type="text" value="<?= $order_id ?>" required/>
-                    </div>
-                    <div class="form-group">
-                        <label for="order_desc">Nội dung thanh toán</label>
-                        <textarea class="form-control" cols="20" id="order_desc" name="order_desc" rows="2" placeholder="Thanh toan hoc phi" value="Thanh toan hoc phi" readonly></textarea>
-                    </div>
-                    <div class="form-group" required>
-                        <label for="bank_code">Ngân hàng</label>
-                        <select name="bank_code" id="bank_code" class="form-control">
-                            <option value="">Không chọn</option>
-                            <option value="NCB"> Ngan hang NCB</option>
-                            <option value="AGRIBANK"> Ngan hang Agribank</option>
-                            <option value="SCB"> Ngan hang SCB</option>
-                            <option value="SACOMBANK">Ngan hang SacomBank</option>
-                            <option value="EXIMBANK"> Ngan hang EximBank</option>
-                            <option value="MSBANK"> Ngan hang MSBANK</option>
-                            <option value="NAMABANK"> Ngan hang NamABank</option>
-                            <option value="VNMART"> Vi dien tu VnMart</option>
-                            <option value="VIETINBANK">Ngan hang Vietinbank</option>
-                            <option value="VIETCOMBANK"> Ngan hang VCB</option>
-                            <option value="HDBANK">Ngan hang HDBank</option>
-                            <option value="DONGABANK"> Ngan hang Dong A</option>
-                            <option value="TPBANK"> Ngân hàng TPBank</option>
-                            <option value="OJB"> Ngân hàng OceanBank</option>
-                            <option value="BIDV"> Ngân hàng BIDV</option>
-                            <option value="TECHCOMBANK"> Ngân hàng Techcombank</option>
-                            <option value="VPBANK"> Ngan hang VPBank</option>
-                            <option value="MBBANK"> Ngan hang MBBank</option>
-                            <option value="ACB"> Ngan hang ACB</option>
-                            <option value="OCB"> Ngan hang OCB</option>
-                            <option value="IVB"> Ngan hang IVB</option>
-                            <option value="VISA"> Thanh toan qua VISA/MASTER</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="language">Ngôn ngữ</label>
-                        <select name="language" id="language" class="form-control">
-                            <option value="vn">Tiếng Việt</option>
-                            <option value="en">English</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>thời hạn thanh toán </label>
-                        <input class="form-control" id="txtexpire" name="txtexpire" type="text" value="<?php echo $expire; ?>"/>
-                    </div>
+            //var_dump($response);
+    $dan = json_decode($response);
+    //echo $dan->link;
+        }
+        ?>
+ <div class="container">
+        <!-- Thông tin gói dịch vụ -->
+        <div class="service-info">
+            <h3>Khóa Học Tiếng Anh</h3>
+            <p>Khóa học Tiếng Anh dành cho doanh nghiệp - $250/năm</p>
+            <p><strong>Đăng ký ngay hôm nay để bắt đầu học ngay!</strong></p>
+        </div>
+        <!-- Form thanh toán -->
 
-                    <button type="submit" class="btn btn-primary"  id="btnPopup" name="redirect">Xác nhận thanh toán</button>
-                </form>
-            </div>
-            <footer class="footer">
-                <p>&copy; VNPAY 2024</p>
-            </footer>
-        </div>  
-        <link href="https://sandbox.vnpayment.vn/paymentv2/lib/vnpay/vnpay.css" rel="stylesheet"/>
-        <script src="https://sandbox.vnpayment.vn/paymentv2/lib/vnpay/vnpay.js"></script>
-        <script type="text/javascript">
-            $("#btnPopup").click(function () {
-                var postData = $("#create_form").serialize();
-                var submitUrl = $("#create_form").attr("action");
-                $.ajax({
-                    type: "POST",
-                    url: submitUrl,
-                    data: postData,
-                    dataType: 'JSON',
-                    success: function (x) {
-                        console.log(x.data)
-                        if (x.code === '00') {
-                            // if (window.vnpay) {
-                            //     vnpay.open({width: 768, height: 600, url: x.data});
-                            // } else {
-                            //
-                            // }
-                            location.href = x.data;
-                            return false;
-                        } else {
-                            alert(x.Message);
-                        }
-                    }
-                });
-                return false;
-            });
-        </script>
-          <!-- Thêm mã script dưới đây -->
-          <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                    <script type="text/javascript">
-                        // Lắng nghe sự kiện thay đổi của dropdown menu
-                        $("#order_type").change(function () {
-                            // Lấy giá trị lựa chọn từ dropdown
-                            var orderType = $(this).val();
-                            
-                            // Kiểm tra giá trị lựa chọn và cập nhật giá trị $total_money
-                            var totalMoney = 0; // Mặc định là 0
+        <form id="payment-form" action="#" method="post">
+            <!-- Các thông tin người dùng -->
+            <label for="full-name">Họ và tên:</label>
+            <input type="text" id="full-name" name="full-name" required><br><br>
 
-                            if (orderType === "professional") {
-                                totalMoney = 1260000; // Chuyên nghiệp
-                            } else if (orderType === "businesses") {
-                                totalMoney = 6320000; // Dành cho doanh nghiệp
-                            }
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
 
-                            // Cập nhật giá trị cho trường input "amount"
-                            $("#amount").val(totalMoney);
-                        });
-                    </script>
+            <label for="sdt">Số điện thoại:</label>
+            <input type="tel" id="sdt" name="sdt" pattern="0[0-9]{9}" required><br><br>
 
+            <label for="cost">Số tiền:</label>
+            <input type="text"  id="cost" name="cost" value="6.350.000" disabled><br><br>
+
+            <label for="transaction-content">Nội dung chuyển khoản:</label>
+            <input type="text" id="transaction-content" name="transaction-content" value="Lop tieng Anh danh cho doanh nghiep" disabled><br><br>
+
+            <button type="submit" name="ziller" value="Tạo QR">Tạo QR </button>
+        </form>
+        <!-- Footer -->
+        <div class="footer">
+            <img id="imgQR" src="<?=$dan->link;?>" alt="Image" style="display:none;">
+            <p>Bằng cách thanh toán, bạn đồng ý với <a href="#">Điều khoản và Điều kiện</a></p>
+        </div>
+    </div>
+    <script>
+    // Lắng nghe sự kiện khi người dùng nhấn nút "Thanh Toán"
+    document.querySelector('button[name="ziller"]').addEventListener('click', function(event) {
+        // Ngăn form gửi đi ngay lập tức
+        event.preventDefault();
+
+        // Kiểm tra nếu các trường cần thiết đã được điền
+        var fullName = document.getElementById('full-name').value;
+        var email = document.getElementById('email').value;
+        var sdt = document.getElementById('sdt').value;
+        
+        if (fullName && email && sdt) {
+            // Hiển thị thẻ img có id="imgQR"
+            var imgElement = document.getElementById('imgQR');
+            imgElement.style.display = 'block';
+
+            // Bạn có thể gửi form sau khi hiển thị hình ảnh
+            // document.getElementById('payment-form').submit(); // Gửi form nếu muốn
+        } else {
+            alert('Vui lòng điền đầy đủ thông tin.');
+        }
+    });
+</script>
         <footer class="footer">
             <div class="content">
                 <div class="row row-top">

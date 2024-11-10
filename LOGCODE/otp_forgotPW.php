@@ -1,12 +1,9 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 session_start();
 
 include '../connect.php';
 
-if(isset($_SESSION['email']) && isset( $_SESSION['user']))
+if(isset($_SESSION['email']))
 {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user_otp = $_POST['otp'];
@@ -18,24 +15,34 @@ if(isset($_SESSION['email']) && isset( $_SESSION['user']))
     
         if ($data) {
             $_SESSION['email'] = $data['email'];
-            unset($_SESSION['email']);
-            
-            $delete = "DELETE FROM otp WHERE email='$email'";
-            mysqli_query($conn, $delete);
 
-            $pass = $_SESSION["user"]["pass"];
-            $name = $_SESSION["user"]["name"];
-            $user_type = $_SESSION["user"]["user_type"];
-            $status = 1; // 
-            $insert = "insert into user(email, password, name, user_type, status) values ('$email', '$pass', '$name', '$user_type', '$status')";
-            mysqli_query($conn, $insert);
-            header("Location: ../login.php");
+            echo "<script>alert('Xác thực OTP thành công.');</script>";
+            // Truy vấn dữ liệu từ bảng `user` bằng email
+            $sql = "SELECT id, email, password, name, phone, user_type, status FROM user WHERE email = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            // Kiểm tra nếu có dữ liệu trả về
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                
+                // Gán các giá trị từ bảng `user` vào session
+                $_SESSION['user_id'] = $row['id'];
+                $_SESSION['email'] = $row['email'];
+                $_SESSION['password'] = $row['password'];
+                $_SESSION['user_name'] = $row['name'];
+                $_SESSION['phone'] = $row['phone'];
+                $_SESSION['user_type'] = $row['user_type'];
+                $_SESSION['status'] = $row['status'];
+            }
+            $stmt->close();
+            $conn->close();
+            header("Location: ../information.php");
+            exit();
         } else {
-            echo "?> 
-            <script>
-                alert(\"Email đã tồn tại\")
-            </script>
-            <?php";
+            echo "<script> alert('Invalid OTP. Please try again.');</script>";
         }
     }
 } else {
@@ -88,7 +95,7 @@ if(isset($_SESSION['email']) && isset( $_SESSION['user']))
     <div id="container">
         <h1>Two-Step Verification</h1>
         <p>Enter the 6 Digit OTP Code that has been sent <br> to your email address: <?php echo htmlspecialchars($_SESSION['email']); ?></p>
-        <form method="post" action="otp.php">
+        <form method="post" action="otp_forgotPW.php">
             <label style="font-weight: bold; font-size: 18px;" for="otp">Enter OTP Code:</label><br>
             <input type="number" name="otp" pattern="\d{6}" placeholder="Six-Digit OTP" required><br><br>
             <button type="submit">Verify OTP</button>

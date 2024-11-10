@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Chỉ thêm phần cập nhật cho mật khẩu nếu người dùng đã nhập mật khẩu mới
     if (!empty($password)) {
         // Mã hóa mật khẩu mới trước khi lưu vào database
-        $hashed_password = pbkdf2HashPassword($password);
+        $hashed_password = md5($password);
         $updates[] = "password = ?";
         $params[] = $hashed_password;
     }
@@ -308,6 +308,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" readonly>
+            </div>
+            <div class="form-group">
+                <label for="phone">Email:</label>
+                <input type="phone" id="phone" name="phone" value="<?php echo htmlspecialchars($phone); ?>" readonly>
             </div>
             <div class="form-group">
                 <label for="password">Mật khẩu mới:</label>

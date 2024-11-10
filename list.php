@@ -160,6 +160,7 @@ if (!$result) {
                     <th>Họ tên</th>
                     <th>Email</th>
                     <th>Điện thoại</th>
+                    <th>Loại người dùng</th> 
                     <th>Trạng thái</th>
                     <th width="5%">Sửa</th>
                     <th width="5%">Xóa</th>
@@ -177,6 +178,7 @@ if (!$result) {
                             <td><?php echo $item['name']; ?></td>
                             <td><?php echo $item['email']; ?></td>
                             <td><?php echo $item['phone']; ?></td>
+                            <td><?php echo $item['user_type']; ?></td>
                             <td><?php echo $item['status'] == 1 ? '<button class="btn btn-activated btn-sm">Đã kích hoạt</button>' : '<button class="btn btn-deactivated btn-sm">Chưa kích hoạt</button>'; ?>
                             </td>
                             <td><a href="edit.php?id=<?php echo $item['id']; ?>" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a></td>
