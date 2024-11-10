@@ -1,3 +1,17 @@
+<?php
+session_start();
+error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
+date_default_timezone_set('Asia/Ho_Chi_Minh');
+
+/**
+ * 
+ *
+ * @author CTT VNPAY
+ */
+require_once("./config.php");
+$order_id = rand(0,9999);
+$total_money = 1260000;
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -32,95 +46,15 @@
         <link rel="stylesheet" href="./assets/css/style.css" />
         <!--Style Prenium CSS-->
         <link rel="stylesheet" href="./assets/css/prenium.css" />
+        <!--Style Payment form CSS-->
+        <link rel="stylesheet" href="./assets/css/payment_form.css" />
         <!-- icon -->
         <link
             href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
             rel="stylesheet"
         />
+        <script src="./assets/js/jquery-1.11.3.min.js"></script>
         <title>Từ vựng</title>
-        <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f7f7f7;
-      margin: 0;
-      padding: 0;
-    }
-    .container {
-      width: 100%;
-      max-width: 600px;
-      margin: 50px auto;
-      padding: 20px;
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-    h1 {
-      text-align: center;
-      color: #333;
-    }
-    .service-info {
-      background-color: #e9f7fa;
-      padding: 15px;
-      margin-bottom: 20px;
-      border-radius: 5px;
-      text-align: center;
-    }
-    .service-info h3 {
-      margin: 0;
-      color: #00796b;
-    }
-    .service-info p {
-      font-size: 16px;
-      color: #555;
-    }
-    .payment-methods {
-      margin-bottom: 20px;
-    }
-    .payment-methods label {
-      display: block;
-      margin: 10px 0 5px;
-    }
-    select, input[type="text"], input[type="email"], input[type="number"] {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 16px;
-    }
-    button {
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      padding: 15px;
-      width: 100%;
-      border-radius: 5px;
-      font-size: 18px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #45a049;
-    }
-    .footer {
-      text-align: center;
-      margin-top: 30px;
-      font-size: 14px;
-      color: #555;
-    }
-    .footer a {
-      color: #00796b;
-      text-decoration: none;
-    }
-    input[type="number"]::-webkit-outer-spin-button,
-        input[type="number"]::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
-        /* Ẩn nút tăng/giảm trên Firefox */
-        input[type="number"] {
-            -moz-appearance: textfield;
-        }
-  </style>
     </head>
     <body>
         <header class="header">
@@ -283,50 +217,99 @@
                 </nav>
             </div>
         </header>
-        <div class="container">
-    <!-- Thông tin gói dịch vụ -->
-    <div class="service-info">
-      <h3>Khóa Học Tiếng Anh</h3>
-      <p>Khóa học Tiếng Anh cơ bản</p>
-      <p><strong>Đăng ký ngay hôm nay để bắt đầu học ngay!</strong></p>
-    </div>
+        <?php
+        if($_POST['ziller']) {
+        $curl = curl_init();
 
-    <!-- Form thanh toán -->
-    <h1>Điền thông tin đăng ký</h1>
-
-<form id="payment-form">
-    <!-- Các thông tin người dùng -->
-    <label for="full-name">Họ và tên:</label>
-    <input type="text" id="full-name" name="full-name" required><br><br>
-
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required><br><br>
-
-    <label for="sdt">Số điện thoại:</label>
-    <input type="number" id="sdt" name="sdt" min="0100000000" max="0999999999"required><br><br>
-
-    <button type="submit">Đăng ký</button>
-
-    </form>
-
-    <!-- Footer -->
-    <div class="footer">
-      <p>Bằng cách thanh toán, bạn đồng ý với <a href="#">Điều khoản và Điều kiện</a></p>
-    </div>
-  </div>
-
-  <script>
-        // Xử lý form thanh toán khi gửi
-        document.getElementById("payment-form").addEventListener("submit", function(event) {
-            event.preventDefault();
-            alert("Đăng ký thành công!");
-            setTimeout(function() {
-            window.location.href = "./index.php";  // Thay đổi URL đến trang bạn muốn chuyển hướng
-        }, 1000);
-
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => "https://bio.ziller.vn/api/qr/add",
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => "",
+                CURLOPT_MAXREDIRS => 2,
+                CURLOPT_TIMEOUT => 10,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_CUSTOMREQUEST => "POST",
+                CURLOPT_HTTPHEADER => array(
+                    "Authorization: Bearer 0f88bcc5320a390efc4ec202793befd0",
+                    "Content-Type: application/json",
+                ),
+                CURLOPT_POSTFIELDS => json_encode(
+                        array (
+                            'type' => 'text',
+                            'data' => ' 2|99|0817120130|Bui Khanh Dang||0|0|6350000|Lop tieng Anh danh cho doanh nghiep|tranfer_myqr',
+                            'background' => 'rgb(255,255,255)',
+                            'foreground' => 'rgb(0,0,0)',
+                            'logo' => 'https://img.ziller.vn/ib/C4IW2iAqc9.png',
+                        )
+                    ),
+                )
+            );
             
-        });
-  </script>
+            $response = curl_exec($curl);
+            curl_close($curl);
+
+            //var_dump($response);
+    $dan = json_decode($response);
+    //echo $dan->link;
+        }
+        ?>
+ <div class="container">
+        <!-- Thông tin gói dịch vụ -->
+        <div class="service-info">
+            <h3>Khóa Học Tiếng Anh</h3>
+            <p>Khóa học Tiếng Anh dành cho doanh nghiệp - $250/năm</p>
+            <p><strong>Đăng ký ngay hôm nay để bắt đầu học ngay!</strong></p>
+        </div>
+        <!-- Form thanh toán -->
+
+        <form id="payment-form" action="#" method="post">
+            <!-- Các thông tin người dùng -->
+            <label for="full-name">Họ và tên:</label>
+            <input type="text" id="full-name" name="full-name" required><br><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <label for="sdt">Số điện thoại:</label>
+            <input type="tel" id="sdt" name="sdt" pattern="0[0-9]{9}" required><br><br>
+
+            <label for="cost">Số tiền:</label>
+            <input type="text"  id="cost" name="cost" value="6.350.000" disabled><br><br>
+
+            <label for="transaction-content">Nội dung chuyển khoản:</label>
+            <input type="text" id="transaction-content" name="transaction-content" value="Lop tieng Anh danh cho doanh nghiep" disabled><br><br>
+
+            <button type="submit" name="ziller" value="Tạo QR">Tạo QR </button>
+        </form>
+        <!-- Footer -->
+        <div class="footer">
+            <img id="imgQR" src="<?=$dan->link;?>" alt="Image" style="display:none;">
+            <p>Bằng cách thanh toán, bạn đồng ý với <a href="#">Điều khoản và Điều kiện</a></p>
+        </div>
+    </div>
+    <script>
+    // Lắng nghe sự kiện khi người dùng nhấn nút "Thanh Toán"
+    document.querySelector('button[name="ziller"]').addEventListener('click', function(event) {
+        // Ngăn form gửi đi ngay lập tức
+        event.preventDefault();
+
+        // Kiểm tra nếu các trường cần thiết đã được điền
+        var fullName = document.getElementById('full-name').value;
+        var email = document.getElementById('email').value;
+        var sdt = document.getElementById('sdt').value;
+        
+        if (fullName && email && sdt) {
+            // Hiển thị thẻ img có id="imgQR"
+            var imgElement = document.getElementById('imgQR');
+            imgElement.style.display = 'block';
+
+            // Bạn có thể gửi form sau khi hiển thị hình ảnh
+            // document.getElementById('payment-form').submit(); // Gửi form nếu muốn
+        } else {
+            alert('Vui lòng điền đầy đủ thông tin.');
+        }
+    });
+</script>
         <footer class="footer">
             <div class="content">
                 <div class="row row-top">
