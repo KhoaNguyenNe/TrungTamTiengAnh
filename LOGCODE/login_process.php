@@ -4,9 +4,8 @@ ini_set('display_errors', 1);
 
 session_start();
 
-
-include "../connect.php";
-include "./sendEmail.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/TrungTamTiengAnh/connect.php";
+include "/Applications/XAMPP/xamppfiles/htdocs/TrungTamTiengAnh/LOGCODE/sendEmail.php";
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 
 if ($conn->connect_error) {
@@ -62,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             updateOrInsertOTP($conn, $email, $otp);
             sendEmailOTP($email, $otp);
             echo "<script>alert('Tài khoản của bạn đã bị khóa. Vui lòng xác thực OTP để mở khóa.');</script>";
-            header("Location: ./otp_MoKhoa.php");
+            header("Location: /TRUNGTAMTIENGANH/LOGCODE/otp_MoKhoa.php");
             exit();
         }
 
@@ -71,6 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_name'] = $user['name'];
             $_SESSION['email'] = $user['email'];
+            $_SESSION['role'] = $user['user_type'];
 
             $login_time = date('Y-m-d H:i:s');
             $ip_address = $_SERVER['REMOTE_ADDR'];
@@ -81,6 +81,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $log_stmt->bind_param("isss", $_SESSION['user_id'], $login_time, $ip_address, $user_agent);
             $log_stmt->execute();
             $log_stmt->close();
+
+            // Xóa các bản ghi đăng nhập thất bại của email đó
+            $delete_fail_attempts_sql = "DELETE FROM failed_login_attempts WHERE email = ?";
+            $delete_fail_attempts_stmt = $conn->prepare($delete_fail_attempts_sql);
+            $delete_fail_attempts_stmt->bind_param("s", $email);
+            $delete_fail_attempts_stmt->execute();
+            $delete_fail_attempts_stmt->close();
 
             header("Location: ../index.php?status=success&user_id=" . $_SESSION['user_id']);
             exit();
@@ -113,17 +120,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $otp = rand(100000, 999999);
                 updateOrInsertOTP($conn, $email, $otp);
                 sendEmailOTP($email, $otp);
-
-                echo "<script>alert('Tài khoản của bạn đã bị khóa. Vui lòng kiểm tra email để nhận mã OTP.');</script>";
-                header("Location: ./otp_MoKhoa.php");
+                $tt = 'khoatk';
+                $_SESSION['trangthaidangnhap'] = $tt;
+                header("Location: /TRUNGTAMTIENGANH/LOGCODE/otp_MoKhoa.php");
                 exit();
             } else {
-                echo "<script>alert('Password Wrong! Please try again.');</script>";
-                header('Location:../login.php');
+
+                $tt = 'saimk';
+                $_SESSION['trangthaidangnhap'] = $tt;
+                header("Location: /TRUNGTAMTIENGANH/login.php");
             }
         }
     } else {
-        echo "<p class='nhap_sai_mk'>Email không tồn tại</p>";
+        $tt = 'saiemail';
+        $_SESSION['trangthaidangnhap'] = $tt;
+        header("Location: /TRUNGTAMTIENGANH/login.php");
     }
 
     $stmt->close();

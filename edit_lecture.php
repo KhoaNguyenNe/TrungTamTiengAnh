@@ -3,9 +3,8 @@
 include'connect.php';
 
 session_start();
-$user_role = 'teacher'; //$_SESSION['user_type'];  // Vai trò của người dùng
-$user_id = 1; //$_SESSION['user_id']; // ID của người dùng hiện tại
-
+$user_role = $_SESSION['role']; //$_SESSION['user_type'];  // Vai trò của người dùng
+$user_id = $_SESSION['user_id']; //$_SESSION['user_id']; // ID của người dùng hiện tại
 
 // Check the connection
 if ($conn->connect_error) {

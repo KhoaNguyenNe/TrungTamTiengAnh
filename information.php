@@ -310,6 +310,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" readonly>
             </div>
             <div class="form-group">
+                <label for="phone">Email:</label>
+                <input type="phone" id="phone" name="phone" value="<?php echo htmlspecialchars($phone); ?>" readonly>
+            </div>
+            <div class="form-group">
                 <label for="password">Mật khẩu mới:</label>
                 <input type="password" id="password" name="password" placeholder="Nhập mật khẩu mới" oninput="enableUpdateButton()">
             </div>
