@@ -283,108 +283,99 @@
                 </nav>
             </div>
         </header>
-        <div class="container">
-    <!-- Thông tin gói dịch vụ -->
-    <div class="service-info">
-      <h3>Khóa Học Tiếng Anh</h3>
-      <p>Khóa học Tiếng Anh dành cho doanh nghiệp - $50/tháng</p>
-      <p><strong>Đăng ký ngay hôm nay để bắt đầu học ngay!</strong></p>
-    </div>
+        <?php
+        if($_POST['ziller']) {
+        $curl = curl_init();
 
-    <!-- Form thanh toán -->
-    <h1>Thanh toán dịch vụ</h1>
-
-<form id="payment-form">
-    <!-- Các thông tin người dùng -->
-    <label for="full-name">Họ và tên:</label>
-    <input type="text" id="full-name" name="full-name" required><br><br>
-
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required><br><br>
-
-    <label for="sdt">Số điện thoại:</label>
-    <input type="number" id="sdt" name="sdt" min="0100000000" max="0999999999"required><br><br>
-
-    <!-- Chọn phương thức thanh toán -->
-    <label for="payment-method">Phương thức thanh toán:</label>
-    <select id="payment-method" name="payment-method">
-        <option value="">Chọn phương thức thanh toán</option>
-        <option value="credit-card">Thẻ tín dụng</option>
-        <option value="paypal">PayPal</option>
-        <option value="bank-transfer">Chuyển khoản ngân hàng</option>
-    </select><br><br>
-
-    <!-- Chi tiết thẻ tín dụng -->
-    <div id="credit-card-details" class="payment-details" style="display: none;">
-        <label for="credit-card-number">Số thẻ tín dụng:</label>
-        <input type="text" id="credit-card-number" name="credit-card-number"><br><br>
-        <label for="credit-account-name">Tên ngân hàng:</label>
-        <input type="text" id="credit-account-name" name="credit-account-name"><br><br>
-    </div>
-
-    <!-- Chi tiết PayPal -->
-    <div id="paypal-details" class="payment-details" style="display: none;">
-        <label for="paypal-email">Email PayPal:</label>
-        <input type="email" id="paypal-email" name="paypal-email"><br><br>
-    </div>
-
-    <!-- Chi tiết chuyển khoản ngân hàng -->
-    <div id="bank-transfer-details" class="payment-details" style="display: none;">
-        <label for="bank-account">Số tài khoản ngân hàng:</label>
-        <input type="number" id="bank-account" name="bank-account"><br><br>
-        <label for="bank-account-name">Tên ngân hàng:</label>
-        <input type="text" id="bank-account-name" name="bank-account-name"><br><br>
-    </div>
-    <button type="submit">Thanh toán $50</button>
-
-    </form>
-
-    <!-- Footer -->
-    <div class="footer">
-      <p>Bằng cách thanh toán, bạn đồng ý với <a href="#">Điều khoản và Điều kiện</a></p>
-    </div>
-  </div>
-
-  <script>
-      // Hiển thị các chi tiết thanh toán dựa trên phương thức chọn
-        document.getElementById("payment-method").addEventListener("change", function() {
-            const method = this.value;
-
-            // Ẩn tất cả các phương thức thanh toán chi tiết
-            const paymentDetails = document.querySelectorAll('.payment-details');
-            paymentDetails.forEach(detail => detail.style.display = 'none');
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => "https://bio.ziller.vn/api/qr/add",
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => "",
+                CURLOPT_MAXREDIRS => 2,
+                CURLOPT_TIMEOUT => 10,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_CUSTOMREQUEST => "POST",
+                CURLOPT_HTTPHEADER => array(
+                    "Authorization: Bearer 0f88bcc5320a390efc4ec202793befd0",
+                    "Content-Type: application/json",
+                ),
+                CURLOPT_POSTFIELDS => json_encode(
+                        array (
+                            'type' => 'text',
+                            'data' => ' 2|99|0817120130|Bui Khanh Dang||0|0|6350000|LOP TIENG ANH CHO DOANH NGHIEP|tranfer_myqr',
+                            'background' => 'rgb(255,255,255)',
+                            'foreground' => 'rgb(0,0,0)',
+                            'logo' => 'https://img.ziller.vn/ib/C4IW2iAqc9.png',
+                        )
+                    ),
+                )
+            );
             
-            // Hiển thị phương thức thanh toán đã chọn
-            if (method === "credit-card") {
-                document.getElementById("credit-card-details").style.display = "block";
-            } else if (method === "paypal") {
-                document.getElementById("paypal-details").style.display = "block";
-            } else if (method === "bank-transfer") {
-                document.getElementById("bank-transfer-details").style.display = "block";
-            }
-        });
+            $response = curl_exec($curl);
+            curl_close($curl);
 
-        // Xử lý form thanh toán khi gửi
-        document.getElementById("payment-form").addEventListener("submit", function(event) {
-            event.preventDefault();
-            
-            // Kiểm tra xem người dùng đã điền đầy đủ thông tin chưa
-            const paymentMethod = document.getElementById("payment-method").value;
-            const name = document.getElementById("full-name").value;
-            const email = document.getElementById("email").value;
-            const bank = document.getElementById("bank-account").value;
-            const paypal = document.getElementById("paypal-email").value;
-            const creditcard = document.getElementById("credit-card-number").value;
-            
-            if (!paymentMethod || !name || !email) {
-                alert("Vui lòng điền đầy đủ thông tin.");
-                return;
-            } else {
-                window.location.href = "./verification.php";
+            //var_dump($response);
+    $dan = json_decode($response);
+    //echo $dan->link;
+        }
+        ?>
+ <div class="container">
+        <!-- Thông tin gói dịch vụ -->
+        <div class="service-info">
+            <h3>Khóa Học Tiếng Anh</h3>
+            <p>Khóa học Tiếng Anh chuyên nghiệp - $50/tháng</p>
+            <p><strong>Đăng ký ngay hôm nay để bắt đầu học ngay!</strong></p>
+        </div>
+        <!-- Form thanh toán -->
 
-            }
-        });
-  </script>
+        <form id="payment-form" action="#" method="post">
+            <!-- Các thông tin người dùng -->
+            <label for="full-name">Họ và tên:</label>
+            <input type="text" id="full-name" name="full-name" required><br><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <label for="sdt">Số điện thoại:</label>
+            <input type="tel" id="sdt" name="sdt" pattern="0[0-9]{9}" required><br><br>
+
+            <label for="cost">Số tiền:</label>
+            <input type="text"  id="cost" name="cost" value="1.269.000" disabled><br><br>
+
+            <label for="transaction-content">Nội dung chuyển khoản:</label>
+            <input type="text" id="transaction-content" name="transaction-content" value="LOP TIENG ANH CHUYEN NHGIEP" disabled><br><br>
+
+            <button type="submit" name="ziller" value="Tạo QR">Tạo QR </button>
+        </form>
+        <!-- Footer -->
+        <div class="footer">
+            <img id="imgQR2" src="<?=$dan->link;?>" alt="Image" style="display:none;">
+            <p>Bằng cách thanh toán, bạn đồng ý với <a href="#">Điều khoản và Điều kiện</a></p>
+        </div>
+    </div>
+    <script>
+    // Lắng nghe sự kiện khi người dùng nhấn nút "Thanh Toán"
+    document.querySelector('button[name="ziller"]').addEventListener('click', function(event) {
+        // Ngăn form gửi đi ngay lập tức
+        event.preventDefault();
+
+        // Kiểm tra nếu các trường cần thiết đã được điền
+        var fullName = document.getElementById('full-name').value;
+        var email = document.getElementById('email').value;
+        var sdt = document.getElementById('sdt').value;
+        
+        if (fullName && email && sdt) {
+            // Hiển thị thẻ img có id="imgQR"
+            var imgElement = document.getElementById('imgQR2');
+            imgElement.style.display = 'block';
+
+            // Bạn có thể gửi form sau khi hiển thị hình ảnh
+            // document.getElementById('payment-form').submit(); // Gửi form nếu muốn
+        } else {
+            alert('Vui lòng điền đầy đủ thông tin.');
+        }
+    });
+</script>
         <footer class="footer">
             <div class="content">
                 <div class="row row-top">
