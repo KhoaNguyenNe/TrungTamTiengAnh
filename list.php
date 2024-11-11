@@ -91,9 +91,6 @@ if (!$result) {
                         <li>
                             <a href="./toeic-tip.php" class="item-nav-mobile">TOEIC&nbsp;Tips</a>
                         </li>
-                        <li>
-                            <a href="./login.php" class="item-nav-mobile">Đăng&nbsp;nhập</a>
-                        </li>
                     </ul>
                 </nav>
                 <!-- Logo -->
@@ -139,9 +136,6 @@ if (!$result) {
                             <path d="m18 0 8 12 10-8-4 20H4L0 4l10 8 8-12z"></path>
                         </svg>
                         <p>Unlock&nbsp;Pro</p>
-                    </a>
-                    <a href="./login.php" class="log btn" id="log">
-                        <p class="text">Đăng&nbsp;nhập</p>
                     </a>
                 </div>
             </nav>
