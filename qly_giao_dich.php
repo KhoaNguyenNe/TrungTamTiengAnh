@@ -1,6 +1,18 @@
 <?php
 include './connect.php'; // Đảm bảo rằng đường dẫn đúng
 
+$isLoggedIn = isset($_SESSION['user_id']); // Kiểm tra nếu người dùng đã đăng nhập
+if(isset($_SESSION['user_name'])) {
+    $usernameindex = $_SESSION['user_name'];
+    $role = $_SESSION['role'];
+
+    if ($role !== 'Admin') {
+        // Nếu không phải Admin, chuyển hướng về index.php
+        header("Location: index.php");
+        exit();
+    }
+}
+
 // Lấy danh sách người dùng
 $result = $conn->query("SELECT * FROM payment");
 
