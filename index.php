@@ -7,6 +7,8 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
 $isLoggedIn = isset($_SESSION['user_id']); // Kiểm tra nếu người dùng đã đăng nhập
 if(isset($_SESSION['user_name'])) {
     $usernameindex = $_SESSION['user_name'];
+    $usernameid = $_SESSION['user_id'];
+
 }
 ?>
 
@@ -246,7 +248,7 @@ if(isset($_SESSION['user_name'])) {
                             trang web/ứng dụng của chúng tôi ngay hôm nay!
                         </p>
                         <div class="head-actions">
-                            <a class="log btn head-btn hoc-ngay" href="./my_course.php">
+                            <a class="log btn head-btn hoc-ngay" href="./my_course.php?id=<?= $usernameid ?>">
                                 <p class="text">Học&nbsp;ngay</p>
                             </a>
 

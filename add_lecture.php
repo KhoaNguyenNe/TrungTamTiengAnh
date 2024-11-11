@@ -5,17 +5,35 @@ include'connect.php';
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+$giangvien_id = isset($_GET['giangvien_id']) ? intval($_GET['giangvien_id']) : 0;
+$course_id = isset($_GET['course_id']) ? intval($_GET['course_id']) : 0;
 
-// Handle form data submission
+// Kiểm tra giá trị của course_id
+if ($course_id <= 0) {
+    echo "Mã khóa học không hợp lệ. Giá trị của course_id: " . $_GET['course_id']; // Hiển thị giá trị course_id từ URL để debug
+    exit;
+}
+
+// Kiểm tra khóa học
+$course_result = $conn->query("SELECT * FROM khoahoc WHERE khoahoc_id = $course_id");
+
+// Kiểm tra nếu có lỗi trong câu truy vấn
+if (!$course_result) {
+    echo "Lỗi truy vấn: " . $conn->error;
+    exit;
+}
+
+$course = $course_result->fetch_assoc();
+
+// Xử lý khi form được gửi
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve form data
+    // Lấy dữ liệu từ form
     $title = $_POST['title'];
     $description = $_POST['description'];
     $content = $_POST['content'];
-    $teacher_id = $_POST['teacher_id'];
     $status = $_POST['status'];
 
-    // Error validation
+    // Kiểm tra lỗi
     $errors = [];
 
     if (empty($title)) {
@@ -27,29 +45,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($content)) {
         $errors['content'] = "Nội dung bắt buộc phải nhập";
     }
-    if (empty($teacher_id)) {
-        $errors['teacher_id'] = "Giảng Viên bắt buộc phải nhập";
-    }
     if (empty($status)) {
         $errors['status'] = "Trạng Thái bắt buộc phải nhập";
     }
 
-    // Insert data if there are no errors
+    // Thêm dữ liệu vào cơ sở dữ liệu nếu không có lỗi
     if (empty($errors)) {
-        $stmt = $conn->prepare("INSERT INTO lectures (title, description, content, teacher_id, status) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssii", $title, $description, $content, $teacher_id, $status);
-
+        // Gán thời gian hiện tại vào biến $updated_at
+        $updated_at = date("Y-m-d H:i:s"); // Định dạng phù hợp cho kiểu DATETIME
+    
+        // Chuẩn bị câu lệnh với các tham số đã được thêm vào
+        $stmt = $conn->prepare("INSERT INTO lectures (title, description, content, updated_at, status, khoahoc_id) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssisi", $title, $description, $content, $updated_at, $status, $course_id);
+    
         if ($stmt->execute()) {
             echo "Bài giảng đã được thêm thành công!";
-            
-            header("Location: lectures.php");
+            // Chuyển hướng đến trang quản lý bài giảng
+            header("Location: lectures.php?course_id=" . $course_id . "&giangvien_id=" . $giangvien_id);
+            exit;
         } else {
             echo "Có lỗi xảy ra khi thêm bài giảng: " . $conn->error;
         }
-
+    
         $stmt->close();
     }
+    
 }
+
 
 $conn->close();
 ?>
@@ -134,7 +156,7 @@ $conn->close();
 <body>
     <div class="form-container">
         <h2>Thêm bài giảng mới</h2>
-        <form action="add_lecture.php" method="POST">
+        <form action="add_lecture.php?giangvien_id=<?php echo $giangvien_id; ?>&course_id=<?php echo $course_id; ?>" method="POST">
             <label for="title">Tiêu đề:</label>
             <input type="text" id="title" name="title" value="<?= isset($title) ? $title : '' ?>">
             <div class="error"><?= isset($errors['title']) ? $errors['title'] : '' ?></div>
@@ -147,16 +169,12 @@ $conn->close();
             <input type="text" id="content" name="content" value="<?= isset($content) ? $content : '' ?>">
             <div class="error"><?= isset($errors['content']) ? $errors['content'] : '' ?></div>
 
-            <label for="teacher_id">Giảng Viên:</label>
-            <input type="text" id="teacher_id" name="teacher_id" value="<?= isset($teacher_id) ? $teacher_id : '' ?>">
-            <div class="error"><?= isset($errors['teacher_id']) ? $errors['teacher_id'] : '' ?></div>
-
             <label for="status">Trạng Thái:</label>
             <input type="text" id="status" name="status" value="<?= isset($status) ? $status : '' ?>">
             <div class="error"><?= isset($errors['status']) ? $errors['status'] : '' ?></div>
 
             <button type="submit">Thêm bài giảng</button>
-            <p><a href="lectures.php">Quay lại</a></p>
+            <p><a href="lectures.php?course_id=<?php echo $course_id; ?>&giangvien_id=<?php echo $giangvien_id; ?>">Quay lại</a></p>
         </form>
     </div>
 </body>

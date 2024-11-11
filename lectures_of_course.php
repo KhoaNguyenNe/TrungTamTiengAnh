@@ -11,25 +11,52 @@ if(isset($_SESSION['user_name'])) {
 
 include 'connect.php';
 
-//$sql = "SELECT * FROM lectures";
-//$result = $conn->query($sql);
+// Lấy giá trị từ URL
+$user_id = isset($_GET['user_id']) ? intval($_GET['user_id']) : 0;
+$course_id = isset($_GET['course_id']) ? intval($_GET['course_id']) : 0;
+// Lấy thông tin khóa học
+$course_result = $conn->query("SELECT * FROM khoahoc WHERE khoahoc_id = $course_id");
 
-// Lưu kết quả vào biến $listLectures dưới dạng một mảng
+$user_result = $conn->query("SELECT * FROM user WHERE id = $user_id");
+$user = $user_result->fetch_assoc();
 
+if ($course_result) {
+    $course = $course_result->fetch_assoc();
 
-$user_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
-$result = $conn->query("SELECT * FROM hocvien_khoahoc WHERE hocvien_id = $user_id");
-$user_course = [];
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-        $user_course[] = $row;  // Lưu từng dòng kết quả vào mảng
+    if ($course) {
+        // Lấy thông tin giảng viên
+        $giangvien_id = $course['giangvien_id'];
+        $giangvien_result = $conn->query("SELECT * FROM giangvien WHERE giangvien_id = $giangvien_id");
+        $giangvien = $giangvien_result->fetch_assoc();
+        // Xử lý dữ liệu giảng viên ở đây
+    } else {
+        echo "Không tìm thấy khóa học.";
+        exit;  // Dừng script nếu không tìm thấy khóa học
     }
+
+    // Lấy các bài giảng của khóa học
+    $result = $conn->query("SELECT * FROM lectures WHERE khoahoc_id = {$course['khoahoc_id']}");
+
+    if ($result) {
+        $listLectures = [];
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $listLectures[] = $row;  // Lưu từng dòng kết quả vào mảng
+            }
+        } else {
+            echo "Không có bài giảng nào cho khóa học này.";
+        }
+    } else {
+        echo "Lỗi khi truy vấn bài giảng: " . $conn->error;
+    }
+
 } else {
-    echo "0 results";
+    echo "Lỗi khi truy vấn khóa học: " . $conn->error;
 }
+
+
 // Đóng kết nối
 $conn->close();
-
 
 
 ?>
@@ -66,7 +93,7 @@ $conn->close();
         <link rel="stylesheet" href="./assets/css/style.css" />
         <!-- Responsive -->
         <link rel="stylesheet" href="./assets/css/responsive.css" />
-        <link rel="stylesheet" href="./assets/css/my_course.css" />
+        <link rel="stylesheet" href="./assets/css/lectures_of_course.css" />
         <title>Web luyện thi TOEIC</title>
     </head>
     <body>
@@ -275,11 +302,31 @@ $conn->close();
                             </div>
                         </nav>
                     </div>
-                    <?php
-                        foreach ($user_course as $item):
-                    ?>
                     <div class="p-2 ">
                         <a href="#"><img style="width: 150px;" src="./assets/img/blg4.png" class="rounded" alt="Cinque Terre"></a>
+                    </div>
+                </div>
+            </div>
+            <div style="width:55%; border-right: 0.5px solid black; border-left: 0.5px solid black"  class="p-2 flex-fill">
+                <?php
+                    if ($user['user_type'] == "Giảng Viên"):  
+                        echo '<a href="lectures.php?course_id=' . $course_id . '&giangvien_id=' . $giangvien_id . '"><button>Chỉnh sửa bài giảng</button></a>';
+                    endif;
+                ?>
+                <h2 style="font-size:20px; font-weight:bold">Tất cả Bài Giảng</h2>
+                <div class="d-flex flex-column">
+                    <div class="p-2 d-flex">
+                        <div style="width:20%; font-size:18px; font-weight:bold;" class="p-2 flex-fill">Tên bài giảng</div>
+                        <div style="width:40%; font-size:18px; font-weight:bold;" class="p-2 flex-fill">Mô tả</div>
+                        <div style="width:40%; font-size:18px; font-weight:bold;" class="p-2 flex-fill">Nội dung</div>
+                    </div>
+                    <?php
+                        foreach($listLectures as $item):
+                    ?>
+                    <div class="p-2 d-flex">
+                        <div style="width:20%;"  class="p-2 flex-fill"><?php echo $item['title']; ?></div>
+                        <div style="width:40%;"  class="p-2 flex-fill"><?php echo $item['description']; ?></div>
+                        <div style="width:40%;"  class="p-2 flex-fill"><?php echo $item['content']; ?></div>
                     </div>
                     <?php
                         endforeach;
@@ -287,72 +334,19 @@ $conn->close();
                     ?>
                 </div>
             </div>
-            <div style="width:75%; border-right: 0.5px solid black; border-left: 0.5px solid black"  class="p-2 flex-fill container mt-3">
-                <h2>Khóa Học</h2>
-                         
-                <table class="table table-hover">
-                    <thead>
-                    <tr>
-                        <th>STT</th>
-                        <th>Khóa Học</th>
-                        <th>Lĩnh Vực</th>
-                        <th>Trạng Thái</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                        foreach ($user_course as $item):
-                            include 'connect.php';
-                            $result2 = $conn->query("SELECT * FROM khoahoc WHERE khoahoc_id = {$item['khoahoc_id']}");
-                            $course = [];
-                            if ($result2 && $result2->num_rows > 0) {
-                                while($row = $result2->fetch_assoc()) {
-                                    $course[] = $row;  // Lưu từng dòng kết quả vào mảng
-                                }
-                            } else {
-                                echo "0 results";
-                            }
-                            $conn->close();
-                        
-                        
-                    ?>
-                    <tr>
-                        
-                        <td>1</td>
-                        <td>
-                            <div class="d-flex">  
-                                <div class="p-2 ">
-                                <a href="lectures_of_course.php?user_id=<?= $user_id ?>&course_id=<?= $item['khoahoc_id'] ?>">
-                                    <img style="width: 200px;" src="./assets/img/blg3.png" class="rounded" alt="Cinque Terre">
-                                </a>
-                                </div>
-                                
-                                <div class="p-2 ">
-                                    <h2><?php echo $course[0]['ten_khoa_hoc']; ?></h2>
-                                    <p><?php echo $item['ngay_dang_ky']; ?></p>
-                                    <p><?php echo $item['ngay_het_han']; ?></p>
-                                </div>
+            <div style="width:20%;" class="p-2 flex-fill">
 
-                            </div>
-                        </td>
-                        <td><?php echo $course[0]['linh_vuc']; ?></td>
-                        <td><?php
-                            if ($course[0]['trang_thai'] == 1) {
-                                echo "Hoàn thành";
-                            } else {
-                                echo "Chưa hoàn thành";}
-                        ?></td>
-                        
-                    </tr>
-                    <?php
-                        endforeach;
-                        
-                    ?>
-                    
-                    </tbody>
-                </table>
+                <div class="card" >
+                    <img style="max-width:200px;max-height:250px" class="card-img-top" src="./assets/img/Speaking1.jpg" alt="Card image">
+                    <div class="card-body">
+                        <h4 class="card-title"><?php echo $giangvien['ten_giang_vien'];?></h4>
+                        <p class="card-text"><?php echo $giangvien['mo_ta'];?></p>
+                        <p class="card-text"><?php echo $giangvien['giai_thuong'];?></p>
+                        <a style="padding: 5px 10px;" href="#" class="btn btn-primary">See Profile</a>
+                    </div>
+                </div>
+                
             </div>
-            
         </main>
 
         <footer class="footer">

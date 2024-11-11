@@ -3,8 +3,8 @@
 include'connect.php';
 
 session_start();
-$user_role = 'teacher'; //$_SESSION['user_type'];  // Vai trò của người dùng
-$user_id = 1; //$_SESSION['user_id']; // ID của người dùng hiện tại
+// Lấy giá trị từ URL
+$giangvien_id = isset($_GET['giangvien_id']) ? intval($_GET['giangvien_id']) : 0;
 
 
 // Check the connection
@@ -16,29 +16,34 @@ if ($conn->connect_error) {
 $lecture_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 $result = $conn->query("SELECT * FROM lectures WHERE id = $lecture_id");
 $lecture = $result->fetch_assoc();
+$course_id = isset($_GET['course_id']) ? intval($_GET['course_id']) : 0;
+$course_result = $conn->query("SELECT * FROM khoahoc WHERE khoahoc_id = $course_id");
+$course = $course_result->fetch_assoc();
 // Initialize error and data variables
 $errors = [];
-$title = $description = $content = $teacher_id = $status = "";
+$title = $description = $content  = $status = "";
 
-if ($user_role == 'admin' || ($user_role == 'teacher' && $lecture['teacher_id'] == $user_id)) {
+if ($course['giangvien_id'] == $giangvien_id) {
     // Cho phép chỉnh sửa bài giảng
     if ($lecture_id > 0) {
-        $stmt = $conn->prepare("SELECT title, description, content, teacher_id, status FROM lectures WHERE id = ?");
+        $stmt = $conn->prepare("SELECT title, description, content, status FROM lectures WHERE id = ?");
+        if (!$stmt) {
+            die("Lỗi khi chuẩn bị truy vấn SELECT: " . $conn->error);
+        }
         $stmt->bind_param("i", $lecture_id);
         $stmt->execute();
-        $stmt->bind_result($title, $description, $content, $teacher_id, $status);
+        $stmt->bind_result($title, $description, $content, $status);
         $stmt->fetch();
         $stmt->close();
-    
+
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            // Get updated data from form
+            // Lấy dữ liệu từ form
             $title = $_POST['title'];
             $description = $_POST['description'];
             $content = $_POST['content'];
-            $teacher_id = $_POST['teacher_id'];
             $status = $_POST['status'];
-    
-            // Validate form data
+
+            $errors = [];
             if (empty($title)) {
                 $errors['title'] = "Tiêu đề bắt buộc phải nhập";
             }
@@ -48,26 +53,24 @@ if ($user_role == 'admin' || ($user_role == 'teacher' && $lecture['teacher_id'] 
             if (empty($content)) {
                 $errors['content'] = "Nội dung bắt buộc phải nhập";
             }
-            if (empty($teacher_id)) {
-                $errors['teacher_id'] = "Giảng Viên bắt buộc phải nhập";
-            }
             if (empty($status)) {
                 $errors['status'] = "Trạng Thái bắt buộc phải nhập";
             }
-    
-            // Update the lecture if no errors
+
             if (empty($errors)) {
-                $stmt = $conn->prepare("UPDATE lectures SET title = ?, description = ?, content = ?, teacher_id = ?, status = ? WHERE id = ?");
-                $stmt->bind_param("sssiii", $title, $description, $content, $teacher_id, $status, $lecture_id);
-    
+                $stmt = $conn->prepare("UPDATE lectures SET title = ?, description = ?, content = ?, status = ? WHERE id = ?");
+                if (!$stmt) {
+                    die("Lỗi khi chuẩn bị truy vấn UPDATE: " . $conn->error);
+                }
+                $stmt->bind_param("sssii", $title, $description, $content, $status, $lecture_id);
+
                 if ($stmt->execute()) {
                     echo "Bài giảng đã được cập nhật thành công!";
-                    header("Location: lectures.php");
+                    header("Location: lectures.php?course_id=" . $course_id . "&giangvien_id=" . $giangvien_id);
                     exit;
                 } else {
                     echo "Có lỗi xảy ra khi cập nhật bài giảng: " . $conn->error;
                 }
-    
                 $stmt->close();
             }
         }
@@ -75,8 +78,11 @@ if ($user_role == 'admin' || ($user_role == 'teacher' && $lecture['teacher_id'] 
         echo "ID bài giảng không hợp lệ.";
     }
 } else {
-    echo "<script>alert('Bạn không có quyền thực hiện chức năng này'); window.location.href = 'lectures.php';</script>";
+    echo "<script>alert('Bạn không có quyền thực hiện chức năng này'); window.location.href = 'lectures.php?course_id=" . $course_id . "&giangvien_id=" . $giangvien_id . "';</script>";
+
 }
+
+
 // Check if lecture ID is valid and retrieve data
 
 
@@ -176,16 +182,13 @@ $conn->close();
             <input type="text" id="content" name="content" value="<?= htmlspecialchars($content) ?>">
             <div class="error"><?= isset($errors['content']) ? $errors['content'] : '' ?></div>
 
-            <label for="teacher_id">Giảng Viên:</label>
-            <input type="text" id="teacher_id" name="teacher_id" value="<?= htmlspecialchars($teacher_id) ?>">
-            <div class="error"><?= isset($errors['teacher_id']) ? $errors['teacher_id'] : '' ?></div>
-
             <label for="status">Trạng Thái:</label>
             <input type="text" id="status" name="status" value="<?= htmlspecialchars($status) ?>">
             <div class="error"><?= isset($errors['status']) ? $errors['status'] : '' ?></div>
 
-            <button type="submit">Cập nhật bài giảng</button>
-            <p><a href="lectures.php">Quay lại</a></p>
+            <<button type="submit">Cập nhật bài giảng</button>
+            <p><a href="lectures.php?course_id=<?php echo $course_id; ?>&giangvien_id=<?php echo $giangvien_id; ?>">Quay lại</a></p>
+
         </form>
     </div>
 </body>
