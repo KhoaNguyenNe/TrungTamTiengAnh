@@ -267,7 +267,15 @@ if(isset($_SESSION['user_name'])) {
                         </div>
                     </div>
                 <div class="col-sm-4">
-                   
+                <div class="card mb-5" style="width:400px; height: 360px">
+                            <img class="card-img-top img-fluid" style="width: 100%; height: 150px;" src="/TrungTamTiengAnh/assets/img/tien.jpg" alt="Card image">
+                            <div class="card-body">
+                                <h4 class="card-title mb-3 text-uppercase fw-bold">Thống kê giao dịch</h4>
+                                <p class="card-text mb-3">ADMIN có thống kê xem số lượng giao dịch</p>
+                                <a href="./qly_giao_dich.php" class="btn btn-primary mb-3">Chi tiết chức năng</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
