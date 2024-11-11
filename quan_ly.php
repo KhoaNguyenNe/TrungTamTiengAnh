@@ -11,6 +11,12 @@ $isLoggedIn = isset($_SESSION['user_id']); // Kiểm tra nếu người dùng đ
 if(isset($_SESSION['user_name'])) {
     $usernameindex = $_SESSION['user_name'];
     $role = $_SESSION['role'];
+
+    if ($role !== 'Admin') {
+        // Nếu không phải Admin, chuyển hướng về index.php
+        header("Location: index.php");
+        exit();
+    }
 }
 ?>
 
@@ -262,12 +268,24 @@ if(isset($_SESSION['user_name'])) {
                             <div class="card-body">
                                 <h4 class="card-title mb-3 text-uppercase fw-bold">Quản lý bài giảng</h4>
                                 <p class="card-text mb-3">ADMIN có thể cập nhật thêm, xoá, sửa các bài giảng</p>
+<<<<<<< HEAD
                                 <a href="./lectures.php" class="btn btn-primary mb-3">Chi tiết chức năng</a>
+=======
+                                <a href="/TRUNGTAMTIENGANH/lectures.php" class="btn btn-primary mb-3">Chi tiết chức năng</a>
+>>>>>>> 54c3e0a75bcec87d0a5f401b879d05904d258da0
                             </div>
                         </div>
                     </div>
                 <div class="col-sm-4">
-                   
+                <div class="card mb-5" style="width:400px; height: 360px">
+                            <img class="card-img-top img-fluid" style="width: 100%; height: 150px;" src="/TrungTamTiengAnh/assets/img/tien.jpg" alt="Card image">
+                            <div class="card-body">
+                                <h4 class="card-title mb-3 text-uppercase fw-bold">Thống kê giao dịch</h4>
+                                <p class="card-text mb-3">ADMIN có thống kê xem số lượng giao dịch</p>
+                                <a href="./qly_giao_dich.php" class="btn btn-primary mb-3">Chi tiết chức năng</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
