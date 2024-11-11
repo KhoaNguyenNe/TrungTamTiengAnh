@@ -189,7 +189,7 @@ if (!$result) {
                             <?php
                             // Truy vấn lấy tên người dùng dựa trên user_id
                             $user_id = $item['user_id'];
-                            $kq = $conn->query("SELECT name FROM user WHERE id = $user_id");
+                            $kq = $conn->query("SELECT name FROM user WHERE id = '$user_id'");
 
                             // Kiểm tra kết quả và hiển thị tên người dùng
                             if ($kq && $row = $kq->fetch_assoc()) {

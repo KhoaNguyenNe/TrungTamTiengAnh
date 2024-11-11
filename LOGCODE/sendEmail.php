@@ -15,11 +15,11 @@ function sendEmailOTP($email, $otp) {
     try {
         // Cấu hình SMTP
         $mail->isSMTP();  // Giao thức SMTP
-        $mail->Host       = 'smtp.gmail.com';  // Set the SMTP server to send through
-        $mail->SMTPAuth   = true;  // Enable SMTP authentication
+        $mail->Host       = 'smtp.gmail.com';  //Máy chủ STMP của Gmail
+        $mail->SMTPAuth   = true;  //Bật xác thực SMTP
         $mail->Username   = 'taotenk0912@gmail.com';  // SMTP username
         $mail->Password   = 'krsxaldgjutrcodj';  // SMTP password
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;  // Enable implicit TLS encryption
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;  //Mã hóa TLS
         $mail->Port       = 465;  // SMTP port
 
         // Người gửi, người nhận

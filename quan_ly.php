@@ -231,7 +231,7 @@ if(isset($_SESSION['user_name'])) {
                                 <?php
                                     // Giả sử biến $role được lấy từ session hoặc cơ sở dữ liệu
                                     if ($role == 'Admin') {
-                                        echo '<li><a class="dropdown-item" href="/quan_ly.php">Trang quản lý</a></li>';
+                                        echo '<li><a class="dropdown-item" href="./quan_ly.php">Trang quản lý</a></li>';
                                     }
                                     if ($role == 'Giảng viên') {
                                         echo '<li><a class="dropdown-item" href="/TrungTamTiengAnh/LOGCODE/quan_ly_bai_giang.php">Quản Lý Bài Giảng</a></li>';
@@ -268,11 +268,7 @@ if(isset($_SESSION['user_name'])) {
                             <div class="card-body">
                                 <h4 class="card-title mb-3 text-uppercase fw-bold">Quản lý bài giảng</h4>
                                 <p class="card-text mb-3">ADMIN có thể cập nhật thêm, xoá, sửa các bài giảng</p>
-<<<<<<< HEAD
                                 <a href="./lectures.php" class="btn btn-primary mb-3">Chi tiết chức năng</a>
-=======
-                                <a href="/TRUNGTAMTIENGANH/lectures.php" class="btn btn-primary mb-3">Chi tiết chức năng</a>
->>>>>>> 54c3e0a75bcec87d0a5f401b879d05904d258da0
                             </div>
                         </div>
                     </div>

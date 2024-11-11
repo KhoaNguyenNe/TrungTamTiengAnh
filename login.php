@@ -40,8 +40,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Lưu thông tin đăng nhập
             $login_time = date('Y-m-d H:i:s');
-            $ip_address = htmlspecialchars($_SERVER['REMOTE_ADDR'], ENT_QUOTES, 'UTF-8');
-            $user_agent = htmlspecialchars($_SERVER['HTTP_USER_AGENT'], ENT_QUOTES, 'UTF-8');
+            $ip_address = htmlspecialchars($_SERVER['REMOTE_ADDR'], ENT_QUOTES, 'UTF-8');   //Lấy địa chỉ IP
+            $user_agent = htmlspecialchars($_SERVER['HTTP_USER_AGENT'], ENT_QUOTES, 'UTF-8');       //Xác định loại trình duyệt người dùng sài
 
             // Ghi nhận trạng thái đăng nhập vào cơ sở dữ liệu
             $log_sql = "INSERT INTO login_records (user_id, login_time, ip_address, user_agent) VALUES (?, ?, ?, ?)";
@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         } else {
             // Mật khẩu không đúng
-            echo "<script>alert('Password Wrong! Please try again.');</script>";
+            echo "<script>alert('Sai MK! Vui lòng nhập lại');</script>";
         }
     } else {
         // Không tìm thấy người dùng

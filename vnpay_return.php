@@ -1,7 +1,11 @@
 <?php
+
+session_start();
+
+$user_id = $_SESSION["user_id"];
+
 include "./connect.php";
 require_once("./config.php");
-session_start();
 if (isset($_GET['vnp_Amount'])) {
     $vnp_Amount = $_GET['vnp_Amount'];
     $vnp_BankCode = $_GET['vnp_BankCode'];
@@ -13,7 +17,7 @@ if (isset($_GET['vnp_Amount'])) {
     $vnp_TransactionNo = $_GET['vnp_TransactionNo'];
 
     $insert_vnpay = "INSERT INTO payment (
-        vnp_amount, vnp_bankcode, vnp_banktranno, vnp_cardType, vnp_orderinfor, vnp_paydate, vnp_tmncode, vnp_transactionno
+        vnp_amount, vnp_bankcode, vnp_banktranno, vnp_cardType, vnp_orderinfor, vnp_paydate, vnp_tmncode, vnp_transactionno, user_id
     ) VALUES (
         '". $vnp_Amount ."', '". $vnp_BankCode ."', '". $vnp_BankTranNo ."', '". $vnp_CardType ."', '". $vnp_OrderInfo ."', '". $vnp_PayDate ."', '". $vnp_TmnCode ."', '". $vnp_TransactionNo ."', '". $user_id ."'
     )";
