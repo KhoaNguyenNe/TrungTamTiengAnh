@@ -13,8 +13,10 @@ if ($conn->connect_error) {
 
 if($_SERVER["REQUEST_METHOD"] == "POST")
     {
-        $name = $_POST['name'];
-        $email = $_POST['email'];
+        // $name = $_POST['name'];
+        // $email = $_POST['email'];
+        $name = htmlspecialchars(trim($_POST['name']),ENT_QUOTES, 'UTF-8');
+        $email = htmlspecialchars(trim($_POST['email']),ENT_QUOTES, 'UTF-8');
         $pass = md5($_POST["pass"]);
         $user_type = "Học viên";
 

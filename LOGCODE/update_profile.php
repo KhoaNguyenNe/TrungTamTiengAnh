@@ -49,6 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Cập nhật lại thông tin vào session nếu cập nhật thành công
             if (!empty($name) && $name !== $current_name) {
                 $_SESSION['user_name'] = $name;  // Cập nhật tên người dùng trong session
+                $_SESSION['role'] = $user['user_type'];
             }
 
             if (!empty($password) && !hash_equals($password, $current_password)) {

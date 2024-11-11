@@ -1,5 +1,16 @@
 <?php
 session_start();
+
+$isLoggedIn = isset($_SESSION['user_id']); // Kiểm tra nếu người dùng đã đăng nhập
+if(isset($_SESSION['user_name'])) {
+    $usernameindex = $_SESSION['user_name'];
+    $role = $_SESSION['role'];
+    $user_id = $_SESSION['user_id'];
+} else {
+    header("Location:./login.php");
+}
+
+
 error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 

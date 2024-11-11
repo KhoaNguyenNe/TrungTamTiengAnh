@@ -4,8 +4,8 @@ ini_set('display_errors', 1);
 
 session_start();
 
-include "/Applications/XAMPP/xamppfiles/htdocs/TrungTamTiengAnh/connect.php";
-include "/Applications/XAMPP/xamppfiles/htdocs/TrungTamTiengAnh/LOGCODE/sendEmail.php";
+include "../connect.php";
+include "./sendEmail.php";
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 
 if ($conn->connect_error) {
@@ -125,7 +125,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("Location: /TRUNGTAMTIENGANH/LOGCODE/otp_MoKhoa.php");
                 exit();
             } else {
-
                 $tt = 'saimk';
                 $_SESSION['trangthaidangnhap'] = $tt;
                 header("Location: /TRUNGTAMTIENGANH/login.php");

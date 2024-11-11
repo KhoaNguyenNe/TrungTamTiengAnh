@@ -15,7 +15,7 @@ if (isset($_GET['vnp_Amount'])) {
     $insert_vnpay = "INSERT INTO payment (
         vnp_amount, vnp_bankcode, vnp_banktranno, vnp_cardType, vnp_orderinfor, vnp_paydate, vnp_tmncode, vnp_transactionno
     ) VALUES (
-        '". $vnp_Amount ."', '". $vnp_BankCode ."', '". $vnp_BankTranNo ."', '". $vnp_CardType ."', '". $vnp_OrderInfo ."', '". $vnp_PayDate ."', '". $vnp_TmnCode ."', '". $vnp_TransactionNo ."'
+        '". $vnp_Amount ."', '". $vnp_BankCode ."', '". $vnp_BankTranNo ."', '". $vnp_CardType ."', '". $vnp_OrderInfo ."', '". $vnp_PayDate ."', '". $vnp_TmnCode ."', '". $vnp_TransactionNo ."', '". $user_id ."'
     )";
 
     // Chạy truy vấn, ví dụ với MySQLi

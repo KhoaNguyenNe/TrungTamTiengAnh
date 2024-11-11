@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Đăng nhập thành công, lưu thông tin đăng nhập vào session
             session_start();
             $_SESSION['user_id'] = $user['id'];
-            $_SESSION['user_name'] = htmlspecialchars($user['name'], ENT_QUOTES, 'UTF-8');
+            $_SESSION['user_name'] = htmlspecialchars(trim($user['name']), ENT_QUOTES, 'UTF-8');
             $_SESSION['email'] = htmlspecialchars($user['email'], ENT_QUOTES, 'UTF-8');
 
             // Lưu thông tin đăng nhập
@@ -278,9 +278,11 @@ $conn->close();
                                 if(isset($_SESSION['trangthaidangnhap'])) {
                                     if ($_SESSION['trangthaidangnhap'] == 'saimk'){
                                         echo "<script>alert('Sai mật khẩu. Vui lòng nhập lại');</script>";
+                                        $_SESSION['trangthaidangnhap'] == '';
                                     }
                                     if ($_SESSION['trangthaidangnhap'] == 'saiemail'){
                                         echo "<script>alert('Sai tài khoản email. Vui lòng nhập lại');</script>";
+                                        $_SESSION['trangthaidangnhap'] == '';
                                     }
                                 }
                                 ?>
