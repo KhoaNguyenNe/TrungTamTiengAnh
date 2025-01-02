@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Chỉ thêm phần cập nhật cho mật khẩu nếu người dùng đã nhập mật khẩu mới
     if (!empty($password)) {
         // Mã hóa mật khẩu mới trước khi lưu vào database
-        $hashed_password = pbkdf2HashPassword($password);
+        $hashed_password = md5($password);
         $updates[] = "password = ?";
         $params[] = $hashed_password;
     }

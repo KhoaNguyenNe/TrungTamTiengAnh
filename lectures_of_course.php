@@ -1,75 +1,69 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-include "./connect.php";
 session_start();
-date_default_timezone_set('Asia/Ho_Chi_Minh');  // Đặt múi giờ là giờ Việt Nam
 
-// Kiểm tra kết nối
-if ($conn->connect_error) {
-    die("Kết nối thất bại: " . htmlspecialchars($conn->connect_error));
+header("Cache-Control: no-cache, must-revalidate");
+header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+
+$isLoggedIn = isset($_SESSION['user_id']); // Kiểm tra nếu người dùng đã đăng nhập
+if(isset($_SESSION['user_name'])) {
+    $usernameindex = $_SESSION['user_name'];
 }
 
+include 'connect.php';
 
+// Lấy giá trị từ URL
+$user_id = isset($_GET['user_id']) ? intval($_GET['user_id']) : 0;
+$course_id = isset($_GET['course_id']) ? intval($_GET['course_id']) : 0;
+// Lấy thông tin khóa học
+$course_result = $conn->query("SELECT * FROM khoahoc WHERE khoahoc_id = $course_id");
 
-// Kiểm tra xem người dùng đã gửi form đăng nhập hay chưa
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Sử dụng htmlspecialchars() để tránh các ký tự đặc biệt trong đầu vào
-    $email = htmlspecialchars($_POST['email'], ENT_QUOTES, 'UTF-8');
-    $password = htmlspecialchars($_POST['password'], ENT_QUOTES, 'UTF-8');
+$user_result = $conn->query("SELECT * FROM user WHERE id = $user_id");
+$user = $user_result->fetch_assoc();
 
-    // Truy vấn để lấy thông tin người dùng
-    $sql = "SELECT * FROM user WHERE email = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
+if ($course_result) {
+    $course = $course_result->fetch_assoc();
 
-    // Kiểm tra nếu tìm thấy người dùng
-    if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc();
-
-        // Xác minh mật khẩu    
-        if (hash_equals(md5($password), $user['password'])) {
-            // Đăng nhập thành công, lưu thông tin đăng nhập vào session
-            session_start();
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['user_name'] = htmlspecialchars(trim($user['name']), ENT_QUOTES, 'UTF-8');
-            $_SESSION['email'] = htmlspecialchars($user['email'], ENT_QUOTES, 'UTF-8');
-
-            // Lưu thông tin đăng nhập
-            $login_time = date('Y-m-d H:i:s');
-            $ip_address = htmlspecialchars($_SERVER['REMOTE_ADDR'], ENT_QUOTES, 'UTF-8');   //Lấy địa chỉ IP
-            $user_agent = htmlspecialchars($_SERVER['HTTP_USER_AGENT'], ENT_QUOTES, 'UTF-8');       //Xác định loại trình duyệt người dùng sài
-
-            // Ghi nhận trạng thái đăng nhập vào cơ sở dữ liệu
-            $log_sql = "INSERT INTO login_records (user_id, login_time, ip_address, user_agent) VALUES (?, ?, ?, ?)";
-            $log_stmt = $conn->prepare($log_sql);
-            $log_stmt->bind_param("isss", $_SESSION['user_id'], $login_time, $ip_address, $user_agent);
-            $log_stmt->execute();
-            $log_stmt->close();
-
-            // Chuyển hướng đến trang chủ kèm theo trạng thái đăng nhập
-            header("Location: ./index.php?status=success&user_id=" . urlencode($_SESSION['user_id']));
-            exit();
-        } else {
-            // Mật khẩu không đúng
-            echo "<script>alert('Sai MK! Vui lòng nhập lại');</script>";
-        }
+    if ($course) {
+        // Lấy thông tin giảng viên
+        $giangvien_id = $course['giangvien_id'];
+        $giangvien_result = $conn->query("SELECT * FROM giangvien WHERE giangvien_id = $giangvien_id");
+        $giangvien = $giangvien_result->fetch_assoc();
+        // Xử lý dữ liệu giảng viên ở đây
     } else {
-        // Không tìm thấy người dùng
-        echo "<p class='nhap_sai_mk'>" . htmlspecialchars("Email không tồn tại", ENT_QUOTES, 'UTF-8') . "</p>";
+        echo "Không tìm thấy khóa học.";
+        exit;  // Dừng script nếu không tìm thấy khóa học
     }
 
-    $stmt->close();
+    // Lấy các bài giảng của khóa học
+    $result = $conn->query("SELECT * FROM lectures WHERE khoahoc_id = {$course['khoahoc_id']}");
+
+    if ($result) {
+        $listLectures = [];
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $listLectures[] = $row;  // Lưu từng dòng kết quả vào mảng
+            }
+        } else {
+            echo "Không có bài giảng nào cho khóa học này.";
+        }
+    } else {
+        echo "Lỗi khi truy vấn bài giảng: " . $conn->error;
+    }
+
+} else {
+    echo "Lỗi khi truy vấn khóa học: " . $conn->error;
 }
 
+
+// Đóng kết nối
 $conn->close();
+
+
 ?>
 
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -79,29 +73,28 @@ $conn->close();
             href="./assets/favicon/favicon.ico"
             type="image/x-icon"
         />
-        <link
-            rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-        />
         <!-- Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <!-- Style CSS -->
+        <!-- Nhúng CDN Font Awesome -->
+        <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <!-- Font -->
         <link rel="stylesheet" href="./assets/font/stylesheet.css" />
         <!-- Reset CSS -->
         <link rel="stylesheet" href="./assets/css/reset.css" />
-        <!-- Font  -->
+        <!-- Style CSS  -->
         <link rel="stylesheet" href="./assets/css/style.css" />
-        <!--Style Login CSS-->
-        <link rel="stylesheet" href="./assets/css/login.css" />
         <!-- Responsive -->
         <link rel="stylesheet" href="./assets/css/responsive.css" />
-        <!-- icon -->
-        <link
-            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-            rel="stylesheet"
-        />
-        <title>Login</title>
+        <link rel="stylesheet" href="./assets/css/lectures_of_course.css" />
+        <title>Web luyện thi TOEIC</title>
     </head>
     <body>
         <header class="header">
@@ -191,11 +184,16 @@ $conn->close();
                                     >TOEIC&nbsp;Tips</a
                                 >
                             </li>
-                            <li>
-                                <a href="./login.php" class="item-nav-mobile"
-                                    >Đăng&nbsp;nhập</a
-                                >
-                            </li>
+                            <?php if (!$isLoggedIn): ?>
+                                <li>
+                                    <a href="./login.php" class="item-nav-mobile">Đăng&nbsp;nhập</a>
+                                </li>
+                            <?php else: ?>
+                                <li>
+                                    <a href="./information.php" class="item-nav-mobile">Cài&nbsp;đặt</a>
+                                </li>
+                            <?php endif; ?>
+
                         </ul>
                     </nav>
                     <!-- Logo -->
@@ -252,7 +250,7 @@ $conn->close();
 
                     <!-- Button -->
                     <div class="actions">
-                        <a href="./prenium.php" class="pro btn" id="log">
+                        <a href="./prenium.php" class="pro btn">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 36 24"
@@ -263,190 +261,94 @@ $conn->close();
                             </svg>
                             <p>Unlock&nbsp;Pro</p>
                         </a>
+                        <?php if (!isset($_SESSION['user_id'])): ?>
+                        <a href="./login.php" class="log btn" id="log">
+                            <p class="text">Đăng&nbsp;nhập</p>
+                        </a>
+                        <?php else: ?>
+                            <li class="nav-item dropdown btn">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><?php echo $usernameindex ?></a>
+                            <ul class="dropdown-menu dropmn">
+                                <li><a class="dropdown-item" href="/TRUNGTAMTIENGANH/verify_password.php">Thay đổi thông tin</a></li>
+                                <li><a class="dropdown-item" href="/TRUNGTAMTIENGANH/LOGCODE/logout.php">Đăng xuất</a></li>
+                            </ul>
+                            </li>
+                        <?php endif; ?>
                     </div>
                 </nav>
             </div>
         </header>
-
-        <div class="main-login">
-            <div class="sign">
-                <div id="form-login" class="login-phara">
-                    <div class="wrap login">
-                        <form class="form-group" action="./LOGCODE/login_process.php" method="POST">
-                            <div>
-                                <?php 
-                                if(isset($_SESSION['trangthaidangnhap'])) {
-                                    if ($_SESSION['trangthaidangnhap'] == 'saimk'){
-                                        echo "<script>alert('Sai mật khẩu. Vui lòng nhập lại');</script>";
-                                        $_SESSION['trangthaidangnhap'] == '';
-                                    }
-                                    if ($_SESSION['trangthaidangnhap'] == 'saiemail'){
-                                        echo "<script>alert('Sai tài khoản email. Vui lòng nhập lại');</script>";
-                                        $_SESSION['trangthaidangnhap'] == '';
-                                    }
-                                }
-                                ?>
-                                <div class="title">ĐĂNG NHẬP</div>
-                            </div>
-                            <div class="input-box">
-                                <input
-                                    type="email"
-                                    id="mail-log"
-                                    class="email-input"
-                                    name="email"
-                                    placeholder="Nhập địa chỉ email"
-                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                                    required
-                                />
-                                <i class="bx bxs-user"></i>
-                                <p class="form-error">
-                                    Vui lòng nhập đúng email
-                                </p>
-                            </div>
-                            <div class="input-box">
-                                <input
-                                    type="password"
-                                    id="pass-log"
-                                    class="pass-input"
-                                    name="password"
-                                    placeholder="Nhập mật khẩu"
-                                    required
-                                />
-                                <i class="bx bxs-lock-alt"></i>
-                            </div>
-                            <div class="remember-forgot">
-                                <a href="./forgotpsw.php">Quên mật khẩu?</a>
-                            </div>
-                            <div class="submit">
-                                <button type="submit" class="buttonlogin">
-                                    Đăng nhập
-                                </button>
-                            </div>
-                            <p class="nhap_sai_mk">Đăng nhập thất bại</p>
+        <main>
+        <div class="d-flex">
+            <div style="width:25%;" class="p-2 flex-fill">
+                <div class="d-flex flex-column">
+                    <div class="p-2">
+                        <form class="d-flex" style="max-height:40px;">
+                            <input class="form-control me-2" type="text" placeholder="Tìm ID">
+                            <button style="padding: 5px 10px;" class="btn btn-primary" type="button">Search</button>
                         </form>
-                        <div class="loginwith">
-                            <span>Đăng nhập với</span>
-                        </div>
-                        <div class="gg">
-                            <button class="signup-social logo-wrapper">
-                                <img
-                                    src="./assets/img/g-logo.png"
-                                    alt="logo GG"
-                                />
-                                <span class="signup-social-text"
-                                    >Đăng nhập bằng Google</span
-                                >
-                            </button>
-                        </div>
-                        <div class="register">
-                            <p>Tạo tài khoản mới? <a id="next">Đăng kí</a></p>
-                        </div>
                     </div>
-                    <div class="wrap signn">
-                        <form class="form-group" action="./LOGCODE/singup.php" method="POST">
-                            <div>
-                                <div class="title">TẠO TÀI KHOẢN</div>
+                    <div class="p-2">
+                        <nav class="navbar navbar-expand-sm bg-light navbar-light">
+                            <div class="container-fluid course-bar">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Khóa học của tôi</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link emo" href="#">Xem thêm</a>
+                                    </li>
+                                </ul>
                             </div>
-                            <div class="input-box">
-                                <input
-                                    type="text"
-                                    id="name"
-                                    name="name"
-                                    placeholder="Nhập username"
-                                    required
-                                    minlength="2"
-                                />
-                                <i class="bx bxs-user"></i>
-                                <p class="form-error">Nhập ít nhất 2 ký tự</p>
-                            </div>
-                            <div class="input-box">
-                                <input
-                                    type="email"
-                                    id="mail-signup"
-                                    class="email-input"
-                                    name="email"
-                                    placeholder="Nhập địa chỉ email"
-                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                                    required
-                                />
-                                <i class="bx bxs-user"></i>
-                                <p class="form-error">
-                                    Vui lòng nhập đúng email
-                                </p>
-                            </div>
-                            <div class="input-box">
-                                <input
-                                    type="password"
-                                    id="psw"
-                                    name="pass"
-                                    placeholder="Nhập mật khẩu"
-                                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                                    minlength="8"
-                                    required
-                                />
-                                <i class="bx bxs-lock-alt"></i>
-                            </div>
-                            <div id="pass-error">
-                                <p id="letter" class="invalid">
-                                    Có chữ viết thường
-                                </p>
-                                <p id="capital" class="invalid">
-                                    Có chữ viết hoa
-                                </p>
-                                <p id="number" class="invalid">Có số</p>
-                                <p id="length" class="invalid">
-                                    Ít nhất 8 ký tự
-                                </p>
-                            </div>
-                            <div class="input-box">
-                                <input
-                                    type="password"
-                                    id="df-psw"
-                                    name="confirm_pass"
-                                    placeholder="Nhập lại mật khẩu"
-                                    required
-                                />
-                                <i class="bx bxs-lock-alt"></i>
-                                <p class="df-pass">
-                                    Vui lòng nhập giống với mật khẩu đã tạo
-                                    trước đó
-                                </p>
-                            </div>
-                            <div class="submit">
-                                <button
-                                    type="submit"
-                                    class="buttonlogin"
-                                    id="dangky"
-                                    name = "dangky"
-                                >
-                                    Đăng&nbsp;ký&nbsp;ngay
-                                </button>
-                            </div>
-                        </form>
-                        <div class="loginwith">
-                            <span>Hoặc đăng kí với</span>
-                        </div>
-                        <div class="gg">
-                            <button class="signup-social logo-wrapper">
-                                <img
-                                    src="./assets/img/g-logo.png"
-                                    alt="logo GG"
-                                />
-                                <span class="signup-social-text"
-                                    >Đăng nhập bằng Google</span
-                                >
-                            </button>
-                        </div>
-                        <div class="register">
-                            <p>
-                                Bạn đã có tài khoản ?
-                                <a id="prev">Đăng nhập ngay</a>
-                            </p>
-                        </div>
+                        </nav>
+                    </div>
+                    <div class="p-2 ">
+                        <a href="#"><img style="width: 150px;" src="./assets/img/blg4.png" class="rounded" alt="Cinque Terre"></a>
                     </div>
                 </div>
             </div>
-        </div>
+            <div style="width:55%; border-right: 0.5px solid black; border-left: 0.5px solid black"  class="p-2 flex-fill">
+                <?php
+                    if ($user['user_type'] == "Giảng Viên"):  
+                        echo '<a href="lectures.php?course_id=' . $course_id . '&giangvien_id=' . $giangvien_id . '"><button>Chỉnh sửa bài giảng</button></a>';
+                    endif;
+                ?>
+                <h2 style="font-size:20px; font-weight:bold">Tất cả Bài Giảng</h2>
+                <div class="d-flex flex-column">
+                    <div class="p-2 d-flex">
+                        <div style="width:20%; font-size:18px; font-weight:bold;" class="p-2 flex-fill">Tên bài giảng</div>
+                        <div style="width:40%; font-size:18px; font-weight:bold;" class="p-2 flex-fill">Mô tả</div>
+                        <div style="width:40%; font-size:18px; font-weight:bold;" class="p-2 flex-fill">Nội dung</div>
+                    </div>
+                    <?php
+                        foreach($listLectures as $item):
+                    ?>
+                    <div class="p-2 d-flex">
+                        <div style="width:20%;"  class="p-2 flex-fill"><?php echo $item['title']; ?></div>
+                        <div style="width:40%;"  class="p-2 flex-fill"><?php echo $item['description']; ?></div>
+                        <div style="width:40%;"  class="p-2 flex-fill"><?php echo $item['content']; ?></div>
+                    </div>
+                    <?php
+                        endforeach;
+                        
+                    ?>
+                </div>
+            </div>
+            <div style="width:20%;" class="p-2 flex-fill">
+
+                <div class="card" >
+                    <img style="max-width:200px;max-height:250px" class="card-img-top" src="./assets/img/Speaking1.jpg" alt="Card image">
+                    <div class="card-body">
+                        <h4 class="card-title"><?php echo $giangvien['ten_giang_vien'];?></h4>
+                        <p class="card-text"><?php echo $giangvien['mo_ta'];?></p>
+                        <p class="card-text"><?php echo $giangvien['giai_thuong'];?></p>
+                        <a style="padding: 5px 10px;" href="#" class="btn btn-primary">See Profile</a>
+                    </div>
+                </div>
+                
+            </div>
+        </main>
+
         <footer class="footer">
             <div class="content">
                 <div class="row row-top">
@@ -607,13 +509,14 @@ $conn->close();
                 </div>
             </div>
         </footer>
+
+        <a href="#" class="btn-to-top">
+            <i class="fa-solid fa-jet-fighter-up"></i>
+        </a>
+
         <!-- Nhúng Javascript -->
-        <script src="./assets/js/login.js"></script>
-        <!-- Nhúng Jquery -->
-        <script
-            src="https://code.jquery.com/jquery-3.7.0.min.js"
-            integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
-            crossorigin="anonymous"
-        ></script>
+        <script src="./assets/js/index.js"></script>
+        <script src="./assets/js/go-top.js"></script>
+        <script src="./assets/js/if_log.js"></script>
     </body>
 </html>

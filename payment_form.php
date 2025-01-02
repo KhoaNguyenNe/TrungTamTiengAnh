@@ -1,3 +1,28 @@
+<?php
+session_start();
+
+$isLoggedIn = isset($_SESSION['user_id']); // Kiểm tra nếu người dùng đã đăng nhập
+if(isset($_SESSION['user_name'])) {
+    $usernameindex = $_SESSION['user_name'];
+    $role = $_SESSION['role'];
+    $user_id = $_SESSION['user_id'];
+} else {
+    header("Location:./login.php");
+}
+
+
+error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
+date_default_timezone_set('Asia/Ho_Chi_Minh');
+
+/**
+ * 
+ *
+ * @author CTT VNPAY
+ */
+require_once("./config.php");
+$order_id = rand(0,9999);
+$total_money = 1260000;
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -13,6 +38,10 @@
             rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
         />
+        <!-- Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        
         <!-- Nhúng CDN Font Awesome -->
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
         <link
@@ -32,95 +61,15 @@
         <link rel="stylesheet" href="./assets/css/style.css" />
         <!--Style Prenium CSS-->
         <link rel="stylesheet" href="./assets/css/prenium.css" />
+        <!--Style Payment form CSS-->
+        <link rel="stylesheet" href="./assets/css/payment_form.css" />
         <!-- icon -->
         <link
             href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
             rel="stylesheet"
         />
+        <script src="./assets/js/jquery-1.11.3.min.js"></script>
         <title>Từ vựng</title>
-        <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f7f7f7;
-      margin: 0;
-      padding: 0;
-    }
-    .container {
-      width: 100%;
-      max-width: 600px;
-      margin: 50px auto;
-      padding: 20px;
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-    h1 {
-      text-align: center;
-      color: #333;
-    }
-    .service-info {
-      background-color: #e9f7fa;
-      padding: 15px;
-      margin-bottom: 20px;
-      border-radius: 5px;
-      text-align: center;
-    }
-    .service-info h3 {
-      margin: 0;
-      color: #00796b;
-    }
-    .service-info p {
-      font-size: 16px;
-      color: #555;
-    }
-    .payment-methods {
-      margin-bottom: 20px;
-    }
-    .payment-methods label {
-      display: block;
-      margin: 10px 0 5px;
-    }
-    select, input[type="text"], input[type="email"], input[type="number"] {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 16px;
-    }
-    button {
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      padding: 15px;
-      width: 100%;
-      border-radius: 5px;
-      font-size: 18px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #45a049;
-    }
-    .footer {
-      text-align: center;
-      margin-top: 30px;
-      font-size: 14px;
-      color: #555;
-    }
-    .footer a {
-      color: #00796b;
-      text-decoration: none;
-    }
-    input[type="number"]::-webkit-outer-spin-button,
-        input[type="number"]::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
-        /* Ẩn nút tăng/giảm trên Firefox */
-        input[type="number"] {
-            -moz-appearance: textfield;
-        }
-  </style>
     </head>
     <body>
         <header class="header">
@@ -259,7 +208,9 @@
                             <a href="./blog.php" class="item">Blog</a>
                         </li>
                         <li>
-                            <a href="./toeic-tip.php" class="item">TOEIC&nbsp;Tips</a>
+                            <a href="./toeic-tip.php" class="item"
+                                >TOEIC&nbsp;Tips</a
+                            >
                         </li>
                     </ul>
 
@@ -276,115 +227,158 @@
                             </svg>
                             <p>Unlock&nbsp;Pro</p>
                         </a>
+                        <?php if (!isset($_SESSION['user_id'])): ?>
                         <a href="./login.php" class="log btn" id="log">
                             <p class="text">Đăng&nbsp;nhập</p>
                         </a>
+                        <?php else: ?>
+                            <li class="nav-item dropdown btn">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><?php echo $usernameindex ?></a>
+                            <ul class="dropdown-menu dropmn">
+                                <li><a class="dropdown-item" href="/TRUNGTAMTIENGANH/verify_password.php">Thay đổi thông tin</a></li>
+                                <?php
+                                    // Giả sử biến $role được lấy từ session hoặc cơ sở dữ liệu
+                                    if ($role == 'Admin') {
+                                        echo '<li><a class="dropdown-item" href="/TRUNGTAMTIENGANH/quan_ly.php">Trang quản lý</a></li>';
+                                    }
+                                    if ($role == 'Giảng viên') {
+                                        echo '<li><a class="dropdown-item" href="/TrungTamTiengAnh/lectures.php">Quản lý bài giảng</a></li>';
+                                    }
+                                ?>
+                                <li><a class="dropdown-item" href="/TrungTamTiengAnh/LOGCODE/logout.php">Đăng xuất</a></li>
+                            </ul>
+                            </li>
+                        <?php endif; ?>
                     </div>
                 </nav>
             </div>
         </header>
-        <div class="container">
-    <!-- Thông tin gói dịch vụ -->
-    <div class="service-info">
-      <h3>Khóa Học Tiếng Anh</h3>
-      <p>Khóa học Tiếng Anh dành cho doanh nghiệp - $250/năm</p>
-      <p><strong>Đăng ký ngay hôm nay để bắt đầu học ngay!</strong></p>
-    </div>
 
-    <!-- Form thanh toán -->
-    <h1>Thanh toán dịch vụ</h1>
+        <div class="container-form">
+            <div>THANH TOÁN</div>
+            <div class="table-responsive">
+                <form action="./vnpay_create_payment.php" id="create_form" method="POST">
 
-<form id="payment-form">
-    <!-- Các thông tin người dùng -->
-    <label for="full-name">Họ và tên:</label>
-    <input type="text" id="full-name" name="full-name" required><br><br>
+                    <div class="form-group">
+                        <label for="language">Chọn loại lớp: </label>
+                        <select name="order_type" id="order_type" class="form-control" required>
+                            
+                            <option value="professional">Chuyên nghiệp</option>
+                            <option value="businesses">Dành cho doanh nghiệp</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="amount">Số tiền</label>
+                        <input class="form-control" id="amount" name="amount" type="number" value="<?= $total_money ?>" readonly/>
+                    </div>
+                    <div class="form-group">
+                        <label for="order_id">Mã giao dịch</label>
+                        <input class="form-control" id="order_id" value="<?= $order_id ?>" name="order_id" type="text" value="<?= $order_id ?>" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="order_desc">Nội dung thanh toán</label>
+                        <textarea class="form-control" cols="20" id="order_desc" name="order_desc" rows="2" placeholder="Thanh toan hoc phi" value="Thanh toan hoc phi" readonly></textarea>
+                    </div>
+                    <div class="form-group" required>
+                        <label for="bank_code">Ngân hàng</label>
+                        <select name="bank_code" id="bank_code" class="form-control">
+                            <option value="">Không chọn</option>
+                            <option value="NCB"> Ngan hang NCB</option>
+                            <option value="AGRIBANK"> Ngan hang Agribank</option>
+                            <option value="SCB"> Ngan hang SCB</option>
+                            <option value="SACOMBANK">Ngan hang SacomBank</option>
+                            <option value="EXIMBANK"> Ngan hang EximBank</option>
+                            <option value="MSBANK"> Ngan hang MSBANK</option>
+                            <option value="NAMABANK"> Ngan hang NamABank</option>
+                            <option value="VNMART"> Vi dien tu VnMart</option>
+                            <option value="VIETINBANK">Ngan hang Vietinbank</option>
+                            <option value="VIETCOMBANK"> Ngan hang VCB</option>
+                            <option value="HDBANK">Ngan hang HDBank</option>
+                            <option value="DONGABANK"> Ngan hang Dong A</option>
+                            <option value="TPBANK"> Ngân hàng TPBank</option>
+                            <option value="OJB"> Ngân hàng OceanBank</option>
+                            <option value="BIDV"> Ngân hàng BIDV</option>
+                            <option value="TECHCOMBANK"> Ngân hàng Techcombank</option>
+                            <option value="VPBANK"> Ngan hang VPBank</option>
+                            <option value="MBBANK"> Ngan hang MBBank</option>
+                            <option value="ACB"> Ngan hang ACB</option>
+                            <option value="OCB"> Ngan hang OCB</option>
+                            <option value="IVB"> Ngan hang IVB</option>
+                            <option value="VISA"> Thanh toan qua VISA/MASTER</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="language">Ngôn ngữ</label>
+                        <select name="language" id="language" class="form-control">
+                            <option value="vn">Tiếng Việt</option>
+                            <option value="en">English</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>thời hạn thanh toán </label>
+                        <input class="form-control" id="txtexpire" name="txtexpire" type="text" value="<?php echo $expire; ?>"/>
+                    </div>
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required><br><br>
+                    <button type="submit" class="btn btn-primary"  id="btnPopup" name="redirect">Xác nhận thanh toán</button>
+                </form>
+            </div>
+            <footer class="footer">
+                <p>&copy; VNPAY 2024</p>
+            </footer>
+        </div>  
+        <link href="https://sandbox.vnpayment.vn/paymentv2/lib/vnpay/vnpay.css" rel="stylesheet"/>
+        <script src="https://sandbox.vnpayment.vn/paymentv2/lib/vnpay/vnpay.js"></script>
+        <script type="text/javascript">
+            $("#btnPopup").click(function () {
+                var postData = $("#create_form").serialize();
+                var submitUrl = $("#create_form").attr("action");
+                $.ajax({
+                    type: "POST",
+                    url: submitUrl,
+                    data: postData,
+                    dataType: 'JSON',
+                    success: function (x) {
+                        console.log(x.data)
+                        if (x.code === '00') {
+                            // if (window.vnpay) {
+                            //     vnpay.open({width: 768, height: 600, url: x.data});
+                            // } else {
+                            //
+                            // }
+                            location.href = x.data;
+                            return false;
+                        } else {
+                            alert(x.Message);
+                        }
+                    }
+                });
+                return false;
+            });
+        </script>
+          <!-- Thêm mã script dưới đây -->
+          <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                    <script type="text/javascript">
+                        // Lắng nghe sự kiện thay đổi của dropdown menu
+                        $("#order_type").change(function () {
+                            // Lấy giá trị lựa chọn từ dropdown
+                            var orderType = $(this).val();
+                            
+                            // Kiểm tra giá trị lựa chọn và cập nhật giá trị $total_money
+                            var totalMoney = 0; // Mặc định là 0
 
-    <label for="sdt">Số điện thoại:</label>
-    <input type="number" id="sdt" name="sdt" min="0100000000" max="0999999999"required><br><br>
+                            if (orderType === "professional") {
+                                totalMoney = 1260000; // Chuyên nghiệp
+                            } else if (orderType === "businesses") {
+                                totalMoney = 6320000; // Dành cho doanh nghiệp
+                            }
 
-    <!-- Chọn phương thức thanh toán -->
-    <label for="payment-method">Phương thức thanh toán:</label>
-    <select id="payment-method" name="payment-method">
-        <option value="">Chọn phương thức thanh toán</option>
-        <option value="credit-card">Thẻ tín dụng</option>
-        <option value="paypal">PayPal</option>
-        <option value="bank-transfer">Chuyển khoản ngân hàng</option>
-    </select><br><br>
+                            // Cập nhật giá trị cho trường input "amount"
+                            $("#amount").val(totalMoney);
+                        });
+                    </script>
 
-    <!-- Chi tiết thẻ tín dụng -->
-    <div id="credit-card-details" class="payment-details" style="display: none;">
-        <label for="credit-card-number">Số thẻ tín dụng:</label>
-        <input type="text" id="credit-card-number" name="credit-card-number"><br><br>
-        <label for="credit-account-name">Tên ngân hàng:</label>
-        <input type="text" id="credit-account-name" name="credit-account-name"><br><br>
-    </div>
-
-    <!-- Chi tiết PayPal -->
-    <div id="paypal-details" class="payment-details" style="display: none;">
-        <label for="paypal-email">Email PayPal:</label>
-        <input type="email" id="paypal-email" name="paypal-email"><br><br>
-    </div>
-
-    <!-- Chi tiết chuyển khoản ngân hàng -->
-    <div id="bank-transfer-details" class="payment-details" style="display: none;">
-        <label for="bank-account">Số tài khoản ngân hàng:</label>
-        <input type="number" id="bank-account" name="bank-account"><br><br>
-        <label for="bank-account-name">Tên ngân hàng:</label>
-        <input type="text" id="bank-account-name" name="bank-account-name"><br><br>
-    </div>
-    <button type="submit">Thanh toán $250</button>
-
-    </form>
-
-    <!-- Footer -->
-    <div class="footer">
-      <p>Bằng cách thanh toán, bạn đồng ý với <a href="#">Điều khoản và Điều kiện</a></p>
-    </div>
-  </div>
-
-  <script>
-      // Hiển thị các chi tiết thanh toán dựa trên phương thức chọn
-        document.getElementById("payment-method").addEventListener("change", function() {
-            const method = this.value;
-
-            // Ẩn tất cả các phương thức thanh toán chi tiết
-            const paymentDetails = document.querySelectorAll('.payment-details');
-            paymentDetails.forEach(detail => detail.style.display = 'none');
-            
-            // Hiển thị phương thức thanh toán đã chọn
-            if (method === "credit-card") {
-                document.getElementById("credit-card-details").style.display = "block";
-            } else if (method === "paypal") {
-                document.getElementById("paypal-details").style.display = "block";
-            } else if (method === "bank-transfer") {
-                document.getElementById("bank-transfer-details").style.display = "block";
-            }
-        });
-
-        // Xử lý form thanh toán khi gửi
-        document.getElementById("payment-form").addEventListener("submit", function(event) {
-            event.preventDefault();
-            
-            // Kiểm tra xem người dùng đã điền đầy đủ thông tin chưa
-            const paymentMethod = document.getElementById("payment-method").value;
-            const name = document.getElementById("full-name").value;
-            const email = document.getElementById("email").value;
-            const bank = document.getElementById("bank-account").value;
-            const paypal = document.getElementById("paypal-email").value;
-            const creditcard = document.getElementById("credit-card-number").value;
-            
-            if (!paymentMethod || !name || !email) {
-                alert("Vui lòng điền đầy đủ thông tin.");
-                return;
-            } else {
-                window.location.href = "./verification.php";
-
-            }
-        });
-  </script>
         <footer class="footer">
             <div class="content">
                 <div class="row row-top">

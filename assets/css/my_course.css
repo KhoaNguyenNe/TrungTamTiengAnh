@@ -1,0 +1,28 @@
+.course-bar{
+    background-color: white;
+    font-size: 15px;
+}
+
+.course-bar .emo{
+    color: blue;
+}
+
+.flex-fill{
+    font-size: 15px;
+}
+
+.table, .table td, .table th{
+    border: 0;
+}
+.table td{
+    vertical-align: middle;
+}
+.table thead{
+    border-bottom: 1px solid #686977;
+}
+
+.d-flex .p-2 p{
+    font-size: 12px;
+    padding: 3px 0;
+}
+

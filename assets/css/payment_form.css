@@ -1,0 +1,99 @@
+/* Định dạng chung cho container form */
+.container-form {
+    margin: 30px auto;
+    padding: 20px;
+    max-width: 800px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Tiêu đề form */
+.container-form > div:first-child {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+/* Định dạng bảng responsive */
+.table-responsive {
+    margin-top: 20px;
+}
+
+/* Định dạng các trường input và select trong form */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Label cho các trường nhập liệu */
+.form-group label {
+    font-size: 16px;
+    color: #333;
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* Input và select */
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Thay đổi màu sắc của input và select khi focus */
+.form-control:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+/* Nút submit */
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Phần footer */
+.footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #aaa;
+}
+
+/* Thiết lập các phần tử của form không ảnh hưởng tới header và footer */
+footer {
+    margin-top: 30px;
+    padding: 10px;
+    background-color: #f1f1f1;
+}
+
+@media screen and (max-width: 768px) {
+    .container-form {
+        padding: 15px;
+        max-width: 100%;
+    }
+
+    .form-control {
+        font-size: 14px;
+    }
+
+    .btn-primary {
+        width: 100%;
+        padding: 12px;
+    }
+}
+    

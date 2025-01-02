@@ -1,5 +1,22 @@
+<?php
+session_start();
+
+// Kết nối đến cơ sở dữ liệu
+include "connect.php"; // Đảm bảo kết nối đã được thiết lập trong file này
+
+header("Cache-Control: no-cache, must-revalidate");
+header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+
+$isLoggedIn = isset($_SESSION['user_id']); // Kiểm tra nếu người dùng đã đăng nhập
+if(isset($_SESSION['user_name'])) {
+    $usernameindex = $_SESSION['user_name'];
+    $role = $_SESSION['role'];
+}
+?>
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,6 +26,9 @@
             href="./assets/favicon/favicon.ico"
             type="image/x-icon"
         />
+        <!-- Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <!-- Nhúng CDN Font Awesome -->
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
         <link
@@ -18,17 +38,15 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         />
-        <!-- Style CSS -->
+        <!-- Font -->
         <link rel="stylesheet" href="./assets/font/stylesheet.css" />
-        <!-- Responsive -->
-        <link rel="stylesheet" href="./assets/css/responsive.css" />
         <!-- Reset CSS -->
         <link rel="stylesheet" href="./assets/css/reset.css" />
-        <!-- Font  -->
+        <!-- Style CSS  -->
         <link rel="stylesheet" href="./assets/css/style.css" />
-        <!-- Aboutus CSS -->
-        <link rel="stylesheet" href="./assets/css/aboutus.css" />
-        <title>Giới thiệu - Web luyện thi TOEIC</title>
+        <!-- Responsive -->
+        <link rel="stylesheet" href="./assets/css/responsive.css" />
+        <title>Web luyện thi TOEIC</title>
     </head>
     <body>
         <header class="header">
@@ -107,18 +125,27 @@
                                 >
                             </li>
                             <li>
-                                <a href="./blog.php" class="item-nav-mobile">Blog</a>
+                                <a href="./blog.php" class="item-nav-mobile"
+                                    >Blog</a
+                                >
                             </li>
                             <li>
-                                <a href="./toeic-tip.php" class="item-nav-mobile"
+                                <a
+                                    href="./toeic-tip.php"
+                                    class="item-nav-mobile"
                                     >TOEIC&nbsp;Tips</a
                                 >
                             </li>
-                            <li>
-                                <a href="./login.php" class="item-nav-mobile"
-                                    >Đăng&nbsp;nhập</a
-                                >
-                            </li>
+                            <?php if (!$isLoggedIn): ?>
+                                <li>
+                                    <a href="./login.php" class="item-nav-mobile">Đăng&nbsp;nhập</a>
+                                </li>
+                            <?php else: ?>
+                                <li>
+                                    <a href="./information.php" class="item-nav-mobile">Cài&nbsp;đặt</a>
+                                </li>
+                            <?php endif; ?>
+
                         </ul>
                     </nav>
                     <!-- Logo -->
@@ -167,7 +194,9 @@
                             <a href="./blog.php" class="item">Blog</a>
                         </li>
                         <li>
-                            <a href="./toeic-tip.php" class="item">TOEIC&nbsp;Tips</a>
+                            <a href="./toeic-tip.php" class="item"
+                                >TOEIC&nbsp;Tips</a
+                            >
                         </li>
                     </ul>
 
@@ -184,9 +213,28 @@
                             </svg>
                             <p>Unlock&nbsp;Pro</p>
                         </a>
+                        <?php if (!isset($_SESSION['user_id'])): ?>
                         <a href="./login.php" class="log btn" id="log">
                             <p class="text">Đăng&nbsp;nhập</p>
                         </a>
+                        <?php else: ?>
+                            <li class="nav-item dropdown btn">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><?php echo $usernameindex ?></a>
+                            <ul class="dropdown-menu dropmn">
+                                <li><a class="dropdown-item" href="/TRUNGTAMTIENGANH/verify_password.php">Thay đổi thông tin</a></li>
+                                <?php
+                                    // Giả sử biến $role được lấy từ session hoặc cơ sở dữ liệu
+                                    if ($role == 'Admin') {
+                                        echo '<li><a class="dropdown-item" href="/TRUNGTAMTIENGANH/quan_ly.php">Trang quản lý</a></li>';
+                                    }
+                                    if ($role == 'Giảng viên') {
+                                        echo '<li><a class="dropdown-item" href="/TrungTamTiengAnh/lectures.php">Quản lý bài giảng</a></li>';
+                                    }
+                                ?>
+                                <li><a class="dropdown-item" href="/TrungTamTiengAnh/LOGCODE/logout.php">Đăng xuất</a></li>
+                            </ul>
+                            </li>
+                        <?php endif; ?>
                     </div>
                 </nav>
             </div>

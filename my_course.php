@@ -1,5 +1,42 @@
+<?php
+session_start();
+
+header("Cache-Control: no-cache, must-revalidate");
+header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+
+$isLoggedIn = isset($_SESSION['user_id']); // Kiểm tra nếu người dùng đã đăng nhập
+if(isset($_SESSION['user_name'])) {
+    $usernameindex = $_SESSION['user_name'];
+}
+
+include 'connect.php';
+
+//$sql = "SELECT * FROM lectures";
+//$result = $conn->query($sql);
+
+// Lưu kết quả vào biến $listLectures dưới dạng một mảng
+
+
+$user_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+$result = $conn->query("SELECT * FROM hocvien_khoahoc WHERE hocvien_id = $user_id");
+$user_course = [];
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        $user_course[] = $row;  // Lưu từng dòng kết quả vào mảng
+    }
+} else {
+    echo "0 results";
+}
+// Đóng kết nối
+$conn->close();
+
+
+
+?>
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,10 +46,9 @@
             href="./assets/favicon/favicon.ico"
             type="image/x-icon"
         />
-        <link
-            rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-        />
+        <!-- Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <!-- Nhúng CDN Font Awesome -->
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
         <link
@@ -22,105 +58,16 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         />
-        <!-- Style CSS -->
+        <!-- Font -->
         <link rel="stylesheet" href="./assets/font/stylesheet.css" />
-        <!-- Responsive -->
-        <link rel="stylesheet" href="./assets/css/responsive.css" />
         <!-- Reset CSS -->
         <link rel="stylesheet" href="./assets/css/reset.css" />
-        <!-- Font  -->
+        <!-- Style CSS  -->
         <link rel="stylesheet" href="./assets/css/style.css" />
-        <!--Style Prenium CSS-->
-        <link rel="stylesheet" href="./assets/css/prenium.css" />
-        <!-- icon -->
-        <link
-            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-            rel="stylesheet"
-        />
-        <title>Từ vựng</title>
-        <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f7f7f7;
-      margin: 0;
-      padding: 0;
-    }
-    .container {
-      width: 100%;
-      max-width: 600px;
-      margin: 50px auto;
-      padding: 20px;
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-    h1 {
-      text-align: center;
-      color: #333;
-    }
-    .service-info {
-      background-color: #e9f7fa;
-      padding: 15px;
-      margin-bottom: 20px;
-      border-radius: 5px;
-      text-align: center;
-    }
-    .service-info h3 {
-      margin: 0;
-      color: #00796b;
-    }
-    .service-info p {
-      font-size: 16px;
-      color: #555;
-    }
-    .payment-methods {
-      margin-bottom: 20px;
-    }
-    .payment-methods label {
-      display: block;
-      margin: 10px 0 5px;
-    }
-    select, input[type="text"], input[type="email"], input[type="number"] {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 16px;
-    }
-    button {
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      padding: 15px;
-      width: 100%;
-      border-radius: 5px;
-      font-size: 18px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #45a049;
-    }
-    .footer {
-      text-align: center;
-      margin-top: 30px;
-      font-size: 14px;
-      color: #555;
-    }
-    .footer a {
-      color: #00796b;
-      text-decoration: none;
-    }
-    input[type="number"]::-webkit-outer-spin-button,
-        input[type="number"]::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
-        /* Ẩn nút tăng/giảm trên Firefox */
-        input[type="number"] {
-            -moz-appearance: textfield;
-        }
-  </style>
+        <!-- Responsive -->
+        <link rel="stylesheet" href="./assets/css/responsive.css" />
+        <link rel="stylesheet" href="./assets/css/my_course.css" />
+        <title>Web luyện thi TOEIC</title>
     </head>
     <body>
         <header class="header">
@@ -199,18 +146,27 @@
                                 >
                             </li>
                             <li>
-                                <a href="./blog.php" class="item-nav-mobile">Blog</a>
+                                <a href="./blog.php" class="item-nav-mobile"
+                                    >Blog</a
+                                >
                             </li>
                             <li>
-                                <a href="./toeic-tip.php" class="item-nav-mobile"
+                                <a
+                                    href="./toeic-tip.php"
+                                    class="item-nav-mobile"
                                     >TOEIC&nbsp;Tips</a
                                 >
                             </li>
-                            <li>
-                                <a href="./login.php" class="item-nav-mobile"
-                                    >Đăng&nbsp;nhập</a
-                                >
-                            </li>
+                            <?php if (!$isLoggedIn): ?>
+                                <li>
+                                    <a href="./login.php" class="item-nav-mobile">Đăng&nbsp;nhập</a>
+                                </li>
+                            <?php else: ?>
+                                <li>
+                                    <a href="./information.php" class="item-nav-mobile">Cài&nbsp;đặt</a>
+                                </li>
+                            <?php endif; ?>
+
                         </ul>
                     </nav>
                     <!-- Logo -->
@@ -259,7 +215,9 @@
                             <a href="./blog.php" class="item">Blog</a>
                         </li>
                         <li>
-                            <a href="./toeic-tip.php" class="item">TOEIC&nbsp;Tips</a>
+                            <a href="./toeic-tip.php" class="item"
+                                >TOEIC&nbsp;Tips</a
+                            >
                         </li>
                     </ul>
 
@@ -276,115 +234,127 @@
                             </svg>
                             <p>Unlock&nbsp;Pro</p>
                         </a>
+                        <?php if (!isset($_SESSION['user_id'])): ?>
                         <a href="./login.php" class="log btn" id="log">
                             <p class="text">Đăng&nbsp;nhập</p>
                         </a>
+                        <?php else: ?>
+                            <li class="nav-item dropdown btn">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><?php echo $usernameindex ?></a>
+                            <ul class="dropdown-menu dropmn">
+                                <li><a class="dropdown-item" href="/TRUNGTAMTIENGANH/verify_password.php">Thay đổi thông tin</a></li>
+                                <li><a class="dropdown-item" href="/TRUNGTAMTIENGANH/LOGCODE/logout.php">Đăng xuất</a></li>
+                            </ul>
+                            </li>
+                        <?php endif; ?>
                     </div>
                 </nav>
             </div>
         </header>
-        <div class="container">
-    <!-- Thông tin gói dịch vụ -->
-    <div class="service-info">
-      <h3>Khóa Học Tiếng Anh</h3>
-      <p>Khóa học Tiếng Anh dành cho doanh nghiệp - $50/tháng</p>
-      <p><strong>Đăng ký ngay hôm nay để bắt đầu học ngay!</strong></p>
-    </div>
+        <main>
+        <div class="d-flex">
+            <div style="width:25%;" class="p-2 flex-fill">
+                <div class="d-flex flex-column">
+                    <div class="p-2">
+                        <form class="d-flex" style="max-height:40px;">
+                            <input class="form-control me-2" type="text" placeholder="Tìm ID">
+                            <button style="padding: 5px 10px;" class="btn btn-primary" type="button">Search</button>
+                        </form>
+                    </div>
+                    <div class="p-2">
+                        <nav class="navbar navbar-expand-sm bg-light navbar-light">
+                            <div class="container-fluid course-bar">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Khóa học của tôi</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link emo" href="#">Xem thêm</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                    <?php
+                        foreach ($user_course as $item):
+                    ?>
+                    <div class="p-2 ">
+                        <a href="#"><img style="width: 150px;" src="./assets/img/blg4.png" class="rounded" alt="Cinque Terre"></a>
+                    </div>
+                    <?php
+                        endforeach;
+                        
+                    ?>
+                </div>
+            </div>
+            <div style="width:75%; border-right: 0.5px solid black; border-left: 0.5px solid black"  class="p-2 flex-fill container mt-3">
+                <h2>Khóa Học</h2>
+                         
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Khóa Học</th>
+                        <th>Lĩnh Vực</th>
+                        <th>Trạng Thái</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                        foreach ($user_course as $item):
+                            include 'connect.php';
+                            $result2 = $conn->query("SELECT * FROM khoahoc WHERE khoahoc_id = {$item['khoahoc_id']}");
+                            $course = [];
+                            if ($result2 && $result2->num_rows > 0) {
+                                while($row = $result2->fetch_assoc()) {
+                                    $course[] = $row;  // Lưu từng dòng kết quả vào mảng
+                                }
+                            } else {
+                                echo "0 results";
+                            }
+                            $conn->close();
+                        
+                        
+                    ?>
+                    <tr>
+                        
+                        <td>1</td>
+                        <td>
+                            <div class="d-flex">  
+                                <div class="p-2 ">
+                                <a href="lectures_of_course.php?user_id=<?= $user_id ?>&course_id=<?= $item['khoahoc_id'] ?>">
+                                    <img style="width: 200px;" src="./assets/img/blg3.png" class="rounded" alt="Cinque Terre">
+                                </a>
+                                </div>
+                                
+                                <div class="p-2 ">
+                                    <h2><?php echo $course[0]['ten_khoa_hoc']; ?></h2>
+                                    <p><?php echo $item['ngay_dang_ky']; ?></p>
+                                    <p><?php echo $item['ngay_het_han']; ?></p>
+                                </div>
 
-    <!-- Form thanh toán -->
-    <h1>Thanh toán dịch vụ</h1>
-
-<form id="payment-form">
-    <!-- Các thông tin người dùng -->
-    <label for="full-name">Họ và tên:</label>
-    <input type="text" id="full-name" name="full-name" required><br><br>
-
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required><br><br>
-
-    <label for="sdt">Số điện thoại:</label>
-    <input type="number" id="sdt" name="sdt" min="0100000000" max="0999999999"required><br><br>
-
-    <!-- Chọn phương thức thanh toán -->
-    <label for="payment-method">Phương thức thanh toán:</label>
-    <select id="payment-method" name="payment-method">
-        <option value="">Chọn phương thức thanh toán</option>
-        <option value="credit-card">Thẻ tín dụng</option>
-        <option value="paypal">PayPal</option>
-        <option value="bank-transfer">Chuyển khoản ngân hàng</option>
-    </select><br><br>
-
-    <!-- Chi tiết thẻ tín dụng -->
-    <div id="credit-card-details" class="payment-details" style="display: none;">
-        <label for="credit-card-number">Số thẻ tín dụng:</label>
-        <input type="text" id="credit-card-number" name="credit-card-number"><br><br>
-        <label for="credit-account-name">Tên ngân hàng:</label>
-        <input type="text" id="credit-account-name" name="credit-account-name"><br><br>
-    </div>
-
-    <!-- Chi tiết PayPal -->
-    <div id="paypal-details" class="payment-details" style="display: none;">
-        <label for="paypal-email">Email PayPal:</label>
-        <input type="email" id="paypal-email" name="paypal-email"><br><br>
-    </div>
-
-    <!-- Chi tiết chuyển khoản ngân hàng -->
-    <div id="bank-transfer-details" class="payment-details" style="display: none;">
-        <label for="bank-account">Số tài khoản ngân hàng:</label>
-        <input type="number" id="bank-account" name="bank-account"><br><br>
-        <label for="bank-account-name">Tên ngân hàng:</label>
-        <input type="text" id="bank-account-name" name="bank-account-name"><br><br>
-    </div>
-    <button type="submit">Thanh toán $50</button>
-
-    </form>
-
-    <!-- Footer -->
-    <div class="footer">
-      <p>Bằng cách thanh toán, bạn đồng ý với <a href="#">Điều khoản và Điều kiện</a></p>
-    </div>
-  </div>
-
-  <script>
-      // Hiển thị các chi tiết thanh toán dựa trên phương thức chọn
-        document.getElementById("payment-method").addEventListener("change", function() {
-            const method = this.value;
-
-            // Ẩn tất cả các phương thức thanh toán chi tiết
-            const paymentDetails = document.querySelectorAll('.payment-details');
-            paymentDetails.forEach(detail => detail.style.display = 'none');
+                            </div>
+                        </td>
+                        <td><?php echo $course[0]['linh_vuc']; ?></td>
+                        <td><?php
+                            if ($course[0]['trang_thai'] == 1) {
+                                echo "Hoàn thành";
+                            } else {
+                                echo "Chưa hoàn thành";}
+                        ?></td>
+                        
+                    </tr>
+                    <?php
+                        endforeach;
+                        
+                    ?>
+                    
+                    </tbody>
+                </table>
+            </div>
             
-            // Hiển thị phương thức thanh toán đã chọn
-            if (method === "credit-card") {
-                document.getElementById("credit-card-details").style.display = "block";
-            } else if (method === "paypal") {
-                document.getElementById("paypal-details").style.display = "block";
-            } else if (method === "bank-transfer") {
-                document.getElementById("bank-transfer-details").style.display = "block";
-            }
-        });
+        </main>
 
-        // Xử lý form thanh toán khi gửi
-        document.getElementById("payment-form").addEventListener("submit", function(event) {
-            event.preventDefault();
-            
-            // Kiểm tra xem người dùng đã điền đầy đủ thông tin chưa
-            const paymentMethod = document.getElementById("payment-method").value;
-            const name = document.getElementById("full-name").value;
-            const email = document.getElementById("email").value;
-            const bank = document.getElementById("bank-account").value;
-            const paypal = document.getElementById("paypal-email").value;
-            const creditcard = document.getElementById("credit-card-number").value;
-            
-            if (!paymentMethod || !name || !email) {
-                alert("Vui lòng điền đầy đủ thông tin.");
-                return;
-            } else {
-                window.location.href = "./verification.php";
-
-            }
-        });
-  </script>
         <footer class="footer">
             <div class="content">
                 <div class="row row-top">
@@ -551,9 +521,8 @@
         </a>
 
         <!-- Nhúng Javascript -->
-        <script src="./assets/js/vocabulary.js"></script>
+        <script src="./assets/js/index.js"></script>
         <script src="./assets/js/go-top.js"></script>
         <script src="./assets/js/if_log.js"></script>
-
     </body>
 </html>

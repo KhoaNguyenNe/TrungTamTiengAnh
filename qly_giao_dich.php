@@ -1,77 +1,27 @@
 <?php
-include 'connect.php';
+include './connect.php'; // Đảm bảo rằng đường dẫn đúng
 
-// Kiểm tra xem 'id' có tồn tại trong URL không
-if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-    $id = $_GET['id'];
+$isLoggedIn = isset($_SESSION['user_id']); // Kiểm tra nếu người dùng đã đăng nhập
+if(isset($_SESSION['user_name'])) {
+    $usernameindex = $_SESSION['user_name'];
+    $role = $_SESSION['role'];
 
-    // Chuẩn bị câu truy vấn
-    $stmt = $conn->prepare("SELECT * FROM user WHERE id = ?");
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    // Kiểm tra nếu người dùng tồn tại
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-    } else {
-        echo "Không tìm thấy người dùng!";
-        exit;
+    if ($role !== 'Admin') {
+        // Nếu không phải Admin, chuyển hướng về index.php
+        header("Location: index.php");
+        exit();
     }
-
-    $stmt->close();
-} else {
-    echo "ID không hợp lệ!";
-    exit;
 }
 
-// Xử lý khi gửi thông tin qua POST
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $phone = $_POST['phone'];
-    $user_type = $_POST['user_type'];  
-    $status = $_POST['status'];
-
-    // Mảng để lưu thông báo lỗi nếu có
-    $errors = [];
-
-    // Kiểm tra xem các trường có được điền đầy đủ không
-    if (empty($name)) {
-        $errors[] = "Tên không được để trống!";
-    }
-    if (empty($email)) {
-        $errors[] = "Email không được để trống!";
-    }
-    if (empty($phone)) {
-        $errors[] = "Số điện thoại không được để trống!";
-    }
-    if (empty($user_type)) {
-        $errors[] = "Loại người dùng không được để trống!";
-    }
+// Lấy danh sách người dùng
+$result = $conn->query("SELECT * FROM payment");
 
 
-    // Nếu không có lỗi, thực hiện cập nhật thông tin người dùng
-    if (empty($errors)) {
-        $stmt = $conn->prepare("UPDATE user SET name = ?, email = ?, phone = ?, status = ?, user_type = ? WHERE id = ?");
-        // Sử dụng đúng kiểu dữ liệu: s cho chuỗi, i cho id
-        $stmt->bind_param("sssssi", $name, $email, $phone, $status, $user_type, $id);
-        $stmt->execute();
-        $stmt->close();
 
-        // Sau khi cập nhật, chuyển hướng về trang list.php
-        header("Location: list.php");
-        exit;
-    } else {
-        // Nếu có lỗi, hiển thị thông báo lỗi
-        foreach ($errors as $error) {
-            echo $error . "<br>";
-        }
-        exit;
-    }
+if (!$result) {
+    die("Query failed: " . $conn->error);
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -86,8 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- CSS edit -->
-    <link rel="stylesheet" href="./assets/css/edit.css" />
+    <!-- CSS list -->
+    <link rel="stylesheet" href="./assets/css/list.css" />
     <!-- Style CSS -->
     <link rel="stylesheet" href="./assets/font/stylesheet.css" />
     <!-- Responsive -->
@@ -100,11 +50,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="./assets/css/grammar.css" />
     <!-- icon -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-    <title>Sửa người dùng</title>
+    <title>Quản lý</title>
 </head>
 
 <body>
-
     <header class="header">
         <div class="content nav-content">
             <nav class="navbar">
@@ -155,9 +104,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <li>
                             <a href="./toeic-tip.php" class="item-nav-mobile">TOEIC&nbsp;Tips</a>
                         </li>
-                        <li>
-                            <a href="./login.php" class="item-nav-mobile">Đăng&nbsp;nhập</a>
-                        </li>
                     </ul>
                 </nav>
                 <!-- Logo -->
@@ -204,58 +150,64 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </svg>
                         <p>Unlock&nbsp;Pro</p>
                     </a>
-                    <a href="./login.php" class="log btn" id="log">
-                        <p class="text">Đăng&nbsp;nhập</p>
-                    </a>
                 </div>
             </nav>
         </div>
     </header>
-    <form method="POST" class="user-form">
-        <div class="form-row">
-            <div class="form-column">
-                <label for="name">Họ và tên:</label><br>
-                <input type="text" id="name" name="name"
-                    value="<?= isset($row['name']) ? htmlspecialchars($row['name']) : ''; ?>" required>
+    <div class="container">
+        <hr>
+        <h1 class="user_manager">Thống kê giao dịch</h1>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>ID giao dịch VNPAY</th>
+                    <th>Giá tiền</th>
+                    <th>Mã ngân hàng</th>
+                    <th>Hình thức thanh toán</th>
+                    <th>Loại</th> 
+                    <th>Ngày thanh toán</th>
+                    <th>Người dùng</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                if (!empty($result)):
+                    $count = 0;
+                    foreach ($result as $item):
+                        
+                        $count++;
+                        ?>
+                        <tr>
+                            <td><?php echo $count; ?></td>
+                            <td><?php echo $item['id_vnpay']; ?></td>
+                            <td><?php echo $item['vnp_amount']; ?></td>
+                            <td><?php echo $item['vnp_bankCode']; ?></td>
+                            <td><?php echo $item['vnp_cardtype']; ?></td>
+                            <td><?php echo $item['vnp_orderinfor']; ?></td>
+                            <td><?php echo $item['vnp_paydate']; ?></td>
+                            <?php
+                            // Truy vấn lấy tên người dùng dựa trên user_id
+                            $user_id = $item['user_id'];
+                            $kq = $conn->query("SELECT name FROM user WHERE id = '$user_id'");
 
-                <label for="email">Email:</label><br>
-                <input type="email" id="email" name="email" value="<?= $row['email']; ?>" required><br><br>
+                            // Kiểm tra kết quả và hiển thị tên người dùng
+                            if ($kq && $row = $kq->fetch_assoc()) {
+                                echo "<td>" . htmlspecialchars($row['name']) . "</td>";
+                            } else {
+                                echo "<td>Không tìm thấy</td>";
+                            }
+                            ?>
 
-                <label for="phone">Số điện thoại:</label><br>
-                <input type="text" id="phone" name="phone" value="<?= $row['phone']; ?>"><br><br>
-
-                <label for="type_user">Loại người dùng:</label><br>
-                <select id="user_type" name="user_type">
-                        <option value="Admin" <?= isset($user_type) && $user_type == 'Admin' ? 'selected' : '' ?>>Admin
-                        </option>
-                        <option value="Người dùng" <?= isset($user_type) && $user_type == 'Người dùng' ? 'selected' : '' ?>>Người dùng
-                        </option>
-                        <option value="Giảng viên" <?= isset($user_type) && $user_type == 'Giảng viên' ? 'selected' : '' ?>>Giảng viên
-                        </option>
-                    </select><br><br>
-            </div>
-
-            <div class="form-column">
-                <label for="password">Mật khẩu:</label><br>
-                <input type="password" id="password" name="password"><br><br>
-
-                <label for="confirm_password">Nhập lại mật khẩu:</label><br>
-                <input type="password" id="confirm_password" name="confirm_password"><br><br>
-
-                <label for="status">Trạng thái:</label><br>
-                <select id="status" name="status">
-                    <option value="1" <?= $row['status'] == 1 ? 'selected' : '' ?>>Đã kích hoạt</option>
-                    <option value="0" <?= $row['status'] == 0 ? 'selected' : '' ?>>Chưa kích hoạt</option>
-                </select><br><br>
-            </div>
-        </div>
-
-        <div class="form-buttons">
-            <button type="submit">Sửa người dùng</button>
-            <a href="list.php" class="back-button">Quay lại</a>
-        </div>
-
-    </form>
+                            
+                        </tr>
+                        <?php
+                    endforeach;
+                endif;
+                ?>
+            </tbody>
+        </table>
+    </div>
     <footer class="footer">
         <div class="content">
             <div class="row row-top">
@@ -379,6 +331,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <script src="./assets/js/grammar.js"></script>
     <script src="./assets/js/go-top.js"></script>
     <script src="./assets/js/if_log.js"></script>
+
 </body>
 
 </html>

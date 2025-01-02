@@ -53,19 +53,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $mail->send();
 
-            $insert = "insert into otp(email, otp) values ('$email', '$otp')";
-            mysqli_query($conn, $insert);
+            // Kiểm tra xem email đã tồn tại trong bảng `otp` chưa
+            $check_sql = "SELECT * FROM otp WHERE email = ?";
+            $check_stmt = $conn->prepare($check_sql);
+            $check_stmt->bind_param("s", $email);  // "s" cho email kiểu string
+            $check_stmt->execute();
+            $result = $check_stmt->get_result();
+
+            // Nếu email đã tồn tại, cập nhật OTP
+            if ($result->num_rows > 0) {
+                $otp_sql = "UPDATE otp SET otp = ? WHERE email = ?";
+                $otp_stmt = $conn->prepare($otp_sql);
+                $otp_stmt->bind_param("is", $otp, $email);  // "is" vì otp là integer và email là string
+            } else {
+                // Nếu email chưa tồn tại, chèn vào bảng
+                $otp_sql = "INSERT INTO otp (email, otp) VALUES (?, ?)";
+                $otp_stmt = $conn->prepare($otp_sql);
+                $otp_stmt->bind_param("si", $email, $otp);  // "si" vì email là string và otp là integer
+            }
+
+            // Thực thi câu lệnh SQL
+            $otp_stmt->execute();
+
+            // Đóng các statement
+            $check_stmt->close();
+            $otp_stmt->close();
             
-            // $_SESSION['email'] = $email;
-            // $_SESSION['user'] = ['email' => $email, 'pass' => $pass, 'name' => $name, 'user_type' => $user_type];
-            // header('location: ./LOGCODE/otp.php');
-
-            $password = md5($otp);
-            $update = "Update user set password ='$password' where email = '$email'";
-            mysqli_query($conn, $update);
-            header("Location: ./login.php");
-
-
+            $_SESSION['email'] = $email;
+            header('location: ./LOGCODE/otp_forgotPW.php');
         } catch(Exception $e) {
             ?>
             <script>

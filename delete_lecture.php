@@ -3,13 +3,16 @@
 include'connect.php';
 
 session_start();
-$user_role = 'admin'; //$_SESSION['user_type'];  // Vai trò của người dùng
-$user_id = 0; //$_SESSION['user_id']; // ID của người dùng hiện tại
+
+// Lấy giá trị từ URL
+$giangvien_id = isset($_GET['giangvien_id']) ? intval($_GET['giangvien_id']) : 0;
 
 $lecture_id = $_GET['id'];
 $result = $conn->query("SELECT * FROM lectures WHERE id = $lecture_id");
 $lecture = $result->fetch_assoc();
-
+$course_id = isset($_GET['course_id']) ? intval($_GET['course_id']) : 0;
+$course_result = $conn->query("SELECT * FROM khoahoc WHERE khoahoc_id = $course_id");
+$course = $course_result->fetch_assoc();
 
 
 
@@ -24,7 +27,7 @@ if ($conn->connect_error) {
 if (isset($_GET['id'])) {
     // Get the lecture ID from the URL
     $lecture_id = intval($_GET['id']);
-    if ($user_role == 'admin' || ($user_role == 'teacher' && $lecture['teacher_id'] == $user_id)) {
+    if ($course['giangvien_id'] == $giangvien_id) {
         // Cho phép xóa b giảng
          // Prepare the delete SQL statement
         $sql = "DELETE FROM lectures WHERE id = ?";
@@ -32,12 +35,12 @@ if (isset($_GET['id'])) {
         $stmt->bind_param("i", $lecture_id);
         // Execute the statement and check for success
         if ($stmt->execute()) {
-            echo "<script>alert('Bài giảng đã được xóa thành công.'); window.location.href = 'lectures.php';</script>";
+            echo "<script>alert('Bài giảng đã được xóa thành công.');window.location.href = 'lectures.php?course_id=" . $course_id . "&giangvien_id=" . $giangvien_id . "';</script>";
         } else {
-            echo "<script>alert('Đã xảy ra lỗi khi xóa bài giảng.'); window.location.href = 'lectures.php';</script>";
+            echo "<script>alert('Đã xảy ra lỗi khi xóa bài giảng.'); window.location.href = 'lectures.php?course_id=" . $course_id . "&giangvien_id=" . $giangvien_id . "';</script>";
         }
     } else {
-        echo "<script>alert('Bạn không có quyền thực hiện chức năng này'); window.location.href = 'lectures.php';</script>";
+        echo "<script>alert('Bạn không có quyền thực hiện chức năng này');window.location.href = 'lectures.php?course_id=" . $course_id . "&giangvien_id=" . $giangvien_id . "';</script>";
     }
    
 
@@ -47,7 +50,7 @@ if (isset($_GET['id'])) {
     $stmt->close();
 } else {
     // Redirect if no ID is found
-    header("Location: lectures.php");
+    header("Location: lectures.php?course_id=" . $course_id . "&giangvien_id=" . $giangvien_id);
 }
 
 // Close the database connection

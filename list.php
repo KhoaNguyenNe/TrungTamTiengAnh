@@ -91,9 +91,6 @@ if (!$result) {
                         <li>
                             <a href="./toeic-tip.php" class="item-nav-mobile">TOEIC&nbsp;Tips</a>
                         </li>
-                        <li>
-                            <a href="./login.php" class="item-nav-mobile">Đăng&nbsp;nhập</a>
-                        </li>
                     </ul>
                 </nav>
                 <!-- Logo -->
@@ -140,9 +137,6 @@ if (!$result) {
                         </svg>
                         <p>Unlock&nbsp;Pro</p>
                     </a>
-                    <a href="./login.php" class="log btn" id="log">
-                        <p class="text">Đăng&nbsp;nhập</p>
-                    </a>
                 </div>
             </nav>
         </div>
@@ -160,6 +154,7 @@ if (!$result) {
                     <th>Họ tên</th>
                     <th>Email</th>
                     <th>Điện thoại</th>
+                    <th>Loại người dùng</th> 
                     <th>Trạng thái</th>
                     <th width="5%">Sửa</th>
                     <th width="5%">Xóa</th>
@@ -177,6 +172,7 @@ if (!$result) {
                             <td><?php echo $item['name']; ?></td>
                             <td><?php echo $item['email']; ?></td>
                             <td><?php echo $item['phone']; ?></td>
+                            <td><?php echo $item['user_type']; ?></td>
                             <td><?php echo $item['status'] == 1 ? '<button class="btn btn-activated btn-sm">Đã kích hoạt</button>' : '<button class="btn btn-deactivated btn-sm">Chưa kích hoạt</button>'; ?>
                             </td>
                             <td><a href="edit.php?id=<?php echo $item['id']; ?>" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a></td>

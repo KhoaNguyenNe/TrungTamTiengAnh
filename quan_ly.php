@@ -1,5 +1,28 @@
+<?php
+session_start();
+
+// Kết nối đến cơ sở dữ liệu
+include "connect.php"; // Đảm bảo kết nối đã được thiết lập trong file này
+
+header("Cache-Control: no-cache, must-revalidate");
+header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+
+$isLoggedIn = isset($_SESSION['user_id']); // Kiểm tra nếu người dùng đã đăng nhập
+if(isset($_SESSION['user_name'])) {
+    $usernameindex = $_SESSION['user_name'];
+    $role = $_SESSION['role'];
+
+    if ($role !== 'Admin') {
+        // Nếu không phải Admin, chuyển hướng về index.php
+        header("Location: index.php");
+        exit();
+    }
+}
+?>
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,10 +32,9 @@
             href="./assets/favicon/favicon.ico"
             type="image/x-icon"
         />
-        <link
-            rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-        />
+        <!-- Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <!-- Nhúng CDN Font Awesome -->
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
         <link
@@ -22,105 +44,15 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         />
-        <!-- Style CSS -->
+        <!-- Font -->
         <link rel="stylesheet" href="./assets/font/stylesheet.css" />
-        <!-- Responsive -->
-        <link rel="stylesheet" href="./assets/css/responsive.css" />
         <!-- Reset CSS -->
         <link rel="stylesheet" href="./assets/css/reset.css" />
-        <!-- Font  -->
+        <!-- Style CSS  -->
         <link rel="stylesheet" href="./assets/css/style.css" />
-        <!--Style Prenium CSS-->
-        <link rel="stylesheet" href="./assets/css/prenium.css" />
-        <!-- icon -->
-        <link
-            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-            rel="stylesheet"
-        />
-        <title>Từ vựng</title>
-        <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f7f7f7;
-      margin: 0;
-      padding: 0;
-    }
-    .container {
-      width: 100%;
-      max-width: 600px;
-      margin: 50px auto;
-      padding: 20px;
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-    h1 {
-      text-align: center;
-      color: #333;
-    }
-    .service-info {
-      background-color: #e9f7fa;
-      padding: 15px;
-      margin-bottom: 20px;
-      border-radius: 5px;
-      text-align: center;
-    }
-    .service-info h3 {
-      margin: 0;
-      color: #00796b;
-    }
-    .service-info p {
-      font-size: 16px;
-      color: #555;
-    }
-    .payment-methods {
-      margin-bottom: 20px;
-    }
-    .payment-methods label {
-      display: block;
-      margin: 10px 0 5px;
-    }
-    select, input[type="text"], input[type="email"], input[type="number"] {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 16px;
-    }
-    button {
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      padding: 15px;
-      width: 100%;
-      border-radius: 5px;
-      font-size: 18px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #45a049;
-    }
-    .footer {
-      text-align: center;
-      margin-top: 30px;
-      font-size: 14px;
-      color: #555;
-    }
-    .footer a {
-      color: #00796b;
-      text-decoration: none;
-    }
-    input[type="number"]::-webkit-outer-spin-button,
-        input[type="number"]::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
-        /* Ẩn nút tăng/giảm trên Firefox */
-        input[type="number"] {
-            -moz-appearance: textfield;
-        }
-  </style>
+        <!-- Responsive -->
+        <link rel="stylesheet" href="./assets/css/responsive.css" />
+        <title>Web luyện thi TOEIC</title>
     </head>
     <body>
         <header class="header">
@@ -199,18 +131,27 @@
                                 >
                             </li>
                             <li>
-                                <a href="./blog.php" class="item-nav-mobile">Blog</a>
+                                <a href="./blog.php" class="item-nav-mobile"
+                                    >Blog</a
+                                >
                             </li>
                             <li>
-                                <a href="./toeic-tip.php" class="item-nav-mobile"
+                                <a
+                                    href="./toeic-tip.php"
+                                    class="item-nav-mobile"
                                     >TOEIC&nbsp;Tips</a
                                 >
                             </li>
-                            <li>
-                                <a href="./login.php" class="item-nav-mobile"
-                                    >Đăng&nbsp;nhập</a
-                                >
-                            </li>
+                            <?php if (!$isLoggedIn): ?>
+                                <li>
+                                    <a href="./login.php" class="item-nav-mobile">Đăng&nbsp;nhập</a>
+                                </li>
+                            <?php else: ?>
+                                <li>
+                                    <a href="./information.php" class="item-nav-mobile">Cài&nbsp;đặt</a>
+                                </li>
+                            <?php endif; ?>
+
                         </ul>
                     </nav>
                     <!-- Logo -->
@@ -259,7 +200,9 @@
                             <a href="./blog.php" class="item">Blog</a>
                         </li>
                         <li>
-                            <a href="./toeic-tip.php" class="item">TOEIC&nbsp;Tips</a>
+                            <a href="./toeic-tip.php" class="item"
+                                >TOEIC&nbsp;Tips</a
+                            >
                         </li>
                     </ul>
 
@@ -276,57 +219,73 @@
                             </svg>
                             <p>Unlock&nbsp;Pro</p>
                         </a>
+                        <?php if (!isset($_SESSION['user_id'])): ?>
                         <a href="./login.php" class="log btn" id="log">
                             <p class="text">Đăng&nbsp;nhập</p>
                         </a>
+                        <?php else: ?>
+                            <li class="nav-item dropdown btn">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><?php echo $usernameindex ?></a>
+                            <ul class="dropdown-menu dropmn">
+                                <li><a class="dropdown-item" href="/TRUNGTAMTIENGANH/verify_password.php">Thay đổi thông tin</a></li>
+                                <?php
+                                    // Giả sử biến $role được lấy từ session hoặc cơ sở dữ liệu
+                                    if ($role == 'Admin') {
+                                        echo '<li><a class="dropdown-item" href="./quan_ly.php">Trang quản lý</a></li>';
+                                    }
+                                    if ($role == 'Giảng viên') {
+                                        echo '<li><a class="dropdown-item" href="/TrungTamTiengAnh/LOGCODE/quan_ly_bai_giang.php">Quản Lý Bài Giảng</a></li>';
+                                    }
+                                ?>
+                                <li><a class="dropdown-item" href="/TrungTamTiengAnh/LOGCODE/logout.php">Đăng xuất</a></li>
+                            </ul>
+                            </li>
+                        <?php endif; ?>
                     </div>
                 </nav>
             </div>
         </header>
-        <div class="container">
-    <!-- Thông tin gói dịch vụ -->
-    <div class="service-info">
-      <h3>Khóa Học Tiếng Anh</h3>
-      <p>Khóa học Tiếng Anh cơ bản</p>
-      <p><strong>Đăng ký ngay hôm nay để bắt đầu học ngay!</strong></p>
-    </div>
 
-    <!-- Form thanh toán -->
-    <h1>Điền thông tin đăng ký</h1>
+        <div class="container-fluid p-5 bg-primary text-white text-center fs-1">
+        <h1>Trang chức năng của ADMIN <?php echo $usernameindex ?> </h1>
+        </div>
+        
+        <div class="container mt-5">
+            <div class="row fs-2">
+                <div class="col-sm-4">
+                    <div class="card mb-5" style="width:400px; height: 360px">
+                        <img class="card-img-top img-fluid" style="width: 100%; height: 150px;" src="/TrungTamTiengAnh/assets/img/nguoidung.png" alt="Card image">
+                        <div class="card-body">
+                            <h4 class="card-title mb-3 text-uppercase fw-bold">Quản lý tài khoản người dùng</h4>
+                            <p class="card-text mb-3">ADMIN có thể cập nhật thông tin cá nhân của người dùng và cấp quyền truy cập trang web với các role tương ứng là Admin, Giảng viên, Sinh viên</p>
+                            <a href="/TRUNGTAMTIENGANH/list.php" class="btn btn-primary mb-3">Chi tiết chức năng</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card mb-5" style="width:400px; height: 360px">
+                            <img class="card-img-top img-fluid" style="width: 100%; height: 150px;" src="/TrungTamTiengAnh/assets/img/baigiang.jpeg" alt="Card image">
+                            <div class="card-body">
+                                <h4 class="card-title mb-3 text-uppercase fw-bold">Quản lý bài giảng</h4>
+                                <p class="card-text mb-3">ADMIN có thể cập nhật thêm, xoá, sửa các bài giảng</p>
+                                <a href="./lectures.php" class="btn btn-primary mb-3">Chi tiết chức năng</a>
+                            </div>
+                        </div>
+                    </div>
+                <div class="col-sm-4">
+                <div class="card mb-5" style="width:400px; height: 360px">
+                            <img class="card-img-top img-fluid" style="width: 100%; height: 150px;" src="/TrungTamTiengAnh/assets/img/tien.jpg" alt="Card image">
+                            <div class="card-body">
+                                <h4 class="card-title mb-3 text-uppercase fw-bold">Thống kê giao dịch</h4>
+                                <p class="card-text mb-3">ADMIN có thống kê xem số lượng giao dịch</p>
+                                <a href="./qly_giao_dich.php" class="btn btn-primary mb-3">Chi tiết chức năng</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<form id="payment-form">
-    <!-- Các thông tin người dùng -->
-    <label for="full-name">Họ và tên:</label>
-    <input type="text" id="full-name" name="full-name" required><br><br>
-
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required><br><br>
-
-    <label for="sdt">Số điện thoại:</label>
-    <input type="number" id="sdt" name="sdt" min="0100000000" max="0999999999"required><br><br>
-
-    <button type="submit">Đăng ký</button>
-
-    </form>
-
-    <!-- Footer -->
-    <div class="footer">
-      <p>Bằng cách thanh toán, bạn đồng ý với <a href="#">Điều khoản và Điều kiện</a></p>
-    </div>
-  </div>
-
-  <script>
-        // Xử lý form thanh toán khi gửi
-        document.getElementById("payment-form").addEventListener("submit", function(event) {
-            event.preventDefault();
-            alert("Đăng ký thành công!");
-            setTimeout(function() {
-            window.location.href = "./index.php";  // Thay đổi URL đến trang bạn muốn chuyển hướng
-        }, 1000);
-
-            
-        });
-  </script>
         <footer class="footer">
             <div class="content">
                 <div class="row row-top">
@@ -493,9 +452,8 @@
         </a>
 
         <!-- Nhúng Javascript -->
-        <script src="./assets/js/vocabulary.js"></script>
+        <script src="./assets/js/index.js"></script>
         <script src="./assets/js/go-top.js"></script>
         <script src="./assets/js/if_log.js"></script>
-
     </body>
 </html>

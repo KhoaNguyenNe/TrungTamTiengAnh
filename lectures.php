@@ -18,17 +18,27 @@
 
     include 'connect.php';
 
-    $sql = "SELECT * FROM lectures";
-    $result = $conn->query($sql);
+    // Lấy giá trị từ URL
+    $giangvien_id = isset($_GET['giangvien_id']) ? intval($_GET['giangvien_id']) : 0;
+    $course_id = isset($_GET['course_id']) ? intval($_GET['course_id']) : 0;
+    $course_result = $conn->query("SELECT * FROM khoahoc WHERE khoahoc_id = $course_id");
+    
+
 
     // Lưu kết quả vào biến $listLectures dưới dạng một mảng
-    $listLectures = [];
-    if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-            $listLectures[] = $row;  // Lưu từng dòng kết quả vào mảng
+    $result = $conn->query("SELECT * FROM lectures WHERE khoahoc_id = $course_id");
+
+    if ($result) {
+        $listLectures = [];
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $listLectures[] = $row;  // Lưu từng dòng kết quả vào mảng
+            }
+        } else {
+            echo "Không có bài giảng nào cho khóa học này.";
         }
     } else {
-        echo "0 results";
+        echo "Lỗi khi truy vấn bài giảng: " . $conn->error;
     }
 
     // Đóng kết nối
@@ -248,7 +258,12 @@
                 <hr>
                 <h2>Quản lí bài giảng</h2>
                 <p>
-                    <button class="add-button"><a href="add_lecture.php"><i class="fa-solid fa-plus"></i>Thêm bài giảng</a></button>
+                <button class="add-button">
+                    <a href="add_lecture.php?giangvien_id=<?php echo $giangvien_id; ?>&course_id=<?php echo $course_id; ?>">
+                        <i class="fa-solid fa-plus"></i> Thêm bài giảng
+                    </a>
+                </button>
+
                 </p>
                 <table class="table table-bordered">
                     <thead>
@@ -256,7 +271,6 @@
                         <th>Tiêu đề</th>
                         <th>Mô tả</th>
                         <th>Nội dung</th>
-                        <th>Giảng Viên</th>
                         <th>Trạng Thái</th>
                         <th width = "5%">Sửa</th>
                         <th width="5%">Xóa</th>
@@ -271,10 +285,9 @@
                         <td><?php echo $item['title']; ?></td>
                         <td><?php echo $item['description']; ?></td>
                         <td><?php echo $item['content']; ?></td>
-                        <td><?php echo $item['teacher_id']; ?></td>
                         <td><?php echo $item['status']; ?></td>
-                        <td><button class="fix-button"><a href="edit_lecture.php?id=<?= $item['id'] ?>"><i class="fa-solid fa-pen-to-square"></i></a></button></td>
-                        <td><button class="delete-button""><a href="delete_lecture.php?id=<?= $item['id'] ?>"onclick = "return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a></button></td>
+                        <td><a href="edit_lecture.php?id=<?= $item['id'] ?>&giangvien_id=<?= $giangvien_id?>&course_id=<?= $course_id?>"><button class="fix-button"><i class="fa-solid fa-pen-to-square"></i></button></a></td>
+                        <td><button class="delete-button""><a href="delete_lecture.php?id=<?= $item['id'] ?>&giangvien_id=<?= $giangvien_id?>&course_id=<?= $course_id?>"onclick = "return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a></button></td>
                     </tr>
                     <?php
                         endforeach;
